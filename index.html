@@ -266,6 +266,53 @@
   .budget tr.total td.num { color: var(--gold); }
   .budget .note { color: var(--muted); font-size: 12px; }
 
+  /* Alarm Overlay */
+  .alarm-overlay { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; animation: alarmFlash 0.6s ease-in-out infinite alternate; }
+  .alarm-overlay.active { display: flex; }
+  @keyframes alarmFlash { 0% { background: rgba(230, 57, 70, 0.96); } 100% { background: rgba(255, 200, 69, 0.96); } }
+  .alarm-content { text-align: center; padding: 40px 20px; max-width: 90%; }
+  .alarm-icon { font-size: 80px; animation: shake 0.25s infinite; }
+  .alarm-content h2 { font-size: clamp(40px, 9vw, 96px); margin: 16px 0; color: #fff; font-weight: 900; text-shadow: 4px 4px 0 #000, -2px -2px 0 #000; letter-spacing: 2px; animation: shake 0.2s infinite; line-height: 1; }
+  .alarm-content p { font-size: clamp(16px, 3vw, 22px); color: #fff; font-weight: 700; text-shadow: 2px 2px 0 rgba(0,0,0,0.5); margin: 12px 0 28px; }
+  .alarm-content button { background: #000; color: #ffc845; border: 4px solid #ffc845; padding: 18px 40px; border-radius: 14px; font-size: 20px; font-weight: 900; cursor: pointer; letter-spacing: 1.5px; }
+  .alarm-content button:hover { background: #ffc845; color: #000; }
+  @keyframes shake { 0%,100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(-8px) rotate(-2deg); } 75% { transform: translateX(8px) rotate(2deg); } }
+
+  /* Alarm Control Section */
+  .alarm-panel { background: linear-gradient(135deg, rgba(230,57,70,0.18), rgba(255,200,69,0.18)); border: 2px solid var(--gold); border-radius: 18px; padding: 22px; }
+  .alarm-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .alarm-btn { background: var(--gold); color: var(--navy); border: none; padding: 12px 18px; border-radius: 10px; font-weight: 800; font-size: 14px; cursor: pointer; letter-spacing: 0.5px; transition: transform 0.15s ease; }
+  .alarm-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255,200,69,0.4); }
+  .alarm-btn.danger { background: var(--red); color: #fff; }
+  .alarm-btn.ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.2); }
+  #alarmStatus { color: var(--gold); font-size: 13px; margin-top: 12px; font-weight: 600; }
+
+  /* Calculator */
+  .calc { background: var(--card-strong); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 22px; }
+  .calc-controls { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,0.1); align-items: flex-end; }
+  .ctrl { display: flex; flex-direction: column; gap: 6px; }
+  .ctrl label { color: var(--gold); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+  .ctrl input { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 10px 14px; border-radius: 10px; font-size: 16px; font-weight: 700; width: 100px; font-variant-numeric: tabular-nums; }
+  .ctrl input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,200,69,0.25); }
+  .calc-table-wrap { overflow-x: auto; }
+  .calc-table { width: 100%; border-collapse: collapse; min-width: 680px; }
+  .calc-table th, .calc-table td { padding: 12px 8px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13px; }
+  .calc-table th { color: var(--gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 11px; }
+  .calc-table td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .calc-table td.note { color: var(--muted); font-size: 12px; }
+  .calc-table td.low-sub { color: var(--green); }
+  .calc-table td.high-sub { color: var(--red); }
+  .calc-table input.cost-input { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 7px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; width: 90px; text-align: right; font-variant-numeric: tabular-nums; }
+  .calc-table input.cost-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(255,200,69,0.2); }
+  .calc-table input.cost-input.low { color: #5fd6c5; }
+  .calc-table input.cost-input.high { color: #ff8c93; }
+  .calc-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; padding-top: 18px; border-top: 2px solid rgba(255,200,69,0.4); }
+  .calc-total-card { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,200,69,0.35); border-radius: 14px; padding: 18px; text-align: center; box-shadow: inset 0 0 24px rgba(255,200,69,0.06); }
+  .calc-total-card .cl { color: var(--gold); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .calc-total-card .cv { font-size: clamp(26px, 4vw, 36px); font-weight: 800; color: #fff; margin: 6px 0; font-variant-numeric: tabular-nums; text-shadow: 0 0 16px rgba(255,200,69,0.3); }
+  .calc-total-card .cs { color: var(--muted); font-size: 12px; }
+  @media (max-width: 760px) { .calc-totals { grid-template-columns: 1fr; } }
+
   /* Skip-the-line */
   .skip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .skip-card {
@@ -329,6 +376,16 @@
 <body>
 <div class="stars"></div>
 
+<!-- ALARM OVERLAY -->
+<div class="alarm-overlay" id="alarmOverlay">
+  <div class="alarm-content">
+    <div class="alarm-icon">🚨</div>
+    <h2>BOOK LIGHTNING LANE!</h2>
+    <p>Open My Disney Experience NOW · Book your first Lightning Lane Multi Pass</p>
+    <button onclick="stopAlarm()">🛑 STOP ALARM</button>
+  </div>
+</div>
+
 <div class="container">
 
   <!-- HERO -->
@@ -381,12 +438,12 @@
       <div class="strategy mk">
         <h4>🏰 Magic Kingdom — Wed, Oct 14</h4>
         <ul>
-          <li><strong>Early Entry 8:30 AM</strong> — head to TRON Lightcycle Run or Seven Dwarfs first</li>
-          <li><strong>Set 7:00 AM alarm</strong> — book LL Multi Pass the moment it opens</li>
-          <li>First pick: Peter Pan's Flight (sells out fast). LLSP for TRON if Mario hits 40"</li>
-          <li>Mario's rides: Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion</li>
-          <li>Midday break 1–4 PM at resort, return for parade and fireworks</li>
-          <li><strong>CHECK:</strong> If MNSSHP falls Oct 12, regular guests cleared by 6–7 PM</li>
+          <li><strong>Early Entry 8:30 AM</strong> — head to Peter Pan's Flight at rope drop (line builds fast, no virtual queue)</li>
+          <li><strong>Set 6:59 AM alarm</strong> — book LL Multi Pass at 7:00 sharp. <strong>First pick: Seven Dwarfs Mine Train</strong> (sells out fastest)</li>
+          <li><strong>TRON Lightcycle Run:</strong> Join Virtual Queue at 7:00 AM (and again at 1:00 PM) — or buy LLSP. 48" min height, Mario likely too short</li>
+          <li>Mario's rides: Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion, Peter Pan</li>
+          <li>Midday break 1–4 PM, return for ~3 PM parade and 9 PM fireworks</li>
+          <li><strong>✅ Wed is NOT a MNSSHP night</strong> — full park access until normal close</li>
         </ul>
       </div>
       <div class="strategy ak">
@@ -394,7 +451,7 @@
         <ul>
           <li><strong>Rope drop is critical</strong> — Kilimanjaro Safari animals most active in morning</li>
           <li>Book LLMP at 7:00 AM for Avatar Flight of Passage (adults only, 44" min)</li>
-          <li>Mario's picks: TriceraTop Spin, The Boneyard, Festival of the Lion King</li>
+          <li>Mario's picks: Na'vi River Journey · Festival of the Lion King · Wildlife Express to Rafiki's Planet Watch (NEW: Bluey-themed — Mario will love it) <em>(DinoLand permanently closed Feb 2026)</em></li>
           <li>AK closes earlier (~7–8 PM) — full morning, easy afternoon</li>
         </ul>
       </div>
@@ -420,7 +477,18 @@
         </ul>
       </div>
     </div>
-    <div class="tip"><span class="alarm">⏰</span><span><strong>7 AM rule:</strong> Set an alarm every Disney park morning. Lightning Lane Multi Pass drops at exactly 7:00 AM and the best slots disappear within minutes.</span></div>
+    <div class="tip"><span class="alarm">⏰</span><span><strong>6:59 AM rule:</strong> Set the alarm a minute early every Disney park morning. Lightning Lane Multi Pass drops at <strong>exactly 7:00 AM</strong> — phone ready, app open, refresh on the second. Best slots vanish in under 5 minutes.</span></div>
+
+    <div class="alarm-panel">
+      <h3 style="margin: 0 0 6px; font-size: 18px; color: var(--gold);">📢 Lightning Lane Alarm</h3>
+      <p style="margin: 0; color: var(--muted); font-size: 13px;">Schedule a screen + voice alarm that screams "BOOK LIGHTNING LANE" at 6:59 AM. Browser must be open on this page when it fires.</p>
+      <div class="alarm-buttons">
+        <button class="alarm-btn" id="testAlarmBtn">🔔 Test It Now</button>
+        <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule for Next 6:59 AM</button>
+        <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel Schedule</button>
+      </div>
+      <div id="alarmStatus">No alarm scheduled.</div>
+    </div>
   </section>
 
   <!-- SKIP THE LINE -->
@@ -433,7 +501,7 @@
       </div>
       <div class="skip-card">
         <h4>LL Multi Pass <span class="cost">~$15–30/day</span></h4>
-        <p>Book 1 ride at a time, rebook after tap-in or 2 hrs. Set 7 AM alarm every Disney park morning.</p>
+        <p>Book 1 ride at a time, rebook after tap-in or 2 hrs. Set 6:59 AM alarm every Disney park morning.</p>
       </div>
       <div class="skip-card">
         <h4>LL Single Pass <span class="cost">~$10–25/ride</span></h4>
@@ -446,14 +514,47 @@
     </div>
   </section>
 
-  <!-- BUDGET -->
+  <!-- BUDGET CALCULATOR -->
   <section>
-    <h2 class="section-title"><span class="icon">💵</span>Budget Snapshot</h2>
-    <div class="budget">
-      <table>
-        <thead><tr><th>Category</th><th class="num">Low</th><th class="num">High</th><th>Notes</th></tr></thead>
-        <tbody id="budgetBody"></tbody>
-      </table>
+    <h2 class="section-title"><span class="icon">🧮</span>Budget Calculator</h2>
+    <p style="color: var(--muted); margin: -8px 0 16px; font-size: 14px;">Plan your own family's Orlando trip — adjust party size, nights, and costs. All numbers are editable.</p>
+
+    <div class="calc">
+      <div class="calc-controls">
+        <div class="ctrl"><label>Adults</label><input type="number" id="numAdults" value="2" min="1" max="20"/></div>
+        <div class="ctrl"><label>Kids</label><input type="number" id="numKids" value="1" min="0" max="20"/></div>
+        <div class="ctrl"><label>Nights</label><input type="number" id="numNights" value="6" min="1" max="30"/></div>
+        <div class="ctrl"><label>Park Days</label><input type="number" id="numParkDays" value="5" min="0" max="20"/></div>
+        <button class="btn" id="resetCalc">Reset to Defaults</button>
+      </div>
+
+      <div class="calc-table-wrap">
+        <table class="calc-table">
+          <thead><tr>
+            <th>Category</th>
+            <th class="num">Cost (Low)</th>
+            <th class="num">Cost (High)</th>
+            <th>Calculation</th>
+            <th class="num">Subtotal Low</th>
+            <th class="num">Subtotal High</th>
+          </tr></thead>
+          <tbody id="calcBody"></tbody>
+        </table>
+      </div>
+
+      <div class="calc-totals">
+        <div class="calc-total-card">
+          <div class="cl">LOW TOTAL</div>
+          <div class="cv" id="totalLow">$0</div>
+          <div class="cs" id="perPersonLow">$0 / person</div>
+        </div>
+        <div class="calc-total-card">
+          <div class="cl">HIGH TOTAL</div>
+          <div class="cv" id="totalHigh">$0</div>
+          <div class="cs" id="perPersonHigh">$0 / person</div>
+        </div>
+      </div>
+      <p style="color: var(--muted); font-size: 12px; margin: 14px 0 0; text-align: center;">Your inputs save automatically in your browser</p>
     </div>
   </section>
 
@@ -510,9 +611,10 @@
       detail: 'Rope drop for Kilimanjaro Safari · Flight of Passage (adults, 44") · Park closes ~7–8 PM.',
       items: [
         '<strong>Rope drop:</strong> Kilimanjaro Safari (animals most active early)',
-        '<strong>7:00 AM LLMP:</strong> Avatar Flight of Passage',
-        '<strong>Mario:</strong> TriceraTop Spin · The Boneyard playground · Festival of the Lion King',
-        '<strong>Closing:</strong> ~7–8 PM — plan a full morning, easy afternoon',
+        '<strong>6:59 AM alarm → 7:00 AM LLMP:</strong> Avatar Flight of Passage',
+        '<strong>Mario:</strong> Na\'vi River Journey (gentle boat, no height req) · Festival of the Lion King show · Wildlife Express train to Rafiki\'s Planet Watch — now BLUEY-themed (meet Bluey & Bingo + Australian animals)',
+        '<strong>⚠️ DinoLand CLOSED:</strong> permanently shut Feb 2026 (Tropical Americas land coming 2027) — TriceraTop Spin & Boneyard are GONE',
+        '<strong>Closing:</strong> ~7–8 PM — full morning, easy afternoon',
         '<strong>Pro tip:</strong> Pandora at dusk is unforgettable'
       ]
     },
@@ -521,7 +623,7 @@
       items: [
         '<strong>Travel:</strong> Skyliner gondola — Art of Animation directly to entrance',
         '<strong>Rope drop:</strong> Slinky Dog Dash (38" min)',
-        '<strong>7:00 AM LLMP:</strong> Millennium Falcon: Smugglers Run',
+        '<strong>6:59 AM alarm → 7:00 AM LLMP:</strong> Millennium Falcon: Smugglers Run',
         '<strong>LLSP:</strong> Rise of the Resistance (best ride in WDW)',
         '<strong>Mario\'s Toy Story Land:</strong> Slinky Dog, Alien Swirling Saucers, Toy Story Mania'
       ]
@@ -529,12 +631,14 @@
     { id: 'wed', tag: 'mk', date: 'Wed · Oct 14', park: 'Magic Kingdom', pill: 'MAGIC KINGDOM', pillCls: 'red',
       detail: 'Early Entry 8:30 AM · TRON or 7 Dwarfs at rope drop · LLMP + LLSP · Fireworks at night.',
       items: [
-        '<strong>7:00 AM:</strong> Alarm — book LL Multi Pass; first pick Peter Pan\'s Flight',
-        '<strong>Rope drop:</strong> TRON Lightcycle Run or Seven Dwarfs Mine Train',
-        '<strong>LLSP:</strong> TRON (if Mario hits 40")',
-        '<strong>Mario\'s rides:</strong> Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion',
-        '<strong>1–4 PM:</strong> Midday break at resort',
-        '<strong>Night:</strong> Parade + Happily Ever After fireworks'
+        '<strong>Rope drop:</strong> Peter Pan\'s Flight — be at the gate before park open, this is your low-tech win',
+        '<strong>6:59 AM alarm:</strong> Book LL Multi Pass at 7:00 sharp. First pick: Jungle Cruise (or Big Thunder if Mario hits 40", or Buzz Lightyear)',
+        '<strong>LLSP (Single Pass) splurge:</strong> Buy for <strong>TRON Lightcycle Run OR Seven Dwarfs Mine Train</strong> — pick one, saves 90+ min in line ($10–25/ride)',
+        '<strong>Heights:</strong> TRON 48" min · Seven Dwarfs 38" min · Big Thunder 40" min — measure Mario to pick the right LLSP',
+        '<strong>Mario\'s rides:</strong> Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion, Peter Pan',
+        '<strong>~3 PM:</strong> Festival of Fantasy parade',
+        '<strong>Late afternoon:</strong> Midday break at resort',
+        '<strong>~9 PM:</strong> Happily Ever After fireworks (returned Jan 2026, nightly)'
       ]
     },
     { id: 'thu', tag: 'rest', date: 'Thu · Oct 15', park: 'Rest Day + HHN', pill: 'REST + HHN', pillCls: 'purple',
@@ -650,29 +754,156 @@
   };
   renderActions();
 
-  /* ---------- BUDGET ---------- */
-  const budget = [
-    ['Flights (2 adults + 1 child)', 1790, 1923, 'Book now — prices rising'],
-    ['Art of Animation · 6 nights', 1506, 1800, 'Little Mermaid room ~$251/night'],
-    ['Park Tickets · 4 parks, 5 days', 1200, 1500, 'Buy early for best pricing'],
-    ['Lightning Lane + Express Pass', 650, 800, 'LLMP + LLSP (MK/HS) + Epic Express'],
-    ['Food & Dining', 600, 900, 'Quick service + table service mix'],
-    ['Merchandise + Power-Up Bands', 200, 400, 'Power-Up Bands $45 each + souvenirs'],
-    ['HHN Tickets · 2 adults', 160, 240, '$80–$120 per person']
-  ];
-  const tbody = document.getElementById('budgetBody');
-  let lowSum = 0, highSum = 0;
-  budget.forEach(b => {
-    const [cat, lo, hi, note] = b;
-    lowSum += lo; highSum += hi;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${cat}</td><td class="num low">$${lo.toLocaleString()}</td><td class="num high">$${hi.toLocaleString()}</td><td class="note">${note}</td>`;
-    tbody.appendChild(tr);
+  /* ---------- BUDGET CALCULATOR ---------- */
+  const calcDefaults = {
+    adults: 2, kids: 1, nights: 6, parkDays: 5,
+    items: [
+      { id: 'flights', label: 'Flights',                     low: 597, high: 641, scale: 'people',           note: 'per person, round-trip' },
+      { id: 'hotel',   label: 'Hotel',                       low: 251, high: 300, scale: 'nights',           note: 'per night' },
+      { id: 'tickets', label: 'Park Tickets',                low: 400, high: 500, scale: 'people',           note: 'per person (multi-day base)' },
+      { id: 'll',      label: 'Lightning Lane / Express',    low: 30,  high: 60,  scale: 'people-park-days', note: 'per person per park day' },
+      { id: 'food',    label: 'Food & Dining',               low: 100, high: 150, scale: 'people-nights',    note: 'per person per day' },
+      { id: 'merch',   label: 'Merch + Power-Up Bands',      low: 200, high: 400, scale: 'flat',             note: 'lump sum for the trip' },
+      { id: 'hhn',     label: 'HHN Tickets (optional)',      low: 91,  high: 130, scale: 'adults',           note: 'per adult, per night' }
+    ]
+  };
+  const CALC_KEY = 'disney2026_calc_v1';
+  let calcState = JSON.parse(JSON.stringify(calcDefaults));
+  try {
+    const saved = JSON.parse(localStorage.getItem(CALC_KEY) || 'null');
+    if (saved) calcState = saved;
+  } catch(e) {}
+
+  function calcSubtotal(item, lh) {
+    const c = item[lh];
+    const ppl = (calcState.adults || 0) + (calcState.kids || 0);
+    switch (item.scale) {
+      case 'people':           return c * ppl;
+      case 'nights':           return c * (calcState.nights || 0);
+      case 'people-park-days': return c * ppl * (calcState.parkDays || 0);
+      case 'people-nights':    return c * ppl * (calcState.nights || 0);
+      case 'adults':           return c * (calcState.adults || 0);
+      case 'flat': default:    return c;
+    }
+  }
+  function calcDescription(item) {
+    const ppl = (calcState.adults || 0) + (calcState.kids || 0);
+    switch (item.scale) {
+      case 'people':           return `× ${ppl} people`;
+      case 'nights':           return `× ${calcState.nights} nights`;
+      case 'people-park-days': return `× ${ppl} ppl × ${calcState.parkDays} days`;
+      case 'people-nights':    return `× ${ppl} ppl × ${calcState.nights} nights`;
+      case 'adults':           return `× ${calcState.adults} adults`;
+      case 'flat': default:    return 'flat';
+    }
+  }
+  function saveCalc() { try { localStorage.setItem(CALC_KEY, JSON.stringify(calcState)); } catch(e) {} }
+
+  function renderCalc() {
+    document.getElementById('numAdults').value   = calcState.adults;
+    document.getElementById('numKids').value     = calcState.kids;
+    document.getElementById('numNights').value   = calcState.nights;
+    document.getElementById('numParkDays').value = calcState.parkDays;
+
+    const body = document.getElementById('calcBody');
+    body.innerHTML = '';
+    let totalLow = 0, totalHigh = 0;
+    calcState.items.forEach((item, idx) => {
+      const subLow  = calcSubtotal(item, 'low');
+      const subHigh = calcSubtotal(item, 'high');
+      totalLow += subLow; totalHigh += subHigh;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><strong>${item.label}</strong><div style="font-size:11px;color:var(--muted);margin-top:2px">${item.note}</div></td>
+        <td class="num"><input type="number" class="cost-input low"  data-idx="${idx}" data-field="low"  value="${item.low}"  min="0"/></td>
+        <td class="num"><input type="number" class="cost-input high" data-idx="${idx}" data-field="high" value="${item.high}" min="0"/></td>
+        <td class="note">${calcDescription(item)}</td>
+        <td class="num low-sub">$${subLow.toLocaleString()}</td>
+        <td class="num high-sub">$${subHigh.toLocaleString()}</td>
+      `;
+      body.appendChild(tr);
+    });
+    document.getElementById('totalLow').textContent  = '$' + totalLow.toLocaleString();
+    document.getElementById('totalHigh').textContent = '$' + totalHigh.toLocaleString();
+    const ppl = (calcState.adults || 0) + (calcState.kids || 0) || 1;
+    document.getElementById('perPersonLow').textContent  = '$' + Math.round(totalLow / ppl).toLocaleString() + ' / person';
+    document.getElementById('perPersonHigh').textContent = '$' + Math.round(totalHigh / ppl).toLocaleString() + ' / person';
+
+    body.querySelectorAll('input.cost-input').forEach(inp => {
+      inp.addEventListener('change', e => {
+        const idx = +e.target.dataset.idx;
+        const field = e.target.dataset.field;
+        calcState.items[idx][field] = +e.target.value || 0;
+        saveCalc();
+        renderCalc();
+      });
+    });
+  }
+  ['numAdults','numKids','numNights','numParkDays'].forEach(id => {
+    document.getElementById(id).addEventListener('change', e => {
+      const key = id === 'numAdults' ? 'adults' : id === 'numKids' ? 'kids' : id === 'numNights' ? 'nights' : 'parkDays';
+      calcState[key] = +e.target.value || 0;
+      saveCalc();
+      renderCalc();
+    });
   });
-  const tot = document.createElement('tr');
-  tot.className = 'total';
-  tot.innerHTML = `<td>TOTAL ESTIMATE</td><td class="num">$${lowSum.toLocaleString()}</td><td class="num">$${highSum.toLocaleString()}</td><td class="note">Fits within target budget range</td>`;
-  tbody.appendChild(tot);
+  document.getElementById('resetCalc').onclick = () => {
+    if (!confirm('Reset budget to Garcia defaults?')) return;
+    calcState = JSON.parse(JSON.stringify(calcDefaults));
+    try { localStorage.removeItem(CALC_KEY); } catch(e) {}
+    renderCalc();
+  };
+  renderCalc();
+
+  /* ---------- LIGHTNING LANE ALARM ---------- */
+  let alarmInterval = null;
+  let alarmTimeout = null;
+  let scheduledFor = null;
+
+  function speakAlarm() {
+    if ('speechSynthesis' in window) {
+      const u = new SpeechSynthesisUtterance("Book Lightning Lane! Book Lightning Lane!");
+      u.rate = 1.05; u.pitch = 1.3; u.volume = 1.0;
+      window.speechSynthesis.speak(u);
+    }
+  }
+  function startAlarm() {
+    document.getElementById('alarmOverlay').classList.add('active');
+    speakAlarm();
+    alarmInterval = setInterval(speakAlarm, 2400);
+  }
+  window.stopAlarm = function() {
+    document.getElementById('alarmOverlay').classList.remove('active');
+    if (alarmInterval) { clearInterval(alarmInterval); alarmInterval = null; }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  }
+  function nextSixFiftyNine() {
+    const now = new Date();
+    const target = new Date();
+    target.setHours(6, 59, 0, 0);
+    if (target <= now) target.setDate(target.getDate() + 1);
+    return target;
+  }
+  function scheduleAlarm() {
+    if (alarmTimeout) clearTimeout(alarmTimeout);
+    const target = nextSixFiftyNine();
+    const delay = target - new Date();
+    alarmTimeout = setTimeout(startAlarm, delay);
+    scheduledFor = target;
+    document.getElementById('alarmStatus').innerHTML = `✅ Alarm armed for <strong>${target.toLocaleString([], { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' })}</strong> — keep this tab open`;
+    // Prime speech synthesis (some browsers require a user gesture)
+    if ('speechSynthesis' in window) {
+      const primer = new SpeechSynthesisUtterance(' ');
+      primer.volume = 0; window.speechSynthesis.speak(primer);
+    }
+  }
+  document.getElementById('testAlarmBtn').onclick = startAlarm;
+  document.getElementById('scheduleAlarmBtn').onclick = scheduleAlarm;
+  document.getElementById('cancelAlarmBtn').onclick = () => {
+    if (alarmTimeout) { clearTimeout(alarmTimeout); alarmTimeout = null; }
+    scheduledFor = null;
+    document.getElementById('alarmStatus').textContent = 'No alarm scheduled.';
+  };
 
   /* ---------- FIREWORK BURST ---------- */
   function burst() {
