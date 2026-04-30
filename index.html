@@ -266,10 +266,15 @@
   .budget tr.total td.num { color: var(--gold); }
   .budget .note { color: var(--muted); font-size: 12px; }
 
+  /* Rope drop time emphasis */
+  .rope-time { display: inline-block; background: var(--gold); color: var(--navy); padding: 4px 12px; border-radius: 8px; font-size: 18px; font-weight: 900; letter-spacing: 1px; box-shadow: 0 0 16px rgba(255,200,69,0.45); }
+
   /* Alarm Overlay */
   .alarm-overlay { display: none; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; animation: alarmFlash 0.6s ease-in-out infinite alternate; }
   .alarm-overlay.active { display: flex; }
+  .alarm-overlay.bbb-mode { animation: bbbFlash 0.6s ease-in-out infinite alternate; }
   @keyframes alarmFlash { 0% { background: rgba(230, 57, 70, 0.96); } 100% { background: rgba(255, 200, 69, 0.96); } }
+  @keyframes bbbFlash   { 0% { background: rgba(199, 67, 178, 0.96); } 100% { background: rgba(255, 192, 220, 0.96); } }
   .alarm-content { text-align: center; padding: 40px 20px; max-width: 90%; }
   .alarm-icon { font-size: 80px; animation: shake 0.25s infinite; }
   .alarm-content h2 { font-size: clamp(40px, 9vw, 96px); margin: 16px 0; color: #fff; font-weight: 900; text-shadow: 4px 4px 0 #000, -2px -2px 0 #000; letter-spacing: 2px; animation: shake 0.2s infinite; line-height: 1; }
@@ -379,9 +384,9 @@
 <!-- ALARM OVERLAY -->
 <div class="alarm-overlay" id="alarmOverlay">
   <div class="alarm-content">
-    <div class="alarm-icon">🚨</div>
-    <h2>BOOK LIGHTNING LANE!</h2>
-    <p>Open My Disney Experience NOW · Book your first Lightning Lane Multi Pass</p>
+    <div class="alarm-icon" id="alarmIcon">🚨</div>
+    <h2 id="alarmTitle">BOOK LIGHTNING LANE!</h2>
+    <p id="alarmMsg">Open My Disney Experience NOW · Book your first Lightning Lane Multi Pass</p>
     <button onclick="stopAlarm()">🛑 STOP ALARM</button>
   </div>
 </div>
@@ -438,10 +443,10 @@
       <div class="strategy mk">
         <h4>🏰 Magic Kingdom — Wed, Oct 14</h4>
         <ul>
-          <li><strong>Early Entry 8:30 AM</strong> — head to Peter Pan's Flight at rope drop (line builds fast, no virtual queue)</li>
+          <li><span class="rope-time">7:30 AM ROPE DROP</span> — Peter Pan's Flight (line builds fast, no virtual queue)</li>
           <li><strong>Set 6:59 AM alarm</strong> — book LL Multi Pass at 7:00 sharp. <strong>First pick: Seven Dwarfs Mine Train</strong> (sells out fastest)</li>
-          <li><strong>TRON Lightcycle Run:</strong> Join Virtual Queue at 7:00 AM (and again at 1:00 PM) — or buy LLSP. 48" min height, Mario likely too short</li>
-          <li>Mario's rides: Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion, Peter Pan</li>
+          <li><strong>TRON / Space Mountain:</strong> Mario at 42" can't ride (48"/44") — use Rider Switch so adults still get on</li>
+          <li>Mario's rides: <strong>Tomorrowland Speedway</strong> (he "drives" with adult), Dumbo, Barnstormer, Buzz Lightyear, Haunted Mansion, Mickey's PhilharMagic</li>
           <li>Midday break 1–4 PM, return for ~3 PM parade and 9 PM fireworks</li>
           <li><strong>✅ Wed is NOT a MNSSHP night</strong> — full park access until normal close</li>
         </ul>
@@ -449,7 +454,7 @@
       <div class="strategy ak">
         <h4>🦁 Animal Kingdom — Mon, Oct 12</h4>
         <ul>
-          <li><strong>Rope drop is critical</strong> — Kilimanjaro Safari animals most active in morning</li>
+          <li><span class="rope-time">7:30 AM ROPE DROP</span> — Kilimanjaro Safari (animals most active in morning)</li>
           <li>Book LLMP at 7:00 AM for Avatar Flight of Passage (adults only, 44" min)</li>
           <li>Mario's picks: Na'vi River Journey · Festival of the Lion King · Wildlife Express to Rafiki's Planet Watch (NEW: Bluey-themed — Mario will love it) <em>(DinoLand permanently closed Feb 2026)</em></li>
           <li>AK closes earlier (~7–8 PM) — full morning, easy afternoon</li>
@@ -459,9 +464,11 @@
         <h4>🚀 Hollywood Studios — Tue, Oct 13</h4>
         <ul>
           <li><strong>Easiest travel day</strong> — Skyliner gondola from Art of Animation right to entrance</li>
-          <li>Early Entry 8:30 AM — Slinky Dog Dash in Toy Story Land (38" min)</li>
-          <li>Book LLMP at 7:00 AM for Millennium Falcon: Smugglers Run</li>
-          <li><strong>Buy LLSP for Rise of the Resistance</strong> — best ride in WDW</li>
+          <li><span class="rope-time">8:30 AM ROPE DROP</span> — Slinky Dog Dash (38" min)</li>
+          <li><strong>Why Slinky over Runaway Railway:</strong> Slinky's LLMP sells out FASTEST at HS, standby hits 90+ min by 10 AM. Runaway Railway has better LLMP availability — save it for the rotation</li>
+          <li><strong>6:59 AM LLMP rotation:</strong> Millennium Falcon → Tower of Terror → Rock 'n' Roller Coaster (rebook after each tap-in)</li>
+          <li><strong>✅ Buy LLSP for Rise of the Resistance</strong> — best ride in WDW, worth $20–25</li>
+          <li><strong>Mario at 42":</strong> ✅ rides everything except Rock 'n' Roller (48") — use Rider Switch for that one</li>
           <li>Mario's Toy Story Land: Slinky Dog, Alien Swirling Saucers, Toy Story Mania</li>
         </ul>
       </div>
@@ -473,7 +480,7 @@
           <li>Buy Express Pass Unlimited (~$130–200/person) — no early entry off-site</li>
           <li>First ride: Mario Kart: Bowser's Challenge — longest queue in the park</li>
           <li>Mario's day: Yoshi's Adventure (no height req) + Power-Up Band Block interactions</li>
-          <li><strong>CRITICAL:</strong> Mario Kart requires 40" — measure your child before the trip</li>
+          <li><strong>✅ Mario Kart cleared:</strong> 40" min · Mario is 42" — he can ride</li>
         </ul>
       </div>
     </div>
@@ -488,6 +495,17 @@
         <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel Schedule</button>
       </div>
       <div id="alarmStatus">No alarm scheduled.</div>
+    </div>
+
+    <div class="alarm-panel" style="background: linear-gradient(135deg, rgba(199,67,178,0.22), rgba(255,192,220,0.18)); border-color: #ff8fd1; margin-top: 14px;">
+      <h3 style="margin: 0 0 6px; font-size: 18px; color: #ff8fd1;">👑 Bibbidi Bobbidi Boutique Alarm — TOP PRIORITY</h3>
+      <p style="margin: 0; color: var(--muted); font-size: 13px;">BBB books up in MINUTES at midnight EST exactly 60 days before your check-in. For Oct 11 check-in: <strong style="color:#ff8fd1;">Tue Aug 11, 2026 at 11:00 PM CT (= 12:00 AM EST Wed Aug 12).</strong> Disney's 60-day rolling window includes your full stay.</p>
+      <div class="alarm-buttons">
+        <button class="alarm-btn" id="testBbbBtn" style="background: #ff8fd1; color: #fff;">🔔 Test BBB Alarm</button>
+        <button class="alarm-btn" id="scheduleBbbBtn" style="background: #ff8fd1; color: #fff;">⏰ Schedule Aug 11 · 11:00 PM CT</button>
+        <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel Schedule</button>
+      </div>
+      <div id="bbbStatus" style="color: #ff8fd1;">No alarm scheduled.</div>
     </div>
   </section>
 
@@ -610,7 +628,7 @@
     { id: 'mon', tag: 'ak', date: 'Mon · Oct 12', park: 'Animal Kingdom', pill: 'ANIMAL KINGDOM', pillCls: 'green',
       detail: 'Rope drop for Kilimanjaro Safari · Flight of Passage (adults, 44") · Park closes ~7–8 PM.',
       items: [
-        '<strong>Rope drop:</strong> Kilimanjaro Safari (animals most active early)',
+        '<span class="rope-time">7:30 AM ROPE DROP</span> — be at the gate by 7:00 AM. Kilimanjaro Safari first (animals most active early)',
         '<strong>6:59 AM alarm → 7:00 AM LLMP:</strong> Avatar Flight of Passage',
         '<strong>Mario:</strong> Na\'vi River Journey (gentle boat, no height req) · Festival of the Lion King show · Wildlife Express train to Rafiki\'s Planet Watch — now BLUEY-themed (meet Bluey & Bingo + Australian animals)',
         '<strong>⚠️ DinoLand CLOSED:</strong> permanently shut Feb 2026 (Tropical Americas land coming 2027) — TriceraTop Spin & Boneyard are GONE',
@@ -622,20 +640,23 @@
       detail: 'Skyliner gondola from resort (easiest day!) · Toy Story Land · Rise of the Resistance LLSP.',
       items: [
         '<strong>Travel:</strong> Skyliner gondola — Art of Animation directly to entrance',
-        '<strong>Rope drop:</strong> Slinky Dog Dash (38" min)',
-        '<strong>6:59 AM alarm → 7:00 AM LLMP:</strong> Millennium Falcon: Smugglers Run',
-        '<strong>LLSP:</strong> Rise of the Resistance (best ride in WDW)',
+        '<span class="rope-time">8:30 AM ROPE DROP</span> — Slinky Dog Dash (38" min). <strong>Why Slinky over Runaway Railway:</strong> Slinky\'s LLMP sells out fastest at HS, standby spikes to 90+ min by 10 AM. Runaway Railway has way better LLMP availability, so save it for the rotation.',
+        '<strong>6:59 AM alarm → 7:00 AM LLMP rotation:</strong> Millennium Falcon → Tower of Terror → Rock \'n\' Roller Coaster (rebook after each tap-in)',
+        '<strong>LLSP (Single Pass purchase):</strong> ✅ Rise of the Resistance — best ride in WDW, worth the upcharge ($20–25)',
+        '<strong>Mario at 42":</strong> ✅ rides Slinky Dog, Tower of Terror, Millennium Falcon, Rise of Resistance · ❌ Rock \'n\' Roller (48") — use Rider Switch',
         '<strong>Mario\'s Toy Story Land:</strong> Slinky Dog, Alien Swirling Saucers, Toy Story Mania'
       ]
     },
     { id: 'wed', tag: 'mk', date: 'Wed · Oct 14', park: 'Magic Kingdom', pill: 'MAGIC KINGDOM', pillCls: 'red',
       detail: 'Early Entry 8:30 AM · TRON or 7 Dwarfs at rope drop · LLMP + LLSP · Fireworks at night.',
       items: [
-        '<strong>Rope drop:</strong> Peter Pan\'s Flight — be at the gate before park open, this is your low-tech win',
-        '<strong>6:59 AM alarm:</strong> Book LL Multi Pass at 7:00 sharp. First pick: Jungle Cruise (or Big Thunder if Mario hits 40", or Buzz Lightyear)',
-        '<strong>LLSP (Single Pass) splurge:</strong> Buy for <strong>TRON Lightcycle Run OR Seven Dwarfs Mine Train</strong> — pick one, saves 90+ min in line ($10–25/ride)',
-        '<strong>Heights:</strong> TRON 48" min · Seven Dwarfs 38" min · Big Thunder 40" min — measure Mario to pick the right LLSP',
-        '<strong>Mario\'s rides:</strong> Dumbo, Barnstormer, Under the Sea, Buzz, Small World, Haunted Mansion, Peter Pan',
+        '<strong style="color:#ff8fd1">👑 Bibbidi Bobbidi Boutique appointment</strong> — must be booked in advance (Aug 11 at 11 PM CT). Mario\'s makeover happens inside Cinderella Castle',
+        '<span class="rope-time">7:30 AM ROPE DROP</span> — Peter Pan\'s Flight (be at the gate by 7:00 AM)',
+        '<strong>Fantasyland sweep after Peter Pan</strong> (waits still short): It\'s a Small World (high capacity, easy) → Winnie the Pooh → Under the Sea: Little Mermaid → Mickey\'s PhilharMagic if time allows',
+        '<strong>6:59 AM alarm:</strong> Book LL Multi Pass at 7:00 sharp. First pick: Jungle Cruise (or Big Thunder, or Buzz Lightyear)',
+        '<strong>✅ LLSP pick: Seven Dwarfs Mine Train</strong> — Mario clears at 38" (he\'s 42"). TRON is 48" so Mario sits that one out. Saves 90+ min in line ($10–25)',
+        '<strong>TRON / Space Mountain:</strong> Mario can\'t ride (48" / 44") — use <strong>Rider Switch</strong>: one parent waits with Mario, then swaps in for a single-rider line, no second wait',
+        '<strong>Mario\'s rides:</strong> Tomorrowland Speedway (rides with an adult — he\'ll love "driving"), Dumbo, Barnstormer, Buzz Lightyear, Haunted Mansion, Mickey\'s PhilharMagic',
         '<strong>~3 PM:</strong> Festival of Fantasy parade',
         '<strong>Late afternoon:</strong> Midday break at resort',
         '<strong>~9 PM:</strong> Happily Ever After fireworks (returned Jan 2026, nightly)'
@@ -657,7 +678,7 @@
         '<strong>Travel:</strong> Uber from Art of Animation (~15–20 min, ~$20 each way)',
         '<strong>Night before:</strong> Open Universal app, secure Super Nintendo World virtual queue',
         '<strong>Express Pass Unlimited:</strong> ~$130–200/person — no early entry off-site',
-        '<strong>First ride:</strong> Mario Kart: Bowser\'s Challenge (40" min — measure Mario!)',
+        '<strong>First ride:</strong> Mario Kart: Bowser\'s Challenge — ✅ Mario clears at 42" (40" min)',
         '<strong>Mario\'s day:</strong> Yoshi\'s Adventure + Power-Up Band Block interactions',
         '<strong>Power-Up Bands:</strong> $45 each at shopuniversal.com'
       ]
@@ -709,10 +730,11 @@
     { id: 'resort', t: 'Reserve Art of Animation', d: 'Little Mermaid room, Oct 11–17 at disneyworld.disney.go.com' },
     { id: 'tickets', t: 'Buy Disney park tickets', d: '4-park / 5-day ticket through Disney\'s official website — buy early for best rates.' },
     { id: 'magicbands', t: 'Order MagicBand+ for all 3', d: '~$34.99 each — link to My Disney Experience app before arriving.' },
-    { id: 'measure', t: "Measure Mario's height NOW", d: 'Mario Kart: Bowser\'s Challenge requires 40". Critical — check before the trip.' },
+    { id: 'measure', t: "✅ Mario measured at 42\"", d: 'Cleared for Mario Kart, Slinky Dog, Tower of Terror, Seven Dwarfs, Big Thunder, Rise of Resistance. Too short for Rock \'n\' Roller, TRON, Space Mountain, Flight of Passage — use Rider Switch.' },
     { id: 'powerup', t: 'Buy Power-Up Bands', d: '$45 each at shopuniversal.com — activate at Super Nintendo World.' },
     { id: 'hhn', t: 'Buy HHN tickets — Oct 15 confirmed', d: 'Oct 15 is a confirmed event night (Wed–Sun in October). Tickets on sale now at $91–$130/person.' },
-    { id: 'apps', t: 'Download both apps', d: 'My Disney Experience app + Universal app. Set 7:00 AM alarms on all Disney park mornings.' }
+    { id: 'apps', t: 'Download both apps', d: 'My Disney Experience app + Universal app. Set 7:00 AM alarms on all Disney park mornings.' },
+    { id: 'bbb', t: '👑 Book Bibbidi Bobbidi Boutique — TOP PRIORITY', d: 'Aug 11, 2026 at 11:00 PM CT (= midnight EST Aug 12). Books up in MINUTES. Use the BBB alarm in the Park Strategies section.' }
   ];
   const STORE_KEY = 'disney2026_actions_v1';
   let state = {};
@@ -855,28 +877,53 @@
   };
   renderCalc();
 
-  /* ---------- LIGHTNING LANE ALARM ---------- */
+  /* ---------- ALARMS (Lightning Lane + BBB) ---------- */
   let alarmInterval = null;
-  let alarmTimeout = null;
-  let scheduledFor = null;
+  let llTimeout = null;
+  let bbbTimeout = null;
 
-  function speakAlarm() {
-    if ('speechSynthesis' in window) {
-      const u = new SpeechSynthesisUtterance("Book Lightning Lane! Book Lightning Lane!");
-      u.rate = 1.05; u.pitch = 1.3; u.volume = 1.0;
-      window.speechSynthesis.speak(u);
-    }
+  function speak(phrase) {
+    if (!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(phrase);
+    u.rate = 1.05; u.pitch = 1.3; u.volume = 1.0;
+    window.speechSynthesis.speak(u);
   }
-  function startAlarm() {
-    document.getElementById('alarmOverlay').classList.add('active');
-    speakAlarm();
-    alarmInterval = setInterval(speakAlarm, 2400);
+  function primeSpeech() {
+    if (!('speechSynthesis' in window)) return;
+    const p = new SpeechSynthesisUtterance(' '); p.volume = 0;
+    window.speechSynthesis.speak(p);
+  }
+  function startAlarm(type) {
+    const overlay = document.getElementById('alarmOverlay');
+    const icon = document.getElementById('alarmIcon');
+    const title = document.getElementById('alarmTitle');
+    const msg = document.getElementById('alarmMsg');
+    let phrase;
+    if (type === 'bbb') {
+      icon.textContent = '👑✨';
+      title.textContent = 'BOOK BIBBIDI BOBBIDI BOUTIQUE!';
+      msg.textContent = 'Open disneyworld.disney.go.com NOW · Reserve Mario\'s appointment before it sells out';
+      overlay.classList.add('bbb-mode');
+      phrase = "Book Bibbidi Bobbidi Boutique! Book Bibbidi Bobbidi Boutique!";
+    } else {
+      icon.textContent = '🚨';
+      title.textContent = 'BOOK LIGHTNING LANE!';
+      msg.textContent = 'Open My Disney Experience NOW · Book your first Lightning Lane Multi Pass';
+      overlay.classList.remove('bbb-mode');
+      phrase = "Book Lightning Lane! Book Lightning Lane!";
+    }
+    overlay.classList.add('active');
+    speak(phrase);
+    alarmInterval = setInterval(() => speak(phrase), 2400);
   }
   window.stopAlarm = function() {
     document.getElementById('alarmOverlay').classList.remove('active');
+    document.getElementById('alarmOverlay').classList.remove('bbb-mode');
     if (alarmInterval) { clearInterval(alarmInterval); alarmInterval = null; }
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   }
+
+  // Lightning Lane: next 6:59 AM local
   function nextSixFiftyNine() {
     const now = new Date();
     const target = new Date();
@@ -884,25 +931,37 @@
     if (target <= now) target.setDate(target.getDate() + 1);
     return target;
   }
-  function scheduleAlarm() {
-    if (alarmTimeout) clearTimeout(alarmTimeout);
+  document.getElementById('testAlarmBtn').onclick = () => startAlarm('ll');
+  document.getElementById('scheduleAlarmBtn').onclick = () => {
+    if (llTimeout) clearTimeout(llTimeout);
     const target = nextSixFiftyNine();
-    const delay = target - new Date();
-    alarmTimeout = setTimeout(startAlarm, delay);
-    scheduledFor = target;
+    llTimeout = setTimeout(() => startAlarm('ll'), target - new Date());
     document.getElementById('alarmStatus').innerHTML = `✅ Alarm armed for <strong>${target.toLocaleString([], { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' })}</strong> — keep this tab open`;
-    // Prime speech synthesis (some browsers require a user gesture)
-    if ('speechSynthesis' in window) {
-      const primer = new SpeechSynthesisUtterance(' ');
-      primer.volume = 0; window.speechSynthesis.speak(primer);
-    }
-  }
-  document.getElementById('testAlarmBtn').onclick = startAlarm;
-  document.getElementById('scheduleAlarmBtn').onclick = scheduleAlarm;
+    primeSpeech();
+  };
   document.getElementById('cancelAlarmBtn').onclick = () => {
-    if (alarmTimeout) { clearTimeout(alarmTimeout); alarmTimeout = null; }
-    scheduledFor = null;
+    if (llTimeout) { clearTimeout(llTimeout); llTimeout = null; }
     document.getElementById('alarmStatus').textContent = 'No alarm scheduled.';
+  };
+
+  // BBB: Tue Aug 11, 2026 at 11:00 PM CDT (= 12:00 AM EDT Wed Aug 12)
+  // Using ISO with -04:00 offset (EDT) for the booking moment
+  const BBB_TARGET = new Date('2026-08-12T00:00:00-04:00');
+  document.getElementById('testBbbBtn').onclick = () => startAlarm('bbb');
+  document.getElementById('scheduleBbbBtn').onclick = () => {
+    if (bbbTimeout) clearTimeout(bbbTimeout);
+    const delay = BBB_TARGET - new Date();
+    if (delay <= 0) {
+      document.getElementById('bbbStatus').innerHTML = '⚠️ The booking window has already opened — check Disney site directly.';
+      return;
+    }
+    bbbTimeout = setTimeout(() => startAlarm('bbb'), delay);
+    document.getElementById('bbbStatus').innerHTML = `✅ Alarm armed for <strong>${BBB_TARGET.toLocaleString([], { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' })} (your local time)</strong> — keep this tab open`;
+    primeSpeech();
+  };
+  document.getElementById('cancelBbbBtn').onclick = () => {
+    if (bbbTimeout) { clearTimeout(bbbTimeout); bbbTimeout = null; }
+    document.getElementById('bbbStatus').textContent = 'No alarm scheduled.';
   };
 
   /* ---------- FIREWORK BURST ---------- */
