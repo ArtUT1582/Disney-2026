@@ -1,1990 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Garcia Family · Disney 2026 · Aurora Glass · Premium Edition</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garcia Family · Disney 2026 · Neo-Brutalism</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#06070d; --text:#f4f5f9; --muted:#9aa3b8;
-  --line: rgba(255,255,255,.10); --glass: rgba(255,255,255,.06); --glass-2: rgba(255,255,255,.10);
-  --aurora-1:#3b82f6; --aurora-2:#a855f7; --aurora-3:#ec4899; --aurora-4:#06b6d4;
-  --green:#34d399; --gold:#fbbf24; --red:#fb7185; --pink:#f472b6;
+  --red:#E60012; --yellow:#FFD800; --green:#43B047; --cyan:#33C8FF; --pink:#FF3E9D;
+  --purple:#7A46FF; --ink:#0A0A0A; --paper:#FFF6E5;
+  --bd:3px solid var(--ink);
+  --sh:6px 6px 0 var(--ink);
+  --sh-sm:4px 4px 0 var(--ink);
 }
-*{box-sizing:border-box; margin:0; padding:0; -webkit-font-smoothing:antialiased;}
-html,body{ background:var(--ink); color:var(--text); font-family: ui-sans-serif, -apple-system, "SF Pro Text", "Inter", system-ui, sans-serif; min-height:100vh; overflow-x:hidden; }
-
-.aurora{ position:fixed; inset:-20%; z-index:-1; filter: blur(80px) saturate(140%); pointer-events:none; }
-.aurora::before, .aurora::after{ content:""; position:absolute; inset:0; }
-.aurora::before{ background: radial-gradient(900px 600px at 20% 20%, var(--aurora-2) 0%, transparent 60%), radial-gradient(900px 600px at 80% 30%, var(--aurora-3) 0%, transparent 60%); opacity:.55; animation: drift1 24s ease-in-out infinite alternate; }
-.aurora::after{ background: radial-gradient(800px 500px at 70% 80%, var(--aurora-1) 0%, transparent 60%), radial-gradient(800px 500px at 30% 90%, var(--aurora-4) 0%, transparent 60%); opacity:.5; animation: drift2 30s ease-in-out infinite alternate; }
-@keyframes drift1 { from{transform:translate(-3%,-2%) scale(1);} to{transform:translate(3%,2%) scale(1.05);} }
-@keyframes drift2 { from{transform:translate(2%,-3%) scale(1.03);} to{transform:translate(-3%,3%) scale(1);} }
-
-.nav{ position:sticky; top:16px; z-index:50; margin: 16px auto 0; max-width:1280px; width: calc(100% - 28px); border-radius: 999px; background: rgba(20,22,40,.65); backdrop-filter: blur(28px) saturate(180%); border: 1px solid rgba(255,255,255,.10); padding: 12px 22px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; box-shadow: 0 12px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06); }
-.brand{ display:inline-flex; align-items:center; gap:12px; font-size:14px; }
-.brand .dot{ width:18px; height:18px; border-radius:50%; background: radial-gradient(circle at 35% 30%, #fde68a, #d97706 70%); box-shadow: 0 0 0 1px rgba(251,191,36,.35), 0 0 18px rgba(251,191,36,.35); flex-shrink:0; }
-.brand .name{ font-family: 'Playfair Display', Georgia, serif; font-weight:500; font-style:italic; font-size:18px; color:#fff; letter-spacing:.005em; }
-.brand .sep{ width:1px; height:14px; background: rgba(255,255,255,.18); }
-.brand .sub{ font-size:11px; letter-spacing:.34em; color:#cbd5e1; text-transform:uppercase; font-weight:500; }
-.nav-links{ display:flex; gap:2px; flex-wrap:wrap; margin-left:auto;}
-.nav-links a{ color:#cbd5e1; text-decoration:none; font-size:11px; letter-spacing:.34em; text-transform:uppercase; font-weight:500; padding:8px 14px; border-radius:999px; transition: color .2s, background .2s; }
-.nav-links a:hover{ background: rgba(255,255,255,.06); color:#fff; }
-.nav-pill{ display:inline-flex; align-items:center; gap:8px; padding: 7px 14px; border-radius: 999px; background: linear-gradient(135deg, rgba(251,191,36,.18), rgba(217,119,6,.10)); border: 1px solid rgba(251,191,36,.45); color: #fde68a; font-size: 11.5px; letter-spacing:.18em; font-weight:600; font-variant-numeric: tabular-nums; box-shadow: inset 0 1px 0 rgba(255,255,255,.10); }
-.nav-pill .pdot{ width:6px; height:6px; border-radius:50%; background:#fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,.20); }
-@media (max-width: 760px){
-  .nav{ padding: 10px 16px; border-radius: 22px; gap:10px; }
-  .brand .sub, .brand .sep{ display:none; }
-  .nav-links{ order:3; width:100%; justify-content:center; gap:0; }
-  .nav-links a{ padding: 6px 9px; font-size: 10px; letter-spacing:.22em; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.5;
+  overflow-x:hidden;
 }
+h1,h2,h3,.display{font-family:'Archivo Black',sans-serif;line-height:1.05;text-transform:uppercase}
+img{max-width:100%}
+button{font-family:'Space Grotesk',sans-serif;cursor:pointer;min-height:44px}
 
-section{ max-width:1280px; margin: 90px auto; padding: 0 22px; }
-.hero{ text-align:center; margin-top: 28px; padding-top: 0; }
-.eyebrow{ display:inline-flex; gap:8px; align-items:center; font-size:11.5px; letter-spacing:.32em; color:#cbd5e1; text-transform:uppercase; border:1px solid var(--line); padding:8px 14px; border-radius:999px; background: rgba(255,255,255,.04); backdrop-filter: blur(10px); }
-.eyebrow .liv{ width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow: 0 0 10px #34d399; animation: blink 1.6s infinite; }
-@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.35;} }
-.h1{ font-size: clamp(40px, 7vw, 110px); font-weight: 200; letter-spacing: -.045em; line-height: .95; margin: 22px auto 8px; max-width: 1100px; }
-.h1 b{ font-weight: 700; background: linear-gradient(120deg, #fff, #c4b5fd 50%, #fb7185); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.h-sub{ font-size: clamp(15px, 1.6vw, 19px); color: var(--muted); max-width:720px; margin: 18px auto 0; font-weight: 300; line-height: 1.55; }
-
-.cd-wrap{ width: calc(100% - 28px); max-width: 1280px; margin: 14px auto 0; }
-.cd-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;}
-.cd-cell{ background: var(--glass); border: 1px solid var(--line); border-radius: 20px; padding: clamp(12px, 1.6vw, 18px) 10px; backdrop-filter: blur(22px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.35); text-align:center; position:relative; overflow:hidden;}
-.cd-cell::before{ content:""; position:absolute; inset:0; background: radial-gradient(200px 60px at 50% -10%, rgba(255,255,255,.14), transparent 70%); pointer-events:none; }
-.cd-num{ font-weight: 200; font-size: clamp(34px, 5.2vw, 60px); letter-spacing: -.04em; line-height: 1; color:#fff; font-variant-numeric: tabular-nums; }
-.cd-lbl{ font-size:10px; letter-spacing:.32em; color: var(--muted); margin-top: 6px; text-transform:uppercase; font-weight:500; }
-
-.section-h{ text-align:center; margin-bottom: 50px; }
-.section-eyebrow{ font-size:11px; letter-spacing:.34em; color: var(--muted); text-transform:uppercase; }
-.section-title{ font-size: clamp(36px, 5.5vw, 78px); font-weight: 200; letter-spacing: -.04em; line-height: 1; margin-top: 12px; }
-.section-title b{ font-weight:600; background: linear-gradient(120deg, #fff, #fbbf24); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.section-deck{ font-size: 16px; color: var(--muted); max-width: 640px; margin: 16px auto 0; font-weight: 300; }
-
-.cast-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-@media (max-width:1100px){ .cast-grid{ grid-template-columns: repeat(3, 1fr); } }
-@media (max-width:760px){ .cast-grid{ grid-template-columns: repeat(2, 1fr); } }
-@media (max-width:460px){ .cast-grid{ grid-template-columns: 1fr; } }
-.cast{ background:var(--glass); border:1px solid var(--line); border-radius:20px; padding:20px; text-align:center; backdrop-filter: blur(20px); transition: transform .3s; }
-.cast:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,.25); }
-.cast .av{ width:108px; height:108px; border-radius:50%; margin:0 auto 14px; background-size:cover; background-position:center 22%; background-color:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-size:42px; box-shadow:0 10px 30px rgba(0,0,0,.45), inset 0 0 0 4px rgba(255,255,255,.06); position:relative; overflow:visible; }
-.cast .av.has-photo{ font-size:0; overflow:visible; }
-.cast .av::before{ content:""; position:absolute; inset:-6px; border-radius:50%; background: conic-gradient(from 200deg, rgba(251,191,36,.45), rgba(168,85,247,.35), rgba(96,165,250,.4), rgba(251,191,36,.45)); filter: blur(10px); opacity:.55; z-index:-1; }
-
-/* ====== AVATAR-MODE SWITCHER ====== */
-.avatar-mode-switch{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin: 22px auto 26px; padding:6px; background:rgba(255,255,255,.04); border:1px solid var(--line); border-radius:999px; backdrop-filter: blur(20px); width:max-content; max-width:100%; }
-.avatar-mode-switch button{ background:transparent; color:var(--muted); border:none; padding:9px 18px; border-radius:999px; font-size:11px; letter-spacing:.22em; text-transform:uppercase; cursor:pointer; transition: all .2s; font-family:inherit; }
-.avatar-mode-switch button:hover{ color:#fff; }
-.avatar-mode-switch button.active{ background:linear-gradient(135deg, rgba(251,191,36,.22), rgba(168,85,247,.22)); color:#fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
-
-/* ============ MODE A · CORNER BADGE (glass, no white) ============ */
-.cast-grid[data-mode="badge"] .cast .av.has-photo::after{
-  content:""; position:absolute;
-  bottom:-6px; right:-6px;
-  width:46px; height:46px;
-  border-radius:50%;
-  background-image: var(--char-bg);
-  background-size:cover; background-position:center;
-  background-color: rgba(12,14,22,.55);
-  border:1px solid rgba(255,255,255,.35);
-  box-shadow: 0 6px 18px rgba(0,0,0,.55), inset 0 0 0 2px rgba(12,14,22,.35);
-  backdrop-filter: blur(8px);
-  z-index:2;
+/* ===== chunky button ===== */
+.btn{
+  display:inline-block;background:var(--yellow);border:var(--bd);box-shadow:var(--sh-sm);
+  font-weight:700;font-size:15px;padding:12px 18px;text-transform:uppercase;letter-spacing:.03em;
+  transition:transform .08s,box-shadow .08s;color:var(--ink);text-decoration:none;
 }
-.cast-grid[data-mode="badge"] .cast .av.has-photo:not(.has-char)::after{
-  content: attr(data-em); background-image:none;
-  background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.04));
-  display:flex; align-items:center; justify-content:center; font-size:24px;
-}
-.cast-grid[data-mode="badge"] .cast .av{ background-position:center 18%; }
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn.red{background:var(--red);color:#fff}
+.btn.pink{background:var(--pink);color:#fff}
+.btn.green{background:var(--green)}
+.btn.cyan{background:var(--cyan)}
+.btn.ghost{background:#fff}
 
-/* ============ MODE B · SIDE-BY-SIDE ============ */
-.cast-grid[data-mode="side"] .cast .av.has-photo::after{ display:none; }
-.cast-grid[data-mode="side"] .cast .role{ display:none; }
-.cast-grid[data-mode="side"] .cast .name{ margin-top:2px; }
-.cast-grid[data-mode="side"] .cast{ padding:22px 18px; }
-.cast-grid[data-mode="side"] .cast .av{ width:96px; height:96px; margin:0 auto 6px; }
-.cast-grid[data-mode="side"] .cast .av-pair{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  margin: 0 auto 12px;
-}
-.cast-grid[data-mode="side"] .cast .av-pair .av{ margin:0; }
-.cast-grid[data-mode="side"] .cast .av-pair .char-orb{
-  width:54px; height:54px; border-radius:50%;
-  background-image: var(--char-bg);
-  background-size:cover; background-position:center;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow: 0 8px 22px rgba(0,0,0,.5), inset 0 0 0 3px rgba(255,255,255,.06);
-  position:relative; flex-shrink:0;
-}
-.cast-grid[data-mode="side"] .cast .av-pair .char-orb::after{
-  content:""; position:absolute; inset:-4px; border-radius:50%;
-  background: conic-gradient(from 0deg, rgba(168,85,247,.4), rgba(96,165,250,.4), rgba(251,191,36,.4), rgba(168,85,247,.4));
-  filter: blur(6px); opacity:.55; z-index:-1;
-}
-.cast-grid[data-mode="side"] .cast .av-pair .av-link{
-  font-size:9px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase;
-  padding:0 2px;
-}
-
-/* ============ MODE C · MEDALLION (lower offset, framed under photo) ============ */
-.cast-grid[data-mode="medallion"] .cast .av.has-photo::after{ display:none; }
-.cast-grid[data-mode="medallion"] .cast{ padding-top:24px; }
-.cast-grid[data-mode="medallion"] .cast .av{ width:120px; height:120px; margin: 0 auto 0; }
-.cast-grid[data-mode="medallion"] .cast .medallion{
-  position:relative; width:78px; height:78px; margin:-22px auto 12px;
-  border-radius:50%;
-  background-image: var(--char-bg);
-  background-size:cover; background-position:center;
-  border:1px solid rgba(255,255,255,.25);
-  box-shadow: 0 12px 30px rgba(0,0,0,.6), inset 0 0 0 4px rgba(8,10,18,.85), 0 0 0 5px rgba(255,255,255,.06);
-}
-.cast-grid[data-mode="medallion"] .cast .medallion::before{
-  content:""; position:absolute; inset:-10px; border-radius:50%;
-  background: conic-gradient(from 90deg, rgba(251,191,36,.55), rgba(199,67,178,.45), rgba(96,165,250,.5), rgba(251,191,36,.55));
-  filter: blur(12px); opacity:.6; z-index:-1;
-}
-.cast-grid[data-mode="medallion"] .cast .medallion::after{
-  content:""; position:absolute; left:50%; top:-6px; width:14px; height:14px; transform: translateX(-50%) rotate(45deg);
-  background: linear-gradient(135deg, rgba(251,191,36,.9), rgba(199,67,178,.9));
-  border-radius:3px; box-shadow: 0 2px 6px rgba(0,0,0,.5);
-}
-.cast-grid[data-mode="medallion"] .cast .medallion-label{
-  display:block; font-size:9px; letter-spacing:.34em; color:var(--muted);
-  text-transform:uppercase; margin-top:-4px; margin-bottom:6px;
-}
-.cast .em{ font-size:48px; line-height:1; margin-bottom:10px; }
-.cast .role{ font-size:10px; letter-spacing:.28em; color: var(--muted); text-transform:uppercase; }
-.cast .name{ font-size:22px; font-weight:300; letter-spacing:-.02em; margin-top:4px; }
-.cast .ch{ display:inline-block; margin-top:8px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-size:10px; letter-spacing:.18em; text-transform:uppercase; }
-.cast .line{ font-size:12px; color: var(--muted); margin-top:10px; line-height:1.5; }
-
-.day{ background:var(--glass); border:1px solid var(--line); border-radius:24px; padding:28px; margin-bottom:18px; backdrop-filter: blur(20px); }
-.day-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--line); }
-.day-eyebrow{ font-size:11px; letter-spacing:.32em; color: var(--muted); text-transform:uppercase; }
-.day-title{ font-size:32px; font-weight:300; letter-spacing:-.02em; }
-.day-pill{ font-size:10px; letter-spacing:.2em; padding:4px 10px; border-radius:999px; text-transform:uppercase; font-weight:600; }
-.day-pill.ak{ background:rgba(34,197,94,.2); border:1px solid rgba(34,197,94,.4); color:#86efac; }
-.day-pill.hs{ background:rgba(249,115,22,.2); border:1px solid rgba(249,115,22,.4); color:#fdba74; }
-.day-pill.mk{ background:rgba(239,68,68,.2); border:1px solid rgba(239,68,68,.4); color:#fca5a5; }
-.day-pill.epic{ background:rgba(168,85,247,.2); border:1px solid rgba(168,85,247,.4); color:#d8b4fe; }
-.day-pill.rest{ background:rgba(192,132,252,.2); border:1px solid rgba(192,132,252,.4); color:#e9d5ff; }
-.day-pill.travel{ background:rgba(96,165,250,.2); border:1px solid rgba(96,165,250,.4); color:#bfdbfe; }
-.day-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
-@media (max-width:760px){ .day-grid{ grid-template-columns: 1fr; } }
-.day-item{ background:rgba(0,0,0,.25); border-left:3px solid rgba(251,191,36,.6); border-radius:8px; padding:12px 14px; font-size:13.5px; line-height:1.5; }
-.day-item b{ color:#fbbf24; font-weight:600; }
-.rope{ display:inline-block; background:#fbbf24; color:#06070d; padding:3px 10px; border-radius:6px; font-size:13px; font-weight:700; letter-spacing:.06em; }
-
-.alarm-panel{ background: linear-gradient(135deg, rgba(239,68,68,.12), rgba(251,191,36,.12)); border: 1px solid rgba(251,191,36,.4); border-radius: 24px; padding: 24px; margin-top:18px; backdrop-filter: blur(20px); }
-.alarm-panel.bbb{ background: linear-gradient(135deg, rgba(199,67,178,.18), rgba(255,192,220,.14)); border-color:#ff8fd1; }
-.alarm-panel h3{ font-size:22px; font-weight:300; margin-bottom:6px; }
-.alarm-panel p{ font-size:13.5px; color:#cbd5e1; line-height:1.55; }
-.alarm-btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-.alarm-btn{ background:#fff; color:#000; border:none; padding:10px 18px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; transition:transform .15s; }
-.alarm-btn:hover{ transform: translateY(-2px); }
-.alarm-btn.bbb{ background:#ff8fd1; color:#fff; }
-.alarm-btn.ghost{ background:transparent; color:#fff; border:1px solid var(--line); }
-#alarmStatus, #bbbStatus{ font-size:12px; color:#fbbf24; margin-top:10px; }
-#bbbStatus{ color:#ff8fd1; }
-.mw-card{ margin-top:14px; padding:14px; background:rgba(0,0,0,.3); border-radius:14px; border:1px dashed #ff8fd1; }
-.mw-card a{ display:inline-block; background:#ff8fd1; color:#fff; padding:8px 14px; border-radius:999px; font-size:12px; text-decoration:none; margin-top:8px; font-weight:600; }
-
-.alarm-overlay{ display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; }
-.alarm-overlay.active{ display:flex; animation: alarmFlash .6s ease-in-out infinite alternate; }
-.alarm-overlay.bbb-mode.active{ animation: bbbFlash .6s ease-in-out infinite alternate; }
-@keyframes alarmFlash { 0%{background:rgba(239,68,68,.96);} 100%{background:rgba(251,191,36,.96);} }
-@keyframes bbbFlash { 0%{background:rgba(199,67,178,.96);} 100%{background:rgba(255,192,220,.96);} }
-.alarm-content{ text-align:center; padding:40px 20px; }
-.alarm-content h2{ font-size:clamp(40px, 9vw, 96px); margin:16px 0; color:#fff; font-weight:900; text-shadow:4px 4px 0 #000; letter-spacing:2px; animation: shake .2s infinite; }
-.alarm-content p{ font-size:clamp(16px,3vw,22px); color:#fff; font-weight:700; margin:12px 0 28px; }
-.alarm-content button{ background:#000; color:#fff; border:4px solid #fff; padding:18px 40px; border-radius:14px; font-size:20px; font-weight:900; cursor:pointer; }
-@keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-8px);} 75%{transform:translateX(8px);} }
-
-.actions-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:18px; }
-@media (max-width:760px){ .actions-list{ grid-template-columns: 1fr; } }
-.action-item{ display:flex; gap:12px; padding:14px; background:var(--glass); border:1px solid var(--line); border-radius:14px; cursor:pointer; backdrop-filter:blur(10px); }
-.action-item:hover{ border-color: rgba(255,255,255,.25); }
-.action-item.done{ opacity:.5; }
-.action-item.done .a-title{ text-decoration:line-through; }
-.action-item input{ appearance:none; width:22px; height:22px; border:2px solid #fbbf24; border-radius:6px; cursor:pointer; flex-shrink:0; position:relative; }
-.action-item input:checked{ background:#fbbf24; }
-.action-item input:checked::after{ content:"✓"; position:absolute; top:-3px; left:3px; color:#000; font-weight:800; font-size:18px; }
-.a-title{ font-weight:600; font-size:14px; margin-bottom:3px; }
-.a-detail{ font-size:12.5px; color:var(--muted); line-height:1.5; }
-.progress{ background:var(--glass); border:1px solid var(--line); border-radius:14px; padding:14px 18px; margin-bottom:14px; backdrop-filter:blur(10px); }
-.progress-bar{ height:6px; background:rgba(0,0,0,.4); border-radius:999px; overflow:hidden; }
-.progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,#34d399,#fbbf24,#fb7185); transition:width .5s; }
-.progress-text{ font-size:12px; color:var(--muted); margin-top:8px; }
-.btn{ background:transparent; color:#fff; border:1px solid var(--line); padding:8px 14px; border-radius:999px; font-size:12px; cursor:pointer; }
-.btn:hover{ background:rgba(255,255,255,.06); }
-
-.budget{ background:var(--glass); border:1px solid var(--line); border-radius:24px; padding:26px; backdrop-filter: blur(20px); }
-.calc-controls{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line); align-items:flex-end; }
-.ctrl{ display:flex; flex-direction:column; gap:6px; }
-.ctrl label{ font-size:10px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; }
-.ctrl input{ background:rgba(0,0,0,.4); border:1px solid var(--line); color:#fff; padding:10px 14px; border-radius:14px; font-size:16px; font-weight:300; width:90px; text-align:right; font-variant-numeric: tabular-nums; }
-.calc-table{ width:100%; border-collapse:collapse; min-width:600px; }
-.calc-table th, .calc-table td{ padding:10px 6px; text-align:left; border-bottom:1px solid var(--line); font-size:13px; }
-.calc-table th{ font-size:10px; letter-spacing:.22em; color:var(--muted); text-transform:uppercase; }
-.calc-table td.num{ text-align:right; font-variant-numeric:tabular-nums; }
-.calc-table td.note{ color:var(--muted); font-size:12px; }
-.calc-table input.cost-input{ background:rgba(0,0,0,.4); border:1px solid var(--line); color:#fff; padding:6px 8px; border-radius:8px; font-size:12.5px; width:80px; text-align:right; }
-.calc-totals{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line); }
-.calc-tot{ background:rgba(0,0,0,.35); border:1px solid var(--line); border-radius:18px; padding:18px; text-align:center; }
-.calc-tot .cl{ font-size:10px; letter-spacing:.3em; color:var(--muted); text-transform:uppercase; }
-.calc-tot .cv{ font-size:32px; font-weight:200; letter-spacing:-.02em; margin:6px 0; }
-.calc-tot .cs{ font-size:11px; color:var(--muted); }
-
-footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); }
-
-/* ============ PORTAL PILLARS (hero) ============ */
-.portal-pillars{ display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; max-width:980px; margin: 36px auto 0; }
-@media (max-width:900px){ .portal-pillars{ grid-template-columns: repeat(2, 1fr); } }
-.pp{ display:flex; align-items:center; gap:10px; padding:12px 16px; background: var(--glass); border:1px solid var(--line); border-radius:999px; backdrop-filter: blur(20px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255,255,255,.10); transition: border-color .3s, transform .3s; }
-.pp:hover{ border-color: rgba(251,191,36,.35); transform: translateY(-2px); }
-.pp .i{ font-size:14px; color:#fbbf24; font-weight:600; min-width:18px; }
-.pp .t{ font-size:12.5px; color:#e5e7eb; letter-spacing:.04em; font-weight:400; white-space:nowrap; }
-
-/* ============ MEMORY CAPTURE ============ */
-.mem-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
-@media (max-width:880px){ .mem-grid{ grid-template-columns: 1fr; } }
-.mem-card{ position:relative; background:var(--glass); border:1px solid var(--line); border-radius:24px; padding:28px; backdrop-filter: blur(22px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 24px 60px rgba(0,0,0,.4); overflow:hidden; }
-.mem-card::before{ content:""; position:absolute; inset:0 0 auto 0; height:120px; background: radial-gradient(400px 120px at 50% 0%, rgba(251,191,36,.18), transparent 70%); pointer-events:none; }
-.mem-card .lbl{ font-size:10.5px; letter-spacing:.34em; color:#fbbf24; text-transform:uppercase; font-weight:500; }
-.mem-card .h{ font-size:22px; font-weight:300; letter-spacing:-.015em; margin-top:10px; color:#fff; line-height:1.25; }
-.mem-card .h b{ font-weight:500; background: linear-gradient(120deg, #fde68a, #f9a8d4); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.mem-card .p{ font-size:13.5px; color:#cbd5e1; margin-top:10px; line-height:1.6; font-weight:300; }
-.mem-card.wide{ grid-column: 1 / -1; }
-.shotlist{ list-style:none; margin-top:18px; display:grid; gap:10px; }
-.shotlist li{ display:grid; grid-template-columns: 56px 18px 1fr; gap:12px; align-items:flex-start; padding:11px 14px; background: rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.06); border-radius:14px; transition: border-color .25s; cursor:pointer; }
-.shotlist li:hover{ border-color: rgba(251,191,36,.35); }
-.shotlist .d{ font-size:10px; letter-spacing:.28em; color:#fbbf24; text-transform:uppercase; font-weight:600; padding-top:3px; }
-.shotlist .ic{ font-size:16px; padding-top:1px; }
-.shotlist .bd b{ color:#fff; font-weight:500; font-size:13.5px; display:block; line-height:1.35; }
-.shotlist .bd span{ color:var(--muted); font-size:12px; line-height:1.5; display:block; margin-top:3px; }
-.shotlist input[type="checkbox"]{ display:none; }
-.shotlist li.done{ opacity:.55; border-color: rgba(52,211,153,.3); }
-.shotlist li.done .bd b{ text-decoration: line-through; color:var(--muted); }
-.mem-traditions{ display:grid; gap:12px; margin-top:16px; }
-.mem-trad{ display:flex; gap:14px; padding:14px 16px; background: rgba(0,0,0,.25); border:1px solid var(--line); border-left:3px solid rgba(251,191,36,.7); border-radius:14px; }
-.mem-trad .em{ font-size:24px; line-height:1.2; }
-.mem-trad b{ color:#fde68a; font-weight:500; font-size:14px; display:block; }
-.mem-trad span{ color:#cbd5e1; font-size:12.5px; line-height:1.55; display:block; margin-top:3px; font-weight:300; }
-
-/* ============ TRIBUTE — For Abui & Abui Temo ============ */
-#tribute{ position:relative; padding: 60px 20px 80px; }
-.tribute-shell{ position:relative; max-width:1080px; margin:0 auto; border-radius:36px; overflow:hidden; isolation:isolate; border:1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 60px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(251,191,36,.08); background: linear-gradient(180deg, rgba(20,12,30,.65), rgba(8,6,16,.85)); backdrop-filter: blur(28px) saturate(170%); }
-.tribute-shell::before{ content:""; position:absolute; inset:-30%; z-index:-1; background:
-  radial-gradient(40% 50% at 18% 22%, rgba(244,114,182,.45), transparent 65%),
-  radial-gradient(38% 48% at 82% 18%, rgba(168,85,247,.40), transparent 65%),
-  radial-gradient(40% 45% at 50% 95%, rgba(251,191,36,.32), transparent 65%);
-  filter: blur(60px); animation: tributeAura 22s ease-in-out infinite alternate; pointer-events:none; }
-@keyframes tributeAura { from{ transform: translate(-2%, -1%) scale(1); } to{ transform: translate(2%, 2%) scale(1.04); } }
-.tribute-shell::after{ content:""; position:absolute; inset:0; pointer-events:none; background:
-  radial-gradient(800px 400px at 50% -20%, rgba(255,255,255,.08), transparent 60%),
-  radial-gradient(600px 300px at 50% 120%, rgba(251,191,36,.10), transparent 60%); }
-
-.tribute-inner{ position:relative; padding: clamp(36px, 5vw, 72px) clamp(24px, 4vw, 64px); text-align:center; }
-.tribute-eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:11px; letter-spacing:.42em; text-transform:uppercase; color:#fbbf24; padding:8px 18px; border:1px solid rgba(251,191,36,.35); border-radius:999px; background: rgba(251,191,36,.06); font-weight:500; }
-.tribute-eyebrow::before, .tribute-eyebrow::after{ content:""; width:24px; height:1px; background: linear-gradient(90deg, transparent, rgba(251,191,36,.7)); }
-.tribute-eyebrow::after{ background: linear-gradient(270deg, transparent, rgba(251,191,36,.7)); }
-
-.tribute-title{ margin-top:28px; font-size: clamp(40px, 6vw, 76px); line-height:1.02; letter-spacing:-.035em; font-weight:200; color:#fff; text-wrap:balance; }
-.tribute-title b{ font-weight:500; background: linear-gradient(135deg, #fde68a 0%, #f9a8d4 50%, #c4b5fd 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color: transparent; }
-.tribute-names{ display:flex; align-items:center; justify-content:center; gap:24px; margin-top:32px; flex-wrap:wrap; }
-.tribute-name{ display:flex; flex-direction:column; align-items:center; gap:8px; }
-.tribute-name .av{ width:88px; height:88px; border-radius:50%; display:grid; place-items:center; font-size:42px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,.04)); border:1px solid rgba(255,255,255,.18); box-shadow: 0 18px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.25); }
-.tribute-name .who{ font-size:13px; letter-spacing:.32em; color:#fbbf24; text-transform:uppercase; font-weight:500; }
-.tribute-name .lbl{ font-size:11px; letter-spacing:.28em; color:var(--muted); text-transform:uppercase; }
-.tribute-amp{ font-size:38px; font-weight:200; color:rgba(255,255,255,.4); font-family: Georgia, 'Times New Roman', serif; font-style:italic; }
-
-.tribute-lede{ max-width:680px; margin: 36px auto 0; font-size: clamp(17px, 1.6vw, 21px); line-height:1.65; color:#e5e7eb; font-weight:300; text-wrap:pretty; }
-.tribute-lede em{ color:#fde68a; font-style:normal; font-weight:500; letter-spacing:.005em; }
-
-.tribute-pillars{ display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:48px; max-width:920px; margin-left:auto; margin-right:auto; }
-@media (max-width:780px){ .tribute-pillars{ grid-template-columns: 1fr; } }
-.pillar{ position:relative; padding:24px 22px; border-radius:22px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); backdrop-filter: blur(14px); text-align:left; transition: transform .35s ease, border-color .35s ease, background .35s ease; }
-.pillar:hover{ transform: translateY(-3px); border-color: rgba(251,191,36,.35); background: rgba(255,255,255,.05); }
-.pillar .num{ font-size:11px; letter-spacing:.34em; color:#fbbf24; font-weight:500; text-transform:uppercase; }
-.pillar .h{ font-size:17px; color:#fff; margin-top:10px; font-weight:500; letter-spacing:-.005em; line-height:1.3; }
-.pillar .p{ font-size:13.5px; color:#cbd5e1; margin-top:8px; line-height:1.6; font-weight:300; }
-
-.tribute-quote{ position:relative; max-width:720px; margin: 56px auto 0; padding: 32px 28px; border-top:1px solid rgba(251,191,36,.20); border-bottom:1px solid rgba(251,191,36,.20); }
-.tribute-quote::before{ content:"“"; position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-size:80px; color:rgba(251,191,36,.35); font-family: Georgia, serif; line-height:1; background: var(--ink); padding:0 14px; }
-.tribute-quote p{ font-size: clamp(20px, 2.2vw, 26px); line-height:1.45; font-weight:300; color:#fff; font-style:italic; letter-spacing:-.005em; text-wrap:balance; }
-.tribute-quote .sig{ display:block; margin-top:18px; font-size:11px; letter-spacing:.4em; color:#fbbf24; text-transform:uppercase; font-weight:500; font-style:normal; }
-
-.tribute-foot{ margin-top:40px; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; font-size:12px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; font-weight:500; }
-.tribute-foot .dot{ width:4px; height:4px; border-radius:50%; background: rgba(251,191,36,.6); }
-.tribute-foot b{ color:#fde68a; font-weight:500; }
-
-/* ============ TICKER BAR ============ */
+/* ===== ticker ===== */
 .ticker{
-  position: sticky; top: 86px; z-index: 49;
-  margin: 12px auto 0; max-width: 1280px; width: calc(100% - 28px);
-  border-radius: 999px;
-  background: rgba(20,22,40,.55);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 12px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
-  display: flex; align-items: center; gap: 14px;
-  padding: 0 18px 0 0;
-  height: 46px;
-  overflow: hidden;
+  background:var(--ink);color:var(--yellow);border-bottom:var(--bd);
+  overflow:hidden;white-space:nowrap;padding:10px 0;font-weight:700;font-size:14px;
 }
-.ticker-label{
-  display:inline-flex; align-items:center; gap:8px;
-  flex-shrink:0; padding: 0 16px; height:100%;
-  border-right: 1px solid rgba(255,255,255,.08);
-  font-size: 10.5px; letter-spacing: .34em; text-transform: uppercase;
-  color: #fde68a; font-weight: 600;
-}
-.ticker-label .pulse{
-  width:6px; height:6px; border-radius:50%; background:#fbbf24;
-  box-shadow: 0 0 0 3px rgba(251,191,36,.20);
-  animation: tickPulse 2.4s ease-in-out infinite;
-}
-@keyframes tickPulse { 0%,100%{ opacity:1;} 50%{ opacity:.45;} }
-.ticker-viewport{ flex:1; min-width:0; height:100%; overflow:hidden; position:relative; mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent); -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent); }
-.ticker-track{
-  display:flex; align-items:center; gap:48px;
-  height:100%;
-  white-space:nowrap;
-  animation: tickerScroll 60s linear infinite;
-  will-change: transform;
-}
-.ticker:hover .ticker-track{ animation-play-state: paused; }
-@keyframes tickerScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
-.ticker-msg{
-  display:inline-flex; align-items:center; gap:10px;
-  font-size: 12.5px; color:#e5e7eb; letter-spacing:.01em;
-  font-weight: 400;
-}
-.ticker-msg .glyph{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:22px; height:22px; border-radius:50%;
-  background: linear-gradient(135deg, rgba(251,191,36,.22), rgba(217,119,6,.10));
-  border: 1px solid rgba(251,191,36,.35);
-  color:#fde68a; font-size:11px; font-weight:600;
-  flex-shrink:0;
-}
-.ticker-msg b{ color:#fff; font-weight:500; }
-.ticker-msg em{ color:#fbbf24; font-style:normal; font-weight:500; }
-.ticker-msg .sep{ color: rgba(255,255,255,.18); margin: 0 6px; }
-.ticker-stamp{
-  display:inline-flex; align-items:center; gap:8px;
-  flex-shrink:0; padding: 0 4px 0 14px;
-  border-left: 1px solid rgba(255,255,255,.08);
-  height: 60%;
-  font-size: 10.5px; letter-spacing:.28em; text-transform:uppercase;
-  color: var(--muted); font-weight:500; font-variant-numeric: tabular-nums;
-}
-@media (max-width: 760px){
-  .ticker{ height:42px; top:auto; position:relative; margin-top:14px; }
-  .ticker-label{ padding: 0 12px; font-size: 9.5px; letter-spacing:.22em; }
-  .ticker-label span:not(.pulse){ display:none; }
-  .ticker-stamp{ display:none; }
-  .ticker-msg{ font-size: 11.5px; }
-}
+.ticker-track{display:inline-block;animation:tick 70s linear infinite;padding-left:100vw}
+.ticker-track span{margin-right:2.5em}
+@keyframes tick{to{transform:translateX(-100%)}}
 
+/* ===== hero ===== */
+.hero{position:relative;padding:44px 16px 32px;text-align:center;background:
+  repeating-linear-gradient(-45deg,var(--paper) 0 26px,#FFEFD0 26px 52px);border-bottom:var(--bd)}
+.hero .kicker{display:inline-block;background:var(--ink);color:#fff;padding:6px 14px;font-weight:700;
+  font-size:14px;letter-spacing:.12em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:var(--sh-sm)}
+.hero h1{font-size:clamp(2.1rem,9vw,4.6rem);margin:18px 0 6px}
+.hero h1 .red{color:var(--red);-webkit-text-stroke:1.5px var(--ink)}
+.hero h1 .green{color:var(--green);-webkit-text-stroke:1.5px var(--ink)}
+.hero .sub{font-weight:700;font-size:clamp(1rem,4vw,1.35rem)}
+.hero .parks{margin-top:10px;font-weight:500;font-size:14px}
+.hero .parks b{background:var(--cyan);border:2px solid var(--ink);padding:2px 8px;display:inline-block;margin:3px 2px;box-shadow:3px 3px 0 var(--ink);font-weight:700}
 
+/* stickers */
+.sticker{
+  position:absolute;font-family:'Archivo Black',sans-serif;font-size:13px;line-height:1.1;
+  border:var(--bd);box-shadow:var(--sh-sm);padding:10px 12px;text-transform:uppercase;z-index:2;
+}
+.stick-1{background:var(--yellow);transform:rotate(-8deg);top:8px;left:6px}
+.stick-2{background:var(--green);color:#fff;transform:rotate(6deg);top:8px;right:6px}
+.stick-3{background:var(--pink);color:#fff;transform:rotate(-5deg);bottom:-18px;right:14px}
+@media(max-width:520px){.sticker{font-size:11px;padding:8px 9px}.stick-3{bottom:-14px}}
 
-/* ============ ITINERARY: shared option-switcher ============ */
-.opt-switch{ display:flex; gap:6px; padding:6px; background:var(--glass); border:1px solid var(--line); border-radius:999px; backdrop-filter: blur(20px) saturate(160%); margin: 28px auto 36px; width:max-content; max-width:100%; flex-wrap:wrap; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.35); }
-.opt-switch button{ background:transparent; color:#cbd5e1; border:none; padding:10px 18px; border-radius:999px; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; font-weight:500; cursor:pointer; transition:all .25s; font-family:inherit; }
-.opt-switch button:hover{ color:#fff; }
-.opt-switch button.active{ background: linear-gradient(135deg, rgba(168,85,247,.35), rgba(236,72,153,.35)); color:#fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 6px 18px rgba(168,85,247,.25); }
-.opt-pane{ display:none; }
-.opt-pane.active{ display:block; animation: paneIn .45s ease-out; }
-@keyframes paneIn { from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform: none; } }
-.opt-caption{ text-align:center; color:var(--muted); font-size:13px; max-width:680px; margin:-12px auto 28px; line-height:1.55; font-weight:300; }
-.opt-caption b{ color:#fbbf24; font-weight:500; }
+/* ===== countdown ===== */
+.count-wrap{padding:34px 16px 26px;text-align:center;background:var(--purple);border-bottom:var(--bd);color:#fff}
+.count-wrap .cap{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:14px;
+  background:var(--ink);display:inline-block;padding:6px 14px;box-shadow:4px 4px 0 rgba(0,0,0,.35);transform:rotate(-1.5deg)}
+.count{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.count .cell{background:#fff;color:var(--ink);border:var(--bd);box-shadow:var(--sh);min-width:74px;padding:12px 6px 10px}
+.count .num{font-family:'Archivo Black',sans-serif;font-size:clamp(1.7rem,8vw,2.8rem)}
+.count .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.count .cell:nth-child(1){transform:rotate(-2deg);background:var(--yellow)}
+.count .cell:nth-child(2){transform:rotate(1.5deg)}
+.count .cell:nth-child(3){transform:rotate(-1deg);background:var(--cyan)}
+.count .cell:nth-child(4){transform:rotate(2deg);background:var(--pink);color:#fff}
+#tripMsg{font-family:'Archivo Black',sans-serif;font-size:clamp(1.2rem,5vw,2rem);margin-top:16px;display:none}
 
-/* ============ OPTION 1: Native day cards (extends existing .day) ============ */
-.day-summary{ font-size:13.5px; color:#cbd5e1; line-height:1.55; margin-bottom:14px; }
-.day-summary b{ color:#fbbf24; font-weight:600; }
-.day-section-label{ display:flex; align-items:center; gap:12px; font-size:10.5px; letter-spacing:.34em; color:var(--muted); text-transform:uppercase; margin: 18px 0 12px; font-weight:500; }
-.day-section-label::before, .day-section-label::after{ content:""; flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
-.day-row{ display:grid; grid-template-columns: 64px 28px 1fr; gap:14px; align-items:flex-start; padding:11px 0; border-bottom:1px dashed rgba(255,255,255,.06); }
-.day-row:last-child{ border-bottom:none; }
-.day-row .t{ font-size:12px; font-weight:600; color:#cbd5e1; letter-spacing:.04em; font-variant-numeric: tabular-nums; padding-top:2px; }
-.day-row .ic{ font-size:18px; line-height:1; padding-top:2px; }
-.day-row .bd .ti{ font-size:14px; font-weight:600; color:#fff; line-height:1.35; }
-.day-row .bd .nt{ font-size:12.5px; color:var(--muted); line-height:1.55; margin-top:3px; }
-.day-row .bd .nt b{ color:#fbbf24; font-weight:600; }
-.day-row.t-alarm .ic, .day-row.t-rope .ic{ filter: drop-shadow(0 0 8px rgba(251,191,36,.6)); }
-.day-row.t-alarm .ti, .day-row.t-rope .ti{ color:#fde68a; }
-.day-row.t-castle .ti{ color:#f9a8d4; }
-.day-row.t-mario .ti, .day-row.t-mario-blue .ti, .day-row.t-mario-yellow .ti{ color:#86efac; }
-.day-row.t-fireworks .ti{ color:#a5b4fc; }
-.day-row.t-finale{ background: linear-gradient(135deg, rgba(168,85,247,.12), rgba(236,72,153,.12)); border-radius:12px; padding:14px; margin-top:8px; border:1px solid rgba(168,85,247,.3); }
-.day-row.t-finale .ti{ color:#fde68a; font-weight:700; letter-spacing:.04em; }
-.warm-note{ display:flex; gap:12px; padding:12px 14px; background: linear-gradient(135deg, rgba(244,114,182,.10), rgba(251,191,36,.10)); border:1px solid rgba(244,114,182,.25); border-radius:14px; margin-top:14px; font-size:12.5px; line-height:1.55; color:#fbcfe8; }
-.warm-note .h{ color:#fff; font-weight:600; }
+/* ===== layout ===== */
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+section{padding:44px 0 8px}
+.sec-h{display:inline-block;background:var(--ink);color:#fff;padding:10px 18px;font-size:clamp(1.2rem,5.5vw,1.9rem);
+  box-shadow:6px 6px 0 var(--red);transform:rotate(-1deg);margin-bottom:26px}
+.sec-h.y{box-shadow:6px 6px 0 var(--yellow)}
+.sec-h.g{box-shadow:6px 6px 0 var(--green)}
+.sec-h.c{box-shadow:6px 6px 0 var(--cyan)}
+.sec-h.p{box-shadow:6px 6px 0 var(--pink)}
 
-/* ============ OPTION 2: Tabbed itinerary ============ */
-.tab-shell{ background:var(--glass); border:1px solid var(--line); border-radius:28px; padding: clamp(18px,2.5vw,28px); backdrop-filter: blur(24px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 30px 60px rgba(0,0,0,.4); }
-.tab-rail{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:22px; scrollbar-width:thin; }
-.tab-rail::-webkit-scrollbar{ height:4px; } .tab-rail::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.15); border-radius:2px; }
-.tab{ flex-shrink:0; min-width:128px; padding:14px 16px; background: rgba(0,0,0,.35); border:1px solid var(--line); border-radius:18px; cursor:pointer; transition:all .25s; text-align:left; font-family:inherit; color:inherit; }
-.tab:hover{ border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
-.tab.active{ background: linear-gradient(135deg, rgba(168,85,247,.22), rgba(59,130,246,.18)); border-color: rgba(168,85,247,.5); box-shadow: 0 12px 30px rgba(168,85,247,.18); }
-.tab .tab-d{ font-size:9.5px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; }
-.tab .tab-name{ font-size:15px; font-weight:500; color:#fff; margin-top:5px; line-height:1.2; letter-spacing:-.005em; }
-.tab .tab-date{ font-size:11px; color:var(--muted); margin-top:4px; letter-spacing:.04em; }
-.tab.active .tab-name{ color:#fff; }
-.tab .tab-pill{ display:inline-block; font-size:9px; letter-spacing:.2em; padding:2px 7px; border-radius:999px; text-transform:uppercase; font-weight:600; margin-top:6px; }
-.tab-panel{ display:none; }
-.tab-panel.active{ display:block; animation: paneIn .35s ease-out; }
-.tab-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-bottom:14px; margin-bottom:18px; border-bottom:1px solid var(--line); }
-.tab-head .ey{ font-size:11px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; }
-.tab-head .ti{ font-size:32px; font-weight:300; letter-spacing:-.02em; }
-.tab-amp{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; }
-@media (max-width:880px){ .tab-amp{ grid-template-columns: 1fr; gap:8px; } }
-.tab-amp .col-label{ font-size:10.5px; letter-spacing:.36em; color:var(--muted); text-transform:uppercase; padding-bottom:10px; border-bottom:1px solid var(--line); margin-bottom:10px; font-weight:500; }
+/* ===== quick stats ===== */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{border:var(--bd);box-shadow:var(--sh);padding:18px 12px;text-align:center;background:#fff}
+.stat:nth-child(1){background:var(--yellow);transform:rotate(-1.5deg)}
+.stat:nth-child(2){background:var(--cyan);transform:rotate(1deg)}
+.stat:nth-child(3){background:var(--green);color:#fff;transform:rotate(-1deg)}
+.stat:nth-child(4){background:var(--red);color:#fff;transform:rotate(1.5deg)}
+.stat .big{font-family:'Archivo Black',sans-serif;font-size:clamp(1.8rem,7vw,2.6rem)}
+.stat .cap{font-weight:700;text-transform:uppercase;font-size:13px}
+.stat .tiny{font-size:12px;font-weight:500}
 
-/* ============ OPTION 3: Cinematic timeline ============ */
-.cine{ position:relative; }
-.cine-day{ position:relative; padding: 14px 0 22px 0; }
-.cine-stripe{ display:grid; grid-template-columns: 220px 1fr; gap:28px; align-items:flex-start; }
-@media (max-width:900px){ .cine-stripe{ grid-template-columns: 1fr; gap:14px; } }
-.cine-badge{ position:relative; background:var(--glass); border:1px solid var(--line); border-radius:24px; padding:24px 22px; backdrop-filter: blur(24px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 22px 50px rgba(0,0,0,.45); overflow:hidden; }
-.cine-badge::before{ content:""; position:absolute; inset:0; background: radial-gradient(220px 120px at 50% -10%, rgba(255,255,255,.18), transparent 70%); pointer-events:none; }
-.cine-badge .num{ font-weight:200; font-size:88px; line-height:.9; letter-spacing:-.06em; color:#fff; font-variant-numeric: tabular-nums; }
-.cine-badge .of{ font-size:11px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; margin-top:6px; }
-.cine-badge .dt{ font-size:13px; color:#cbd5e1; margin-top:14px; letter-spacing:.04em; }
-.cine-badge .park{ font-size:18px; font-weight:500; color:#fff; margin-top:4px; letter-spacing:-.01em; }
-.cine-badge .park-pill{ display:inline-block; font-size:9px; letter-spacing:.2em; padding:3px 8px; border-radius:999px; text-transform:uppercase; font-weight:600; margin-top:10px; }
-.cine-detail{ background:var(--glass); border:1px solid var(--line); border-radius:24px; padding: 22px 24px; backdrop-filter: blur(24px) saturate(160%); }
-.cine-summary{ font-size:13.5px; color:#cbd5e1; line-height:1.6; }
-.cine-summary b{ color:#fbbf24; font-weight:600; }
-.cine-hl{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-.cine-hl span{ font-size:11px; padding:5px 11px; border-radius:999px; background: rgba(255,255,255,.04); border:1px solid var(--line); color:#e5e7eb; letter-spacing:.04em; }
-.cine-expand{ margin-top:14px; }
-.cine-expand summary{ list-style:none; cursor:pointer; padding:11px 16px; background:rgba(0,0,0,.3); border:1px solid var(--line); border-radius:14px; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#cbd5e1; display:flex; align-items:center; gap:10px; transition: all .2s; font-weight:500; }
-.cine-expand summary::-webkit-details-marker{ display:none; }
-.cine-expand summary:hover{ border-color: rgba(255,255,255,.22); color:#fff; }
-.cine-expand summary::after{ content:"›"; margin-left:auto; font-size:20px; transition: transform .25s; line-height:1; color:#fbbf24; }
-.cine-expand[open] summary::after{ transform: rotate(90deg); }
-.cine-expand .body{ padding: 16px 4px 4px; }
-.cine-expand .ph{ font-size:10.5px; letter-spacing:.34em; color:var(--muted); text-transform:uppercase; margin: 14px 0 10px; font-weight:500; }
-.cine-expand .ph:first-child{ margin-top:4px; }
-.cine-warm{ display:flex; gap:12px; padding:13px 15px; background: linear-gradient(135deg, rgba(244,114,182,.12), rgba(251,191,36,.10)); border:1px solid rgba(244,114,182,.28); border-radius:14px; margin-top:14px; font-size:12.5px; line-height:1.55; color:#fbcfe8; }
-.cine-warm .h{ color:#fff; font-weight:600; }
+/* ===== cast ===== */
+.cast{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:560px){.cast{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:900px){.cast{grid-template-columns:repeat(3,1fr)}}
+.card{border:var(--bd);box-shadow:var(--sh);background:#fff;padding:16px;position:relative}
+.cast .card:nth-child(3n+1){transform:rotate(-1.2deg)}
+.cast .card:nth-child(3n+2){transform:rotate(.8deg)}
+.cast .card:nth-child(3n){transform:rotate(-.6deg)}
+.cast .num-tag{position:absolute;top:-12px;left:-10px;background:var(--ink);color:var(--yellow);
+  font-family:'Archivo Black',sans-serif;font-size:14px;padding:4px 9px;border:2px solid var(--ink);transform:rotate(-6deg)}
+.cast-imgs{display:flex;gap:10px;margin-bottom:12px}
+.cast-photo,.cast-char{width:50%;aspect-ratio:1;object-fit:cover;border:var(--bd);box-shadow:var(--sh-sm);background:#eee}
+.emoji-fb{display:flex;align-items:center;justify-content:center;font-size:52px;aspect-ratio:1;width:50%;
+  border:3px solid var(--ink);box-shadow:var(--sh-sm);background:var(--yellow)}
+.cast h3{font-size:1.15rem}
+.cast .role{display:inline-block;background:var(--cyan);border:2px solid var(--ink);padding:1px 8px;font-weight:700;font-size:12.5px;margin:6px 0 2px;text-transform:uppercase}
+.cast .as{font-weight:700;font-size:14px;color:var(--red)}
+.cast p{font-size:14px;margin-top:6px}
 
-/* ============================================================
-   ▼▼▼  WINNER 4 UPGRADE — PREMIUM ADDITIONS  ▼▼▼
-   ============================================================ */
+/* height card */
+.height-card{border:var(--bd);box-shadow:var(--sh);background:var(--yellow);padding:20px;margin-top:26px;transform:rotate(-.5deg)}
+.height-card h3{font-size:1.25rem;margin-bottom:12px}
+.hgrid{display:grid;gap:12px}
+@media(min-width:760px){.hgrid{grid-template-columns:repeat(3,1fr)}}
+.hbox{border:var(--bd);background:#fff;padding:12px;box-shadow:var(--sh-sm);font-size:14px}
+.hbox.ok{background:#E8FFE8}.hbox.no{background:#FFE8E8}
+.hbox b{display:block;text-transform:uppercase;font-size:13px;margin-bottom:6px}
+.hbox ul{margin-left:18px}
 
-/* Trip-at-a-Glance grid styles removed (section deleted) */
+/* ===== day tabs ===== */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 4px 14px;-webkit-overflow-scrolling:touch}
+.tab-btn{flex:0 0 auto;border:var(--bd);background:#fff;box-shadow:var(--sh-sm);padding:10px 14px;
+  font-weight:700;font-size:14px;text-transform:uppercase;min-height:48px;transition:transform .08s,box-shadow .08s}
+.tab-btn small{display:block;font-size:11px;font-weight:500;text-transform:none}
+.tab-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.tab-btn.on{background:var(--red);color:#fff;transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.day-panel{display:none;border:var(--bd);box-shadow:var(--sh);background:#fff;padding:20px}
+.day-panel.on{display:block}
+.day-panel .d-tag{display:inline-block;background:var(--ink);color:#fff;font-family:'Archivo Black',sans-serif;
+  padding:5px 12px;font-size:14px;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--yellow)}
+.day-panel h3{font-size:clamp(1.15rem,5vw,1.6rem);margin:12px 0 4px}
+.day-panel .badge{display:inline-block;border:2px solid var(--ink);font-weight:700;font-size:12px;
+  padding:2px 8px;text-transform:uppercase;margin-bottom:12px}
+.badge.travel{background:var(--cyan)}.badge.park{background:var(--green);color:#fff}
+.badge.rest{background:var(--pink);color:#fff}.badge.epic{background:var(--red);color:#fff}
+.day-panel ul{list-style:none;margin-top:6px}
+.day-panel li{padding:9px 0 9px 4px;border-bottom:2px dashed #bbb;font-size:15px}
+.day-panel li:last-child{border-bottom:none}
 
-/* ─── PREMIUM PARK PASS TABS ───────────────────────────────── */
-.pass-rail{
-  display:flex; gap:12px; overflow-x:auto; padding: 8px 4px 22px;
-  scrollbar-width: thin;
-  scroll-snap-type: x mandatory;
-}
-.pass-rail::-webkit-scrollbar{ height:6px; }
-.pass-rail::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.18); border-radius:3px; }
-.pass{
-  flex-shrink:0; min-width: 188px; max-width: 220px;
-  position:relative; cursor:pointer;
-  padding: 18px 16px 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:22px;
-  backdrop-filter: blur(20px) saturate(160%);
-  transition: all .3s cubic-bezier(.2,.8,.2,1);
-  font-family:inherit; color:inherit; text-align:left;
-  scroll-snap-align: start;
-  overflow:hidden;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
-}
-.pass::before{
-  content:""; position:absolute; inset:0; pointer-events:none;
-  background: radial-gradient(160px 80px at 50% -10%, rgba(255,255,255,.20), transparent 70%);
-}
-.pass::after{
-  content:""; position:absolute; left:14px; right:14px; bottom:8px; height:1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-}
-.pass:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,.28); }
-.pass.active{
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 22px 50px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.22);
-}
-.pass-icon{
-  width: 44px; height: 44px; border-radius: 50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size: 24px; line-height:1;
-  background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.04));
-  border: 1px solid rgba(255,255,255,.20);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 6px 14px rgba(0,0,0,.35);
-  margin-bottom: 12px;
-}
-.pass .pass-d{ font-size:9.5px; letter-spacing:.32em; color:var(--muted); text-transform:uppercase; font-weight:600; }
-.pass .pass-name{ font-size:18px; font-weight:500; color:#fff; margin-top:6px; line-height:1.15; letter-spacing:-.01em; }
-.pass .pass-date{ font-size:11px; color:var(--muted); margin-top:5px; letter-spacing:.04em; }
-.pass .pass-tag{
-  display:inline-block; margin-top:10px;
-  font-size:9px; letter-spacing:.22em; padding:3px 9px;
-  border-radius:999px; text-transform:uppercase; font-weight:700;
-}
-.pass.theme-ak{ background: linear-gradient(180deg, rgba(34,197,94,.18), rgba(20,30,18,.4)); border-color: rgba(34,197,94,.35); }
-.pass.theme-ak .pass-icon{ background: linear-gradient(135deg, #22c55e, #14532d); color:#fff; }
-.pass.theme-ak.active{ border-color: rgba(34,197,94,.6); box-shadow: 0 22px 50px rgba(34,197,94,.25), inset 0 1px 0 rgba(255,255,255,.22); }
-.pass.theme-hs{ background: linear-gradient(180deg, rgba(249,115,22,.18), rgba(30,18,12,.4)); border-color: rgba(249,115,22,.35); }
-.pass.theme-hs .pass-icon{ background: linear-gradient(135deg, #f97316, #7c2d12); color:#fff; }
-.pass.theme-hs.active{ border-color: rgba(249,115,22,.6); box-shadow: 0 22px 50px rgba(249,115,22,.25), inset 0 1px 0 rgba(255,255,255,.22); }
-.pass.theme-mk{ background: linear-gradient(180deg, rgba(236,72,153,.18), rgba(168,85,247,.10)); border-color: rgba(236,72,153,.35); }
-.pass.theme-mk .pass-icon{ background: linear-gradient(135deg, #ec4899, #6d28d9); color:#fff; }
-.pass.theme-mk.active{ border-color: rgba(236,72,153,.6); box-shadow: 0 22px 50px rgba(236,72,153,.25), inset 0 1px 0 rgba(255,255,255,.22); }
-.pass.theme-rest{ background: linear-gradient(180deg, rgba(192,132,252,.18), rgba(30,20,40,.4)); border-color: rgba(192,132,252,.35); }
-.pass.theme-rest .pass-icon{ background: linear-gradient(135deg, #c084fc, #581c87); color:#fff; }
-.pass.theme-rest.active{ border-color: rgba(192,132,252,.6); box-shadow: 0 22px 50px rgba(192,132,252,.25), inset 0 1px 0 rgba(255,255,255,.22); }
-.pass.theme-epic{ background: linear-gradient(180deg, rgba(168,85,247,.20), rgba(59,130,246,.10)); border-color: rgba(168,85,247,.4); }
-.pass.theme-epic .pass-icon{ background: linear-gradient(135deg, #a855f7, #1e3a8a); color:#fff; }
-.pass.theme-epic.active{ border-color: rgba(168,85,247,.6); box-shadow: 0 22px 50px rgba(168,85,247,.25), inset 0 1px 0 rgba(255,255,255,.22); }
-.pass.theme-travel{ background: linear-gradient(180deg, rgba(96,165,250,.18), rgba(12,18,30,.4)); border-color: rgba(96,165,250,.35); }
-.pass.theme-travel .pass-icon{ background: linear-gradient(135deg, #60a5fa, #1e3a8a); color:#fff; }
-.pass.theme-travel.active{ border-color: rgba(96,165,250,.6); box-shadow: 0 22px 50px rgba(96,165,250,.25), inset 0 1px 0 rgba(255,255,255,.22); }
+/* ===== strategies ===== */
+.strat{display:grid;gap:22px}
+@media(min-width:820px){.strat{grid-template-columns:repeat(2,1fr)}}
+.strat .card h3{font-size:1.2rem;margin-bottom:2px}
+.strat .card .when{font-weight:700;color:var(--red);font-size:14px;text-transform:uppercase;margin-bottom:10px}
+.strat .card ul{list-style:none}
+.strat .card li{padding:7px 0;border-bottom:2px dashed #ccc;font-size:14.5px}
+.strat .card li:last-child{border-bottom:none}
+.strat .card:nth-child(1){transform:rotate(-.8deg)}
+.strat .card:nth-child(2){transform:rotate(.7deg)}
+.strat .card:nth-child(3){transform:rotate(.5deg)}
+.strat .card:nth-child(4){transform:rotate(-.7deg)}
+.tip-callout{margin-top:26px;border:var(--bd);box-shadow:var(--sh);background:var(--red);color:#fff;
+  padding:20px;font-weight:700;font-size:15.5px;transform:rotate(-.5deg)}
 
-/* ─── PARK STAGE (themed surface per day) ──────────────────── */
-.park-stage{
-  position:relative; border-radius: 32px; overflow:hidden; isolation:isolate;
-  border:1px solid rgba(255,255,255,.10);
-  background: linear-gradient(180deg, rgba(20,22,40,.7), rgba(8,10,18,.85));
-  backdrop-filter: blur(28px) saturate(170%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 40px 80px rgba(0,0,0,.5);
-  padding: clamp(22px, 3.4vw, 44px);
-  margin-top: 18px;
-}
-.park-stage::before{
-  content:""; position:absolute; inset:-30%; z-index:-1; filter: blur(70px); pointer-events:none;
-  opacity:.65;
-}
-.park-stage[data-theme="ak"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(34,197,94,.40), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(132,204,22,.30), transparent 60%); }
-.park-stage[data-theme="hs"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(249,115,22,.40), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(220,38,38,.28), transparent 60%); }
-.park-stage[data-theme="mk"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(236,72,153,.40), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(168,85,247,.30), transparent 60%); }
-.park-stage[data-theme="rest"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(192,132,252,.32), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(244,114,182,.26), transparent 60%); }
-.park-stage[data-theme="epic"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(168,85,247,.40), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(59,130,246,.32), transparent 60%); }
-.park-stage[data-theme="travel"]::before{ background: radial-gradient(40% 50% at 18% 22%, rgba(96,165,250,.36), transparent 60%), radial-gradient(38% 48% at 82% 78%, rgba(192,132,252,.22), transparent 60%); }
+/* ===== checklist ===== */
+.prog-wrap{border:var(--bd);background:#fff;box-shadow:var(--sh-sm);height:34px;position:relative;margin-bottom:8px}
+#progBar{height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--green) 0 14px,#37953B 14px 28px);transition:width .3s}
+#progTxt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+.chk-group{margin-top:22px}
+.chk-group .g-h{display:inline-block;background:var(--yellow);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  padding:4px 12px;font-family:'Archivo Black',sans-serif;font-size:14px;text-transform:uppercase;transform:rotate(-1deg);margin-bottom:12px}
+.chk{display:flex;align-items:flex-start;gap:14px;border:var(--bd);background:#fff;box-shadow:var(--sh-sm);
+  padding:14px;margin-bottom:12px;cursor:pointer;position:relative;min-height:44px}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.chk .box{flex:0 0 30px;width:30px;height:30px;border:var(--bd);background:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:'Archivo Black',sans-serif;font-size:22px;color:var(--red);margin-top:2px}
+.chk .box span{display:none;transform:rotate(-12deg)}
+.chk input:checked ~ .box{background:var(--yellow)}
+.chk input:checked ~ .box span{display:block}
+.chk input:checked ~ .txt{text-decoration:line-through;opacity:.55}
+.chk .txt b{display:block;font-size:15px}
+.chk .txt small{font-size:13px}
+.chk .prio{position:absolute;top:-10px;right:-8px;background:var(--red);color:#fff;border:2px solid var(--ink);
+  font-family:'Archivo Black',sans-serif;font-size:11px;padding:3px 8px;transform:rotate(4deg);box-shadow:3px 3px 0 var(--ink)}
 
-.park-head{
-  display:grid; grid-template-columns: 1fr auto; gap:24px; align-items:end;
-  padding-bottom: 22px; margin-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,.10);
-}
-@media (max-width: 760px){ .park-head{ grid-template-columns: 1fr; } }
-.park-eyebrow{ font-size:10.5px; letter-spacing:.4em; color:#fbbf24; text-transform:uppercase; font-weight:600; }
-.park-title{ font-size: clamp(34px, 5vw, 60px); font-weight:200; letter-spacing:-.03em; line-height:1; margin-top:8px; color:#fff; }
-.park-title b{ font-weight:600; background: linear-gradient(120deg, #fff, #fde68a); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.park-summary{ font-size: 14.5px; color:#cbd5e1; line-height:1.6; max-width:640px; margin-top:14px; font-weight:300; }
-.park-summary b{ color:#fde68a; font-weight:500; }
-.park-day-num{
-  font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:500;
-  font-size: clamp(44px,5vw,72px); color:rgba(255,255,255,.75); line-height:1;
-  text-align:right; letter-spacing:-.02em;
-}
-.park-day-num small{ display:block; font-size:10.5px; letter-spacing:.34em; color:var(--muted); margin-top:8px; font-style:normal; font-family:inherit; font-weight:500; text-transform:uppercase; }
+/* ===== skip cards ===== */
+.skip{display:grid;gap:22px}
+@media(min-width:560px){.skip{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.skip{grid-template-columns:repeat(4,1fr)}}
+.skip .card h3{font-size:1.05rem}
+.skip .cost{display:inline-block;background:var(--green);color:#fff;border:2px solid var(--ink);
+  font-weight:700;font-size:13px;padding:2px 8px;margin:8px 0;box-shadow:3px 3px 0 var(--ink)}
+.skip .card p{font-size:14px}
+.skip .card:nth-child(odd){transform:rotate(-.9deg)}
+.skip .card:nth-child(even){transform:rotate(.9deg)}
 
-/* ─── MISSION CARD ───────────────────────────────────────── */
-.mission{
-  display:grid; grid-template-columns: auto 1fr; gap:18px; align-items:flex-start;
-  padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(251,191,36,.10), rgba(168,85,247,.06));
-  border:1px solid rgba(251,191,36,.35);
-  border-radius:20px;
-  margin-bottom: 22px;
-}
-.mission .mi{
-  width:48px; height:48px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center; font-size:22px;
-  background: linear-gradient(135deg, #fbbf24, #d97706);
-  color:#000; box-shadow: 0 8px 20px rgba(251,191,36,.35);
-  flex-shrink:0;
-}
-.mission .mh{ font-size:11px; letter-spacing:.32em; color:#fde68a; text-transform:uppercase; font-weight:600; }
-.mission .mt{ font-size:18px; font-weight:500; color:#fff; margin-top:4px; line-height:1.3; }
-.mission .mt b{ color:#fbbf24; font-weight:600; }
-.mission .mn{ font-size:13px; color:#cbd5e1; line-height:1.55; margin-top:6px; font-weight:300; }
+/* ===== alarms ===== */
+.alarms{display:grid;gap:22px}
+@media(min-width:820px){.alarms{grid-template-columns:1fr 1fr}}
+.alarm-card{border:var(--bd);box-shadow:var(--sh);padding:20px;background:#fff}
+.alarm-card.ll{background:#FFF3D6;transform:rotate(-.6deg)}
+.alarm-card.bbb{background:#FFE4F1;transform:rotate(.6deg)}
+.alarm-card h3{font-size:1.2rem;margin-bottom:8px}
+.alarm-card p{font-size:14.5px;margin-bottom:14px}
+.alarm-card .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.alarm-status{display:inline-block;border:2px solid var(--ink);background:#fff;font-weight:700;font-size:13px;padding:6px 10px}
+.mouse-card{margin-top:22px;border:var(--bd);box-shadow:var(--sh);background:var(--cyan);padding:20px;transform:rotate(-.4deg)}
+.mouse-card h3{font-size:1.1rem;margin-bottom:8px}
+.mouse-card p{font-size:14.5px;margin-bottom:12px}
+.mouse-card small{display:block;margin-top:10px;font-weight:700}
 
-/* ─── PARK GRID (mission cards) ───────────────────────────── */
-.park-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; margin-bottom: 22px; }
-@media (max-width: 760px){ .park-grid{ grid-template-columns: 1fr; } }
-.kard{
-  position:relative; padding: 18px 20px;
-  background: rgba(255,255,255,.035);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  backdrop-filter: blur(14px);
-  transition: all .25s;
-}
-.kard:hover{ border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05); }
-.kard .kh{
-  display:flex; align-items:center; gap:10px;
-  font-size:11px; letter-spacing:.32em; color:#fbbf24;
-  text-transform:uppercase; font-weight:600; margin-bottom:10px;
-}
-.kard .kh .ke{ font-size:18px; line-height:1; }
-.kard ul{ list-style:none; padding:0; margin:0; display:grid; gap:8px; }
-.kard ul li{
-  font-size:13px; color:#e5e7eb; line-height:1.5;
-  padding-left: 18px; position:relative; font-weight:300;
-}
-.kard ul li::before{
-  content:"›"; position:absolute; left:4px; top:-1px;
-  color:#fbbf24; font-weight:700; font-size:14px;
-}
-.kard ul li b{ color:#fff; font-weight:500; }
-.kard.kid{ background: linear-gradient(135deg, rgba(34,197,94,.10), rgba(34,197,94,.02)); border-color: rgba(34,197,94,.30); }
-.kard.kid .kh{ color:#86efac; }
-.kard.kid ul li::before{ color:#86efac; }
-.kard.parents{ background: linear-gradient(135deg, rgba(244,114,182,.10), rgba(244,114,182,.02)); border-color: rgba(244,114,182,.30); }
-.kard.parents .kh{ color:#fbcfe8; }
-.kard.parents ul li::before{ color:#fbcfe8; }
-.kard.photo{ background: linear-gradient(135deg, rgba(168,85,247,.10), rgba(168,85,247,.02)); border-color: rgba(168,85,247,.30); }
-.kard.photo .kh{ color:#d8b4fe; }
-.kard.photo ul li::before{ color:#d8b4fe; }
-.kard.photo ul li{ cursor:pointer; user-select:none; }
-.kard.photo ul li.done{ opacity:.5; text-decoration:line-through; }
+/* overlay */
+#overlay{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;text-align:center;padding:24px}
+#overlay.show{display:flex}
+#overlay.ll{animation:flashLL .45s steps(2) infinite}
+#overlay.bbb{animation:flashBBB .45s steps(2) infinite}
+@keyframes flashLL{0%{background:var(--red)}100%{background:var(--yellow)}}
+@keyframes flashBBB{0%{background:var(--pink)}100%{background:#fff}}
+.ov-inner{background:#fff;border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:32px 22px;max-width:520px;width:100%}
+.ov-emoji{font-size:64px}
+#ovTitle{font-size:clamp(1.4rem,7vw,2.2rem);margin:10px 0}
+#ovSub{font-weight:700;font-size:16px;margin-bottom:20px}
+#ovStop{font-size:18px;padding:16px 28px}
 
-/* ─── MUST-DO RANKING CHIPS ───────────────────────────────── */
-.rank{ display:flex; flex-direction:column; gap:8px; }
-.rank .row{ display:grid; grid-template-columns: 90px 1fr; gap:12px; align-items:center; }
-.rank .lab{
-  font-size:9.5px; letter-spacing:.28em; padding:5px 10px;
-  border-radius:999px; text-align:center; font-weight:700;
-  text-transform:uppercase; white-space:nowrap;
-}
-.rank .lab.must{ background: linear-gradient(135deg, #fbbf24, #d97706); color:#000; }
-.rank .lab.nice{ background: rgba(96,165,250,.20); color:#bfdbfe; border:1px solid rgba(96,165,250,.4); }
-.rank .lab.skip{ background: rgba(255,255,255,.05); color:#9aa3b8; border:1px solid rgba(255,255,255,.1); }
-.rank .vals{ font-size:13px; color:#e5e7eb; line-height:1.5; font-weight:300; }
-.rank .vals b{ color:#fff; font-weight:500; }
+/* ===== footer ===== */
+footer{margin-top:52px;border-top:var(--bd);background:var(--ink);color:#fff;text-align:center;
+  padding:34px 16px;font-weight:700;font-size:15px}
+footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink);border:3px solid #fff;
+  padding:8px 16px;font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:13px;
+  transform:rotate(-2deg);margin-bottom:14px}
 
-/* ─── PHASE TABS (AM / PM / NIGHT) ─────────────────────────── */
-.phase-switch{
-  display:inline-flex; padding:5px;
-  background: rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.10);
-  border-radius: 999px; gap:4px;
-  margin: 12px 0 18px;
+@media (prefers-reduced-motion:reduce){
+  .ticker-track{animation:none;padding-left:0}
+  #overlay.ll{animation:none;background:var(--red)}
+  #overlay.bbb{animation:none;background:var(--pink)}
+  *{transition:none!important}
 }
-.phase-switch button{
-  background:transparent; color:#cbd5e1; border:none;
-  padding:8px 16px; border-radius:999px;
-  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
-  font-weight:600; cursor:pointer; transition:all .2s;
-  font-family:inherit;
-}
-.phase-switch button:hover{ color:#fff; }
-.phase-switch button.active{
-  background: linear-gradient(135deg, rgba(251,191,36,.4), rgba(217,119,6,.3));
-  color:#fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
-}
-.phase-pane{ display:none; }
-.phase-pane.active{ display:block; animation: paneIn .35s ease-out; }
-
-/* ─── DETAIL TIMELINE ROWS (used inside phase panes) ───────── */
-.det-row{
-  display:grid; grid-template-columns: 70px 30px 1fr;
-  gap:14px; align-items:flex-start;
-  padding:13px 14px; margin-bottom:6px;
-  background: rgba(0,0,0,.22);
-  border:1px solid rgba(255,255,255,.06);
-  border-left: 3px solid rgba(251,191,36,.5);
-  border-radius:14px;
-}
-.det-row .t{ font-size:12px; font-weight:700; color:#fde68a; letter-spacing:.04em; font-variant-numeric:tabular-nums; padding-top:2px; }
-.det-row .ic{ font-size:20px; line-height:1; padding-top:1px; }
-.det-row .bd .ti{ font-size:14px; font-weight:600; color:#fff; line-height:1.35; }
-.det-row .bd .nt{ font-size:12.5px; color:#cbd5e1; line-height:1.55; margin-top:4px; font-weight:300; }
-.det-row .bd .nt b{ color:#fbbf24; font-weight:600; }
-.det-row.t-alarm{ background: linear-gradient(135deg, rgba(239,68,68,.15), rgba(0,0,0,.4)); border-left-color:#ef4444; }
-.det-row.t-alarm .ti{ color:#fca5a5; }
-.det-row.t-rope{ background: linear-gradient(135deg, rgba(251,191,36,.15), rgba(0,0,0,.4)); border-left-color:#fbbf24; }
-.det-row.t-castle{ border-left-color:#f9a8d4; }
-.det-row.t-castle .ti{ color:#f9a8d4; }
-.det-row.t-mario, .det-row.t-mario-blue, .det-row.t-mario-yellow{ border-left-color:#86efac; }
-.det-row.t-mario .ti, .det-row.t-mario-blue .ti, .det-row.t-mario-yellow .ti{ color:#86efac; }
-.det-row.t-fireworks{ border-left-color:#a5b4fc; }
-.det-row.t-fireworks .ti{ color:#a5b4fc; }
-.det-row.t-finale{ background: linear-gradient(135deg, rgba(168,85,247,.18), rgba(236,72,153,.10)); border-left-color:#d8b4fe; }
-.det-row.t-finale .ti{ color:#fde68a; font-weight:700; }
-.det-row.t-house, .det-row.t-zone, .det-row.t-bar{ border-left-color:#fb923c; }
-
-/* ─── WEATHER, PACKING, BUDGET CARDS ──────────────────────── */
-.center-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; margin-top: 36px; }
-@media (max-width: 980px){ .center-grid{ grid-template-columns: 1fr; } }
-.center-card{
-  position:relative;
-  background:var(--glass); border:1px solid var(--line);
-  border-radius:24px; padding:24px;
-  backdrop-filter: blur(20px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
-  transition: all .3s;
-}
-.center-card:hover{ border-color: rgba(255,255,255,.22); transform: translateY(-3px); }
-.center-card .ce{
-  font-size:11px; letter-spacing:.34em; color:#fbbf24;
-  text-transform:uppercase; font-weight:600; margin-bottom:8px;
-}
-.center-card .ch{
-  font-size:24px; font-weight:300; letter-spacing:-.02em; color:#fff; margin-bottom:14px;
-}
-.center-card .ch b{ font-weight:600; color:#fbbf24; }
-
-.weather-row{ display:grid; grid-template-columns: 56px 1fr auto auto; gap:12px; align-items:center; padding: 11px 0; border-bottom: 1px dashed rgba(255,255,255,.07); }
-.weather-row:last-child{ border-bottom:none; }
-.weather-row .wd{ font-size:11px; letter-spacing:.18em; color:var(--muted); text-transform:uppercase; font-weight:600; }
-.weather-row .wt{ font-size:13px; color:#fff; font-weight:300; }
-.weather-row .wt b{ color:#fbbf24; font-weight:500; }
-.weather-row .wi{ font-size:24px; line-height:1; }
-.weather-row .wn{ font-size:18px; font-weight:300; color:#fff; font-variant-numeric: tabular-nums; }
-
-/* ─── ORLANDO WEATHER · top-of-page horizontal command bar ─── */
-.weather-banner{
-  position: relative;
-  width: calc(100% - 28px);
-  max-width: 1280px;
-  margin: 24px auto 0;
-  padding: 22px 26px;
-  display: grid;
-  grid-template-columns: minmax(220px, 300px) 1fr;
-  gap: 30px;
-  align-items: center;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)),
-    rgba(8,10,18,.55);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 24px;
-  backdrop-filter: blur(22px) saturate(160%);
-  box-shadow: 0 22px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);
-  overflow: hidden;
-  isolation: isolate;
-}
-.weather-banner::before{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background:
-    radial-gradient(420px 200px at 0% 0%, rgba(251,191,36,.10), transparent 70%),
-    radial-gradient(420px 200px at 100% 100%, rgba(168,85,247,.12), transparent 70%);
-}
-.weather-banner .wb-head{ position:relative; }
-.weather-banner .wb-eyebrow{
-  display:inline-flex; align-items:center; gap:10px;
-  font-size:10.5px; letter-spacing:.34em; text-transform:uppercase;
-  color:#fde68a; font-weight:600;
-}
-.weather-banner .wb-eyebrow .liv{
-  width:7px; height:7px; border-radius:50%; background:#fbbf24;
-  box-shadow: 0 0 10px #fbbf24; animation: blink 1.6s infinite;
-}
-.weather-banner .wb-title{
-  margin-top:10px;
-  font-size: clamp(22px, 2.4vw, 30px);
-  font-weight:200; letter-spacing:-.02em; line-height:1.05;
-  color:#fff;
-}
-.weather-banner .wb-title b{
-  font-weight:600;
-  background: linear-gradient(120deg, #fde68a 0%, #fbbf24 100%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.weather-banner .wb-note{
-  margin-top:10px; max-width: 280px;
-  font-size:11px; line-height:1.5; color: var(--muted); font-weight:300;
-}
-.weather-banner .wb-tiles{
-  display:grid; grid-template-columns: repeat(7, 1fr); gap:10px;
-}
-.weather-banner .wb-tile{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:6px; padding: 12px 8px;
-  background: rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:14px;
-  transition: border-color .2s, transform .2s, background .2s;
-}
-.weather-banner .wb-tile:hover{
-  border-color: rgba(251,191,36,.35);
-  background: rgba(255,255,255,.06);
-  transform: translateY(-2px);
-}
-.weather-banner .wb-day{
-  font-size:10px; letter-spacing:.20em; text-transform:uppercase;
-  color: var(--muted); font-weight:600;
-}
-.weather-banner .wb-icon{ font-size:22px; line-height:1; }
-.weather-banner .wb-cond{
-  font-size:10.5px; line-height:1.35; color:#cbd5e1; font-weight:300;
-  text-align:center; min-height: 28px;
-  display:flex; align-items:center; justify-content:center;
-}
-.weather-banner .wb-cond b{ color:#fbbf24; font-weight:500; }
-.weather-banner .wb-temp{
-  font-size:13.5px; font-weight:400; color:#fff;
-  font-variant-numeric: tabular-nums; letter-spacing:-.01em;
-}
-@media (max-width: 980px){
-  .weather-banner{ grid-template-columns: 1fr; gap:18px; padding: 20px; }
-  .weather-banner .wb-note{ max-width: none; }
-  .weather-banner .wb-tiles{
-    grid-template-columns: repeat(7, minmax(96px, 1fr));
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px;
-  }
-  .weather-banner .wb-tiles::-webkit-scrollbar{ height: 4px; }
-  .weather-banner .wb-tiles::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.12); border-radius: 2px; }
-  .weather-banner .wb-tile{ scroll-snap-align: start; }
-}
-@media (max-width: 600px){
-  .weather-banner{ padding: 18px; border-radius: 20px; }
-  .weather-banner .wb-tiles{
-    display:flex; flex-wrap: nowrap; gap:8px;
-    grid-template-columns: none;
-  }
-  .weather-banner .wb-tile{ flex: 0 0 110px; }
-}
-
-.pack-grid{ display:grid; grid-template-columns: 1fr; gap:8px; }
-.pack-grid li{
-  list-style:none; display:flex; gap:10px; align-items:flex-start;
-  padding:9px 12px; background:rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.06); border-radius:12px;
-  font-size:12.5px; color:#e5e7eb; cursor:pointer; user-select:none;
-  transition: all .2s; font-weight:300;
-}
-.pack-grid li:hover{ border-color:rgba(251,191,36,.30); }
-.pack-grid li.done{ opacity:.45; text-decoration: line-through; }
-.pack-grid li::before{
-  content:"\2610"; color:#fbbf24; font-weight:700; flex-shrink:0;
-}
-.pack-grid li.done::before{ content:"\2611"; }
-.pack-grid li b{ color:#fff; font-weight:500; }
-
-.budget-rows .br{
-  display:grid; grid-template-columns: 1fr auto; gap:12px;
-  padding: 11px 0; border-bottom: 1px dashed rgba(255,255,255,.08);
-  font-size:13px;
-}
-.budget-rows .br:last-child{ border-bottom:none; }
-.budget-rows .bn{ color:#cbd5e1; font-weight:300; }
-.budget-rows .bn b{ color:#fff; font-weight:500; }
-.budget-rows .bp{ color:#fbbf24; font-weight:600; font-variant-numeric: tabular-nums; }
-.budget-rows .br.total{ margin-top:6px; padding-top:14px; border-top: 1px solid rgba(251,191,36,.4); border-bottom:none; }
-.budget-rows .br.total .bn{ color:#fff; font-weight:600; }
-.budget-rows .br.total .bp{ font-size:18px; }
-
-.vip-pill{
-  display:inline-flex; align-items:center; gap:8px;
-  margin-top:12px; padding: 8px 14px;
-  background: linear-gradient(135deg, rgba(168,85,247,.20), rgba(236,72,153,.16));
-  border:1px solid rgba(236,72,153,.4); border-radius: 999px;
-  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
-  color:#f9a8d4; font-weight:600; cursor:pointer;
-}
-.vip-pill:hover{ background: linear-gradient(135deg, rgba(168,85,247,.30), rgba(236,72,153,.22)); }
-
-/* ─── FLOATING AURORA MOTES (extra magic layer) ──────────── */
-.motes{ position:fixed; inset:0; pointer-events:none; z-index:-1; overflow:hidden; }
-.motes span{
-  position:absolute; width:6px; height:6px; border-radius:50%;
-  background: radial-gradient(circle, #fde68a 0%, #fbbf24 40%, transparent 70%);
-  filter: blur(1px); opacity:.35;
-  animation: floatUp 18s linear infinite;
-}
-.motes span:nth-child(2){ background: radial-gradient(circle, #fbcfe8 0%, #ec4899 40%, transparent 70%); }
-.motes span:nth-child(3){ background: radial-gradient(circle, #c4b5fd 0%, #a855f7 40%, transparent 70%); }
-.motes span:nth-child(4){ background: radial-gradient(circle, #93c5fd 0%, #3b82f6 40%, transparent 70%); }
-.motes span:nth-child(5){ background: radial-gradient(circle, #67e8f9 0%, #06b6d4 40%, transparent 70%); }
-@keyframes floatUp{
-  0%{ transform: translateY(110vh) translateX(0) scale(.7); opacity:0; }
-  10%{ opacity:.45; }
-  90%{ opacity:.4; }
-  100%{ transform: translateY(-10vh) translateX(40px) scale(1.2); opacity:0; }
-}
-
-/* ─── ACCESSIBILITY ──────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce){
-  .aurora::before, .aurora::after, .motes span,
-  .ticker-track, .pp, .pass{ animation: none !important; transition: none !important; }
-}
-
-
-
-/* WINNER 4 v2 — lock cast roster to Side-by-Side, hide any mode switcher */
-.avatar-mode-switch{ display:none !important; }
-.cast-grid[data-locked="true"]{ /* permanently side mode */ }
-.cast-grid[data-locked="true"] .medallion,
-.cast-grid[data-locked="true"] .medallion-label{ display:none !important; }
-
-
-/* WINNER 4 v6 — explicit side-by-side cast cards (no augment JS needed) */
-.cast .av-pair{
-  display:flex; align-items:center; justify-content:center;
-  gap:10px; margin: 0 auto 12px;
-}
-.cast .av-pair .av.side{
-  width:96px; height:96px; margin:0;
-  border-radius:50%;
-  background-size:cover; background-position:center 22%;
-  background-color:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 0 0 4px rgba(255,255,255,.06);
-  position:relative; flex-shrink:0;
-  font-size:0;
-}
-.cast .av-pair .av.side::before{
-  content:""; position:absolute; inset:-6px; border-radius:50%;
-  background: conic-gradient(from 200deg, rgba(251,191,36,.45), rgba(168,85,247,.35), rgba(96,165,250,.4), rgba(251,191,36,.45));
-  filter: blur(10px); opacity:.55; z-index:-1;
-}
-.cast .av-pair .av-link{
-  font-size:9px; letter-spacing:.32em; color:var(--muted);
-  text-transform:uppercase; padding:0 2px;
-}
-.cast .av-pair .char-orb-img{
-  width:54px; height:54px; border-radius:50%;
-  object-fit: cover; object-position: center;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow: 0 8px 22px rgba(0,0,0,.5), inset 0 0 0 3px rgba(255,255,255,.06);
-  background: rgba(255,255,255,.05);
-  position:relative; flex-shrink:0;
-}
-.cast .role{ display:none; }
-.cast .name{ margin-top:2px; }
-.cast{ padding:22px 18px; }
 </style>
 </head>
 <body>
-<div class="aurora"></div>
 
-<div class="alarm-overlay" id="alarmOverlay">
-  <div class="alarm-content">
-    <div style="font-size:80px;" id="alarmIcon">🚨</div>
-    <h2 id="alarmTitle">BOOK LIGHTNING LANE!</h2>
-    <p id="alarmMsg">Open My Disney Experience NOW</p>
-    <button onclick="stopAlarm()">🛑 STOP</button>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>[T-LIVE] Countdown ticking · Oct 11 12:20 PM IAH→MCO locked</span>
+    <span>[OK] Cast roster · 13/13 confirmed</span>
+    <span>[OK] Mario height · 42" · cleared for Mario Kart, Slinky, 7 Dwarfs, Tower of Terror</span>
+    <span>[BLOCK] Rock 'n' Roller (48") · TRON (48") · Space Mountain (44") — Rider Switch</span>
+    <span>[OK] HHN · Oct 15 Thu confirmed event night · $91–$130</span>
+    <span>[CLOSED] DinoLand · permanently shut Feb 2026 · Tropical Americas opens 2027</span>
+    <span>[PRIORITY] Bibbidi Bobbidi Boutique · book Aug 11 11:00 PM CT</span>
+    <span>[ALARM] Lightning Lane · 6:59 AM rule · phone ready</span>
+    <span>[INFO] AK rope drop 7:30 · HS rope drop 8:30 · MK rope drop 7:30</span>
+    <span>[WATCH] Bus by 6:30 AM Disney days · Skyliner by 7:30 for HS</span>
+    <span>[OK] Wed Oct 14 NOT a MNSSHP night · full park access</span>
+    <span>[INFO] Bluey takeover at Rafiki's Planet Watch · Mario will love it</span>
+    <span>[OK] Epic Express Pass Unlimited · $130–$200/person</span>
+    <span>[INFO] Power-Up Bands $45 · activate at Super Nintendo World</span>
   </div>
 </div>
 
-<nav class="nav">
-  <div class="brand">
-    <span class="dot" aria-hidden="true"></span>
-    <span class="name">Garcia</span>
-    <span class="sep"></span>
-    <span class="sub">Disney · MMXXVI</span>
+<!-- HERO -->
+<header class="hero">
+  <div class="sticker stick-1">13<br>Travelers!</div>
+  <div class="sticker stick-2">42 Inches<br>— Cleared!</div>
+  <div class="sticker stick-3">1 Mario ⭐</div>
+  <span class="kicker">The Garcia Family</span>
+  <h1><span class="red">Disney World</span><br>&amp; <span class="green">Epic Universe</span><br>2026</h1>
+  <div class="sub">October 11–17, 2026 · Orlando, Florida</div>
+  <div class="sub" style="margin-top:6px">13 Travelers · 1 Mario</div>
+  <div class="parks">
+    <b>Magic Kingdom</b><b>Animal Kingdom</b><b>Hollywood Studios</b><b>Epic Universe</b>
   </div>
-  <div class="nav-links">
-    <a href="#countdown">Countdown</a>
-    <a href="#cast">Cast</a>
-    <a href="#expedition">Expedition</a>
-    <a href="#command">Command</a>
-    <a href="#alarms">Alarms</a>
-  </div>
-  <div class="nav-pill" aria-label="Days until trip"><span class="pdot"></span><span>T- <span id="nav-cd">—</span> d</span></div>
-</nav>
+  <div class="parks" style="margin-top:10px">🏨 Art of Animation · Little Mermaid section · ~$251+/night</div>
+</header>
 
-<!-- TICKER BAR START -->
-<div class="ticker" id="ticker" role="region" aria-label="Trip status ticker">
-  <div class="ticker-label"><span class="pulse"></span><span>Live · Trip Status</span></div>
-  <div class="ticker-viewport">
-    <div class="ticker-track" id="ticker-track"></div>
+<!-- COUNTDOWN -->
+<div class="count-wrap">
+  <span class="cap">Until IAH → MCO · Sun Oct 11 · 12:20 PM</span>
+  <div class="count" id="countdown">
+    <div class="cell"><div class="num" id="cdD">--</div><div class="lbl">Days</div></div>
+    <div class="cell"><div class="num" id="cdH">--</div><div class="lbl">Hours</div></div>
+    <div class="cell"><div class="num" id="cdM">--</div><div class="lbl">Mins</div></div>
+    <div class="cell"><div class="num" id="cdS">--</div><div class="lbl">Secs</div></div>
   </div>
-  <div class="ticker-stamp">Updated · <span id="ticker-stamp">—</span></div>
+  <div id="tripMsg"></div>
 </div>
 
-<script>
-/* ============================================================
-   TICKER · scrolling status messages
-   ============================================================ */
-(function(){
-  const TICKER_MESSAGES = [
-    { glyph:'⌖', html:'Countdown active · Disney World &amp; Epic Universe 2026 · <b>T-{{countdown}} days</b>' },
-    { glyph:'◎', html:'Verify park hours before locking the final itinerary' },
-    { glyph:'⚡', html:'<b>Lightning Lane Multi-Pass</b> drops 7 days out · <em>7:00a CT</em>' },
-    { glyph:'👑', html:'<b>BBB</b> bookings open August 11 · <em>11:00 PM CT</em>' },
-    { glyph:'🎟', html:'HHN tickets on sale now · <b>$91–$130</b> per adult' },
-    { glyph:'🏰', html:'<b>Magic Kingdom</b> · Be Our Guest lunch reservation locked' },
-    { glyph:'🍽', html:'<b>Storybook Dining</b> · Tuesday · 6:30 PM · party of 13' },
-    { glyph:'⌖', html:'Resort: <b>Art of Animation</b> · Little Mermaid wing · Oct 11–17' },
-    { glyph:'☼', html:'Orlando forecast looking <em>partly sunny</em> · pack ponchos for afternoon showers' },
-    { glyph:'❤', html:'For <em>Abui &amp; Abui Temo</em> — the heart of every day' }
-  ];
+<main class="wrap">
 
-  function days(){
-    const t = (window.TRIP_START || new Date('2026-10-11T12:20:00-05:00').getTime()) - Date.now();
-    return Math.max(0, Math.ceil(t/86400000));
-  }
-  function build(){
-    const cd = days();
-    const one = TICKER_MESSAGES.map(m =>
-      `<span class="ticker-msg"><span class="glyph">${m.glyph}</span>${m.html.replace('{{countdown}}', cd)}</span>`
-    ).join('<span class="ticker-msg"><span class="sep">·</span></span>');
-    document.getElementById('ticker-track').innerHTML = one + '<span class="ticker-msg"><span class="sep">·</span></span>' + one;
-  }
-  function stamp(){
-    const d = new Date();
-    const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-    let h = d.getHours(); const m = String(d.getMinutes()).padStart(2,'0');
-    const ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
-    document.getElementById('ticker-stamp').textContent = `${months[d.getMonth()]} ${d.getDate()}, ${h}:${m} ${ap}`;
-  }
-  build(); stamp();
-  setInterval(build, 60_000);
-  setInterval(stamp, 30_000);
-})();
-</script>
-<!-- TICKER BAR END -->
-
-<!-- Floating aurora motes (extra magic layer) -->
-<div class="motes" aria-hidden="true">
-  <span style="left:8%;animation-delay:0s;animation-duration:20s;"></span>
-  <span style="left:22%;animation-delay:3s;animation-duration:22s;"></span>
-  <span style="left:38%;animation-delay:7s;animation-duration:18s;"></span>
-  <span style="left:55%;animation-delay:11s;animation-duration:24s;"></span>
-  <span style="left:72%;animation-delay:5s;animation-duration:21s;"></span>
-  <span style="left:88%;animation-delay:14s;animation-duration:19s;"></span>
-  <span style="left:15%;animation-delay:9s;animation-duration:23s;"></span>
-  <span style="left:62%;animation-delay:16s;animation-duration:20s;"></span>
-</div>
-
-<!-- Orlando Weather — full-width horizontal command bar -->
-<section class="weather-banner" id="weather" aria-label="Orlando 7-day weather forecast">
-  <div class="wb-head">
-    <div class="wb-eyebrow"><span class="liv"></span>⛅ Orlando Weather</div>
-    <div class="wb-title">7-day <b>forecast</b></div>
-    <p class="wb-note">10-yr Orlando October averages. Recheck 7 days out via Apple Weather for live updates.</p>
-  </div>
-  <div class="wb-tiles">
-    <div class="wb-tile"><div class="wb-day">Sun 11</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly sunny · breezy</div><div class="wb-temp">85°/68°</div></div>
-    <div class="wb-tile"><div class="wb-day">Mon 12</div><div class="wb-icon">⛈️</div><div class="wb-cond"><b>AM clear · PM showers</b></div><div class="wb-temp">86°/70°</div></div>
-    <div class="wb-tile"><div class="wb-day">Tue 13</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · low humidity</div><div class="wb-temp">87°/69°</div></div>
-    <div class="wb-tile"><div class="wb-day">Wed 14</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · light wind</div><div class="wb-temp">88°/71°</div></div>
-    <div class="wb-tile"><div class="wb-day">Thu 15</div><div class="wb-icon">🌤️</div><div class="wb-cond"><b>Cool front overnight</b></div><div class="wb-temp">82°/64°</div></div>
-    <div class="wb-tile"><div class="wb-day">Fri 16</div><div class="wb-icon">☀️</div><div class="wb-cond">Cool, dry, perfect</div><div class="wb-temp">80°/63°</div></div>
-    <div class="wb-tile"><div class="wb-day">Sat 17</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly cloudy</div><div class="wb-temp">83°/66°</div></div>
+<!-- QUICK STATS -->
+<section id="stats">
+  <h2 class="sec-h y">Quick Stats</h2>
+  <div class="stats">
+    <div class="stat"><div class="big">7</div><div class="cap">Days</div><div class="tiny">Oct 11–17</div></div>
+    <div class="stat"><div class="big">4</div><div class="cap">Parks</div><div class="tiny">MK · AK · HS · Epic</div></div>
+    <div class="stat"><div class="big">5</div><div class="cap">Park Days</div><div class="tiny">1 Rest Day — Thursday</div></div>
+    <div class="stat"><div class="big">13</div><div class="cap">Travelers</div><div class="tiny">Garcia Crew</div></div>
   </div>
 </section>
 
-<!-- Countdown clock — moved to the top of the page -->
-<div class="cd-wrap" id="countdown">
-  <div class="cd-grid">
-    <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Minutes</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seconds</div></div>
-  </div>
-</div>
-
-<section id="hero" class="hero">
-  <div class="eyebrow"><span class="liv"></span>The Garcia Family Portal · Private · Locked In</div>
-  <h1 class="h1">The Garcia Thirteen.<br/><b>One trip.</b> One family.</h1>
-  <p class="h-sub">A private portal for the Garcia family · October 11–17, 2026. Built so the thirteen of us stay in step, so <em style="color:#fde68a;font-style:normal;font-weight:500">Abui &amp; Abui Temo</em> are the heart of every day, and so the kids leave with memories they'll carry their whole lives.</p>
-
-  <div class="portal-pillars" aria-label="What this portal does">
-    <div class="pp"><span class="i">①</span><span class="t">Keeps 13 in step</span></div>
-    <div class="pp"><span class="i">②</span><span class="t">Honors Abui &amp; Abui Temo</span></div>
-    <div class="pp"><span class="i">③</span><span class="t">Captures the memories</span></div>
-    <div class="pp"><span class="i">④</span><span class="t">Premium · Private · Magical</span></div>
-  </div>
-</section>
-
+<!-- CAST -->
 <section id="cast">
-  <div class="section-h">
-    <div class="section-eyebrow">① For Staying Organized · Roster</div>
-    <h2 class="section-title">Thirteen <b>Garcias.</b></h2>
-    <p class="section-deck">The full traveling party at a glance — names, roles, who's with whom. So no one is unaccounted for, and so the kids know exactly who's in their crew.</p>
-  </div>
-<div class="cast-grid" data-mode="side" data-locked="true">
-  <div class="cast" data-id="abui_temo"><div class="av-pair"><div class="av side has-photo" data-em="🐭" style="background-image:url('photos/abui_temo.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/r1jbtDXIAjq92/giphy.gif" alt="Mickey Mouse" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Grandpa · Pulga King</div><div class="name">Abui Temo</div><span class="ch">★ Mickey Mouse</span><div class="line">Pulga King and the paycheck. The hugs. The heart of the crew.</div></div>
-  <div class="cast" data-id="abui"><div class="av-pair"><div class="av side has-photo" data-em="🎀" style="background-image:url('photos/Abui.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ieau65amS2pXb4MTTp/giphy.gif" alt="Minnie Mouse" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Grandma · The Heart</div><div class="name">Abui</div><span class="ch">★ Minnie Mouse</span><div class="line">Bows, kindness, and quiet magic. The reason this works.</div></div>
-  <div class="cast" data-id="art"><div class="av-pair"><div class="av side has-photo" data-em="👷" style="background-image:url('photos/art.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/WwfP2C3z1PO9PUzVfk/giphy.gif" alt="Luigi" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · Logistics Captain</div><div class="name">Art</div><span class="ch">★ Luigi</span><div class="line">Player 2. Logistics captain.</div></div>
-  <div class="cast" data-id="sandra"><div class="av-pair"><div class="av side has-photo" data-em="👑" style="background-image:url('photos/Sandra.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/G5GMnnA3PRhkdtzj73/giphy.gif" alt="Princess Peach" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · The Composure</div><div class="name">Sandra</div><span class="ch">★ Princess Peach</span><div class="line">Composed. Royal. Runs the kingdom.</div></div>
-  <div class="cast" data-id="annelise"><div class="av-pair"><div class="av side has-photo" data-em="🍄" style="background-image:url('photos/annelise.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/i2rNOf3b7vJgk/giphy.gif" alt="Mario" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">The Star · 4 yrs · 42"</div><div class="name">Annelise</div><span class="ch">★ Mario</span><div class="line">It's-a-me! Lead jumper. Lead Mario fan.</div></div>
-  <div class="cast" data-id="anette"><div class="av-pair"><div class="av side has-photo" data-em="🦋" style="background-image:url('photos/Anette.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/IClN7O3fhVFx5wRgFA/giphy.gif" alt="Mirabel" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · Along for the Ride</div><div class="name">Anette</div><span class="ch">★ Mirabel</span><div class="line">No agenda, no clipboard — just here for the magic.</div></div>
-  <div class="cast" data-id="danny"><div class="av-pair"><div class="av side has-photo" data-em="🦍" style="background-image:url('photos/Danny.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/42xcZ72XW6tUrw5Mdn/giphy.gif" alt="Donkey Kong" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · Big Energy</div><div class="name">Danny</div><span class="ch">★ Donkey Kong</span><div class="line">Big energy, bigger laughs.</div></div>
-  <div class="cast" data-id="valeria"><div class="av-pair"><div class="av side has-photo" data-em="🐶" style="background-image:url('photos/Valeria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/2wKbtCMHTVoOY/giphy.gif" alt="Goofy" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · Pulga Queen</div><div class="name">Valeria</div><span class="ch">★ Goofy</span><div class="line">Softball arm, sharper jokes.</div></div>
-  <div class="cast" data-id="isabella"><div class="av-pair"><div class="av side has-photo" data-em="🌹" style="background-image:url('photos/Isabella.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ruEHx9JgxTqPC/giphy.gif" alt="Belle" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · The Reader</div><div class="name">Isabella</div><span class="ch">★ Belle</span><div class="line">Books in one hand, churro in the other.</div></div>
-  <div class="cast" data-id="john"><div class="av-pair"><div class="av side has-photo" data-em="⚔️" style="background-image:url('photos/John.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ZX6NHzA9Fcddm/giphy.gif" alt="Darth Vader" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · The Anchor</div><div class="name">John</div><span class="ch">★ Darth Vader</span><div class="line">The dark side just brought sunscreen.</div></div>
-  <div class="cast" data-id="martha"><div class="av-pair"><div class="av side has-photo" data-em="🌼" style="background-image:url('photos/Martha.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/3osxY9V8yuIWrtcvoA/giphy.gif" alt="Daisy Duck" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · Trip MVP</div><div class="name">Martha</div><span class="ch">★ Daisy Duck</span><div class="line">Bright, bold, never bored. Quietly running the whole show.</div></div>
-  <div class="cast" data-id="victoria"><div class="av-pair"><div class="av side has-photo" data-em="❄️" style="background-image:url('photos/Victoria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/TnYky4cEHcKsdt5eoS/giphy.gif" alt="Anna" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · The Brave</div><div class="name">Victoria</div><span class="ch">★ Anna</span><div class="line">Brave, curious, ready for adventure.</div></div>
-  <div class="cast" data-id="valentina"><div class="av-pair"><div class="av side has-photo" data-em="🍯" style="background-image:url('photos/Valentina.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/fdWVI1op6wi88/giphy.gif" alt="Winnie the Pooh" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · Snack Patrol</div><div class="name">Valentina</div><span class="ch">★ Winnie the Pooh</span><div class="line">Snack patrol. Soft, sweet, hungry, happy.</div></div>
-</div>
-  <!-- legacy cast augment IIFE removed in v6 — cast cards are now fully static -->
-</section>
+  <h2 class="sec-h">The Cast · 13 Strong</h2>
+  <div class="cast" id="castGrid"></div>
 
-
-<!-- ============================================================
-     GARCIA EXPEDITION — clean Aurora Glass summary (no iframe)
-     7-day timeline that flows naturally with the rest of the
-     dashboard. Links to sections/garcia-expedition.html for the
-     full standalone view.
-============================================================ -->
-<style>
-/* Aurora Glass timeline summary — no iframe, no internal scroll */
-.expd-grid{
-  display:grid; grid-template-columns: repeat(7, 1fr); gap: 14px;
-  margin-top: 32px;
-}
-@media (max-width:1100px){ .expd-grid{ grid-template-columns: repeat(4, 1fr); } }
-@media (max-width:600px){  .expd-grid{ grid-template-columns: repeat(2, 1fr); } }
-
-.expd-day{
-  position:relative; display:flex; flex-direction:column;
-  padding: 18px 16px 20px; border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)),
-    rgba(8,10,18,.55);
-  border: 1px solid rgba(255,255,255,.10);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10);
-  text-align:left; isolation:isolate; overflow:hidden;
-  transition: transform .25s, border-color .25s, box-shadow .25s;
-}
-.expd-day::before{
-  content:""; position:absolute; inset:-1px; border-radius:20px;
-  background: var(--expd-glow, transparent);
-  filter: blur(18px); opacity:.5; z-index:-1; pointer-events:none;
-}
-.expd-day:hover{ transform: translateY(-4px); border-color: rgba(251,191,36,.40); }
-.expd-date{
-  font-size:9.5px; letter-spacing:.34em; color:#cbd5e1;
-  text-transform:uppercase; font-weight:500;
-}
-.expd-num{
-  font-size:42px; font-weight:200; letter-spacing:-.03em;
-  color:#fff; line-height:1; margin-top:8px; font-variant-numeric: tabular-nums;
-}
-.expd-icon{ font-size:24px; margin-top:14px; }
-.expd-park{
-  font-size:13.5px; font-weight:600; color:#fff; margin-top:10px;
-  letter-spacing:-.005em;
-}
-.expd-park b{ color:#fde68a; font-weight:600; }
-.expd-note{
-  font-size:11.5px; color:#cbd5e1; line-height:1.5; margin-top:8px;
-  font-weight:300;
-}
-
-/* Per-day color accents */
-.expd-day.is-arrive { --expd-glow: radial-gradient(circle, rgba(96,165,250,.45), transparent 65%); }
-.expd-day.is-ak     { --expd-glow: radial-gradient(circle, rgba(34,197,94,.45),  transparent 65%); }
-.expd-day.is-hs     { --expd-glow: radial-gradient(circle, rgba(249,115,22,.45), transparent 65%); }
-.expd-day.is-mk     { --expd-glow: radial-gradient(circle, rgba(236,72,153,.45), transparent 65%); }
-.expd-day.is-rest   { --expd-glow: radial-gradient(circle, rgba(192,132,252,.45),transparent 65%); }
-.expd-day.is-epic   { --expd-glow: radial-gradient(circle, rgba(168,85,247,.50), transparent 65%); }
-.expd-day.is-depart { --expd-glow: radial-gradient(circle, rgba(96,165,250,.45), transparent 65%); }
-
-.expd-day.is-arrive { border-color: rgba(96,165,250,.30); }
-.expd-day.is-ak     { border-color: rgba(34,197,94,.30); }
-.expd-day.is-hs     { border-color: rgba(249,115,22,.30); }
-.expd-day.is-mk     { border-color: rgba(236,72,153,.30); }
-.expd-day.is-rest   { border-color: rgba(192,132,252,.30); }
-.expd-day.is-epic   { border-color: rgba(168,85,247,.35); }
-.expd-day.is-depart { border-color: rgba(96,165,250,.30); }
-
-.expd-actions{
-  display:flex; justify-content:center; margin-top: 48px;
-}
-.expd-open-btn{
-  position: relative;
-  display:inline-flex; align-items:center; justify-content:center; gap:18px;
-  width: 100%; max-width: 760px;
-  padding: 32px 56px; border-radius: 28px;
-  font-size: clamp(20px, 2.4vw, 28px);
-  letter-spacing:.18em; text-transform:uppercase; font-weight:700;
-  color: #0a0d1f; text-decoration:none;
-  background: linear-gradient(120deg, #fde68a 0%, #fbbf24 50%, #f9a8d4 100%);
-  border: 1px solid rgba(251,191,36,.65);
-  box-shadow:
-    0 22px 60px rgba(251,191,36,.45),
-    0 0 0 6px rgba(251,191,36,.10),
-    inset 0 1px 0 rgba(255,255,255,.55);
-  transition: transform .2s, box-shadow .2s, filter .2s;
-  animation: expd-pulse 2.4s ease-in-out infinite;
-  overflow: hidden;
-  isolation: isolate;
-}
-.expd-open-btn::before{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.55) 50%, transparent 100%);
-  transform: translateX(-120%);
-  animation: expd-shine 3.2s ease-in-out infinite;
-}
-.expd-open-btn:hover{
-  transform: translateY(-3px) scale(1.02);
-  box-shadow:
-    0 30px 80px rgba(251,191,36,.55),
-    0 0 0 8px rgba(251,191,36,.16),
-    inset 0 1px 0 rgba(255,255,255,.65);
-  filter: brightness(1.05);
-}
-.expd-open-btn:active{ transform: translateY(-1px) scale(1.00); }
-.expd-open-btn .arr{ font-size: 1.1em; line-height:1; }
-@keyframes expd-pulse{
-  0%, 100% { box-shadow: 0 22px 60px rgba(251,191,36,.45), 0 0 0 6px rgba(251,191,36,.10), inset 0 1px 0 rgba(255,255,255,.55); }
-  50%      { box-shadow: 0 26px 70px rgba(251,191,36,.60), 0 0 0 12px rgba(251,191,36,.18), inset 0 1px 0 rgba(255,255,255,.65); }
-}
-@keyframes expd-shine{
-  0%   { transform: translateX(-120%); }
-  60%  { transform: translateX(120%); }
-  100% { transform: translateX(120%); }
-}
-@media (max-width: 600px){
-  .expd-open-btn{ padding: 24px 32px; gap:12px; letter-spacing:.14em; }
-}
-
-/* ── Clickable day cards (button reset + active state) ─────── */
-button.expd-day{
-  font-family:inherit; color:inherit; cursor:pointer;
-  appearance:none; -webkit-appearance:none;
-  width:100%;
-}
-button.expd-day:focus-visible{
-  outline: 2px solid rgba(251,191,36,.7);
-  outline-offset: 3px;
-}
-.expd-day.active{
-  transform: translateY(-4px);
-  border-color: rgba(251,191,36,.65) !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(251,191,36,.25), inset 0 1px 0 rgba(255,255,255,.18);
-}
-.expd-day.active::before{ opacity:.95; filter: blur(22px); }
-.expd-day.active .expd-num{ color:#fde68a; }
-
-/* ── Day-detail expandable panel ───────────────────────────── */
-.expd-detail-host{ margin-top: 24px; }
-.day-detail-panel{
-  display:none;
-  position:relative;
-  width: calc(100% - 4px);
-  max-width: 1380px;
-  margin: 0 auto;
-  padding: 26px 26px 28px;
-  border-radius: 26px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)),
-    rgba(8,10,18,.65);
-  border: 1px solid rgba(255,255,255,.12);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 40px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.14);
-  isolation: isolate;
-  --dp-accent: rgba(251,191,36,.55);
-}
-.day-detail-panel.active{ display:block; animation: dp-fade .35s ease; }
-@keyframes dp-fade{ from{ opacity:0; transform: translateY(-6px); } to{ opacity:1; transform: translateY(0); } }
-.day-detail-panel::before{
-  content:""; position:absolute; inset:-1px; border-radius:26px;
-  background: var(--dp-glow, transparent);
-  filter: blur(22px); opacity:.55; z-index:-1; pointer-events:none;
-}
-
-.dp-head{
-  display:grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items:center;
-  padding-bottom: 20px; margin-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,.10);
-}
-.dp-icon{
-  width: 64px; height:64px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-size: 32px;
-  background: rgba(8,10,18,.6);
-  border: 1px solid var(--dp-accent);
-  box-shadow: 0 12px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14);
-}
-.dp-titles{ display:flex; flex-direction:column; gap:4px; min-width:0; }
-.dp-title{ font-size: clamp(22px, 3vw, 30px); font-weight:300; letter-spacing:-.02em; color:#fff; line-height:1.1; }
-.dp-title b{ color:#fde68a; font-weight:600; }
-.dp-meta{ font-size:11.5px; letter-spacing:.22em; color:#cbd5e1; text-transform:uppercase; font-weight:500; }
-.dp-vibe{ font-size:13px; color:#e5e7eb; line-height:1.5; margin-top:6px; font-weight:300; max-width: 70ch; }
-.dp-close{
-  display:inline-flex; align-items:center; gap:6px;
-  width: 38px; height: 38px; border-radius: 50%;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.18);
-  color:#cbd5e1; cursor:pointer;
-  font-size: 18px; line-height:1;
-  transition: all .2s; font-family:inherit;
-}
-.dp-close:hover{ background: rgba(255,255,255,.12); color:#fff; transform: scale(1.05); }
-.dp-close:focus-visible{ outline: 2px solid rgba(251,191,36,.7); outline-offset: 3px; }
-
-.dp-body{
-  display:grid; grid-template-columns: 1fr 1fr; gap: 22px;
-}
-@media (max-width: 860px){ .dp-body{ grid-template-columns: 1fr; } }
-
-.dp-col h3{
-  font-size: 10.5px; letter-spacing:.34em; text-transform:uppercase;
-  color: var(--dp-accent-text, #fde68a); font-weight:600;
-  margin: 0 0 14px 2px;
-}
-.dp-row{
-  display:grid; grid-template-columns: 60px 24px 1fr; gap: 12px;
-  align-items: flex-start;
-  padding: 12px 14px;
-  background: rgba(0,0,0,.30);
-  border: 1px solid rgba(255,255,255,.06);
-  border-left: 2px solid var(--dp-accent);
-  border-radius: 14px;
-  margin-bottom: 10px;
-}
-.dp-row .t{ font-size: 10.5px; letter-spacing:.18em; color:#fde68a; font-weight:600; padding-top: 3px; text-transform:uppercase; font-variant-numeric: tabular-nums; }
-.dp-row .i{ font-size: 16px; padding-top:1px; line-height:1; }
-.dp-row .bd{ min-width:0; }
-.dp-row .bd b{ display:block; color:#fff; font-weight:500; font-size:13.5px; line-height:1.4; letter-spacing:-.005em; }
-.dp-row .bd span{ display:block; font-size:12px; color:#cbd5e1; margin-top:4px; line-height:1.55; font-weight:300; }
-.dp-row .bd span b{ display:inline; color:#fde68a; font-size: inherit; }
-
-@media (max-width: 760px){
-  .day-detail-panel{ padding: 20px 18px 22px; border-radius: 22px; }
-  .dp-head{ grid-template-columns: auto 1fr; gap: 12px; }
-  .dp-close{ grid-column: 2; justify-self: end; margin-top: -8px; }
-  .dp-row{ grid-template-columns: 56px 22px 1fr; gap: 10px; padding: 11px 12px; }
-}
-</style>
-
-<section id="expedition">
-  <div class="section-h">
-    <div class="section-eyebrow">② For the Whole Family · The Master Plan</div>
-    <h2 class="section-title">Garcia <b>Expedition.</b></h2>
-    <p class="section-deck">Walt Disney World • Universal Orlando • October 11–17, 2026</p>
-  </div>
-
-  <div class="expd-actions">
-    <a class="expd-open-btn" href="sections/garcia-expedition.html" target="_blank" rel="noopener">
-      Open Full Expedition <span class="arr">↗</span>
-    </a>
+  <div class="height-card">
+    <h3>📏 Annelise / "Mario" — Age 4 · 42" (Load-Bearing Intel)</h3>
+    <div class="hgrid">
+      <div class="hbox ok"><b>✅ Clears</b>
+        <ul><li>Slinky Dog Dash (38")</li><li>Seven Dwarfs Mine Train (38")</li><li>Tower of Terror (40")</li><li>Mario Kart: Bowser's Challenge (40")</li></ul>
+      </div>
+      <div class="hbox no"><b>⛔ Blocked — Rider Switch</b>
+        <ul><li>Rock 'n' Roller Coaster (48")</li><li>TRON Lightcycle Run (48")</li><li>Space Mountain (44")</li></ul>
+      </div>
+      <div class="hbox"><b>🎠 No-Height-Req Picks</b>
+        <ul><li>AK: Na'vi River Journey · Festival of the Lion King · Wildlife Express</li>
+        <li>MK: Tomorrowland Speedway · Dumbo · Barnstormer · Buzz Lightyear · Haunted Mansion · PhilharMagic</li>
+        <li>Epic: Yoshi's Adventure + Power-Up Bands</li></ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<script>
-/* ============================================================
-   GARCIA EXPEDITION — clickable day cards + expandable detail.
-   - Single-open behavior (clicking another card closes the prior)
-   - Click an active card again to collapse it
-   - Smooth-scrolls to the detail panel on open
-   - Keyboard: Enter/Space activate (native <button> behavior);
-              Escape closes; arrow keys move focus across cards.
-============================================================ */
-(function(){
-  const ACCENTS = {
-    arrival:           { tone:'rgba(96,165,250,.55)',  glow:'radial-gradient(ellipse at 30% 20%, rgba(96,165,250,.30), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(125,211,252,.20), transparent 60%)' },
-    'animal-kingdom':  { tone:'rgba(34,197,94,.55)',   glow:'radial-gradient(ellipse at 25% 25%, rgba(34,197,94,.30), transparent 60%),  radial-gradient(ellipse at 75% 80%, rgba(132,204,22,.20), transparent 60%)' },
-    'hollywood-studios':{ tone:'rgba(249,115,22,.55)', glow:'radial-gradient(ellipse at 25% 25%, rgba(249,115,22,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(251,191,36,.20), transparent 60%)' },
-    'magic-kingdom':   { tone:'rgba(236,72,153,.55)',  glow:'radial-gradient(ellipse at 25% 25%, rgba(236,72,153,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(168,85,247,.20), transparent 60%)' },
-    hhn:               { tone:'rgba(192,132,252,.55)', glow:'radial-gradient(ellipse at 25% 25%, rgba(192,132,252,.30), transparent 60%),radial-gradient(ellipse at 75% 80%, rgba(244,63,94,.20),  transparent 60%)' },
-    'epic-universe':   { tone:'rgba(168,85,247,.55)',  glow:'radial-gradient(ellipse at 25% 25%, rgba(168,85,247,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(59,130,246,.22), transparent 60%)' },
-    depart:            { tone:'rgba(96,165,250,.55)',  glow:'radial-gradient(ellipse at 30% 20%, rgba(96,165,250,.30), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(125,211,252,.20), transparent 60%)' }
-  };
+<!-- ITINERARY -->
+<section id="days">
+  <h2 class="sec-h c">Day-by-Day</h2>
+  <div class="tabs" role="tablist" id="tabRow"></div>
 
-  const DATA = {
-    arrival: {
-      title: 'Arrive · <b>Orlando</b>',
-      date: 'Sunday · October 11, 2026',
-      icon: '✈️',
-      vibe: 'Wheels down. Family in. Eat early, stage tomorrow’s gear, and crash by 9:30 — Animal Kingdom rope drop is a 5:45a alarm.',
-      am: [
-        { time:'6:30a',  icon:'🧳', title:'Final pack-out', note:'Carry-ons by the door. IDs, MagicBands, Disney res confirmations on every adult’s phone.' },
-        { time:'9:35a',  icon:'🛂', title:'IAH check-in · Terminal A', note:'Bag check + TSA for 13. Build a 90-min buffer.' },
-        { time:'12:20p', icon:'🛫', title:'IAH → MCO · United', note:'~2h45m direct. Tablets fully charged. Snacks in seatbacks.' }
-      ],
-      pm: [
-        { time:'4:00p',  icon:'🛬', title:'Land · MCO', note:'Mears Connect to Art of Animation. ~45 min door-to-door.' },
-        { time:'5:30p',  icon:'🏨', title:'Resort check-in · Little Mermaid wing', note:'MagicBand+ on every wrist before bed. Test tap-in at the room.' },
-        { time:'7:00p',  icon:'🍕', title:'Dinner · Landscape of Flavors', note:'Quick-service food court. Eat early. <b>Skip Disney Springs tonight.</b>' },
-        { time:'9:30p',  icon:'🛌', title:'Lights out · 5:45a alarm set', note:'Pre-stage backpacks, water bottles, sunscreen, ponchos for tomorrow.' }
-      ]
-    },
-    'animal-kingdom': {
-      title: '<b>Animal Kingdom</b>',
-      date: 'Monday · October 12, 2026',
-      icon: '🦁',
-      vibe: 'AK closes early — front-load the morning. Avatar Flight of Passage at 7:00a sharp via LLMP, then chase Pandora at dusk.',
-      am: [
-        { time:'5:45a',  icon:'⏰', title:'Wake & coffee', note:'Pre-stage backpacks, water bottles, sunscreen, ponchos.' },
-        { time:'6:30a',  icon:'🚌', title:'On bus to AK', note:'Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.' },
-        { time:'6:59a',  icon:'📱', title:'LLMP DROP — Avatar Flight of Passage', note:'Tap LLMP at 7:00 AM sharp · adults only · 44" min.' },
-        { time:'7:30a',  icon:'🦁', title:'ROPE DROP — Kilimanjaro Safari', note:'Animals most active in the morning. Go LEFT at the entrance.' },
-        { time:'8:30a',  icon:'🌿', title:"Na’vi River Journey", note:"Mario’s pick · gentle boat · no height min." },
-        { time:'9:30a',  icon:'🥐', title:'Snack — Pongu Pongu', note:'Night Blossom + pretzel · sit by the floating mountains.' },
-        { time:'10:30a', icon:'🚂', title:"Wildlife Express → Rafiki’s", note:"Mario’s pick · NEW Bluey-themed train." }
-      ],
-      pm: [
-        { time:'12:00p', icon:'🍽️', title:"Lunch — Satu’li Canteen", note:'Mobile order at 11:15 · pod bowls · Pandora theming.' },
-        { time:'1:30p',  icon:'💧', title:'LLMP — Avatar Flight of Passage', note:'Adults rotate. Mario stays w/ grandparents (44" min).' },
-        { time:'2:30p',  icon:'🎭', title:'Festival of the Lion King', note:"Mario’s pick · A/C · seats fill 30 min before show." },
-        { time:'3:45p',  icon:'🍦', title:'Dole Whip + cool down', note:'Tamu Tamu · find shade · regroup w/ Abui & Abui Temo.' },
-        { time:'5:00p',  icon:'🌳', title:'Tree of Life Awakenings', note:'First projection cycle at dusk. Catch it on the bridge.' },
-        { time:'6:30p',  icon:'🍜', title:'Dinner — Yak & Yeti counter', note:'Honey chicken · egg rolls · table by the river.' },
-        { time:'7:45p',  icon:'✨', title:'Park close — Pandora at dusk', note:'Bioluminescent forest · last lap before bus home.' }
-      ]
-    },
-    'hollywood-studios': {
-      title: '<b>Hollywood Studios</b>',
-      date: 'Tuesday · October 13, 2026',
-      icon: '🎬',
-      vibe: 'Easiest travel day — Skyliner straight in. Slinky Dog at rope drop, Rise of the Resistance via LLSP, Galaxy’s Edge after dark.',
-      am: [
-        { time:'6:59a',  icon:'📱', title:"LLMP DROP — Falcon → ToT → Rock ’n’ Roller", note:'Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.' },
-        { time:'7:00a',  icon:'☕', title:'Coffee + pack', note:'Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.' },
-        { time:'7:30a',  icon:'🚡', title:'Skyliner from Art of Animation', note:'Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.' },
-        { time:'8:30a',  icon:'🐕', title:'ROPE DROP — Slinky Dog Dash', note:"Slinky’s LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38\")." },
-        { time:'9:15a',  icon:'👽', title:'Alien Swirling Saucers + Toy Story Mania', note:"You’re in Toy Story Land — knock both out before crowds build." },
-        { time:'10:30a', icon:'🛸', title:"Smuggler’s Run — NEW Mandalorian mission", note:'Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38").' },
-        { time:'11:30a', icon:'🥛', title:'Blue / Green Milk + Build a Droid', note:'Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.' }
-      ],
-      pm: [
-        { time:'12:00p', icon:'🥙', title:'Lunch — Ronto Roasters', note:"Mobile order the Ronto Wrap. Best quick service in the park. Kids’ chicken for Mario." },
-        { time:'12:30p', icon:'⚔️', title:'LLSP — Rise of the Resistance', note:'The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40").' },
-        { time:'1:30p',  icon:'🚂', title:"Mickey & Minnie’s Runaway Railway", note:'LLMP refresh. Cartoon physics, no height min. Mario will love it.' },
-        { time:'2:30p',  icon:'🏨', title:'Tower of Terror (LLMP #2)', note:"Drop sequence randomizes — never the same twice. Rider Switch if Mario’s nervous." },
-        { time:'3:30p',  icon:'🚀', title:'Star Tours', note:'Randomized destinations. Short waits typically. Mario rides ✅ (40").' },
-        { time:'4:00p',  icon:'🐸', title:"Rock ’n’ Roller — NEW Muppets", note:"Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario’s 42\" / req 48\"." },
-        { time:'5:30p',  icon:'🍽️', title:'Dinner — Sci-Fi Dine-In', note:'Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.' },
-        { time:'7:00p',  icon:'🎭', title:'Beauty & the Beast + Villains Stage Show', note:'AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.' },
-        { time:'8:30p',  icon:'🌃', title:"Galaxy’s Edge after dark", note:'Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.' },
-        { time:'9:00p',  icon:'🎆', title:'Fantasmic!', note:"Be at amphitheater by 8:15 for a decent seat. Skip if Mario’s wrecked — it’s loud." }
-      ]
-    },
-    'magic-kingdom': {
-      title: '<b>Magic Kingdom</b>',
-      date: 'Wednesday · October 14, 2026',
-      icon: '🏰',
-      vibe: 'The big one. BBB castle reveal at 10a, Be Our Guest lunch, resort break at 1p (non-negotiable), then the full evening loop closing with Happily Ever After at 9:00.',
-      am: [
-        { time:'6:59a',  icon:'📱', title:'LLMP DROP — Seven Dwarfs first', note:'Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.' },
-        { time:'7:30a',  icon:'⛵', title:"ROPE DROP — Peter Pan’s Flight", note:'Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).' },
-        { time:'8:30a',  icon:'👑', title:'Bibbidi Bobbidi Boutique', note:'Princess transformation · 60–90 min · check in 5 min early behind the castle.' },
-        { time:'8:30a',  icon:'🏎️', title:'SPLIT — Speedway + Buzz + PhilharMagic', note:'Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.' },
-        { time:'10:00a', icon:'🏰', title:'THE CASTLE REVEAL', note:'Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. <b>Get the shot.</b>' },
-        { time:'10:30a', icon:'✨', title:'Princess Fairytale Hall', note:'Cinderella + Tiana meet & greets. BBB outfit = pure magic.' },
-        { time:'11:00a', icon:'🐘', title:'Dumbo + Barnstormer', note:'Mario classics. Barnstormer (35") is his first roller coaster — short, gentle, perfect intro.' },
-        { time:'11:30a', icon:'⛏️', title:'Seven Dwarfs Mine Train (LLMP)', note:'Use your locked-in slot. Mario rides ✅ (38" min).' },
-        { time:'12:00p', icon:'🎼', title:"Mickey’s PhilharMagic + Small World", note:'4D show, AC, classic songs. Small World walk-on if time allows.' }
-      ],
-      pm: [
-        { time:'12:30p', icon:'🍽️', title:'Lunch — Be Our Guest', note:"Daughter dining in Beast’s castle in BBB outfit = unforgettable. Pinocchio Village Haus as backup." },
-        { time:'1:00p',  icon:'🛌', title:'RESORT BREAK — non-negotiable', note:'Back to Art of Animation. Pool, naps, hydrate, hair touch-up. <b>Skip = meltdowns by 5 PM.</b>' },
-        { time:'3:00p',  icon:'🎉', title:'Festival of Fantasy Parade · optional', note:'Only if kids rebound fast. Frontierland is less crowded than Main Street.' },
-        { time:'4:00p',  icon:'🏴‍☠️', title:'Pirates of the Caribbean (LLMP refill)', note:'Mario rides ✅ (no min). Dark but more silly than scary.' },
-        { time:'4:45p',  icon:'🚣', title:'Jungle Cruise + Country Bears', note:'Corny skipper jokes, animatronics, AC. Quick easy wins.' },
-        { time:'5:30p',  icon:'⛰️', title:'Big Thunder Mountain', note:"REOPENED May 2026 — refreshed scenery. Mario’s first ‘real’ coaster ✅ (40\")." },
-        { time:'6:30p',  icon:'👻', title:'Haunted Mansion (LLMP)', note:"Watch Mario’s face in the stretching room. He’ll love it." },
-        { time:'7:15p',  icon:'🚀', title:'Buzz + Speedway', note:"New blasters & ‘Buddy’ character. Speedway: Mario ‘drives’ with adult — non-negotiable for him." },
-        { time:'7:45p',  icon:'🚀', title:'TRON / Space Mountain — Rider Switch', note:"Mario can’t ride (48\"/44\"). One parent waits w/ kids, other rides w/ daughter, swap." },
-        { time:'8:30p',  icon:'📍', title:'Stake your fireworks spot', note:'Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.' },
-        { time:'9:00p',  icon:'🎆', title:'Happily Ever After (9:00 PM)', note:'18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. <b>THE photo of the trip.</b>' },
-        { time:'9:30p',  icon:'🚪', title:'Exit — beat the exodus', note:'Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.' }
-      ]
-    },
-    hhn: {
-      title: 'Rest → <b>HHN</b>',
-      date: 'Thursday · October 15, 2026',
-      icon: '💀',
-      vibe: 'Rest day until 2 PM, then the adults-only marathon: 8 houses, 5 zones, doors-to-park-close. Mario stays with Abui & Abui Temo.',
-      am: [
-        { time:'2:00p',  icon:'🍔', title:'Lunch + hydrate · resort', note:"Eat heavy. <b>You won’t sit again until 1 AM.</b> Hand Mario off to Abui & Abui Temo at Art of Animation." },
-        { time:'3:30p',  icon:'🚗', title:'Leave for Universal', note:'Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.' },
-        { time:'4:30p',  icon:'🅿️', title:'Park at Universal', note:'<b>Preferred Parking ($55)</b> — closer in + faster exit when the park dumps at 1 AM.' },
-        { time:'5:00p',  icon:'🌮', title:'Dinner · CityWalk', note:'<b>Antojitos or Vivo.</b> Skip in-park food — slow + overpriced. Full carb load before the marathon.' },
-        { time:'6:00p',  icon:'🚪', title:'Stadium queue · front gate', note:'Be at the turnstile by <b>6:00 sharp</b>. Doors open ~6:15. First 30 min = the only time the park breathes.' },
-        { time:'6:30p',  icon:'💀', title:'EVENT START · sprint to House #1', note:'<b>Newest IP house first</b> — the longest line by 8 PM. This is the rule, every year.' },
-        { time:'6:45p',  icon:'🎬', title:'Houses #2 + #3 · back lot', note:'Soundstage houses near Men in Black. <b>Hit before crowds rotate</b> back from the front.' },
-        { time:'8:00p',  icon:'👕', title:'Halloween Tribute Store', note:'Bag the merch run. <b>Skip if the line wraps the building</b> — come back after 11.' },
-        { time:'8:30p',  icon:'🌫️', title:'Scare Zones · NY + Hollywood', note:'Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.' }
-      ],
-      pm: [
-        { time:'9:00p',  icon:'💀', title:'Houses #4 + #5', note:'<b>Crowds peak now.</b> Use single-rider lines if posted. Standby times in the app run ~20% high.' },
-        { time:'10:30p', icon:'🍺', title:"Bar break · Finnegan’s or Duff", note:"<b>Reset.</b> Charge phone. Finnegan’s (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe." },
-        { time:'11:00p', icon:'💀', title:'Houses #6 + #7', note:'<b>Lines drop sharply after 11.</b> This is the window. Move fast.' },
-        { time:'12:00a', icon:'🔁', title:'House #8 · repeat favorite', note:"Wait times often <b>under 20 min in the final hour</b>. Hit the one you couldn’t fully take in." },
-        { time:'12:30a', icon:'🍷', title:'Chez Alcatraz · last drink', note:'San Francisco area. Sit. Watch the scare actors work the last shift.' },
-        { time:'12:45a', icon:'📸', title:'Final scare-zone walk', note:'Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.' },
-        { time:'1:00a',  icon:'🚪', title:'Park close · exit', note:'<b>Restroom BEFORE leaving.</b> Parking lot crawls — give it 15 min before fighting it.' },
-        { time:'1:30a',  icon:'🚗', title:'On the road · Art of Animation', note:'<b>Drive sober.</b> Uber if needed. Hand-off, then collapse. Friday is rest day.' },
-        { time:'🏁',     icon:'💀', title:'8 HOUSES · 5 ZONES · 1 NIGHT', note:'The Garcia adults survived the Infernal Carnival. Mario slept through it all.' }
-      ]
-    },
-    'epic-universe': {
-      title: '<b>Epic Universe</b>',
-      date: 'Friday · October 16, 2026',
-      icon: '🍄',
-      vibe: 'Express + Power-Up Bands carry you. Skip rope drop (HHN destroyed you). Hit Mario Kart first, dinner in Celestial Park, Stardust at night.',
-      am: [
-        { time:'Thu PM', icon:'📱', title:'NIGHT BEFORE — secure VQ + Express', note:'Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.' },
-        { time:'8:30a',  icon:'🚗', title:'Uber from Art of Animation', note:"15–20 min · ~$20 each way. Disney transport doesn’t reach Universal. <b>Skip rope drop</b> — you got wrecked at HHN last night and Express covers you." },
-        { time:'9:30a',  icon:'🎟', title:'ARRIVAL — Power-Up Bands on wrists', note:'Express linked. App open. Mario Kart VQ secured. Game on.' },
-        { time:'10:00a', icon:'🏎', title:"Mario Kart: Bowser’s Challenge (Express)", note:"Longest queue in the park — hit it first. Mario rides ✅ (40\" min, he’s 42\"). Touch his hand to the M on the wheel to link his band; he’ll collect coins as he rides." },
-        { time:'10:30a', icon:'🦖', title:"Yoshi’s Adventure", note:"No height req. Slow family ride with great views of the land. Probably Mario’s favorite of the day." },
-        { time:'11:00a', icon:'⛏', title:'Mine-Cart Madness (Express)', note:'Donkey Kong Country. Mario rides ✅ (40"). Innovative track design — feels like the cart is jumping rails.' },
-        { time:'11:30a', icon:'🎮', title:'Power-Up Band activities', note:'Punch blocks. Hit key challenges. <b>3 keys unlocks Bowser Jr. Shadow Showdown</b> — the secret level. Mario will lose his mind.' },
-        { time:'12:00p', icon:'💡', title:'BAND HACK — pass them around', note:"You don’t need a band per person. Mario gets the most use — let him keep one strapped on all day." },
-        { time:'12:30p', icon:'🍄', title:'Lunch · Toadstool Cafe', note:'Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.' }
-      ],
-      pm: [
-        { time:'1:30p',  icon:'🐺', title:'Curse of the Werewolf (Express)', note:'Family coaster but dark theming may be too much for Mario. <b>Rider Switch</b>; adults swap rides while one stays with him.' },
-        { time:'2:15p',  icon:'🧟', title:'Monsters Unchained (Express)', note:'Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.' },
-        { time:'3:00p',  icon:'🐲', title:"Hiccup’s Wing Gliders (Express)", note:'Family coaster on Isle of Berk. Mario rides ✅ (40"). Smooth, scenic, perfect for him.' },
-        { time:'3:30p',  icon:'🐎', title:"Dragon Racer’s Rally · only if line < 30 min", note:"Only ride NOT on Express in the park. Hop in if it’s short, otherwise skip — you’ve got bigger fish." },
-        { time:'4:00p',  icon:'🐲', title:'Meet Toothless', note:'Lines build fast. Either grab now or end of night when they die down.' },
-        { time:'4:30p',  icon:'⚡', title:'Battle at the Ministry (Express)', note:'<b>The biggest headliner in the park.</b> Mario rides ✅ (40"). Innovative ride system — moves through multiple show buildings.' },
-        { time:'5:30p',  icon:'🍺', title:'Butterbeer + Butterbeer ice cream', note:"Mandatory. Get the frozen version. Mario’s allowed — non-alcoholic. Skip the wand purchase; you’ve already spent on bands." },
-        { time:'6:30p',  icon:'🍽', title:'Dinner · Atlantic or Blue Dragon', note:"Both in Celestial Park. Sit-down, table service. You’ve earned it." },
-        { time:'8:00p',  icon:'🎢', title:'Stardust Racers (Express) · Rider Switch', note:"Dueling coaster. Mario can’t ride (48\"; he’s 42\"). Both adults ride both sides via swap. Reopened Mar 2026." },
-        { time:'8:30p',  icon:'✨', title:'Stardust Show — Celestial Park', note:'Nighttime show. Check showtimes in app. Good wind-down before exit.' },
-        { time:'8:45p',  icon:'🌃', title:'One last walk through Nintendo World', note:'All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.' },
-        { time:'9:00p',  icon:'🚗', title:'Uber back to Art of Animation', note:"Don’t push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early." },
-        { time:'🏆',     icon:'🎉', title:'FIVE PARKS · ONE WEEK · TRIP COMPLETE', note:'The Garcia family conquered Orlando.' }
-      ]
-    },
-    depart: {
-      title: 'Depart · <b>Home</b>',
-      date: 'Saturday · October 17, 2026',
-      icon: '🛬',
-      vibe: 'Slow morning. Pack out, last Mickey waffle, Mears to MCO, fly home. The trip ends in the camera roll.',
-      am: [
-        { time:'7:00a',  icon:'☕', title:'Wake + final pack', note:'Trash the room. Confirm under-bed scan. Strollers folded. Chargers off the wall.' },
-        { time:'8:30a',  icon:'🥞', title:'Breakfast · Landscape of Flavors', note:'Last Mickey waffle. Group photo with the Little Mermaid wing mural.' },
-        { time:'10:00a', icon:'🎒', title:'Bag drop · resort luggage hold', note:'Resort Airline Check-In if available — bags go straight to the IAH carousel. MagicBands stay on through park exit.' },
-        { time:'11:30a', icon:'🚐', title:'Mears Connect → MCO', note:'Boarding passes pre-loaded. Mario gets the window seat home.' }
-      ],
-      pm: [
-        { time:'1:30p',  icon:'✈️', title:'MCO → IAH', note:'Final group photo at the gate. Pillow Pets out for Mario. Sandra has the snack bag.' },
-        { time:'5:00p',  icon:'🚗', title:'Land · IAH', note:'Bags + ride share. Texas humidity hits. Welcome home.' },
-        { time:'7:00p',  icon:'🛁', title:'Showers + decompress', note:'Unpack tomorrow. Tonight is takeout and the couch.' },
-        { time:'9:30p',  icon:'📸', title:'Lights out · the photos start', note:'Trip lives in the camera roll, the BBB outfit, and the look on Mario’s face when Mario Kart linked his band.' }
-      ]
-    }
-  };
-
-  const host = document.getElementById('day-detail-host');
-  const cards = Array.from(document.querySelectorAll('.expd-day[data-day]'));
-  let activeKey = null;
-
-  function buildRows(items){
-    return items.map(it => `
-      <div class="dp-row">
-        <div class="t">${it.time}</div>
-        <div class="i">${it.icon}</div>
-        <div class="bd"><b>${it.title}</b><span>${it.note}</span></div>
-      </div>`).join('');
-  }
-
-  function render(key){
-    const d = DATA[key];
-    if (!d) return '';
-    const acc = ACCENTS[key] || {};
-    return `
-      <div class="day-detail-panel active" id="dp-${key}" role="region" aria-label="${d.date}" style="--dp-accent:${acc.tone}; --dp-glow:${acc.glow};">
-        <div class="dp-head">
-          <div class="dp-icon">${d.icon}</div>
-          <div class="dp-titles">
-            <div class="dp-title">${d.title}</div>
-            <div class="dp-meta">${d.date}</div>
-            <div class="dp-vibe">${d.vibe}</div>
-          </div>
-          <button type="button" class="dp-close" aria-label="Close day details">×</button>
-        </div>
-        <div class="dp-body">
-          <div class="dp-col">
-            <h3>Morning</h3>
-            ${buildRows(d.am)}
-          </div>
-          <div class="dp-col">
-            <h3>Afternoon &amp; Evening</h3>
-            ${buildRows(d.pm)}
-          </div>
-        </div>
-      </div>`;
-  }
-
-  function close(){
-    cards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-expanded','false'); });
-    host.innerHTML = '';
-    activeKey = null;
-  }
-
-  function open(key, sourceCard){
-    if (activeKey === key){ close(); return; }
-    cards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-expanded','false'); });
-    if (sourceCard){ sourceCard.classList.add('active'); sourceCard.setAttribute('aria-expanded','true'); }
-    host.innerHTML = render(key);
-    activeKey = key;
-    const closeBtn = host.querySelector('.dp-close');
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    requestAnimationFrame(() => {
-      const panel = host.querySelector('.day-detail-panel');
-      if (panel){
-        const top = panel.getBoundingClientRect().top + window.scrollY - 90;
-        window.scrollTo({ top, behavior:'smooth' });
-      }
-    });
-  }
-
-  cards.forEach((card, i) => {
-    card.addEventListener('click', () => open(card.dataset.day, card));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight'){ e.preventDefault(); cards[(i+1) % cards.length].focus(); }
-      else if (e.key === 'ArrowLeft'){ e.preventDefault(); cards[(i-1+cards.length) % cards.length].focus(); }
-    });
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && activeKey) close();
-  });
-})();
-</script>
-
-
-
-
-<script>
-// Memory shotlist — persist taps across reloads
-(function(){
-  const list = document.getElementById('shotlist'); if (!list) return;
-  const KEY = 'garcia2026.shotlist';
-  let done = {}; try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
-  list.querySelectorAll('li').forEach(li => {
-    const id = li.dataset.id;
-    if (done[id]) li.classList.add('done');
-    li.addEventListener('click', () => {
-      li.classList.toggle('done');
-      done[id] = li.classList.contains('done');
-      localStorage.setItem(KEY, JSON.stringify(done));
-    });
-  });
-})();
-</script>
-
-
-<!-- ============================================================
-     COMMAND CENTER — Weather, Packing, Budget
-     Family-wide cards that don't belong to any single park day.
-     ============================================================ -->
-<section id="command">
-  <div class="section-h">
-    <div class="section-eyebrow">③ For the Whole Family · Command Center</div>
-    <h2 class="section-title">The <b>family command center.</b></h2>
-    <p class="section-deck">Everything that doesn't live in a single park day — weather forecast, packing checklist, daily budget snapshot, and the trip's VIP decisions.</p>
+  <div class="day-panel" data-day="1">
+    <span class="d-tag">Day 01 · Sun Oct 11</span>
+    <h3>Arrival Day</h3>
+    <span class="badge travel">Travel</span>
+    <ul>
+      <li>✈️ Flight: IAH → MCO · 12:20 PM · Economy</li>
+      <li>🏨 Resort: Art of Animation · Little Mermaid · ~$251/night</li>
+      <li>🏊 Afternoon: Pool · settle in · pick up MagicBand+</li>
+      <li>🍽️ Dinner: Landscape of Flavors (resort food court)</li>
+    </ul>
   </div>
 
-  <div class="center-grid">
+  <div class="day-panel" data-day="2">
+    <span class="d-tag">Day 02 · Mon Oct 12</span>
+    <h3>Animal Kingdom</h3>
+    <span class="badge park">AK</span>
+    <ul>
+      <li>🚌 On bus by 6:30 AM — bus + security ~45–60 min</li>
+      <li>🐘 7:30 AM ROPE DROP — Kilimanjaro Safari first (animals most active in morning)</li>
+      <li>⏰ 6:59 AM LLMP: Avatar Flight of Passage (adults only, 44" min)</li>
+      <li>🍄 Mario: Na'vi River · Lion King · Wildlife Express (Bluey-themed!)</li>
+      <li>⚠️ DinoLand CLOSED permanently Feb 2026 — Tropical Americas opens 2027</li>
+      <li>🌙 Closing: ~7–8 PM · Pandora at dusk is unforgettable</li>
+    </ul>
+  </div>
 
-    <!-- Weather Tracker moved to top-of-page weather-banner -->
+  <div class="day-panel" data-day="3">
+    <span class="d-tag">Day 03 · Tue Oct 13</span>
+    <h3>Hollywood Studios</h3>
+    <span class="badge park">HS</span>
+    <ul>
+      <li>🚡 Skyliner by 7:30 AM — Art of Animation directly to entrance</li>
+      <li>🐕 8:30 AM ROPE DROP — Slinky Dog Dash (38" min · Mario clears)</li>
+      <li>💡 Why Slinky: sells out FASTEST for LLMP · standby 90+ min by 10 AM</li>
+      <li>🔁 LLMP rotation: Millennium Falcon → Tower of Terror → Rock 'n' Roller</li>
+      <li>✅ LLSP: Rise of the Resistance — best ride in WDW · $20–25</li>
+      <li>🍄 Mario at 42": ✅ all except Rock 'n' Roller (48") — Rider Switch</li>
+    </ul>
+  </div>
 
-    <!-- Packing Checklist -->
-    <div class="center-card">
-      <div class="ce">🧳 Family Packing</div>
-      <div class="ch">Pack <b>once.</b> Carry it all.</div>
-      <ul class="pack-grid" id="pack-list">
-        <li data-pack="ponchos"><b>13 lightweight ponchos</b> (PM showers Mon)</li>
-        <li data-pack="sunscreen">SPF 50 spray + face stick</li>
-        <li data-pack="bands">MagicBand+ for all 13 (link before bed Sun)</li>
-        <li data-pack="phones">Portable phone batteries (5+) · USB-C cables</li>
-        <li data-pack="water">13 reusable water bottles</li>
-        <li data-pack="bbb-outfit">Annelise's BBB transformation outfit</li>
-        <li data-pack="strollers">Mario stroller + grandparent rental info</li>
-        <li data-pack="snacks">Resort-room snacks (gluten-free for Abui)</li>
-        <li data-pack="advil">Advil · Tums · Band-Aids · blister kit</li>
-        <li data-pack="cash">Cash for Build-a-Droid + Power-Up Bands</li>
-        <li data-pack="costumes">Mario hat + overalls for Epic Universe</li>
-        <li data-pack="passport">IDs · boarding passes · Disney res confirmations</li>
-        <li data-pack="charger">Universal Express Pass screenshots (offline)</li>
+  <div class="day-panel" data-day="4">
+    <span class="d-tag">Day 04 · Wed Oct 14</span>
+    <h3>Magic Kingdom</h3>
+    <span class="badge park">MK</span>
+    <ul>
+      <li>👑 BBB appointment — must be booked Aug 11 at 11 PM CT</li>
+      <li>🚌 On bus by 6:30 AM</li>
+      <li>🧚 7:30 AM ROPE DROP — Peter Pan's Flight</li>
+      <li>🎠 Fantasyland sweep: Small World → Pooh → Little Mermaid → PhilharMagic</li>
+      <li>⏰ 6:59 AM LLMP: Jungle Cruise / Big Thunder / Buzz</li>
+      <li>✅ LLSP: Seven Dwarfs Mine Train (Mario clears at 38")</li>
+      <li>🍄 Mario's rides: Tomorrowland Speedway · Dumbo · Buzz · Haunted Mansion</li>
+      <li>🎆 ~3 PM parade · 1–4 PM break · 9 PM Happily Ever After fireworks</li>
+      <li>✅ Wed is NOT a MNSSHP night — full park access</li>
+    </ul>
+  </div>
+
+  <div class="day-panel" data-day="5">
+    <span class="d-tag">Day 05 · Thu Oct 15</span>
+    <h3>Rest Day + HHN</h3>
+    <span class="badge rest">Rest</span>
+    <ul>
+      <li>😴 Morning: Sleep in · pool · low-key breakfast</li>
+      <li>🛍️ Afternoon: Disney Springs · Marketplace · World of Disney</li>
+      <li>👴 Evening: Drop Mario with grandparents</li>
+      <li>🎃 6:30 PM HHN — Halloween Horror Nights (adults)</li>
+      <li>✅ HHN confirmed Oct 15 event night · $91–$130/person</li>
+    </ul>
+  </div>
+
+  <div class="day-panel" data-day="6">
+    <span class="d-tag">Day 06 · Fri Oct 16</span>
+    <h3>Epic Universe — "Mario Day"</h3>
+    <span class="badge epic">Epic</span>
+    <ul>
+      <li>🚗 Travel: Uber from Art of Animation · ~15–20 min · ~$20 each way</li>
+      <li>📱 Night before: Universal app · secure Super Nintendo World virtual queue</li>
+      <li>🎟️ Express Pass: ~$130–200/person · NO early entry off-site</li>
+      <li>🏎️ First ride: Mario Kart: Bowser's Challenge · ✅ Mario clears (40" min)</li>
+      <li>⌚ Power-Up Bands: $45 each · activate at SNW</li>
+      <li>🍄 Mario's day: Yoshi's Adventure · Block interactions · Toadstool Cafe</li>
+    </ul>
+  </div>
+
+  <div class="day-panel" data-day="7">
+    <span class="d-tag">Day 07 · Sat Oct 17</span>
+    <h3>Departure Home</h3>
+    <span class="badge travel">Travel</span>
+    <ul>
+      <li>🧳 Morning: Pack up · check out by 11 AM</li>
+      <li>🚐 Transport: Mears Connect or Uber to MCO</li>
+      <li>⏱️ Buffer: Arrive 2.5 hrs before flight</li>
+      <li>🏰 MCO: Disney store one last time</li>
+    </ul>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section id="strategy">
+  <h2 class="sec-h g">Park Strategies</h2>
+  <div class="strat">
+    <div class="card">
+      <h3>🏰 Magic Kingdom</h3>
+      <div class="when">Wed, Oct 14</div>
+      <ul>
+        <li>7:30 AM ROPE DROP — Peter Pan's Flight (line builds fast, no virtual queue)</li>
+        <li>Set 6:59 AM alarm — book LL Multi Pass at 7:00 sharp. First pick: Seven Dwarfs Mine Train (sells out fastest)</li>
+        <li>TRON / Space Mountain: Mario at 42" can't ride (48"/44") — use Rider Switch so adults still get on</li>
+        <li>Mario's rides: Tomorrowland Speedway (he "drives" with adult), Dumbo, Barnstormer, Buzz Lightyear, Haunted Mansion, Mickey's PhilharMagic</li>
+        <li>Midday break 1–4 PM, return for ~3 PM parade and 9 PM fireworks</li>
+        <li>✅ Wed is NOT a MNSSHP night — full park access until normal close</li>
       </ul>
     </div>
-
-    <!-- Budget / VIP Decisions -->
-    <div class="center-card">
-      <div class="ce">💳 Budget &amp; Add-Ons</div>
-      <div class="ch">Trip <b>add-on snapshot.</b></div>
-      <div class="budget-rows">
-        <div class="br"><span class="bn"><b>Lightning Lane Multi-Pass</b> · 4 park days × $25 × 13</span><span class="bp">$1,300</span></div>
-        <div class="br"><span class="bn">LLSP · Rise of the Resistance · Tue</span><span class="bp">$260</span></div>
-        <div class="br"><span class="bn">BBB · Annelise transformation</span><span class="bp">$300</span></div>
-        <div class="br"><span class="bn">Build-a-Droid · Hollywood Studios</span><span class="bp">$110</span></div>
-        <div class="br"><span class="bn">HHN tickets · 6 adults × $115</span><span class="bp">$690</span></div>
-        <div class="br"><span class="bn">Universal Express + 2 Power-Up Bands</span><span class="bp">$240</span></div>
-        <div class="br"><span class="bn">Mears Connect · round trip</span><span class="bp">$420</span></div>
-        <div class="br total"><span class="bn">Add-Ons Total</span><span class="bp">~ $3,320</span></div>
-      </div>
-      <button class="vip-pill" onclick="alert('Tip: pay for Lightning Lane on the Capital One card for the 2x travel multiplier — both adults have one.')">⚡ Pay tip · use Capital One</button>
-      <p style="font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.55;font-weight:300;">Both Capital One travel multipliers apply. Track receipts in Apple Notes shared album so reimbursement to the family group settles in 48 hours.</p>
+    <div class="card">
+      <h3>🦁 Animal Kingdom</h3>
+      <div class="when">Mon, Oct 12</div>
+      <ul>
+        <li>7:30 AM ROPE DROP — Kilimanjaro Safari (animals most active in morning)</li>
+        <li>Book LLMP at 7:00 AM for Avatar Flight of Passage (adults only, 44" min)</li>
+        <li>Mario's picks: Na'vi River Journey · Festival of the Lion King · Wildlife Express to Rafiki's Planet Watch (NEW: Bluey-themed — Mario will love it) (DinoLand permanently closed Feb 2026)</li>
+        <li>AK closes earlier (~7–8 PM) — full morning, easy afternoon</li>
+      </ul>
     </div>
+    <div class="card">
+      <h3>🚀 Hollywood Studios</h3>
+      <div class="when">Tue, Oct 13</div>
+      <ul>
+        <li>Easiest travel day — Skyliner gondola from Art of Animation right to entrance</li>
+        <li>8:30 AM ROPE DROP — Slinky Dog Dash (38" min)</li>
+        <li>Why Slinky over Runaway Railway: Slinky's LLMP sells out FASTEST at HS, standby hits 90+ min by 10 AM. Runaway Railway has better LLMP availability — save it for the rotation</li>
+        <li>6:59 AM LLMP rotation: Millennium Falcon → Tower of Terror → Rock 'n' Roller Coaster (rebook after each tap-in)</li>
+        <li>✅ Buy LLSP for Rise of the Resistance — best ride in WDW, worth $20–25</li>
+        <li>Mario at 42": ✅ rides everything except Rock 'n' Roller (48") — use Rider Switch for that one</li>
+        <li>Mario's Toy Story Land: Slinky Dog, Alien Swirling Saucers, Toy Story Mania</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🍄 Epic Universe</h3>
+      <div class="when">Fri, Oct 16</div>
+      <ul>
+        <li>Uber from Art of Animation — ~15–20 min, ~$20 each way</li>
+        <li>Night before: Universal app, secure Super Nintendo World virtual queue</li>
+        <li>Buy Express Pass Unlimited (~$130–200/person) — no early entry off-site</li>
+        <li>First ride: Mario Kart: Bowser's Challenge — longest queue in the park</li>
+        <li>Mario's day: Yoshi's Adventure (no height req) + Power-Up Band Block interactions</li>
+        <li>✅ Mario Kart cleared: 40" min · Mario is 42" — he can ride</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tip-callout">⏰ 6:59 AM rule: Set the alarm a minute early every Disney park morning. Lightning Lane Multi Pass drops at exactly 7:00 AM — phone ready, app open, refresh on the second. Best slots vanish in under 5 minutes.</div>
+</section>
 
+<!-- CHECKLIST -->
+<section id="checklist">
+  <h2 class="sec-h p">Action Checklist</h2>
+  <div class="prog-wrap"><div id="progBar"></div><div id="progTxt">0 / 9 done</div></div>
+  <button class="btn ghost" id="resetChk" style="margin-top:8px">↺ Reset Checklist</button>
+
+  <div class="chk-group">
+    <div class="g-h">Booking</div>
+    <label class="chk" for="c-bbb"><input type="checkbox" id="c-bbb" data-key="bbb"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Book BBB</b><small>Aug 11 · 11 PM CT · use BBB alarm</small></div><div class="prio">Top Priority</div></label>
+    <label class="chk" for="c-flights"><input type="checkbox" id="c-flights" data-key="flights"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Book flights</b><small>IAH → MCO · Oct 11 · 12:20 PM · Economy</small></div></label>
+    <label class="chk" for="c-resort"><input type="checkbox" id="c-resort" data-key="resort"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Reserve Art of Animation</b><small>Little Mermaid section · Oct 11–17</small></div></label>
+    <label class="chk" for="c-tickets"><input type="checkbox" id="c-tickets" data-key="tickets"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Buy Disney tickets</b><small>4-park · 5-day base ticket</small></div></label>
+    <label class="chk" for="c-hhn"><input type="checkbox" id="c-hhn" data-key="hhn"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Buy HHN tickets</b><small>Oct 15 · $91–$130 per person</small></div></label>
+  </div>
+
+  <div class="chk-group">
+    <div class="g-h">Logistics</div>
+    <label class="chk" for="c-magicbands"><input type="checkbox" id="c-magicbands" data-key="magicbands"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Order MagicBand+</b><small>~$34.99 each · link before arrival</small></div></label>
+    <label class="chk" for="c-apps"><input type="checkbox" id="c-apps" data-key="apps"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Download apps</b><small>My Disney Experience · Universal</small></div></label>
+    <label class="chk" for="c-measure"><input type="checkbox" id="c-measure" data-key="measure"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Mario at 42″</b><small>Cleared for most rides</small></div></label>
+  </div>
+
+  <div class="chk-group">
+    <div class="g-h">Universal</div>
+    <label class="chk" for="c-powerup"><input type="checkbox" id="c-powerup" data-key="powerup"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Buy Power-Up Bands</b><small>$45 each · shopuniversal.com</small></div></label>
   </div>
 </section>
 
-<script>
-/* ============================================================
-   PACKING CHECKLIST — persist taps across reloads
-   ============================================================ */
-(function(){
-  const list = document.getElementById('pack-list'); if (!list) return;
-  const KEY = 'garcia2026.packlist';
-  let done = {}; try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
-  list.querySelectorAll('li').forEach(li => {
-    const id = li.dataset.pack;
-    if (done[id]) li.classList.add('done');
-    li.addEventListener('click', () => {
-      li.classList.toggle('done');
-      done[id] = li.classList.contains('done');
-      localStorage.setItem(KEY, JSON.stringify(done));
-    });
-  });
-})();
-</script>
+<!-- SKIP THE LINE -->
+<section id="skip">
+  <h2 class="sec-h c">Skip-the-Line Guide</h2>
+  <div class="skip">
+    <div class="card"><h3>MagicBand+</h3><div class="cost">~$34.99 each</div>
+      <p>Park entry, room key, charges, PhotoPass. Buy online before arrival — link to My Disney Experience.</p></div>
+    <div class="card"><h3>LL Multi Pass</h3><div class="cost">~$15–30/day</div>
+      <p>Book 1 ride at a time, rebook after tap-in or 2 hrs. Set 6:59 AM alarm every Disney park morning.</p></div>
+    <div class="card"><h3>LL Single Pass</h3><div class="cost">~$10–25/ride</div>
+      <p>Skip the line on TRON (MK) and Rise of the Resistance (HS). Worth it — saves 90–120 min per ride.</p></div>
+    <div class="card"><h3>Epic Express Pass Unlimited</h3><div class="cost">~$130–200/person</div>
+      <p>Unlimited skip-the-line at Epic Universe. Primary tool — there's no early entry at Epic when staying off-site.</p></div>
+  </div>
+</section>
 
-
+<!-- ALARMS -->
 <section id="alarms">
-  <div class="section-h">
-    <div class="section-eyebrow">① For Staying Organized · The Two Critical Alarms</div>
-    <h2 class="section-title">Two <b>alarms.</b></h2>
-    <p class="section-deck">Two moments the whole trip pivots on. Both fire from this page so any of the thirteen can keep watch — test them, schedule them, leave the tab open.</p>
+  <h2 class="sec-h">Wake-Up Weapons</h2>
+  <div class="alarms">
+    <div class="alarm-card ll">
+      <h3>🚨 Alarm I — Lightning Lane 6:59 AM</h3>
+      <p>Schedule a screen + voice alarm that screams "BOOK LIGHTNING LANE" at 6:59 AM. Browser must be open on this page when it fires.</p>
+      <div class="btn-row">
+        <button class="btn red" onclick="fireAlarm('ll')">Test Now</button>
+        <button class="btn" onclick="scheduleLL()">Schedule 6:59 AM</button>
+        <button class="btn ghost" onclick="cancelLL()">Cancel</button>
+      </div>
+      <span class="alarm-status" id="llStatus">No alarm scheduled</span>
+    </div>
+    <div class="alarm-card bbb">
+      <h3>👑 Alarm II — Bibbidi Bobbidi Boutique</h3>
+      <p><b>TOP PRIORITY.</b> BBB books up in MINUTES at midnight EST exactly 60 days before your check-in. For Oct 11 check-in: Tue Aug 11, 2026 at 11:00 PM CT (= 12:00 AM EST Wed Aug 12). Disney's 60-day rolling window includes your full stay.</p>
+      <div class="btn-row">
+        <button class="btn pink" onclick="fireAlarm('bbb')">Test BBB</button>
+        <button class="btn" onclick="scheduleBBB()">Schedule Aug 11 · 11 PM CT</button>
+        <button class="btn ghost" onclick="cancelBBB()">Cancel</button>
+      </div>
+      <span class="alarm-status" id="bbbStatus">No alarm scheduled</span>
+    </div>
   </div>
 
-  <div class="alarm-panel">
-    <h3>📢 Lightning Lane Alarm</h3>
-    <p>Fires at 6:59 AM with voice + flashing screen. LLMP drops at 7:00 AM exactly.</p>
-    <div class="alarm-btns">
-      <button class="alarm-btn" id="testAlarmBtn">🔔 Test Now</button>
-      <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule 6:59 AM</button>
-      <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel</button>
-    </div>
-    <div id="alarmStatus">No alarm scheduled.</div>
-  </div>
-
-  <div class="alarm-panel bbb">
-    <h3>👑 Bibbidi Bobbidi Boutique — TOP PRIORITY</h3>
-    <p>Books up in MINUTES at midnight EST exactly 60 days before check-in. For Oct 11: <b style="color:#ff8fd1">Tue Aug 11, 11:00 PM CT</b>.</p>
-    <div class="alarm-btns">
-      <button class="alarm-btn bbb" id="testBbbBtn">🔔 Test BBB</button>
-      <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 11</button>
-      <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel</button>
-    </div>
-    <div id="bbbStatus">No alarm scheduled.</div>
-    <div class="mw-card">
-      <p style="font-size:13px; color:#cbd5e1; line-height:1.5;"><b style="color:#ff8fd1;">🐭 Backup:</b> If you miss the window or all slots are taken, MouseWatcher will text/email you when a cancellation hits.</p>
-      <a href="https://mousewatcher.com/restaurants/magic-kingdom-bibbidi-bobbidi-boutique-park" target="_blank" rel="noopener">🔗 Set Up MouseWatcher Alert →</a>
-    </div>
+  <div class="mouse-card">
+    <h3>🐭 BACKUP PLAN: MouseWatcher Cancellation Alerts</h3>
+    <p>If you miss the midnight window OR all slots are taken, set up a MouseWatcher alert. They text/email you the second a cancellation hits — that's how most people actually score BBB at Magic Kingdom.</p>
+    <a class="btn" href="https://mousewatcher.com/restaurants/magic-kingdom-bibbidi-bobbidi-boutique-park" target="_blank" rel="noopener">Open MouseWatcher →</a>
+    <small>Alternatives: MouseNotifier · MouseDining (free tiers available)</small>
   </div>
 </section>
 
-<footer>The Garcia Family Portal · Private · October 2026 · Aurora Glass · <b style="color:#fde68a">Premium Edition v4 · Flow Cut</b> · <em style="color:#fde68a;font-style:normal">For Abui &amp; Abui Temo, with love from the thirteen.</em></footer>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-stamp">See ya real soon!</div>
+  <div>Garcia Family · Disney World &amp; Epic Universe · October 2026 · Have an incredible trip ✨🏰🎆</div>
+</footer>
+
+<!-- ALARM OVERLAY -->
+<div id="overlay" role="alertdialog" aria-modal="true">
+  <div class="ov-inner">
+    <div class="ov-emoji" id="ovEmoji">🚨</div>
+    <h2 id="ovTitle">BOOK LIGHTNING LANE!</h2>
+    <p id="ovSub">Open My Disney Experience NOW</p>
+    <button class="btn red" id="ovStop" onclick="stopAlarm()">■ STOP ALARM</button>
+  </div>
+</div>
 
 <script>
+/* ===== emoji fallback for broken images ===== */
+function fb(img){
+  const d=document.createElement('div');
+  d.className='emoji-fb';
+  d.textContent=img.dataset.emoji;
+  img.replaceWith(d);
+}
+
+/* ===== cast roster ===== */
+const CAST=[
+ ['Abui Temo','Grandpa','Mickey Mouse','The headliner. The hugs. The heart of the crew.','abui_temo.png','mickey.jpg','🐭'],
+ ['Abui','Grandma','Minnie Mouse','Bows, kindness, and quiet magic. The glue.','Abui.png','minnie.jpg','🎀'],
+ ['Art','Dad · Captain','Luigi','Player 2. Logistics captain. Quietly the trip MVP.','art.png','luigi.jpg','👷'],
+ ['Annelise','The Star · 4 yrs · 42"','Mario',"It's-a-me! Lead jumper. Lead Mario fan. Lead energy.",'annelise.jpg','mario.jpg','🍄'],
+ ['Sandra','Mom','Princess Peach','Composed. Royal. Runs the kingdom from row two.','Sandra.png','peach.jpg','👑'],
+ ['Martha','Family','Daisy','Bright. Bold. Never bored. Always game for one more ride.','Martha.png','daisy.jpg','🌼'],
+ ['Danny','Family','Donkey Kong','Big energy, bigger laughs. Strongest in line.','Danny.png','dk.jpg','🦍'],
+ ['Valeria','Family','Goofy',"Gawrsh — the kids' favorite hype crew member.",'Valeria.png','goofy.jpg','🐶'],
+ ['Isabella','Family','Belle','Books in one hand, churro in the other.','Isabella.png','belle.jpg','🌹'],
+ ['Victoria','Family','Anna','Brave. Curious. Ready for adventure (and a Dole Whip).','Victoria.png','anna.jpg','❄️'],
+ ['Valentina','Family','Winnie the Pooh','Snack patrol. Soft, sweet, hungry, happy.','Valentina.png','pooh.jpg','🍯'],
+ ['John','Family','Darth Vader','The dark side just brought sunscreen. And snacks.','John.jpg','vader.jpg','⚔️'],
+ ['Anette','Family','Mirabel (Encanto)',"We don't talk about lines… but she'll handle the day plan.",'Anette.png','mirabel.jpg','🦋']
+];
+document.getElementById('castGrid').innerHTML=CAST.map(function(c,i){
+  return '<article class="card">'+
+    '<div class="num-tag">#'+(i+1)+'</div>'+
+    '<div class="cast-imgs">'+
+      '<img class="cast-photo" src="photos/'+c[4]+'" alt="'+c[0]+'" data-emoji="'+c[6]+'" onerror="fb(this)" loading="lazy">'+
+      '<img class="cast-char" src="characters/'+c[5]+'" alt="'+c[2]+'" data-emoji="'+c[6]+'" onerror="fb(this)" loading="lazy">'+
+    '</div>'+
+    '<h3>'+c[0]+'</h3>'+
+    '<div class="role">'+c[1]+'</div>'+
+    '<div class="as">as '+c[2]+'</div>'+
+    '<p>'+c[3]+'</p></article>';
+}).join('');
+
+/* ===== countdown ===== */
 const TRIP_START = new Date('2026-10-11T12:20:00-05:00').getTime();
-function tick(){
-  let d = TRIP_START - Date.now();
-  if(d<=0){ document.getElementById('cd-d').textContent='0'; return; }
-  const days=Math.floor(d/86400000), h=Math.floor((d%86400000)/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
-  document.getElementById('cd-d').textContent=days;
-  var nc=document.getElementById('nav-cd'); if(nc) nc.textContent=days;
-  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+const TRIP_END   = new Date('2026-10-17T23:59:00-05:00').getTime();
+function pad(n){return String(n).padStart(2,'0')}
+function tickCountdown(){
+  const now=Date.now(), msg=document.getElementById('tripMsg'), grid=document.getElementById('countdown');
+  if(now>=TRIP_START&&now<=TRIP_END){grid.style.display='none';msg.style.display='block';msg.textContent="🎉 You're on the trip — enjoy every minute!";return}
+  if(now>TRIP_END){grid.style.display='none';msg.style.display='block';msg.textContent='Trip complete — hope it was magical! 🏰';return}
+  let d=TRIP_START-now;
+  document.getElementById('cdD').textContent=Math.floor(d/864e5);
+  document.getElementById('cdH').textContent=pad(Math.floor(d/36e5)%24);
+  document.getElementById('cdM').textContent=pad(Math.floor(d/6e4)%60);
+  document.getElementById('cdS').textContent=pad(Math.floor(d/1e3)%60);
 }
-tick(); setInterval(tick,1000);
+tickCountdown();setInterval(tickCountdown,1000);
 
-document.querySelectorAll('.nav-links a').forEach(a=>{ a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h&&h.startsWith('#')){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth'}); } }); });
-
-let aI=null,llT=null,bbbT=null;
-function spk(p){if(!('speechSynthesis' in window))return; const u=new SpeechSynthesisUtterance(p); u.rate=1.05; u.pitch=1.3; window.speechSynthesis.speak(u);}
-function prime(){if(!('speechSynthesis' in window))return; const p=new SpeechSynthesisUtterance(' '); p.volume=0; window.speechSynthesis.speak(p);}
-function startAlarm(t){
-  const o=document.getElementById('alarmOverlay'); let ph;
-  if(t==='bbb'){ document.getElementById('alarmIcon').textContent='👑✨'; document.getElementById('alarmTitle').textContent='BOOK BIBBIDI BOBBIDI BOUTIQUE!'; document.getElementById('alarmMsg').textContent='Reserve Mario\'s appointment NOW'; o.classList.add('bbb-mode'); ph='Book Bibbidi Bobbidi Boutique!'; }
-  else { document.getElementById('alarmIcon').textContent='🚨'; document.getElementById('alarmTitle').textContent='BOOK LIGHTNING LANE!'; document.getElementById('alarmMsg').textContent='Open My Disney Experience NOW'; o.classList.remove('bbb-mode'); ph='Book Lightning Lane!'; }
-  o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
+/* ===== day tabs ===== */
+const DAY_LABELS=[['D1','Sun · Arrive'],['D2','Mon · AK'],['D3','Tue · HS'],['D4','Wed · MK'],['D5','Thu · Rest'],['D6','Fri · Epic'],['D7','Sat · Home']];
+const tabRow=document.getElementById('tabRow');
+const panels=document.querySelectorAll('.day-panel');
+DAY_LABELS.forEach(function(l,i){
+  const b=document.createElement('button');
+  b.className='tab-btn';b.setAttribute('role','tab');
+  b.innerHTML=l[0]+'<small>'+l[1]+'</small>';
+  b.addEventListener('click',function(){selectDay(i)});
+  tabRow.appendChild(b);
+});
+function selectDay(i){
+  tabRow.querySelectorAll('.tab-btn').forEach(function(b,j){b.classList.toggle('on',j===i)});
+  panels.forEach(function(p,j){p.classList.toggle('on',j===i)});
 }
-window.stopAlarm=function(){ document.getElementById('alarmOverlay').classList.remove('active','bbb-mode'); if(aI){clearInterval(aI);aI=null;} if('speechSynthesis' in window)window.speechSynthesis.cancel(); };
+selectDay(0);
+
+/* ===== checklist (localStorage) ===== */
+const LS_KEY='garcia-disney2026-checklist';
+const boxes=document.querySelectorAll('.chk input');
+function loadChk(){
+  let saved={};
+  try{saved=JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){saved={}}
+  boxes.forEach(function(b){b.checked=!!saved[b.dataset.key]});
+  updateProg();
+}
+function saveChk(){
+  const o={};
+  boxes.forEach(function(b){o[b.dataset.key]=b.checked});
+  localStorage.setItem(LS_KEY,JSON.stringify(o));
+  updateProg();
+}
+function updateProg(){
+  const done=[...boxes].filter(function(b){return b.checked}).length;
+  document.getElementById('progBar').style.width=(done/boxes.length*100)+'%';
+  document.getElementById('progTxt').textContent=done+' / '+boxes.length+' done';
+}
+boxes.forEach(function(b){b.addEventListener('change',saveChk)});
+document.getElementById('resetChk').addEventListener('click',function(){
+  boxes.forEach(function(b){b.checked=false});saveChk();
+});
+loadChk();
+
+/* ===== alarms ===== */
+const BBB = new Date('2026-08-12T00:00:00-04:00');
 function next659(){const n=new Date(),t=new Date(); t.setHours(6,59,0,0); if(t<=n)t.setDate(t.getDate()+1); return t;}
-document.getElementById('testAlarmBtn').onclick=()=>startAlarm('ll');
-document.getElementById('scheduleAlarmBtn').onclick=()=>{ if(llT)clearTimeout(llT); const t=next659(); llT=setTimeout(()=>startAlarm('ll'),t-new Date()); document.getElementById('alarmStatus').innerHTML=`✅ Armed for <b>${t.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
-document.getElementById('cancelAlarmBtn').onclick=()=>{ if(llT){clearTimeout(llT);llT=null;} document.getElementById('alarmStatus').textContent='No alarm scheduled.'; };
-const BBB=new Date('2026-08-12T00:00:00-04:00');
-document.getElementById('testBbbBtn').onclick=()=>startAlarm('bbb');
-document.getElementById('scheduleBbbBtn').onclick=()=>{ if(bbbT)clearTimeout(bbbT); const d=BBB-new Date(); if(d<=0){document.getElementById('bbbStatus').innerHTML='⚠️ Window already opened';return;} bbbT=setTimeout(()=>startAlarm('bbb'),d); document.getElementById('bbbStatus').innerHTML=`✅ Armed for <b>${BBB.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
-document.getElementById('cancelBbbBtn').onclick=()=>{ if(bbbT){clearTimeout(bbbT);bbbT=null;} document.getElementById('bbbStatus').textContent='No alarm scheduled.'; };
+let llTimer=null,bbbTimer=null,voiceTimer=null;
+const overlay=document.getElementById('overlay');
 
-/* ===== PHOTO LOADER — tries multiple filename variations, falls back to emoji ===== */
-function loadCastPhotos(){
-  const exts = ['jpg','jpeg','png','webp','JPG','JPEG','PNG'];
-  const variations = id => {
-    const v = [id];
-    if (id.includes('_')) v.push(id.replace(/_/g,' ')); // e.g., "abui_temo" -> "abui temo"
-    v.push(id.charAt(0).toUpperCase() + id.slice(1)); // capitalize first
-    if (id.includes('_')) v.push(id.split('_').map(s=>s.charAt(0).toUpperCase()+s.slice(1)).join(' ')); // "Abui Temo"
-    return [...new Set(v)];
-  };
-  document.querySelectorAll('.cast[data-id]').forEach(card => {
-    const id = card.dataset.id;
-    const av = card.querySelector('.av');
-    av.setAttribute('data-em', av.textContent.trim());
-    const tries = [];
-    variations(id).forEach(name => exts.forEach(ext => tries.push(`photos/${name}.${ext}`)));
-    let i = 0;
-    const next = () => {
-      if (i >= tries.length) return;
-      const url = tries[i++];
-      const img = new Image();
-      img.onload = () => { av.style.backgroundImage = `url("${url}")`; av.classList.add('has-photo'); };
-      img.onerror = next;
-      img.src = url;
-    };
-    next();
-    // Try to load character image badge
-    const ch = card.dataset.char;
-    if (ch) {
-      const cTries = [];
-      exts.forEach(ext => cTries.push(`characters/${ch}.${ext}`));
-      let j = 0;
-      const nextChar = () => {
-        if (j >= cTries.length) return;
-        const url = cTries[j++];
-        const img = new Image();
-        img.onload = () => { av.style.setProperty('--char-bg', `url("${url}")`); av.classList.add('has-char'); };
-        img.onerror = nextChar;
-        img.src = url;
-      };
-      nextChar();
+function fireAlarm(type){
+  const isLL=type==='ll';
+  overlay.className='show '+type;
+  document.getElementById('ovEmoji').textContent=isLL?'🚨':'👑✨';
+  document.getElementById('ovTitle').textContent=isLL?'BOOK LIGHTNING LANE!':'BOOK BIBBIDI BOBBIDI BOUTIQUE!';
+  document.getElementById('ovSub').textContent=isLL?'Open My Disney Experience NOW':"Reserve Annelise's appointment NOW";
+  const phrase=isLL?'Book Lightning Lane!':'Book Bibbidi Bobbidi Boutique!';
+  function speak(){
+    if('speechSynthesis' in window){
+      const u=new SpeechSynthesisUtterance(phrase);
+      u.rate=1.05;u.pitch=1.1;
+      speechSynthesis.speak(u);
     }
-  });
-}
-// Disabled: photos are already wired inline via style="background-image:..." on each .av
-// loadCastPhotos();
-
-
-
-/* ===== TINKERBELL MAGIC — v3, Pixie-Dust Edition ===== */
-const sparkleStyle = document.createElement('style');
-sparkleStyle.textContent = `
-.tb-sparkle{
-  position:fixed; pointer-events:none; z-index:9998;
-  width:9px; height:9px; border-radius:50%;
-  background: radial-gradient(circle, #fff 0%, #fde68a 30%, #fbbf24 60%, transparent 80%);
-  box-shadow: 0 0 12px #fde68a, 0 0 24px #fbbf24;
-  animation: sparkleFade 1.4s ease-out forwards;
-}
-@keyframes sparkleFade {
-  0%{ transform:scale(0) rotate(0deg); opacity:1; }
-  20%{ transform:scale(1.6) rotate(180deg); opacity:1; }
-  100%{ transform:scale(.2) rotate(540deg) translate(var(--dx), var(--dy)); opacity:0; }
-}
-.tb-sparkle.cyan{ background: radial-gradient(circle, #fff 0%, #67e8f9 30%, #06b6d4 60%, transparent 80%); box-shadow: 0 0 12px #67e8f9, 0 0 24px #06b6d4; }
-.tb-sparkle.pink{ background: radial-gradient(circle, #fff 0%, #fbcfe8 30%, #ec4899 60%, transparent 80%); box-shadow: 0 0 12px #fbcfe8, 0 0 24px #ec4899; }
-.tb-sparkle.violet{ background: radial-gradient(circle, #fff 0%, #c4b5fd 30%, #a855f7 60%, transparent 80%); box-shadow: 0 0 12px #c4b5fd, 0 0 24px #a855f7; }
-.tb-sparkle.green{ background: radial-gradient(circle, #fff 0%, #a7f3d0 30%, #34d399 60%, transparent 80%); box-shadow: 0 0 12px #a7f3d0, 0 0 24px #34d399; }
-.tb-sparkle.big{ width:14px; height:14px; box-shadow: 0 0 18px currentColor, 0 0 36px currentColor; }
-.tb-sparkle.tiny{ width:5px; height:5px; }
-.tb-pixie{
-  position:fixed; pointer-events:none; z-index:9997;
-  width:3px; height:3px; border-radius:50%;
-  background: radial-gradient(circle, #fff, #fde68a 60%, transparent);
-  box-shadow: 0 0 6px #fde68a;
-  animation: pixieDrift 3s ease-out forwards;
-}
-@keyframes pixieDrift {
-  0%{ opacity:0; transform: translate(0,0) scale(.5); }
-  20%{ opacity:.85; transform: translate(calc(var(--dx)*.25), calc(var(--dy)*.25)) scale(1); }
-  100%{ opacity:0; transform: translate(var(--dx), var(--dy)) scale(.3); }
-}
-`;
-document.head.appendChild(sparkleStyle);
-
-const SPARKLE_COLORS = ['','cyan','pink','violet','green'];
-function makeSparkle(x, y, opts){
-  opts = opts || {};
-  const s = document.createElement('div');
-  const cls = opts.color || SPARKLE_COLORS[Math.floor(Math.random()*SPARKLE_COLORS.length)];
-  s.className = 'tb-sparkle ' + cls + (opts.big ? ' big' : '') + (opts.tiny ? ' tiny' : '');
-  s.style.left = (x - 4 + (Math.random()*30-15)) + 'px';
-  s.style.top  = (y - 4 + (Math.random()*30-15)) + 'px';
-  s.style.setProperty('--dx', (Math.random()*80-40) + 'px');
-  s.style.setProperty('--dy', (Math.random()*80+20) + 'px');
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 1500);
-}
-function makePixie(x, y){
-  const p = document.createElement('div');
-  p.className = 'tb-pixie';
-  p.style.left = x + 'px'; p.style.top = y + 'px';
-  p.style.setProperty('--dx', (Math.random()*120-60) + 'px');
-  p.style.setProperty('--dy', (Math.random()*120+30) + 'px');
-  document.body.appendChild(p);
-  setTimeout(() => p.remove(), 3100);
-}
-
-// MOUSE TRAIL — Tinkerbell follows the cursor generously
-let sparkleTimer = 0;
-document.addEventListener('mousemove', e => {
-  if (Date.now() - sparkleTimer < 22) return;
-  sparkleTimer = Date.now();
-  for (let i = 0; i < 3; i++) makeSparkle(e.clientX, e.clientY, { tiny: i > 1 });
-  makePixie(e.clientX + (Math.random()*16-8), e.clientY + (Math.random()*16-8));
-});
-
-// AMBIENT — drift sparkles across the page constantly
-setInterval(() => {
-  if (document.hidden) return;
-  for (let i = 0; i < 6; i++){
-    makeSparkle(Math.random()*window.innerWidth, Math.random()*window.innerHeight);
   }
-  if (Math.random() < 0.4){
-    const cx = Math.random()*window.innerWidth;
-    const cy = Math.random()*window.innerHeight;
-    for (let j = 0; j < 8; j++) makePixie(cx, cy);
-    makeSparkle(cx, cy, { big: true });
-  }
-}, 350);
-
-// CLICK BURST — every click summons a Tinkerbell explosion
-document.addEventListener('click', e => {
-  for (let i = 0; i < 14; i++){
-    setTimeout(() => makeSparkle(e.clientX, e.clientY, { big: i % 4 === 0 }), i * 18);
-  }
-  for (let i = 0; i < 10; i++) makePixie(e.clientX, e.clientY);
-});
-
+  speak();
+  clearInterval(voiceTimer);
+  voiceTimer=setInterval(speak,2400);
+}
+function stopAlarm(){
+  overlay.className='';
+  clearInterval(voiceTimer);voiceTimer=null;
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+}
+function scheduleLL(){
+  clearTimeout(llTimer);
+  const t=next659();
+  llTimer=setTimeout(function(){fireAlarm('ll');document.getElementById('llStatus').textContent='No alarm scheduled'},t-Date.now());
+  document.getElementById('llStatus').textContent='⏰ Scheduled: '+t.toLocaleString([],{weekday:'short',hour:'numeric',minute:'2-digit'})+' — keep this page open';
+}
+function cancelLL(){
+  clearTimeout(llTimer);llTimer=null;
+  document.getElementById('llStatus').textContent='No alarm scheduled';
+}
+function scheduleBBB(){
+  clearTimeout(bbbTimer);
+  const ms=BBB-Date.now();
+  if(ms<=0){fireAlarm('bbb');return}
+  bbbTimer=setTimeout(function(){fireAlarm('bbb');document.getElementById('bbbStatus').textContent='No alarm scheduled'},ms);
+  document.getElementById('bbbStatus').textContent='⏰ Scheduled: Tue Aug 11 · 11:00 PM CT — keep this page open';
+}
+function cancelBBB(){
+  clearTimeout(bbbTimer);bbbTimer=null;
+  document.getElementById('bbbStatus').textContent='No alarm scheduled';
+}
 </script>
-
-<script>
-/* WINNER 4 v3 — Gentle cast image fallback (skips file:// URLs).
-   Local file:// URLs render fine via background-image even when
-   Image() can't probe them under file-protocol security. */
-(function(){
-  function pull(s, prop){
-    var m = s && s.match(new RegExp(prop + ":\\s*url\\(['\"]?([^'\")]+)['\"]?\\)"));
-    return m ? m[1] : null;
-  }
-  document.querySelectorAll('.cast .av').forEach(function(av){
-    var em = av.getAttribute('data-em') || (av.textContent || '').trim();
-    if (em) av.setAttribute('data-em', em);
-    var photoUrl = pull(av.getAttribute('style')||'', 'background-image');
-    var charBgMatch = (av.getAttribute('style')||'').match(/--char-bg:\s*url\(['"]?([^'")]+)['"]?\)/);
-    var charUrl = charBgMatch ? charBgMatch[1] : null;
-    function probe(url, fail){
-      if (!url || /^file:/i.test(url)) return;
-      var img = new Image();
-      img.onerror = fail;
-      img.src = url;
-    }
-    probe(photoUrl, function(){
-      av.classList.remove('has-photo');
-      if (em && !av.textContent.trim()) av.textContent = em;
-    });
-    probe(charUrl, function(){ av.classList.remove('has-char'); });
-  });
-})();
-</script>
-
 </body>
 </html>
