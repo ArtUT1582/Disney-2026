@@ -211,6 +211,7 @@ section{padding:44px 0 8px}
 .alarm-card{border:var(--bd);box-shadow:var(--sh);padding:20px;background:#fff}
 .alarm-card.ll{background:#FFF3D6;transform:rotate(-.6deg)}
 .alarm-card.bbb{background:#FFE4F1;transform:rotate(.6deg)}
+.alarm-card.dine{background:#E4F4FF;transform:rotate(-.4deg)}
 .alarm-card h3{font-size:1.2rem;margin-bottom:8px}
 .alarm-card p{font-size:14.5px;margin-bottom:14px}
 .alarm-card .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
@@ -227,6 +228,8 @@ section{padding:44px 0 8px}
 #overlay.bbb{animation:flashBBB .45s steps(2) infinite}
 @keyframes flashLL{0%{background:var(--red)}100%{background:var(--yellow)}}
 @keyframes flashBBB{0%{background:var(--pink)}100%{background:#fff}}
+#overlay.dine{animation:flashDINE .45s steps(2) infinite}
+@keyframes flashDINE{0%{background:var(--cyan)}100%{background:#fff}}
 .ov-inner{background:#fff;border:4px solid var(--ink);box-shadow:10px 10px 0 var(--ink);padding:32px 22px;max-width:520px;width:100%}
 .ov-emoji{font-size:64px}
 #ovTitle{font-size:clamp(1.4rem,7vw,2.2rem);margin:10px 0}
@@ -244,6 +247,7 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
   .ticker-track{animation:none;padding-left:0}
   #overlay.ll{animation:none;background:var(--red)}
   #overlay.bbb{animation:none;background:var(--pink)}
+  #overlay.dine{animation:none;background:var(--cyan)}
   *{transition:none!important}
 }
 </style>
@@ -260,6 +264,7 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
     <span>[OK] HHN · Oct 15 Thu confirmed event night · $91–$130</span>
     <span>[CLOSED] DinoLand · permanently shut Feb 2026 · Tropical Americas opens 2027</span>
     <span>[PRIORITY] Bibbidi Bobbidi Boutique · book Aug 11 11:00 PM CT</span>
+    <span>[PRIORITY] Cinderella's Royal Table · dining opens Aug 12 5:00 AM CT · 6 hrs after BBB</span>
     <span>[ALARM] Lightning Lane · 6:59 AM rule · phone ready</span>
     <span>[INFO] AK rope drop 7:30 · HS rope drop 8:30 · MK rope drop 7:30</span>
     <span>[WATCH] Bus by 6:30 AM Disney days · Skyliner by 7:30 for HS</span>
@@ -383,7 +388,8 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
     <h3>Magic Kingdom</h3>
     <span class="badge park">MK</span>
     <ul>
-      <li>👑 BBB appointment — must be booked Aug 11 at 11 PM CT</li>
+      <li>👑 BBB appointment ~9 AM — booked Aug 11 at 11 PM CT</li>
+      <li>🍽️ Cinderella's Royal Table lunch ~11:30 AM — booked Aug 12 at 5 AM CT. Both are inside the castle; she arrives at lunch already transformed</li>
       <li>🚌 On bus by 6:30 AM</li>
       <li>🧚 7:30 AM ROPE DROP — Peter Pan's Flight</li>
       <li>🎠 Fantasyland sweep: Small World → Pooh → Little Mermaid → PhilharMagic</li>
@@ -451,6 +457,7 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
         <li>Set 6:59 AM alarm — book LL Multi Pass at 7:00 sharp. First pick: Seven Dwarfs Mine Train (sells out fastest)</li>
         <li>TRON / Space Mountain: Annelise at 42" can't ride (48"/44") — use Rider Switch so adults still get on</li>
         <li>Annelise's rides: Tomorrowland Speedway (she "drives" with adult), Dumbo, Barnstormer, Buzz Lightyear, Haunted Mansion, Mickey's PhilharMagic</li>
+        <li>👑🍽️ <strong>Castle day:</strong> BBB ~9 AM then Cinderella's Royal Table lunch ~11:30 AM — book BBB early so any lunch seating still works. Both bookings happen Aug 11–12, six hours apart</li>
         <li>Midday break 1–4 PM, return for ~3 PM parade and 9 PM fireworks</li>
         <li>✅ Wed is NOT a MNSSHP night — full park access until normal close. Zero Wednesday parties all October (every date is Tue/Thu/Fri/Sun + Halloween Sat)</li>
         <li>⚠️ <strong>BUT — expect the heaviest MK crowds of your week.</strong> Oct 13 and Oct 15 are both party nights, so day guests get pushed off those dates onto Wed. It's the only clean full-hours MK night in the stretch. Rope drop and the 6:59 alarm matter more today than any other day of the trip</li>
@@ -503,13 +510,15 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
 <!-- CHECKLIST -->
 <section id="checklist">
   <h2 class="sec-h p">Action Checklist</h2>
-  <div class="prog-wrap"><div id="progBar"></div><div id="progTxt">0 / 9 done</div></div>
+  <div class="prog-wrap"><div id="progBar"></div><div id="progTxt">0 / 10 done</div></div>
   <button class="btn ghost" id="resetChk" style="margin-top:8px">↺ Reset Checklist</button>
 
   <div class="chk-group">
     <div class="g-h">Booking</div>
     <label class="chk" for="c-bbb"><input type="checkbox" id="c-bbb" data-key="bbb"><div class="box"><span>✗</span></div>
       <div class="txt"><b>Book BBB</b><small>Aug 11 · 11 PM CT · use BBB alarm</small></div><div class="prio">Top Priority</div></label>
+    <label class="chk" for="c-crt"><input type="checkbox" id="c-crt" data-key="crt"><div class="box"><span>✗</span></div>
+      <div class="txt"><b>Book Cinderella's Royal Table</b><small>Aug 12 · 5 AM CT · Oct 14 lunch · party of 12</small></div><div class="prio">Top Priority</div></label>
     <label class="chk" for="c-flights"><input type="checkbox" id="c-flights" data-key="flights"><div class="box"><span>✗</span></div>
       <div class="txt"><b>Book flights</b><small>IAH → MCO · Oct 11 · 12:20 PM · Economy</small></div></label>
     <label class="chk" for="c-resort"><input type="checkbox" id="c-resort" data-key="resort"><div class="box"><span>✗</span></div>
@@ -575,6 +584,17 @@ footer .foot-stamp{display:inline-block;background:var(--yellow);color:var(--ink
         <button class="btn ghost" onclick="cancelBBB()">Cancel</button>
       </div>
       <span class="alarm-status" id="bbbStatus">No alarm scheduled</span>
+    </div>
+
+    <div class="alarm-card dine">
+      <h3>🍽️ Alarm III — Cinderella's Royal Table</h3>
+      <p><b>SIX HOURS AFTER BBB — different system, different time.</b> Disney dining opens at <b>6:00 AM ET = 5:00 AM CT, Wed Aug 12</b>. Book Oct 14 lunch about 90 min after her BBB slot ends, then book the rest of the stay in the same session. Full prepayment required.</p>
+      <div class="alarm-btns">
+        <button class="btn cyan" onclick="fireAlarm('dine')">Test Dining</button>
+        <button class="btn" onclick="scheduleDine()">Schedule Aug 12 · 5:00 AM CT</button>
+        <button class="btn ghost" onclick="cancelDine()">Cancel</button>
+      </div>
+      <span class="alarm-status" id="dineStatus">No alarm scheduled</span>
     </div>
   </div>
 
@@ -702,17 +722,23 @@ loadChk();
 
 /* ===== alarms ===== */
 const BBB = new Date('2026-08-12T00:00:00-04:00');
+const DINE = new Date('2026-08-12T06:00:00-04:00'); // 6:00 AM ET = 5:00 AM CT
 function next659(){const n=new Date(),t=new Date(); t.setHours(6,59,0,0); if(t<=n)t.setDate(t.getDate()+1); return t;}
-let llTimer=null,bbbTimer=null,voiceTimer=null;
+let llTimer=null,bbbTimer=null,dineTimer=null,voiceTimer=null;
 const overlay=document.getElementById('overlay');
 
+const ALARMS={
+  ll:  {emoji:'🚨',    title:'BOOK LIGHTNING LANE!',              sub:'Open My Disney Experience NOW',                  say:'Book Lightning Lane!'},
+  bbb: {emoji:'👑✨',  title:'BOOK BIBBIDI BOBBIDI BOUTIQUE!',    sub:"Reserve Annelise's appointment NOW",              say:'Book Bibbidi Bobbidi Boutique!'},
+  dine:{emoji:'🍽️👑', title:"BOOK CINDERELLA'S ROYAL TABLE!",    sub:'Dining is open — book Oct 14 lunch + the whole stay', say:"Book Cinderella's Royal Table!"}
+};
 function fireAlarm(type){
-  const isLL=type==='ll';
+  const a=ALARMS[type]||ALARMS.ll;
   overlay.className='show '+type;
-  document.getElementById('ovEmoji').textContent=isLL?'🚨':'👑✨';
-  document.getElementById('ovTitle').textContent=isLL?'BOOK LIGHTNING LANE!':'BOOK BIBBIDI BOBBIDI BOUTIQUE!';
-  document.getElementById('ovSub').textContent=isLL?'Open My Disney Experience NOW':"Reserve Annelise's appointment NOW";
-  const phrase=isLL?'Book Lightning Lane!':'Book Bibbidi Bobbidi Boutique!';
+  document.getElementById('ovEmoji').textContent=a.emoji;
+  document.getElementById('ovTitle').textContent=a.title;
+  document.getElementById('ovSub').textContent=a.sub;
+  const phrase=a.say;
   function speak(){
     if('speechSynthesis' in window){
       const u=new SpeechSynthesisUtterance(phrase);
@@ -749,6 +775,17 @@ function scheduleBBB(){
 function cancelBBB(){
   clearTimeout(bbbTimer);bbbTimer=null;
   document.getElementById('bbbStatus').textContent='No alarm scheduled';
+}
+function scheduleDine(){
+  clearTimeout(dineTimer);
+  const ms=DINE-Date.now();
+  if(ms<=0){fireAlarm('dine');return}
+  dineTimer=setTimeout(function(){fireAlarm('dine');document.getElementById('dineStatus').textContent='No alarm scheduled'},ms);
+  document.getElementById('dineStatus').textContent='⏰ Scheduled: Wed Aug 12 · 5:00 AM CT — keep this page open';
+}
+function cancelDine(){
+  clearTimeout(dineTimer);dineTimer=null;
+  document.getElementById('dineStatus').textContent='No alarm scheduled';
 }
 </script>
 </body>
