@@ -224,7 +224,7 @@ section{padding:54px 0 10px}
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>[T-LIVE] Countdown ticking · Oct 11 12:20 PM IAH→MCO locked</span>
+    <span>[T-LIVE] Countdown ticking · UA2245 · Oct 11 7:25 AM IAH → 10:54 AM MCO</span>
     <span>[OK] Cast roster · 12/12 confirmed</span>
     <span>[OK] Annelise height · 42" · cleared for Mario Kart, Slinky, 7 Dwarfs, Tower of Terror</span>
     <span>[BLOCK] Rock 'n' Roller (48") · TRON (48") · Space Mountain (44") — Rider Switch</span>
@@ -259,7 +259,7 @@ section{padding:54px 0 10px}
 
 <!-- COUNTDOWN -->
 <div class="count-wrap">
-  <span class="cap">Until IAH → MCO · Sun Oct 11 · 12:20 PM</span>
+  <span class="cap">Until wheels-up · UA2245 · Sun Oct 11 · 7:25 AM</span>
   <div class="count" id="countdown">
     <div class="cell"><div class="num" id="cdD">--</div><div class="lbl">Days</div></div>
     <div class="cell"><div class="num" id="cdH">--</div><div class="lbl">Hours</div></div>
@@ -315,7 +315,7 @@ section{padding:54px 0 10px}
     <h3>Arrival Day</h3>
     <span class="badge travel">Travel</span>
     <ul>
-      <li>✈️ Flight: IAH → MCO · 12:20 PM · Economy</li>
+      <li>🛫 <strong>UA2245 · IAH 7:25 AM → MCO 10:54 AM</strong> · United Economy · all 12 on one booking</li><li>⏰ <strong>Leave for IAH by 4:45 AM</strong> — 12 people checking bags needs the full 2 hrs</li><li>🚐 <strong>Pre-booked transfer MCO → Art of Animation</strong> · Annelise needs a car seat (see Transport)</li><li>🌞 <strong>You land before noon — this is a real day, not a travel write-off.</strong> Bags to Bell Services, then go. Room ready 3 PM</li>
       <li>🏨 Resort: Art of Animation · Little Mermaid · ~$251/night</li>
       <li>🏊 Afternoon: Pool · settle in · pick up MagicBand+</li>
       <li>🍽️ Dinner: Landscape of Flavors (resort food court)</li>
@@ -404,9 +404,9 @@ section{padding:54px 0 10px}
     <h3>Departure Home</h3>
     <span class="badge travel">Travel</span>
     <ul>
-      <li>🧳 Morning: Pack up · check out by 11 AM</li>
-      <li>🚐 Transport: Mears Connect or Uber to MCO</li>
-      <li>⏱️ Buffer: Arrive 2.5 hrs before flight</li>
+      <li>🛫 <strong>UA468 · MCO 7:00 AM → IAH 8:38 AM</strong> — a very early one</li><li>🧳 <strong>Pack Friday night.</strong> There is no morning to do it in</li>
+      🚐 <strong>Depart Art of Animation 4:15 AM</strong> · pre-booked transfer, not a 4 AM Uber gamble
+      <li>⏱️ <strong>At MCO by 5:00 AM</strong> · 2 hrs for 12 people + checked bags</li><li>🛏️ Settle the room folio Friday evening — nobody queues at 4 AM</li>
       <li>🏰 MCO: Disney store one last time</li>
     </ul>
   </div>
@@ -487,7 +487,7 @@ section{padding:54px 0 10px}
     <label class="chk" for="c-crt"><input type="checkbox" id="c-crt" data-key="crt"><div class="box"><span>✗</span></div>
       <div class="txt"><b>Book Cinderella's Royal Table</b><small>Aug 12 · 5 AM CT · Oct 14 lunch · party of 12</small></div><div class="prio">Top Priority</div></label>
     <label class="chk" for="c-flights"><input type="checkbox" id="c-flights" data-key="flights"><div class="box"><span>✗</span></div>
-      <div class="txt"><b>Book flights</b><small>IAH → MCO · Oct 11 · 12:20 PM · Economy</small></div></label>
+      <div class="txt"><b>Book flights</b><small>✅ BOOKED · UA2245 out 7:25 AM · UA468 back 7:00 AM</small></div></label>
     <label class="chk" for="c-resort"><input type="checkbox" id="c-resort" data-key="resort"><div class="box"><span>✗</span></div>
       <div class="txt"><b>Reserve Art of Animation</b><small>Little Mermaid section · Oct 11–17</small></div></label>
     <label class="chk" for="c-tickets"><input type="checkbox" id="c-tickets" data-key="tickets"><div class="box"><span>✗</span></div>
@@ -629,8 +629,8 @@ document.getElementById('castGrid').innerHTML=CAST.map(function(c,i){
 }).join('');
 
 /* ===== countdown ===== */
-const TRIP_START = new Date('2026-10-11T12:20:00-05:00').getTime();
-const TRIP_END   = new Date('2026-10-17T23:59:00-05:00').getTime();
+const TRIP_START = new Date('2026-10-11T07:25:00-05:00').getTime();
+const TRIP_END   = new Date('2026-10-17T08:38:00-05:00').getTime();
 function pad(n){return String(n).padStart(2,'0')}
 function tickCountdown(){
   const now=Date.now(), msg=document.getElementById('tripMsg'), grid=document.getElementById('countdown');
