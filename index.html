@@ -188,7 +188,8 @@ section{ max-width:1280px; margin: 90px auto; padding: 0 22px; }
 .alarm-btn:hover{ transform: translateY(-2px); }
 .alarm-btn.bbb{ background:#ff8fd1; color:#fff; }
 .alarm-btn.ghost{ background:transparent; color:#fff; border:1px solid var(--line); }
-#alarmStatus, #bbbStatus{ font-size:12px; color:#fbbf24; margin-top:10px; }
+#alarmStatus, #bbbStatus, #crtStatus{ font-size:12px; color:#fbbf24; margin-top:10px; }
+.alarm-panel.crt{ background: linear-gradient(135deg, rgba(96,165,250,.16), rgba(251,191,36,.12)); border-color:#93c5fd; }
 #bbbStatus{ color:#ff8fd1; }
 .mw-card{ margin-top:14px; padding:14px; background:rgba(0,0,0,.3); border-radius:14px; border:1px dashed #ff8fd1; }
 .mw-card a{ display:inline-block; background:#ff8fd1; color:#fff; padding:8px 14px; border-radius:999px; font-size:12px; text-decoration:none; margin-top:8px; font-weight:600; }
@@ -986,7 +987,6 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
     <a href="#countdown">Countdown</a>
     <a href="#expedition">Expedition</a>
     <a href="#cast">Cast</a>
-    <a href="#command">Command</a>
     <a href="#alarms">Alarms</a>
   </div>
   <div class="nav-pill" aria-label="Days until trip"><span class="pdot"></span><span>T- <span id="nav-cd">—</span> d</span></div>
@@ -1240,9 +1240,11 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
 }
 .ge2-subtitle{ font-family:'Cinzel', serif; font-weight:600; font-size:clamp(16px, 2.6vw, 28px); letter-spacing:.35em; color:#f6efde; margin:0 0 32px; text-transform:uppercase; }
 .ge2-dates{ font-family:'JetBrains Mono', monospace; font-size:14px; letter-spacing:.35em; color:#c4ad7d; margin-bottom:24px; }
-.ge2-toc{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; width:100%; margin-top:24px; }
-@media (max-width:1000px){ .ge2-toc{ grid-template-columns:repeat(2,1fr); } }
+.ge2-toc{ display:grid; grid-template-columns:repeat(7,1fr); gap:14px; width:100%; margin-top:24px; }
+@media (max-width:1100px){ .ge2-toc{ grid-template-columns:repeat(3,1fr); } }
 @media (max-width:560px){ .ge2-toc{ grid-template-columns:1fr; } }
+.ge2-card.static{ cursor:default; }
+.ge2-card.static:hover{ transform:none; border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.04); }
 .ge2-card{
   padding:22px 14px 20px; border-radius:14px;
   background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
@@ -1373,31 +1375,41 @@ button.expd-day:focus-visible{
     <div class="ge2-subtitle">Walt Disney World · Universal Orlando</div>
     <div class="ge2-dates">OCTOBER 11 → OCTOBER 17 · 2026</div>
     <nav class="ge2-toc" aria-label="Day itineraries">
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=ak" target="_blank" rel="noopener">
+      <div class="ge2-card static">
+        <div class="ge2-day">Day 01</div>
+        <div class="ge2-park">Arrival · Orlando</div>
+        <div class="ge2-date">SUN · OCT 11</div>
+      </div>
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=ak">
         <div class="ge2-day">Day 02</div>
         <div class="ge2-park">Animal Kingdom</div>
         <div class="ge2-date">MON · OCT 12</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=hs" target="_blank" rel="noopener">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hs">
         <div class="ge2-day">Day 03</div>
         <div class="ge2-park">Hollywood Studios</div>
         <div class="ge2-date">TUE · OCT 13</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=mk" target="_blank" rel="noopener">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=mk">
         <div class="ge2-day">Day 04</div>
         <div class="ge2-park">Magic Kingdom</div>
         <div class="ge2-date">WED · OCT 14</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=hhn" target="_blank" rel="noopener">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hhn">
         <div class="ge2-day">Day 05</div>
         <div class="ge2-park">HHN 35</div>
         <div class="ge2-date">THU · OCT 15</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=eu" target="_blank" rel="noopener">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=eu">
         <div class="ge2-day">Day 06</div>
         <div class="ge2-park">Epic Universe</div>
         <div class="ge2-date">FRI · OCT 16</div>
       </a>
+      <div class="ge2-card static">
+        <div class="ge2-day">Day 07</div>
+        <div class="ge2-park">Departure · Home</div>
+        <div class="ge2-date">SAT · OCT 17</div>
+      </div>
     </nav>
   </div>
 </section>
@@ -1453,85 +1465,16 @@ button.expd-day:focus-visible{
      COMMAND CENTER — Weather, Packing, Budget
      Family-wide cards that don't belong to any single park day.
      ============================================================ -->
-<section id="command">
-  <div class="section-h">
-    <div class="section-eyebrow">③ For the Whole Family · Command Center</div>
-    <h2 class="section-title">The <b>family command center.</b></h2>
-    <p class="section-deck">Everything that doesn't live in a single park day — weather forecast, packing checklist, daily budget snapshot, and the trip's VIP decisions.</p>
-  </div>
 
-  <div class="center-grid">
 
-    <!-- Weather Tracker moved to top-of-page weather-banner -->
 
-    <!-- Packing Checklist -->
-    <div class="center-card">
-      <div class="ce">🧳 Family Packing</div>
-      <div class="ch">Pack <b>once.</b> Carry it all.</div>
-      <ul class="pack-grid" id="pack-list">
-        <li data-pack="ponchos"><b>12 lightweight ponchos</b> (PM showers Mon)</li>
-        <li data-pack="sunscreen">SPF 50 spray + face stick</li>
-        <li data-pack="bands">MagicBand+ for all 12 (link before bed Sun)</li>
-        <li data-pack="phones">Portable phone batteries (5+) · USB-C cables</li>
-        <li data-pack="water">12 reusable water bottles</li>
-        <li data-pack="bbb-outfit">Annelise's BBB transformation outfit</li>
-        <li data-pack="strollers">Mario stroller + grandparent rental info</li>
-        <li data-pack="snacks">Resort-room snacks (gluten-free for Abui)</li>
-        <li data-pack="advil">Advil · Tums · Band-Aids · blister kit</li>
-        <li data-pack="cash">Cash for Build-a-Droid + Power-Up Bands</li>
-        <li data-pack="costumes">Mario hat + overalls for Epic Universe</li>
-        <li data-pack="passport">IDs · boarding passes · Disney res confirmations</li>
-        <li data-pack="charger">Universal Express Pass screenshots (offline)</li>
-      </ul>
-    </div>
-
-    <!-- Budget / VIP Decisions -->
-    <div class="center-card">
-      <div class="ce">💳 Budget &amp; Add-Ons</div>
-      <div class="ch">Trip <b>add-on snapshot.</b></div>
-      <div class="budget-rows">
-        <div class="br"><span class="bn"><b>Lightning Lane Multi-Pass</b> · 4 park days × $25 × 12</span><span class="bp">$1,200</span></div>
-        <div class="br"><span class="bn">LLSP · Rise of the Resistance · Tue</span><span class="bp">$260</span></div>
-        <div class="br"><span class="bn">BBB · Annelise transformation</span><span class="bp">$300</span></div>
-        <div class="br"><span class="bn">Build-a-Droid · Hollywood Studios</span><span class="bp">$110</span></div>
-        <div class="br"><span class="bn">HHN tickets · 6 adults × $115</span><span class="bp">$690</span></div>
-        <div class="br"><span class="bn">Universal Express + 2 Power-Up Bands</span><span class="bp">$240</span></div>
-        <div class="br"><span class="bn">Mears Connect · round trip</span><span class="bp">$420</span></div>
-        <div class="br total"><span class="bn">Add-Ons Total</span><span class="bp">~ $3,220</span></div>
-      </div>
-      <button class="vip-pill" onclick="alert('Tip: pay for Lightning Lane on the Capital One card for the 2x travel multiplier — both adults have one.')">⚡ Pay tip · use Capital One</button>
-      <p style="font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.55;font-weight:300;">Both Capital One travel multipliers apply. Track receipts in Apple Notes shared album so reimbursement to the family group settles in 48 hours.</p>
-    </div>
-
-  </div>
-</section>
-
-<script>
-/* ============================================================
-   PACKING CHECKLIST — persist taps across reloads
-   ============================================================ */
-(function(){
-  const list = document.getElementById('pack-list'); if (!list) return;
-  const KEY = 'garcia2026.packlist';
-  let done = {}; try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
-  list.querySelectorAll('li').forEach(li => {
-    const id = li.dataset.pack;
-    if (done[id]) li.classList.add('done');
-    li.addEventListener('click', () => {
-      li.classList.toggle('done');
-      done[id] = li.classList.contains('done');
-      localStorage.setItem(KEY, JSON.stringify(done));
-    });
-  });
-})();
-</script>
 
 
 <section id="alarms">
   <div class="section-h">
-    <div class="section-eyebrow">① For Staying Organized · The Two Critical Alarms</div>
-    <h2 class="section-title">Two <b>alarms.</b></h2>
-    <p class="section-deck">Two moments the whole trip pivots on. Both fire from this page so any of the twelve can keep watch — test them, schedule them, leave the tab open.</p>
+    <div class="section-eyebrow">① For Staying Organized · The Three Critical Alarms</div>
+    <h2 class="section-title">Three <b>alarms.</b></h2>
+    <p class="section-deck">Three moments the whole trip pivots on. All fire from this page so any of the twelve can keep watch — test them, schedule them, leave the tab open.</p>
   </div>
 
   <div class="alarm-panel">
@@ -1559,6 +1502,17 @@ button.expd-day:focus-visible{
       <a href="https://mousewatcher.com/restaurants/magic-kingdom-bibbidi-bobbidi-boutique-park" target="_blank" rel="noopener">🔗 Set Up MouseWatcher Alert →</a>
     </div>
   </div>
+
+  <div class="alarm-panel crt">
+    <h3>🏰 Princess Castle Dining — Cinderella's Royal Table</h3>
+    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Disney dining opens 6:00 AM ET — that's <b style="color:#93c5fd">Wed Aug 12, 5:00 AM CT</b>, six hours after the BBB window. Full prepayment required.</p>
+    <div class="alarm-btns">
+      <button class="alarm-btn" id="testCrtBtn">🔔 Test Castle</button>
+      <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12</button>
+      <button class="alarm-btn ghost" id="cancelCrtBtn">Cancel</button>
+    </div>
+    <div id="crtStatus">No alarm scheduled.</div>
+  </div>
 </section>
 
 <footer>The Garcia Family Portal · Private · October 2026 · Aurora Glass · <b style="color:#fde68a">Premium Edition v4 · Flow Cut</b> · <em style="color:#fde68a;font-style:normal">For Abui &amp; Abui Temo, with love from the twelve.</em></footer>
@@ -1579,12 +1533,13 @@ tick(); setInterval(tick,1000);
 
 document.querySelectorAll('.nav-links a').forEach(a=>{ a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h&&h.startsWith('#')){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth'}); } }); });
 
-let aI=null,llT=null,bbbT=null;
+let aI=null,llT=null,bbbT=null,crtT=null;
 function spk(p){if(!('speechSynthesis' in window))return; const u=new SpeechSynthesisUtterance(p); u.rate=1.05; u.pitch=1.3; window.speechSynthesis.speak(u);}
 function prime(){if(!('speechSynthesis' in window))return; const p=new SpeechSynthesisUtterance(' '); p.volume=0; window.speechSynthesis.speak(p);}
 function startAlarm(t){
   const o=document.getElementById('alarmOverlay'); let ph;
   if(t==='bbb'){ document.getElementById('alarmIcon').textContent='👑✨'; document.getElementById('alarmTitle').textContent='BOOK BIBBIDI BOBBIDI BOUTIQUE!'; document.getElementById('alarmMsg').textContent='Reserve Mario\'s appointment NOW'; o.classList.add('bbb-mode'); ph='Book Bibbidi Bobbidi Boutique!'; }
+  else if(t==='crt'){ document.getElementById('alarmIcon').textContent='🏰👑'; document.getElementById('alarmTitle').textContent='BOOK CINDERELLA\'S ROYAL TABLE!'; document.getElementById('alarmMsg').textContent='Princess Castle lunch · 2 adults + Annelise · Oct 14'; o.classList.remove('bbb-mode'); ph='Book Cinderella\'s Royal Table!'; }
   else { document.getElementById('alarmIcon').textContent='🚨'; document.getElementById('alarmTitle').textContent='BOOK LIGHTNING LANE!'; document.getElementById('alarmMsg').textContent='Open My Disney Experience NOW'; o.classList.remove('bbb-mode'); ph='Book Lightning Lane!'; }
   o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
 }
@@ -1597,6 +1552,10 @@ const BBB=new Date('2026-08-12T00:00:00-04:00');
 document.getElementById('testBbbBtn').onclick=()=>startAlarm('bbb');
 document.getElementById('scheduleBbbBtn').onclick=()=>{ if(bbbT)clearTimeout(bbbT); const d=BBB-new Date(); if(d<=0){document.getElementById('bbbStatus').innerHTML='⚠️ Window already opened';return;} bbbT=setTimeout(()=>startAlarm('bbb'),d); document.getElementById('bbbStatus').innerHTML=`✅ Armed for <b>${BBB.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelBbbBtn').onclick=()=>{ if(bbbT){clearTimeout(bbbT);bbbT=null;} document.getElementById('bbbStatus').textContent='No alarm scheduled.'; };
+const CRT=new Date('2026-08-12T06:00:00-04:00');
+document.getElementById('testCrtBtn').onclick=()=>startAlarm('crt');
+document.getElementById('scheduleCrtBtn').onclick=()=>{ if(crtT)clearTimeout(crtT); const d=CRT-new Date(); if(d<=0){document.getElementById('crtStatus').innerHTML='⚠️ Window already opened';return;} crtT=setTimeout(()=>startAlarm('crt'),d); document.getElementById('crtStatus').innerHTML=`✅ Armed for <b>${CRT.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
+document.getElementById('cancelCrtBtn').onclick=()=>{ if(crtT){clearTimeout(crtT);crtT=null;} document.getElementById('crtStatus').textContent='No alarm scheduled.'; };
 
 /* ===== PHOTO LOADER — tries multiple filename variations, falls back to emoji ===== */
 function loadCastPhotos(){
