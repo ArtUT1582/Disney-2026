@@ -983,6 +983,45 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
 .cast .name{ margin-top:2px; }
 .cast{ padding:22px 18px; }
 </style>
+<style>
+/* ============================================================
+   PHONE-FIRST PASS — this portal is opened mainly on iPhone
+   and Android, so everything below tightens the layout for
+   handset widths. Desktop rules above are untouched.
+   ============================================================ */
+@media (max-width: 760px){
+  section{ margin: 54px auto; padding: 0 14px; }
+  .section-h{ margin-bottom: 32px; }
+
+  /* countdown reads as two rows instead of four cramped columns */
+  .cd-grid{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  /* expedition cover */
+  #expedition.ge2-cover{ padding: 54px 16px 48px; border-radius: 24px; }
+  .ge2-eyebrow{ font-size: 10px; letter-spacing: .34em; margin-bottom: 18px; }
+  .ge2-subtitle{ letter-spacing: .22em; margin-bottom: 22px; }
+  .ge2-dates{ font-size: 11.5px; letter-spacing: .22em; }
+  .ge2-toc{ gap: 10px; }
+  .ge2-card{ padding: 18px 16px; }
+
+  /* flights */
+  .fl-route{ grid-template-columns: 1fr; gap: 8px; margin: 18px 0 14px; }
+  .fl-arrow{ transform: rotate(90deg); }
+  .fl-ap .t{ font-size: 26px; }
+  .fl-links{ flex-direction: column; }
+  .fl-links a{ justify-content: center; }
+  .fl-conf{ letter-spacing: .22em; font-size: 13px; }
+
+  /* alarms — full-width tap targets */
+  .alarm-panel{ padding: 18px; border-radius: 20px; }
+  .alarm-btns{ flex-direction: column; }
+  .alarm-btns .alarm-btn{ width: 100%; }
+}
+
+/* keep anything from forcing sideways scroll on a handset */
+html, body{ overflow-x: hidden; max-width: 100%; }
+img, svg, video{ max-width: 100%; }
+</style>
 </head>
 <body>
 <div class="aurora"></div>
@@ -1403,27 +1442,27 @@ button.expd-day:focus-visible{
         <div class="ge2-park">Arrival · Orlando</div>
         <div class="ge2-date">SUN · OCT 11</div>
       </div>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=ak&v=9">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=ak&v=10">
         <div class="ge2-day">Day 02</div>
         <div class="ge2-park">Animal Kingdom</div>
         <div class="ge2-date">MON · OCT 12</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=hs&v=9">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hs&v=10">
         <div class="ge2-day">Day 03</div>
         <div class="ge2-park">Hollywood Studios</div>
         <div class="ge2-date">TUE · OCT 13</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=mk&v=9">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=mk&v=10">
         <div class="ge2-day">Day 04</div>
         <div class="ge2-park">Magic Kingdom</div>
         <div class="ge2-date">WED · OCT 14</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=hhn&v=9">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hhn&v=10">
         <div class="ge2-day">Day 05</div>
         <div class="ge2-park">HHN 35</div>
         <div class="ge2-date">THU · OCT 15</div>
       </a>
-      <a class="ge2-card" href="sections/garcia-expedition.html?day=eu&v=9">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=eu&v=10">
         <div class="ge2-day">Day 06</div>
         <div class="ge2-park">Epic Universe</div>
         <div class="ge2-date">FRI · OCT 16</div>
