@@ -6,7 +6,7 @@
 <title>Garcia Family · Disney 2026 · Aurora Glass · Premium Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&family=Cinzel:wght@600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#06070d; --text:#f4f5f9; --muted:#9aa3b8;
@@ -1207,11 +1207,54 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
   .expd-open-btn{ padding: 24px 32px; gap:12px; letter-spacing:.14em; }
 }
 
-/* ── Park subtab grid (5 tabs, one per park day) ───────────── */
-.expd-grid.parks{ grid-template-columns: repeat(5, 1fr); }
-@media (max-width:1100px){ .expd-grid.parks{ grid-template-columns: repeat(3, 1fr); } }
-@media (max-width:600px){  .expd-grid.parks{ grid-template-columns: repeat(2, 1fr); } }
-.expd-day .expd-date, .expd-day .expd-park, .expd-day .expd-note{ display:block; }
+/* ── Garcia Expedition cover (mirrors the standalone page) ── */
+#expedition.ge2-cover{
+  position:relative; overflow:hidden; text-align:center;
+  border-radius:34px;
+  padding:90px 40px 84px;
+  background:
+    radial-gradient(80% 60% at 50% 35%, rgba(251,191,36,.12), transparent 70%),
+    radial-gradient(60% 60% at 80% 80%, rgba(193,39,30,.18), transparent 70%),
+    radial-gradient(60% 60% at 20% 80%, rgba(64,116,200,.18), transparent 70%),
+    linear-gradient(180deg, #0a0810 0%, #06070d 100%);
+  border:1px solid rgba(251,191,36,.16);
+  color:#f6efde;
+}
+#expedition.ge2-cover::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,230,180,.5), transparent 60%),
+    radial-gradient(1px 1px at 78% 22%, rgba(255,230,180,.5), transparent 60%),
+    radial-gradient(1.5px 1.5px at 42% 70%, rgba(255,230,180,.6), transparent 60%),
+    radial-gradient(1px 1px at 88% 80%, rgba(255,230,180,.5), transparent 60%),
+    radial-gradient(1px 1px at 22% 88%, rgba(255,230,180,.5), transparent 60%);
+}
+.ge2-inner{ position:relative; z-index:2; max-width:980px; margin:0 auto; }
+.ge2-eyebrow{ font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:.55em; color:#fbbf24; margin-bottom:28px; }
+.ge2-title{
+  font-family:'Cinzel', serif; font-weight:900;
+  font-size:clamp(44px, 8vw, 96px); line-height:.95; letter-spacing:-.01em; margin:0 0 12px;
+  background:linear-gradient(180deg, #fff5d8 0%, #fbbf24 60%, #c97a08 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 6px 24px rgba(0,0,0,.6));
+}
+.ge2-subtitle{ font-family:'Cinzel', serif; font-weight:600; font-size:clamp(16px, 2.6vw, 28px); letter-spacing:.35em; color:#f6efde; margin:0 0 32px; text-transform:uppercase; }
+.ge2-dates{ font-family:'JetBrains Mono', monospace; font-size:14px; letter-spacing:.35em; color:#c4ad7d; margin-bottom:24px; }
+.ge2-toc{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; width:100%; margin-top:24px; }
+@media (max-width:1000px){ .ge2-toc{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .ge2-toc{ grid-template-columns:1fr; } }
+.ge2-card{
+  padding:22px 14px 20px; border-radius:14px;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
+  text-align:left; backdrop-filter:blur(20px) saturate(140%);
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:8px;
+  transition:transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.ge2-card:hover{ transform:translateY(-2px); border-color:rgba(251,191,36,.5); background:rgba(255,255,255,.06); }
+.ge2-day{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.3em; color:#fbbf24; text-transform:uppercase; }
+.ge2-park{ font-family:'Cinzel', serif; font-weight:700; font-size:17px; color:#f6efde; line-height:1.2; }
+.ge2-date{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:.15em; color:#8a7a5a; margin-top:4px; }
 
 /* ── Clickable day cards (button reset + active state) ─────── */
 button.expd-day{
@@ -1323,332 +1366,43 @@ button.expd-day:focus-visible{
 }
 </style>
 
-<section id="expedition">
-  <div class="section-h">
-    <div class="section-eyebrow">② For the Whole Family · The Master Plan</div>
-    <h2 class="section-title">Garcia <b>Expedition.</b></h2>
-    <p class="section-deck">Walt Disney World • Universal Orlando • October 11–17, 2026</p>
-  </div>
-
-  <div class="expd-grid parks" role="tablist" aria-label="Park day plans">
-    <button type="button" class="expd-day is-ak" data-day="animal-kingdom" aria-expanded="false">
-      <span class="expd-date">Day 02 · Mon Oct 12</span>
-      <span class="expd-icon">🦁</span>
-      <span class="expd-park">Animal <b>Kingdom</b></span>
-      <span class="expd-note">Rope-drop safari · Pandora at dusk</span>
-    </button>
-    <button type="button" class="expd-day is-hs" data-day="hollywood-studios" aria-expanded="false">
-      <span class="expd-date">Day 03 · Tue Oct 13</span>
-      <span class="expd-icon">🎬</span>
-      <span class="expd-park">Hollywood <b>Studios</b></span>
-      <span class="expd-note">Skyliner in · Slinky Dog · Galaxy's Edge</span>
-    </button>
-    <button type="button" class="expd-day is-mk" data-day="magic-kingdom" aria-expanded="false">
-      <span class="expd-date">Day 04 · Wed Oct 14</span>
-      <span class="expd-icon">🏰</span>
-      <span class="expd-park">Magic <b>Kingdom</b></span>
-      <span class="expd-note">BBB castle reveal · fireworks at 9</span>
-    </button>
-    <button type="button" class="expd-day is-rest" data-day="hhn" aria-expanded="false">
-      <span class="expd-date">Day 05 · Thu Oct 15</span>
-      <span class="expd-icon">💀</span>
-      <span class="expd-park">HHN <b>35</b></span>
-      <span class="expd-note">Rest day → adults-only house marathon</span>
-    </button>
-    <button type="button" class="expd-day is-epic" data-day="epic-universe" aria-expanded="false">
-      <span class="expd-date">Day 06 · Fri Oct 16</span>
-      <span class="expd-icon">🍄</span>
-      <span class="expd-park">Epic <b>Universe</b></span>
-      <span class="expd-note">Express Pass · Nintendo World · Stardust</span>
-    </button>
-  </div>
-
-  <div class="expd-detail-host" id="day-detail-host"></div>
-
-  <div class="expd-actions">
-    <a class="expd-open-btn" href="sections/garcia-expedition.html" target="_blank" rel="noopener">
-      Open Full Expedition <span class="arr">↗</span>
-    </a>
+<section id="expedition" class="ge2-cover">
+  <div class="ge2-inner">
+    <div class="ge2-eyebrow">★ A SEVEN-DAY ITINERARY ★</div>
+    <h2 class="ge2-title">Garcia Expedition</h2>
+    <div class="ge2-subtitle">Walt Disney World · Universal Orlando</div>
+    <div class="ge2-dates">OCTOBER 11 → OCTOBER 17 · 2026</div>
+    <nav class="ge2-toc" aria-label="Day itineraries">
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=ak" target="_blank" rel="noopener">
+        <div class="ge2-day">Day 02</div>
+        <div class="ge2-park">Animal Kingdom</div>
+        <div class="ge2-date">MON · OCT 12</div>
+      </a>
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hs" target="_blank" rel="noopener">
+        <div class="ge2-day">Day 03</div>
+        <div class="ge2-park">Hollywood Studios</div>
+        <div class="ge2-date">TUE · OCT 13</div>
+      </a>
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=mk" target="_blank" rel="noopener">
+        <div class="ge2-day">Day 04</div>
+        <div class="ge2-park">Magic Kingdom</div>
+        <div class="ge2-date">WED · OCT 14</div>
+      </a>
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=hhn" target="_blank" rel="noopener">
+        <div class="ge2-day">Day 05</div>
+        <div class="ge2-park">HHN 35</div>
+        <div class="ge2-date">THU · OCT 15</div>
+      </a>
+      <a class="ge2-card" href="sections/garcia-expedition.html?day=eu" target="_blank" rel="noopener">
+        <div class="ge2-day">Day 06</div>
+        <div class="ge2-park">Epic Universe</div>
+        <div class="ge2-date">FRI · OCT 16</div>
+      </a>
+    </nav>
   </div>
 </section>
 
-<script>
-/* ============================================================
-   GARCIA EXPEDITION — clickable day cards + expandable detail.
-   - Single-open behavior (clicking another card closes the prior)
-   - Click an active card again to collapse it
-   - Smooth-scrolls to the detail panel on open
-   - Keyboard: Enter/Space activate (native <button> behavior);
-              Escape closes; arrow keys move focus across cards.
-============================================================ */
-(function(){
-  const ACCENTS = {
-    arrival:           { tone:'rgba(96,165,250,.55)',  glow:'radial-gradient(ellipse at 30% 20%, rgba(96,165,250,.30), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(125,211,252,.20), transparent 60%)' },
-    'animal-kingdom':  { tone:'rgba(34,197,94,.55)',   glow:'radial-gradient(ellipse at 25% 25%, rgba(34,197,94,.30), transparent 60%),  radial-gradient(ellipse at 75% 80%, rgba(132,204,22,.20), transparent 60%)' },
-    'hollywood-studios':{ tone:'rgba(249,115,22,.55)', glow:'radial-gradient(ellipse at 25% 25%, rgba(249,115,22,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(251,191,36,.20), transparent 60%)' },
-    'magic-kingdom':   { tone:'rgba(236,72,153,.55)',  glow:'radial-gradient(ellipse at 25% 25%, rgba(236,72,153,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(168,85,247,.20), transparent 60%)' },
-    hhn:               { tone:'rgba(192,132,252,.55)', glow:'radial-gradient(ellipse at 25% 25%, rgba(192,132,252,.30), transparent 60%),radial-gradient(ellipse at 75% 80%, rgba(244,63,94,.20),  transparent 60%)' },
-    'epic-universe':   { tone:'rgba(168,85,247,.55)',  glow:'radial-gradient(ellipse at 25% 25%, rgba(168,85,247,.30), transparent 60%), radial-gradient(ellipse at 75% 80%, rgba(59,130,246,.22), transparent 60%)' },
-    depart:            { tone:'rgba(96,165,250,.55)',  glow:'radial-gradient(ellipse at 30% 20%, rgba(96,165,250,.30), transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(125,211,252,.20), transparent 60%)' }
-  };
 
-  const DATA = {
-    arrival: {
-      title: 'Arrive · <b>Orlando</b>',
-      date: 'Sunday · October 11, 2026',
-      icon: '✈️',
-      vibe: 'Wheels down. Family in. Eat early, stage tomorrow’s gear, and crash by 9:30 — Animal Kingdom rope drop is a 5:45a alarm.',
-      am: [
-        { time:'6:30a',  icon:'🧳', title:'Final pack-out', note:'Carry-ons by the door. IDs, MagicBands, Disney res confirmations on every adult’s phone.' },
-        { time:'9:35a',  icon:'🛂', title:'IAH check-in · Terminal A', note:'Bag check + TSA for 12. Build a 90-min buffer.' },
-        { time:'12:20p', icon:'🛫', title:'IAH → MCO · United', note:'~2h45m direct. Tablets fully charged. Snacks in seatbacks.' }
-      ],
-      pm: [
-        { time:'4:00p',  icon:'🛬', title:'Land · MCO', note:'Mears Connect to Art of Animation. ~45 min door-to-door.' },
-        { time:'5:30p',  icon:'🏨', title:'Resort check-in · Little Mermaid wing', note:'MagicBand+ on every wrist before bed. Test tap-in at the room.' },
-        { time:'7:00p',  icon:'🍕', title:'Dinner · Landscape of Flavors', note:'Quick-service food court. Eat early. <b>Skip Disney Springs tonight.</b>' },
-        { time:'9:30p',  icon:'🛌', title:'Lights out · 5:45a alarm set', note:'Pre-stage backpacks, water bottles, sunscreen, ponchos for tomorrow.' }
-      ]
-    },
-    'animal-kingdom': {
-      title: '<b>Animal Kingdom</b>',
-      date: 'Monday · October 12, 2026',
-      icon: '🦁',
-      vibe: 'AK closes early — front-load the morning. Avatar Flight of Passage at 7:00a sharp via LLMP, then chase Pandora at dusk.',
-      am: [
-        { time:'5:45a',  icon:'⏰', title:'Wake & coffee', note:'Pre-stage backpacks, water bottles, sunscreen, ponchos.' },
-        { time:'6:30a',  icon:'🚌', title:'On bus to AK', note:'Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.' },
-        { time:'6:59a',  icon:'📱', title:'LLMP DROP — Avatar Flight of Passage', note:'Tap LLMP at 7:00 AM sharp · adults only · 44" min.' },
-        { time:'7:30a',  icon:'🦁', title:'ROPE DROP — Kilimanjaro Safari', note:'Animals most active in the morning. Go LEFT at the entrance.' },
-        { time:'8:30a',  icon:'🌿', title:"Na’vi River Journey", note:"Mario’s pick · gentle boat · no height min." },
-        { time:'9:30a',  icon:'🥐', title:'Snack — Pongu Pongu', note:'Night Blossom + pretzel · sit by the floating mountains.' },
-        { time:'10:30a', icon:'🚂', title:"Wildlife Express → Rafiki’s", note:"Mario’s pick · NEW Bluey-themed train." }
-      ],
-      pm: [
-        { time:'12:00p', icon:'🍽️', title:"Lunch — Satu’li Canteen", note:'Mobile order at 11:15 · pod bowls · Pandora theming.' },
-        { time:'1:30p',  icon:'💧', title:'LLMP — Avatar Flight of Passage', note:'Adults rotate. Mario stays w/ grandparents (44" min).' },
-        { time:'2:30p',  icon:'🎭', title:'Festival of the Lion King', note:"Mario’s pick · A/C · seats fill 30 min before show." },
-        { time:'3:45p',  icon:'🍦', title:'Dole Whip + cool down', note:'Tamu Tamu · find shade · regroup w/ Abui & Abui Temo.' },
-        { time:'5:00p',  icon:'🌳', title:'Tree of Life Awakenings', note:'First projection cycle at dusk. Catch it on the bridge.' },
-        { time:'6:30p',  icon:'🍜', title:'Dinner — Yak & Yeti counter', note:'Honey chicken · egg rolls · table by the river.' },
-        { time:'7:45p',  icon:'✨', title:'Park close — Pandora at dusk', note:'Bioluminescent forest · last lap before bus home.' }
-      ]
-    },
-    'hollywood-studios': {
-      title: '<b>Hollywood Studios</b>',
-      date: 'Tuesday · October 13, 2026',
-      icon: '🎬',
-      vibe: 'Easiest travel day — Skyliner straight in. Slinky Dog at rope drop, Rise of the Resistance via LLSP, Galaxy’s Edge after dark.',
-      am: [
-        { time:'6:59a',  icon:'📱', title:"LLMP DROP — Falcon → ToT → Rock ’n’ Roller", note:'Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.' },
-        { time:'7:00a',  icon:'☕', title:'Coffee + pack', note:'Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.' },
-        { time:'7:30a',  icon:'🚡', title:'Skyliner from Art of Animation', note:'Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.' },
-        { time:'8:30a',  icon:'🐕', title:'ROPE DROP — Slinky Dog Dash', note:"Slinky’s LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38\")." },
-        { time:'9:15a',  icon:'👽', title:'Alien Swirling Saucers + Toy Story Mania', note:"You’re in Toy Story Land — knock both out before crowds build." },
-        { time:'10:30a', icon:'🛸', title:"Smuggler’s Run — NEW Mandalorian mission", note:'Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38").' },
-        { time:'11:30a', icon:'🥛', title:'Blue / Green Milk + Build a Droid', note:'Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.' }
-      ],
-      pm: [
-        { time:'12:00p', icon:'🥙', title:'Lunch — Ronto Roasters', note:"Mobile order the Ronto Wrap. Best quick service in the park. Kids’ chicken for Mario." },
-        { time:'12:30p', icon:'⚔️', title:'LLSP — Rise of the Resistance', note:'The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40").' },
-        { time:'1:30p',  icon:'🚂', title:"Mickey & Minnie’s Runaway Railway", note:'LLMP refresh. Cartoon physics, no height min. Mario will love it.' },
-        { time:'2:30p',  icon:'🏨', title:'Tower of Terror (LLMP #2)', note:"Drop sequence randomizes — never the same twice. Rider Switch if Mario’s nervous." },
-        { time:'3:30p',  icon:'🚀', title:'Star Tours', note:'Randomized destinations. Short waits typically. Mario rides ✅ (40").' },
-        { time:'4:00p',  icon:'🐸', title:"Rock ’n’ Roller — NEW Muppets", note:"Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario’s 42\" / req 48\"." },
-        { time:'5:30p',  icon:'🍽️', title:'Dinner — Sci-Fi Dine-In', note:'Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.' },
-        { time:'7:00p',  icon:'🎭', title:'Beauty & the Beast + Villains Stage Show', note:'AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.' },
-        { time:'8:30p',  icon:'🌃', title:"Galaxy’s Edge after dark", note:'Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.' },
-        { time:'9:00p',  icon:'🎆', title:'Fantasmic!', note:"Be at amphitheater by 8:15 for a decent seat. Skip if Mario’s wrecked — it’s loud." }
-      ]
-    },
-    'magic-kingdom': {
-      title: '<b>Magic Kingdom</b>',
-      date: 'Wednesday · October 14, 2026',
-      icon: '🏰',
-      vibe: 'The big one. BBB castle reveal at 10a, Be Our Guest lunch, resort break at 1p (non-negotiable), then the full evening loop closing with Happily Ever After at 9:00.',
-      am: [
-        { time:'6:59a',  icon:'📱', title:'LLMP DROP — Seven Dwarfs first', note:'Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.' },
-        { time:'7:30a',  icon:'⛵', title:"ROPE DROP — Peter Pan’s Flight", note:'Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).' },
-        { time:'8:30a',  icon:'👑', title:'Bibbidi Bobbidi Boutique', note:'Princess transformation · 60–90 min · check in 5 min early behind the castle.' },
-        { time:'8:30a',  icon:'🏎️', title:'SPLIT — Speedway + Buzz + PhilharMagic', note:'Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.' },
-        { time:'10:00a', icon:'🏰', title:'THE CASTLE REVEAL', note:'Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. <b>Get the shot.</b>' },
-        { time:'10:30a', icon:'✨', title:'Princess Fairytale Hall', note:'Cinderella + Tiana meet & greets. BBB outfit = pure magic.' },
-        { time:'11:00a', icon:'🐘', title:'Dumbo + Barnstormer', note:'Mario classics. Barnstormer (35") is his first roller coaster — short, gentle, perfect intro.' },
-        { time:'11:30a', icon:'⛏️', title:'Seven Dwarfs Mine Train (LLMP)', note:'Use your locked-in slot. Mario rides ✅ (38" min).' },
-        { time:'12:00p', icon:'🎼', title:"Mickey’s PhilharMagic + Small World", note:'4D show, AC, classic songs. Small World walk-on if time allows.' }
-      ],
-      pm: [
-        { time:'12:30p', icon:'🍽️', title:'Lunch — Be Our Guest', note:"Daughter dining in Beast’s castle in BBB outfit = unforgettable. Pinocchio Village Haus as backup." },
-        { time:'1:00p',  icon:'🛌', title:'RESORT BREAK — non-negotiable', note:'Back to Art of Animation. Pool, naps, hydrate, hair touch-up. <b>Skip = meltdowns by 5 PM.</b>' },
-        { time:'3:00p',  icon:'🎉', title:'Festival of Fantasy Parade · optional', note:'Only if kids rebound fast. Frontierland is less crowded than Main Street.' },
-        { time:'4:00p',  icon:'🏴‍☠️', title:'Pirates of the Caribbean (LLMP refill)', note:'Mario rides ✅ (no min). Dark but more silly than scary.' },
-        { time:'4:45p',  icon:'🚣', title:'Jungle Cruise + Country Bears', note:'Corny skipper jokes, animatronics, AC. Quick easy wins.' },
-        { time:'5:30p',  icon:'⛰️', title:'Big Thunder Mountain', note:"REOPENED May 2026 — refreshed scenery. Mario’s first ‘real’ coaster ✅ (40\")." },
-        { time:'6:30p',  icon:'👻', title:'Haunted Mansion (LLMP)', note:"Watch Mario’s face in the stretching room. He’ll love it." },
-        { time:'7:15p',  icon:'🚀', title:'Buzz + Speedway', note:"New blasters & ‘Buddy’ character. Speedway: Mario ‘drives’ with adult — non-negotiable for him." },
-        { time:'7:45p',  icon:'🚀', title:'TRON / Space Mountain — Rider Switch', note:"Mario can’t ride (48\"/44\"). One parent waits w/ kids, other rides w/ daughter, swap." },
-        { time:'8:30p',  icon:'📍', title:'Stake your fireworks spot', note:'Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.' },
-        { time:'9:00p',  icon:'🎆', title:'Happily Ever After (9:00 PM)', note:'18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. <b>THE photo of the trip.</b>' },
-        { time:'9:30p',  icon:'🚪', title:'Exit — beat the exodus', note:'Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.' }
-      ]
-    },
-    hhn: {
-      title: 'Rest → <b>HHN</b>',
-      date: 'Thursday · October 15, 2026',
-      icon: '💀',
-      vibe: 'Rest day until 2 PM, then the adults-only marathon: 8 houses, 5 zones, doors-to-park-close. Mario stays with Abui & Abui Temo.',
-      am: [
-        { time:'2:00p',  icon:'🍔', title:'Lunch + hydrate · resort', note:"Eat heavy. <b>You won’t sit again until 1 AM.</b> Hand Mario off to Abui & Abui Temo at Art of Animation." },
-        { time:'3:30p',  icon:'🚗', title:'Leave for Universal', note:'Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.' },
-        { time:'4:30p',  icon:'🅿️', title:'Park at Universal', note:'<b>Preferred Parking ($55)</b> — closer in + faster exit when the park dumps at 1 AM.' },
-        { time:'5:00p',  icon:'🌮', title:'Dinner · CityWalk', note:'<b>Antojitos or Vivo.</b> Skip in-park food — slow + overpriced. Full carb load before the marathon.' },
-        { time:'6:00p',  icon:'🚪', title:'Stadium queue · front gate', note:'Be at the turnstile by <b>6:00 sharp</b>. Doors open ~6:15. First 30 min = the only time the park breathes.' },
-        { time:'6:30p',  icon:'💀', title:'EVENT START · sprint to House #1', note:'<b>Newest IP house first</b> — the longest line by 8 PM. This is the rule, every year.' },
-        { time:'6:45p',  icon:'🎬', title:'Houses #2 + #3 · back lot', note:'Soundstage houses near Men in Black. <b>Hit before crowds rotate</b> back from the front.' },
-        { time:'8:00p',  icon:'👕', title:'Halloween Tribute Store', note:'Bag the merch run. <b>Skip if the line wraps the building</b> — come back after 11.' },
-        { time:'8:30p',  icon:'🌫️', title:'Scare Zones · NY + Hollywood', note:'Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.' }
-      ],
-      pm: [
-        { time:'9:00p',  icon:'💀', title:'Houses #4 + #5', note:'<b>Crowds peak now.</b> Use single-rider lines if posted. Standby times in the app run ~20% high.' },
-        { time:'10:30p', icon:'🍺', title:"Bar break · Finnegan’s or Duff", note:"<b>Reset.</b> Charge phone. Finnegan’s (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe." },
-        { time:'11:00p', icon:'💀', title:'Houses #6 + #7', note:'<b>Lines drop sharply after 11.</b> This is the window. Move fast.' },
-        { time:'12:00a', icon:'🔁', title:'House #8 · repeat favorite', note:"Wait times often <b>under 20 min in the final hour</b>. Hit the one you couldn’t fully take in." },
-        { time:'12:30a', icon:'🍷', title:'Chez Alcatraz · last drink', note:'San Francisco area. Sit. Watch the scare actors work the last shift.' },
-        { time:'12:45a', icon:'📸', title:'Final scare-zone walk', note:'Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.' },
-        { time:'1:00a',  icon:'🚪', title:'Park close · exit', note:'<b>Restroom BEFORE leaving.</b> Parking lot crawls — give it 15 min before fighting it.' },
-        { time:'1:30a',  icon:'🚗', title:'On the road · Art of Animation', note:'<b>Drive sober.</b> Uber if needed. Hand-off, then collapse. Friday is rest day.' },
-        { time:'🏁',     icon:'💀', title:'8 HOUSES · 5 ZONES · 1 NIGHT', note:'The Garcia adults survived the Infernal Carnival. Mario slept through it all.' }
-      ]
-    },
-    'epic-universe': {
-      title: '<b>Epic Universe</b>',
-      date: 'Friday · October 16, 2026',
-      icon: '🍄',
-      vibe: 'Express + Power-Up Bands carry you. Skip rope drop (HHN destroyed you). Hit Mario Kart first, dinner in Celestial Park, Stardust at night.',
-      am: [
-        { time:'Thu PM', icon:'📱', title:'NIGHT BEFORE — secure VQ + Express', note:'Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.' },
-        { time:'8:30a',  icon:'🚗', title:'Uber from Art of Animation', note:"15–20 min · ~$20 each way. Disney transport doesn’t reach Universal. <b>Skip rope drop</b> — you got wrecked at HHN last night and Express covers you." },
-        { time:'9:30a',  icon:'🎟', title:'ARRIVAL — Power-Up Bands on wrists', note:'Express linked. App open. Mario Kart VQ secured. Game on.' },
-        { time:'10:00a', icon:'🏎', title:"Mario Kart: Bowser’s Challenge (Express)", note:"Longest queue in the park — hit it first. Mario rides ✅ (40\" min, he’s 42\"). Touch his hand to the M on the wheel to link his band; he’ll collect coins as he rides." },
-        { time:'10:30a', icon:'🦖', title:"Yoshi’s Adventure", note:"No height req. Slow family ride with great views of the land. Probably Mario’s favorite of the day." },
-        { time:'11:00a', icon:'⛏', title:'Mine-Cart Madness (Express)', note:'Donkey Kong Country. Mario rides ✅ (40"). Innovative track design — feels like the cart is jumping rails.' },
-        { time:'11:30a', icon:'🎮', title:'Power-Up Band activities', note:'Punch blocks. Hit key challenges. <b>3 keys unlocks Bowser Jr. Shadow Showdown</b> — the secret level. Mario will lose his mind.' },
-        { time:'12:00p', icon:'💡', title:'BAND HACK — pass them around', note:"You don’t need a band per person. Mario gets the most use — let him keep one strapped on all day." },
-        { time:'12:30p', icon:'🍄', title:'Lunch · Toadstool Cafe', note:'Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.' }
-      ],
-      pm: [
-        { time:'1:30p',  icon:'🐺', title:'Curse of the Werewolf (Express)', note:'Family coaster but dark theming may be too much for Mario. <b>Rider Switch</b>; adults swap rides while one stays with him.' },
-        { time:'2:15p',  icon:'🧟', title:'Monsters Unchained (Express)', note:'Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.' },
-        { time:'3:00p',  icon:'🐲', title:"Hiccup’s Wing Gliders (Express)", note:'Family coaster on Isle of Berk. Mario rides ✅ (40"). Smooth, scenic, perfect for him.' },
-        { time:'3:30p',  icon:'🐎', title:"Dragon Racer’s Rally · only if line < 30 min", note:"Only ride NOT on Express in the park. Hop in if it’s short, otherwise skip — you’ve got bigger fish." },
-        { time:'4:00p',  icon:'🐲', title:'Meet Toothless', note:'Lines build fast. Either grab now or end of night when they die down.' },
-        { time:'4:30p',  icon:'⚡', title:'Battle at the Ministry (Express)', note:'<b>The biggest headliner in the park.</b> Mario rides ✅ (40"). Innovative ride system — moves through multiple show buildings.' },
-        { time:'5:30p',  icon:'🍺', title:'Butterbeer + Butterbeer ice cream', note:"Mandatory. Get the frozen version. Mario’s allowed — non-alcoholic. Skip the wand purchase; you’ve already spent on bands." },
-        { time:'6:30p',  icon:'🍽', title:'Dinner · Atlantic or Blue Dragon', note:"Both in Celestial Park. Sit-down, table service. You’ve earned it." },
-        { time:'8:00p',  icon:'🎢', title:'Stardust Racers (Express) · Rider Switch', note:"Dueling coaster. Mario can’t ride (48\"; he’s 42\"). Both adults ride both sides via swap. Reopened Mar 2026." },
-        { time:'8:30p',  icon:'✨', title:'Stardust Show — Celestial Park', note:'Nighttime show. Check showtimes in app. Good wind-down before exit.' },
-        { time:'8:45p',  icon:'🌃', title:'One last walk through Nintendo World', note:'All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.' },
-        { time:'9:00p',  icon:'🚗', title:'Uber back to Art of Animation', note:"Don’t push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early." },
-        { time:'🏆',     icon:'🎉', title:'FIVE PARKS · ONE WEEK · TRIP COMPLETE', note:'The Garcia family conquered Orlando.' }
-      ]
-    },
-    depart: {
-      title: 'Depart · <b>Home</b>',
-      date: 'Saturday · October 17, 2026',
-      icon: '🛬',
-      vibe: 'Slow morning. Pack out, last Mickey waffle, Mears to MCO, fly home. The trip ends in the camera roll.',
-      am: [
-        { time:'7:00a',  icon:'☕', title:'Wake + final pack', note:'Trash the room. Confirm under-bed scan. Strollers folded. Chargers off the wall.' },
-        { time:'8:30a',  icon:'🥞', title:'Breakfast · Landscape of Flavors', note:'Last Mickey waffle. Group photo with the Little Mermaid wing mural.' },
-        { time:'10:00a', icon:'🎒', title:'Bag drop · resort luggage hold', note:'Resort Airline Check-In if available — bags go straight to the IAH carousel. MagicBands stay on through park exit.' },
-        { time:'11:30a', icon:'🚐', title:'Mears Connect → MCO', note:'Boarding passes pre-loaded. Mario gets the window seat home.' }
-      ],
-      pm: [
-        { time:'1:30p',  icon:'✈️', title:'MCO → IAH', note:'Final group photo at the gate. Pillow Pets out for Mario. Sandra has the snack bag.' },
-        { time:'5:00p',  icon:'🚗', title:'Land · IAH', note:'Bags + ride share. Texas humidity hits. Welcome home.' },
-        { time:'7:00p',  icon:'🛁', title:'Showers + decompress', note:'Unpack tomorrow. Tonight is takeout and the couch.' },
-        { time:'9:30p',  icon:'📸', title:'Lights out · the photos start', note:'Trip lives in the camera roll, the BBB outfit, and the look on Mario’s face when Mario Kart linked his band.' }
-      ]
-    }
-  };
-
-  const host = document.getElementById('day-detail-host');
-  const cards = Array.from(document.querySelectorAll('.expd-day[data-day]'));
-  let activeKey = null;
-
-  function buildRows(items){
-    return items.map(it => `
-      <div class="dp-row">
-        <div class="t">${it.time}</div>
-        <div class="i">${it.icon}</div>
-        <div class="bd"><b>${it.title}</b><span>${it.note}</span></div>
-      </div>`).join('');
-  }
-
-  function render(key){
-    const d = DATA[key];
-    if (!d) return '';
-    const acc = ACCENTS[key] || {};
-    return `
-      <div class="day-detail-panel active" id="dp-${key}" role="region" aria-label="${d.date}" style="--dp-accent:${acc.tone}; --dp-glow:${acc.glow};">
-        <div class="dp-head">
-          <div class="dp-icon">${d.icon}</div>
-          <div class="dp-titles">
-            <div class="dp-title">${d.title}</div>
-            <div class="dp-meta">${d.date}</div>
-            <div class="dp-vibe">${d.vibe}</div>
-          </div>
-          <button type="button" class="dp-close" aria-label="Close day details">×</button>
-        </div>
-        <div class="dp-body">
-          <div class="dp-col">
-            <h3>Morning</h3>
-            ${buildRows(d.am)}
-          </div>
-          <div class="dp-col">
-            <h3>Afternoon &amp; Evening</h3>
-            ${buildRows(d.pm)}
-          </div>
-        </div>
-      </div>`;
-  }
-
-  function close(){
-    cards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-expanded','false'); });
-    host.innerHTML = '';
-    activeKey = null;
-  }
-
-  function open(key, sourceCard){
-    if (activeKey === key){ close(); return; }
-    cards.forEach(c => { c.classList.remove('active'); c.setAttribute('aria-expanded','false'); });
-    if (sourceCard){ sourceCard.classList.add('active'); sourceCard.setAttribute('aria-expanded','true'); }
-    host.innerHTML = render(key);
-    activeKey = key;
-    const closeBtn = host.querySelector('.dp-close');
-    if (closeBtn) closeBtn.addEventListener('click', close);
-    requestAnimationFrame(() => {
-      const panel = host.querySelector('.day-detail-panel');
-      if (panel){
-        const top = panel.getBoundingClientRect().top + window.scrollY - 90;
-        window.scrollTo({ top, behavior:'smooth' });
-      }
-    });
-  }
-
-  cards.forEach((card, i) => {
-    card.addEventListener('click', () => open(card.dataset.day, card));
-    card.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight'){ e.preventDefault(); cards[(i+1) % cards.length].focus(); }
-      else if (e.key === 'ArrowLeft'){ e.preventDefault(); cards[(i-1+cards.length) % cards.length].focus(); }
-    });
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && activeKey) close();
-  });
-})();
-</script>
 
 
 
