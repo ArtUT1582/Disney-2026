@@ -1,0 +1,650 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinerary Design Lab · 10 Concepts · Garcia Disney 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700;800&family=Caveat:wght@600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN LAB — shell chrome
+   ============================================================ */
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body{ margin:0; padding:0; overflow-x:hidden; max-width:100%; }
+body{
+  background:#06070c; color:#e8eaf2;
+  font-family: ui-sans-serif,-apple-system,"SF Pro Text",Inter,system-ui,sans-serif;
+  line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+img,svg{ max-width:100%; }
+
+.lab-head{
+  position:sticky; top:0; z-index:200;
+  background:rgba(6,7,12,.94); backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  padding:14px 16px 0;
+}
+.lab-title{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; max-width:1180px; margin:0 auto 12px; }
+.lab-title .k{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.30em; color:#fbbf24; font-weight:700; text-transform:uppercase; }
+.lab-title .t{ font-size:16px; font-weight:600; color:#fff; }
+.lab-title .s{ font-size:12px; color:#8b93aa; margin-left:auto; }
+
+.picker{ max-width:1180px; margin:0 auto; display:flex; gap:8px; overflow-x:auto; padding-bottom:12px; scrollbar-width:none; }
+.picker::-webkit-scrollbar{ display:none; }
+.pick{
+  flex:0 0 auto; min-height:44px; padding:9px 15px; border-radius:999px; cursor:pointer;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.13);
+  color:#c9d0e2; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+  letter-spacing:.10em; white-space:nowrap; transition:all .18s; display:flex; align-items:center; gap:8px;
+}
+.pick .n{ opacity:.6; }
+.pick:hover{ border-color:rgba(251,191,36,.5); color:#fff; }
+.pick[aria-selected="true"]{ background:linear-gradient(180deg,#fbbf24,#f0a516); border-color:#fbbf24; color:#1a1205; }
+.pick[aria-selected="true"] .n{ opacity:.75; }
+
+.meta{ max-width:1180px; margin:0 auto; padding:22px 16px 8px; }
+.meta .num{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.30em; color:#fbbf24; font-weight:800; }
+.meta h2{ font-size:clamp(22px,4.4vw,32px); margin:8px 0 8px; font-weight:600; color:#fff; letter-spacing:-.01em; }
+.meta p{ margin:0; font-size:14px; color:#98a0b8; max-width:74ch; }
+
+.stage{ max-width:1180px; margin:0 auto; padding:22px 16px 90px; }
+
+.nav-ends{ display:flex; gap:10px; max-width:1180px; margin:0 auto; padding:0 16px 40px; }
+.nav-ends button{
+  flex:1; min-height:48px; border-radius:14px; cursor:pointer;
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14);
+  color:#c9d0e2; font-family:inherit; font-size:13px; font-weight:600;
+}
+.nav-ends button:hover{ border-color:rgba(251,191,36,.5); color:#fff; }
+
+/* shared day label used by several options */
+.dayline{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.28em; text-transform:uppercase; }
+
+/* ============================================================
+   01 — GOLDEN HOUR  (day→night sky journey)
+   ============================================================ */
+.o1{ position:relative; border-radius:26px; overflow:hidden; border:1px solid rgba(255,255,255,.10); }
+.o1-sky{ position:absolute; inset:0; background:linear-gradient(180deg,#0b1836 0%,#2b3f74 14%,#7b6ea0 30%,#d98f6a 46%,#f0b071 56%,#7a5c86 70%,#2a2350 84%,#0a0b1c 100%); }
+.o1-stars{ position:absolute; inset:0; background-image:radial-gradient(1.4px 1.4px at 12% 8%,rgba(255,255,255,.85),transparent 60%),radial-gradient(1.2px 1.2px at 78% 5%,rgba(255,255,255,.7),transparent 60%),radial-gradient(1.6px 1.6px at 40% 88%,rgba(255,255,255,.8),transparent 60%),radial-gradient(1.2px 1.2px at 88% 78%,rgba(255,255,255,.7),transparent 60%),radial-gradient(1.3px 1.3px at 22% 94%,rgba(255,255,255,.75),transparent 60%); }
+.o1-inner{ position:relative; z-index:2; padding:30px 20px 40px; }
+.o1-head{ text-align:center; margin-bottom:34px; }
+.o1-head .p{ font-family:'Cinzel',serif; font-size:clamp(26px,5.6vw,40px); font-weight:900; color:#fff; letter-spacing:.02em; text-shadow:0 3px 22px rgba(0,0,0,.55); }
+.o1-head .d{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.34em; color:rgba(255,255,255,.82); margin-top:8px; }
+.o1-track{ position:relative; padding-left:60px; }
+.o1-track::before{ content:""; position:absolute; left:26px; top:10px; bottom:10px; width:3px; border-radius:3px; background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,214,140,.9),rgba(255,255,255,.35)); box-shadow:0 0 18px rgba(255,220,160,.55); }
+.o1-stop{ position:relative; margin-bottom:26px; }
+.o1-orb{ position:absolute; left:-48px; top:2px; width:38px; height:38px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#fff8e1,#ffcf7a 55%,#e08c3a); box-shadow:0 0 0 5px rgba(255,255,255,.14),0 0 26px rgba(255,200,120,.75); display:flex; align-items:center; justify-content:center; }
+.o1-orb svg{ width:19px; height:19px; }
+.o1-stop.is-night .o1-orb{ background:radial-gradient(circle at 35% 30%,#eef2ff,#b9c6ff 55%,#6b7bc4); box-shadow:0 0 0 5px rgba(255,255,255,.12),0 0 26px rgba(150,170,255,.6); }
+.o1-time{ font-family:'Cinzel',serif; font-size:27px; font-weight:700; color:#fff; line-height:1; text-shadow:0 2px 14px rgba(0,0,0,.6); }
+.o1-time span{ font-size:12px; letter-spacing:.2em; margin-left:5px; opacity:.85; }
+.o1-name{ font-size:18px; font-weight:700; color:#fff; margin-top:7px; text-shadow:0 2px 12px rgba(0,0,0,.6); }
+.o1-note{ font-size:14px; color:rgba(255,255,255,.9); margin-top:4px; max-width:62ch; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+.o1-stop.is-now .o1-time{ color:#fff8dc; }
+.o1-flag{ display:inline-block; margin-top:9px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.22em; font-weight:800; padding:5px 11px; border-radius:999px; background:rgba(255,255,255,.94); color:#1a1205; }
+
+/* ============================================================
+   02 — STORYBOOK  (enchanted chapters on parchment)
+   ============================================================ */
+.o2{ background:#f3e7cf; background-image:radial-gradient(circle at 18% 12%,rgba(150,110,50,.10),transparent 45%),radial-gradient(circle at 82% 78%,rgba(150,110,50,.09),transparent 45%); border-radius:8px; padding:34px 20px 40px; border:1px solid #cbb489; box-shadow:inset 0 0 70px rgba(140,100,40,.16); color:#3a2c18; }
+.o2-head{ text-align:center; border-bottom:2px solid #c2a874; padding-bottom:18px; margin-bottom:8px; }
+.o2-orn{ color:#a8873f; font-size:17px; letter-spacing:.5em; }
+.o2-head h3{ font-family:'Cinzel',serif; font-size:clamp(24px,5.2vw,36px); font-weight:900; margin:10px 0 6px; color:#4a3717; }
+.o2-head .d{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px; color:#7a6134; }
+.o2-ch{ padding:26px 0 22px; border-bottom:1px solid rgba(140,110,60,.32); position:relative; }
+.o2-ch:last-child{ border-bottom:0; }
+.o2-hour{ font-family:'Cinzel',serif; font-size:12px; letter-spacing:.30em; color:#9a7b34; font-weight:700; }
+.o2-body{ display:flex; gap:14px; margin-top:9px; align-items:flex-start; }
+.o2-cap{ font-family:'Cinzel',serif; font-size:52px; line-height:.82; color:#8a6a24; font-weight:900; flex:0 0 auto; }
+.o2-txt h4{ font-family:'Cormorant Garamond',serif; font-size:25px; font-weight:600; margin:0 0 4px; color:#33260f; line-height:1.15; }
+.o2-txt p{ font-family:'Cormorant Garamond',serif; font-size:18px; margin:0; color:#5c4a2c; }
+.o2-ribbon{ position:absolute; top:-1px; right:-20px; background:#a3252b; color:#fff6e2; font-family:'Cinzel',serif; font-size:9.5px; letter-spacing:.22em; font-weight:700; padding:7px 16px 7px 13px; box-shadow:0 4px 12px rgba(0,0,0,.28); }
+.o2-ribbon::after{ content:""; position:absolute; left:0; bottom:-7px; border-width:7px 0 0 7px; border-style:solid; border-color:#6d1418 transparent transparent transparent; }
+
+/* ============================================================
+   03 — PARK ROUTE  (stylized map with a walking path)
+   ============================================================ */
+.o3{ position:relative; border-radius:22px; overflow:hidden; border:1px solid rgba(120,190,150,.24); background:#0c1a14; background-image:linear-gradient(rgba(120,190,150,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(120,190,150,.07) 1px,transparent 1px); background-size:34px 34px; padding:26px 16px 34px; }
+.o3-head{ text-align:center; margin-bottom:26px; }
+.o3-head .b{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.28em; color:#0c1a14; background:#8fe0b0; padding:6px 13px; border-radius:4px; font-weight:800; }
+.o3-head h3{ font-family:'Cinzel',serif; font-size:clamp(22px,5vw,32px); color:#eafff2; margin:12px 0 0; font-weight:700; }
+.o3-route{ position:relative; }
+.o3-line{ position:absolute; left:29px; top:0; bottom:0; width:0; border-left:3px dashed rgba(143,224,176,.6); }
+.o3-stop{ position:relative; padding-left:74px; margin-bottom:20px; }
+.o3-pin{ position:absolute; left:8px; top:0; width:46px; height:56px; }
+.o3-pin svg{ width:46px; height:56px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.55)); }
+.o3-pin .num{ position:absolute; top:11px; left:0; right:0; text-align:center; font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:800; color:#08150f; }
+.o3-card{ background:rgba(10,28,21,.9); border:1px solid rgba(143,224,176,.32); border-radius:4px 14px 14px 4px; padding:13px 15px; box-shadow:0 10px 26px rgba(0,0,0,.45); }
+.o3-card .t{ font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:800; color:#8fe0b0; letter-spacing:.08em; }
+.o3-card h4{ margin:5px 0 3px; font-size:17px; color:#fff; font-weight:700; }
+.o3-card p{ margin:0; font-size:14px; color:#b6d6c5; }
+.o3-stop.is-now .o3-card{ border-color:#ffd77a; box-shadow:0 0 0 1px rgba(255,215,122,.4),0 10px 30px rgba(0,0,0,.5); }
+.o3-you{ display:inline-block; margin-top:9px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.2em; font-weight:800; color:#1a1205; background:#ffd77a; padding:5px 10px; border-radius:3px; }
+.o3-walk{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; color:rgba(143,224,176,.75); padding:0 0 20px 74px; margin-top:-12px; }
+
+/* ============================================================
+   04 — CONCIERGE  (letterpress luxury agenda)
+   ============================================================ */
+.o4{ background:#faf6ec; color:#211c14; border-radius:3px; padding:44px 26px 46px; border:1px solid #ddd2ba; box-shadow:0 24px 60px rgba(0,0,0,.5); }
+.o4-crest{ text-align:center; margin-bottom:28px; }
+.o4-crest .mark{ width:56px; height:56px; margin:0 auto 14px; border:1.5px solid #b39247; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Cinzel',serif; font-size:19px; font-weight:900; color:#9c7c34; letter-spacing:.02em; }
+
+.o4-crest .lab{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.42em; color:#9c8347; text-transform:uppercase; }
+.o4-crest h3{ font-family:'Cormorant Garamond',serif; font-size:clamp(28px,5.6vw,42px); font-weight:600; margin:12px 0 4px; letter-spacing:.01em; }
+.o4-crest .d{ font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:#6b5c42; }
+.o4-rule{ height:1px; background:linear-gradient(90deg,transparent,#c2ab72,transparent); margin:24px 0 6px; }
+.o4-item{ display:grid; grid-template-columns:1fr auto; gap:6px 20px; padding:20px 0; border-bottom:1px solid rgba(120,100,60,.20); align-items:baseline; }
+.o4-item:last-child{ border-bottom:0; }
+.o4-item h4{ font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; margin:0; grid-column:1; line-height:1.2; }
+.o4-time{ grid-column:2; grid-row:1; font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:800; color:#8a6d2c; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.o4-item p{ grid-column:1 / -1; margin:0; font-family:'Cormorant Garamond',serif; font-size:17px; color:#5f5340; }
+
+.o4-note{ grid-column:1 / -1; font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:.28em; text-transform:uppercase; color:#a08b52; margin-top:4px; }
+.o4-item.is-now{ background:linear-gradient(90deg,rgba(179,146,71,.13),transparent); margin:0 -14px; padding-left:14px; padding-right:14px; border-left:2px solid #b39247; }
+
+/* ============================================================
+   05 — MAGICBAND  (interactive band rail, tap to expand)
+   ============================================================ */
+.o5{ background:radial-gradient(120% 90% at 50% 0%,#1b2452 0%,#080a18 65%); border-radius:24px; padding:28px 16px 34px; border:1px solid rgba(120,150,255,.22); }
+.o5-head{ text-align:center; margin-bottom:24px; }
+.o5-head h3{ font-family:'Cinzel',serif; font-size:clamp(21px,4.6vw,29px); color:#fff; margin:0 0 6px; font-weight:700; }
+.o5-head .d{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; color:#8fa4ff; }
+.o5-rail{ position:relative; padding-left:66px; }
+.o5-band{ position:absolute; left:20px; top:0; bottom:0; width:26px; border-radius:16px; background:linear-gradient(180deg,#3a4fb0,#5b6fd8 45%,#2b3576); box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 0 26px rgba(90,120,255,.30); }
+.o5-node{ position:relative; margin-bottom:12px; }
+.o5-puck{ position:absolute; left:-58px; top:12px; width:42px; height:42px; border-radius:50%; background:radial-gradient(circle at 34% 28%,#f4f7ff,#c3cffb 45%,#5566c0); box-shadow:0 0 0 4px rgba(10,14,36,.9),0 0 20px rgba(140,165,255,.5); display:flex; align-items:center; justify-content:center; }
+.o5-puck svg{ width:18px; height:18px; }
+.o5-node.is-now .o5-puck{ background:radial-gradient(circle at 34% 28%,#fffbe8,#ffd77a 45%,#e2a02c); box-shadow:0 0 0 4px rgba(10,14,36,.9),0 0 26px rgba(255,200,110,.75); }
+.o5-btn{ width:100%; text-align:left; cursor:pointer; background:rgba(255,255,255,.055); border:1px solid rgba(150,175,255,.24); border-radius:16px; padding:14px 16px; color:inherit; font-family:inherit; min-height:56px; transition:border-color .2s,background .2s; }
+.o5-btn:hover{ border-color:rgba(180,200,255,.5); background:rgba(255,255,255,.085); }
+.o5-node.is-now .o5-btn{ border-color:rgba(255,200,110,.55); background:rgba(255,200,110,.09); }
+.o5-top{ display:flex; align-items:center; gap:12px; }
+.o5-t{ font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:800; color:#a9bcff; font-variant-numeric:tabular-nums; }
+.o5-node.is-now .o5-t{ color:#ffd77a; }
+.o5-n{ font-size:16.5px; font-weight:700; color:#fff; flex:1; min-width:0; }
+.o5-chev{ color:#8fa4ff; font-size:13px; transition:transform .25s; flex:0 0 auto; }
+.o5-btn[aria-expanded="true"] .o5-chev{ transform:rotate(180deg); }
+.o5-det{ font-size:14.5px; color:#c7d1f5; padding:11px 2px 2px; display:none; }
+.o5-btn[aria-expanded="true"] + .o5-det{ display:block; }
+.o5-now-tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; font-weight:800; color:#1a1205; background:#ffd77a; padding:4px 9px; border-radius:999px; margin-top:8px; }
+
+/* ============================================================
+   06 — MARQUEE  (attraction sign board, split-flap time)
+   ============================================================ */
+.o6{ background:#150a10; background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 2px,transparent 2px 5px); border-radius:14px; padding:26px 14px 34px; border:1px solid rgba(240,180,90,.26); }
+.o6-head{ text-align:center; margin-bottom:26px; }
+.o6-head h3{ font-family:'Bebas Neue',Impact,sans-serif; font-size:clamp(30px,7vw,50px); letter-spacing:.05em; color:#ffe6b0; margin:0; line-height:1; text-shadow:0 0 22px rgba(255,190,90,.5); }
+.o6-head .d{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.34em; color:#e0a94f; margin-top:8px; }
+.o6-sign{ position:relative; margin-bottom:18px; background:linear-gradient(180deg,#2a1420,#1a0c14); border:2px solid #c98b3a; border-radius:10px; padding:16px 15px 15px; box-shadow:0 0 0 4px rgba(201,139,58,.12),0 14px 30px rgba(0,0,0,.55); }
+.o6-bulbs{ position:absolute; inset:5px; border-radius:6px; pointer-events:none; background-image:radial-gradient(circle,rgba(255,214,140,.95) 40%,transparent 45%); background-size:18px 18px; background-position:0 0; -webkit-mask-image:linear-gradient(#000,#000),linear-gradient(#000,#000); -webkit-mask-composite:xor; mask-composite:exclude; padding:5px; opacity:.55; }
+.o6-flap{ display:inline-flex; gap:3px; margin-bottom:9px; }
+.o6-flap span{ background:#0d0708; border:1px solid rgba(255,214,140,.35); border-radius:3px; padding:6px 7px; font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:800; color:#ffd98a; box-shadow:inset 0 -1px 0 rgba(255,255,255,.12); }
+.o6-flap .sep{ background:none; border:none; color:#e0a94f; padding:6px 1px; }
+.o6-flap .mer{ font-size:10px; letter-spacing:.16em; padding:9px 7px; color:#e0a94f; }
+.o6-name{ font-family:'Bebas Neue',Impact,sans-serif; font-size:26px; letter-spacing:.03em; color:#fff3d8; line-height:1.05; }
+.o6-note{ font-size:14px; color:#d8b98d; margin-top:5px; }
+.o6-sign.is-now{ border-color:#ffd98a; box-shadow:0 0 0 4px rgba(255,217,138,.22),0 0 40px rgba(255,190,90,.30),0 14px 30px rgba(0,0,0,.55); }
+.o6-onnow{ position:absolute; top:-11px; right:12px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; font-weight:800; background:#ffd98a; color:#2a1420; padding:4px 10px; border-radius:3px; }
+
+/* ============================================================
+   07 — PASSPORT  (travel journal, ink stamps)
+   ============================================================ */
+.o7{ background:#e7dcc6; background-image:radial-gradient(circle at 22% 18%,rgba(120,95,55,.10),transparent 40%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(90,70,40,.12) 27px 28px); border-radius:6px; padding:32px 18px 40px; border:1px solid #bfae8c; color:#3a2f1d; }
+.o7-head{ display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid #8d7442; padding-bottom:12px; margin-bottom:8px; gap:12px; flex-wrap:wrap; }
+.o7-head h3{ font-family:'Cinzel',serif; font-size:clamp(19px,4.2vw,26px); margin:0; color:#3a2f1d; font-weight:900; letter-spacing:.04em; }
+.o7-head .d{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.24em; color:#7a6437; }
+.o7-row{ display:flex; gap:16px; align-items:flex-start; padding:22px 0; border-bottom:1px dashed rgba(120,95,55,.4); }
+.o7-row:last-child{ border-bottom:0; }
+.o7-stamp{ flex:0 0 auto; width:92px; height:92px; border:2.5px solid #9a3b32; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#9a3b32; transform:rotate(-8deg); opacity:.9; box-shadow:inset 0 0 0 1px rgba(154,59,50,.4); }
+.o7-row:nth-child(even) .o7-stamp{ transform:rotate(6deg); border-color:#2f5a7a; color:#2f5a7a; box-shadow:inset 0 0 0 1px rgba(47,90,122,.4); }
+.o7-stamp .hh{ font-family:'JetBrains Mono',monospace; font-size:19px; font-weight:800; line-height:1; }
+.o7-stamp .mer{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.22em; margin-top:3px; }
+.o7-stamp .arc{ font-family:'JetBrains Mono',monospace; font-size:7px; letter-spacing:.14em; margin-top:6px; opacity:.85; }
+.o7-txt h4{ font-family:'Cinzel',serif; font-size:19px; margin:2px 0 5px; color:#33290f; font-weight:700; }
+.o7-txt p{ margin:0; font-family:'Cormorant Garamond',serif; font-size:18px; color:#5b4c30; }
+.o7-mark{ display:inline-block; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; font-weight:800; color:#9a3b32; border:1.5px solid #9a3b32; padding:4px 9px; border-radius:3px; transform:rotate(-2deg); }
+
+/* ============================================================
+   08 — DIMENSIONAL  (layered scenery, depth slabs)
+   ============================================================ */
+.o8{ position:relative; border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,.10); background:linear-gradient(180deg,#0a1230 0%,#152a5c 42%,#3d2f6b 72%,#120d26 100%); padding:30px 16px 0; }
+.o8-far,.o8-mid,.o8-near{ position:absolute; left:0; right:0; pointer-events:none; }
+.o8-far{ bottom:0; height:190px; background:linear-gradient(180deg,transparent,rgba(90,110,190,.30)); }
+.o8-castle{ position:absolute; left:50%; transform:translateX(-50%); bottom:0; width:min(430px,94%); opacity:.34; }
+.o8-tree{ position:absolute; bottom:0; width:100%; opacity:.5; }
+.o8-inner{ position:relative; z-index:3; padding-bottom:150px; }
+.o8-head{ text-align:center; margin-bottom:28px; }
+.o8-head h3{ font-family:'Cinzel',serif; font-size:clamp(22px,4.8vw,32px); color:#fff; margin:0 0 6px; font-weight:900; text-shadow:0 4px 20px rgba(0,0,0,.6); }
+.o8-head .d{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.32em; color:#b9c6ff; }
+.o8-slab{ position:relative; margin:0 0 16px; border-radius:18px; padding:16px 18px; background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.05)); border:1px solid rgba(255,255,255,.22); box-shadow:0 18px 40px rgba(0,0,0,.5); }
+.o8-slab:nth-child(odd){ margin-right:16px; }
+.o8-slab:nth-child(even){ margin-left:16px; }
+.o8-depth-1{ transform:none; }
+.o8-t{ font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:800; color:#ffd77a; letter-spacing:.08em; }
+.o8-n{ font-size:18px; font-weight:700; color:#fff; margin-top:5px; }
+.o8-p{ font-size:14px; color:#d3dbff; margin-top:4px; }
+.o8-slab.is-now{ background:linear-gradient(135deg,rgba(255,215,122,.26),rgba(255,215,122,.08)); border-color:rgba(255,215,122,.6); }
+.o8-badge{ display:inline-block; margin-top:9px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.2em; font-weight:800; background:#ffd77a; color:#1a1205; padding:4px 10px; border-radius:999px; }
+
+/* ============================================================
+   09 — DAY DIAL  (radial time, arc positions)
+   ============================================================ */
+.o9{ background:radial-gradient(circle at 50% 32%,#132043 0%,#070a16 62%); border-radius:24px; padding:26px 16px 32px; border:1px solid rgba(140,170,255,.2); }
+.o9-head{ text-align:center; margin-bottom:16px; }
+.o9-head h3{ font-family:'Cinzel',serif; font-size:clamp(20px,4.4vw,28px); color:#fff; margin:0; font-weight:700; }
+.o9-head .d{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em; color:#8fa4ff; margin-top:6px; }
+.o9-dial{ position:relative; width:min(330px,88vw); aspect-ratio:1; margin:6px auto 22px; }
+.o9-dial svg{ width:100%; height:100%; display:block; }
+.o9-hub{ position:absolute; inset:26%; border-radius:50%; background:rgba(8,12,28,.9); border:1px solid rgba(140,170,255,.3); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:10px; }
+.o9-hub .l{ font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:.26em; color:#8fa4ff; }
+.o9-hub .t{ font-family:'JetBrains Mono',monospace; font-size:19px; font-weight:800; color:#ffd77a; margin-top:5px; }
+.o9-hub .n{ font-size:12.5px; color:#fff; margin-top:4px; font-weight:600; line-height:1.25; }
+.o9-mk{ position:absolute; width:36px; height:36px; margin:-18px 0 0 -18px; border-radius:50%; background:rgba(12,18,40,.95); border:2px solid #6f86e0; color:#cfd9ff; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.o9-mk.is-now{ border-color:#ffd77a; color:#1a1205; background:#ffd77a; }
+.o9-list{ display:flex; flex-direction:column; gap:9px; }
+.o9-row{ display:grid; grid-template-columns:34px 66px 1fr; gap:11px; align-items:center; padding:12px 13px; border-radius:13px; background:rgba(255,255,255,.05); border:1px solid rgba(140,170,255,.18); min-height:52px; }
+.o9-row .i{ width:28px; height:28px; border-radius:50%; border:1.5px solid #6f86e0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:800; color:#a9bcff; }
+.o9-row .t{ font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:800; color:#a9bcff; font-variant-numeric:tabular-nums; }
+.o9-row .n{ font-size:15px; color:#fff; font-weight:600; }
+.o9-row .p{ font-size:13px; color:#aab5d8; margin-top:2px; }
+.o9-row.is-now{ background:rgba(255,215,122,.12); border-color:rgba(255,215,122,.5); }
+.o9-row.is-now .t,.o9-row.is-now .i{ color:#ffd77a; border-color:#ffd77a; }
+
+/* ============================================================
+   10 — MEMORY BOOK  (scrapbook keepsake)
+   ============================================================ */
+.o10{ background:#efe7db; background-image:radial-gradient(circle at 80% 10%,rgba(160,130,90,.12),transparent 42%); border-radius:10px; padding:30px 16px 40px; border:1px solid #cfc2ab; color:#33291d; }
+.o10-head{ text-align:center; margin-bottom:26px; }
+.o10-head h3{ font-family:'Caveat',cursive; font-size:clamp(32px,7vw,46px); color:#2f2517; margin:0; font-weight:700; line-height:1; }
+.o10-head .d{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.3em; color:#8a7654; margin-top:9px; }
+.o10-item{ position:relative; background:#fffdf8; border:1px solid #e2d8c6; border-radius:3px; padding:14px 14px 18px; margin-bottom:26px; box-shadow:0 10px 26px rgba(60,45,25,.20); }
+.o10-item:nth-child(odd){ transform:rotate(-.7deg); }
+.o10-item:nth-child(even){ transform:rotate(.6deg); }
+.o10-tape{ position:absolute; top:-11px; left:50%; transform:translateX(-50%) rotate(-2deg); width:104px; height:24px; background:rgba(226,205,150,.72); border-left:1px dashed rgba(255,255,255,.6); border-right:1px dashed rgba(255,255,255,.6); font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:800; color:#4a3c1e; display:flex; align-items:center; justify-content:center; letter-spacing:.06em; }
+.o10-frame{ background:linear-gradient(150deg,#dfe7f2,#c9d6ea); border-radius:2px; height:96px; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border:1px solid #cbd6e6; }
+.o10-frame svg{ width:52px; height:52px; opacity:.55; }
+.o10-item h4{ font-family:'Cinzel',serif; font-size:18px; margin:0 0 5px; color:#2c2314; font-weight:700; }
+.o10-item p{ margin:0; font-family:'Caveat',cursive; font-size:20px; color:#5a4a30; line-height:1.25; }
+.o10-item.is-now{ box-shadow:0 0 0 2px #d1a13a,0 12px 30px rgba(60,45,25,.28); }
+.o10-pin{ display:inline-block; margin-top:9px; font-family:'Caveat',cursive; font-size:18px; color:#a3252b; transform:rotate(-3deg); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width:768px){
+  .stage{ padding:26px 20px 90px; }
+  .o1-inner{ padding:40px 34px 52px; }
+  .o2{ padding:44px 44px 50px; }
+  .o3{ padding:32px 26px 40px; }
+  .o4{ padding:56px 54px 58px; }
+  .o5{ padding:34px 28px 42px; }
+  .o6{ padding:32px 26px 42px; }
+  .o7{ padding:40px 34px 48px; }
+  .o8{ padding:40px 30px 0; }
+  .o9{ padding:32px 26px 40px; }
+  .o10{ display:grid; grid-template-columns:1fr 1fr; gap:22px; padding:36px 28px 44px; }
+  .o10-head{ grid-column:1 / -1; }
+  .o10-item{ margin-bottom:0; }
+  .o8-slab:nth-child(odd){ margin-right:70px; }
+  .o8-slab:nth-child(even){ margin-left:70px; }
+  .o9-row{ grid-template-columns:38px 82px 1fr; }
+}
+@media (min-width:1100px){
+  .o2{ padding:56px 70px 60px; }
+  .o4{ padding:64px 84px 66px; }
+  .o1-track{ padding-left:76px; }
+  .o1-track::before{ left:32px; }
+  .o1-orb{ left:-56px; width:44px; height:44px; }
+}
+@media (max-width:400px){
+  .o7-stamp{ width:78px; height:78px; }
+  .o7-row{ gap:12px; }
+  .o6-flap span{ font-size:15px; padding:5px 6px; }
+  .o1-track{ padding-left:54px; }
+  .o1-orb{ left:-44px; width:34px; height:34px; }
+}
+@media (prefers-reduced-motion:reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+
+<div class="lab-head">
+  <div class="lab-title">
+    <span class="k">Design Lab</span>
+    <span class="t">Itinerary — 10 concepts</span>
+    <span class="s">Prototype only · production untouched</span>
+  </div>
+  <div class="picker" id="picker" role="tablist" aria-label="Design options"></div>
+</div>
+
+<div class="meta" id="meta"></div>
+<div class="stage" id="stage"></div>
+<div class="nav-ends">
+  <button id="prev">← Previous concept</button>
+  <button id="next">Next concept →</button>
+</div>
+
+<script>
+/* ============================================================
+   SHARED DATA — every option renders from this one array.
+   Add stops or lengthen notes here and all 10 absorb it.
+   ============================================================ */
+const DAY = { park:'Magic Kingdom', dateLong:'Wednesday · October 14, 2026', dateShort:'Wed Oct 14' };
+
+const STOPS = [
+  { time:'6:59 AM',  h:'6:59',  mer:'AM', name:'LLMP drop',              note:'Seven Dwarfs first. Refresh all day.', kind:'plan',  now:false },
+  { time:'7:30 AM',  h:'7:30',  mer:'AM', name:"Peter Pan's Flight",     note:'Rope drop. Annelise rides ✅',         kind:'ride',  now:false },
+  { time:'8:30 AM',  h:'8:30',  mer:'AM', name:'Bibbidi Bobbidi Boutique', note:'Check in 5 min early.',              kind:'star',  now:true  },
+  { time:'10:00 AM', h:'10:00', mer:'AM', name:'The castle reveal',      note:'Get the shot.',                        kind:'photo', now:false },
+  { time:'1:00 PM',  h:'1:00',  mer:'PM', name:'Resort break',           note:'Pool, naps, hydrate.',                 kind:'rest',  now:false }
+];
+
+const NOW_I = STOPS.findIndex(s => s.now);
+const NEXT_I = NOW_I + 1;
+
+/* custom drawn markers — no emoji as primary visual */
+const ICON = {
+  plan:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M10 7h4"/><path d="M12 11v5"/><path d="M9.5 13.5 12 11l2.5 2.5"/></svg>',
+  ride:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15h16"/><path d="M5.5 15v-3.5A1.5 1.5 0 0 1 7 10h10a1.5 1.5 0 0 1 1.5 1.5V15"/><circle cx="8.5" cy="17.5" r="1.6"/><circle cx="15.5" cy="17.5" r="1.6"/><path d="M8.5 10V6"/></svg>',
+  star:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.3 5.2 5.7.6-4.3 3.8 1.2 5.6L12 15.8 7.1 18.7l1.2-5.6L4 9.3l5.7-.6z"/></svg>',
+  photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h4l1.5-2h7L17 8.5h4v11H3z"/><circle cx="12" cy="13.5" r="3.4"/></svg>',
+  rest:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 18h18"/><path d="M7 11V8.5A1.5 1.5 0 0 1 8.5 7h7A1.5 1.5 0 0 1 17 8.5V11"/></svg>'
+};
+
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ============================================================
+   RENDERERS
+   ============================================================ */
+const R = {};
+
+/* 01 — GOLDEN HOUR */
+R[1] = () => `
+<div class="o1">
+  <div class="o1-sky"></div><div class="o1-stars"></div>
+  <div class="o1-inner">
+    <div class="o1-head">
+      <div class="p">${esc(DAY.park)}</div>
+      <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+    </div>
+    <div class="o1-track">
+      ${STOPS.map((s,i) => `
+        <div class="o1-stop ${s.now?'is-now':''} ${s.mer==='PM'?'is-night':''}">
+          <div class="o1-orb" style="color:#3a2a10">${ICON[s.kind]}</div>
+          <div class="o1-time">${esc(s.h)}<span>${esc(s.mer)}</span></div>
+          <div class="o1-name">${esc(s.name)}</div>
+          <div class="o1-note">${esc(s.note)}</div>
+          ${s.now ? '<span class="o1-flag">HAPPENING NOW</span>' : (i===NEXT_I ? '<span class="o1-flag" style="background:rgba(255,255,255,.22);color:#fff">UP NEXT</span>' : '')}
+        </div>`).join('')}
+    </div>
+  </div>
+</div>`;
+
+/* 02 — STORYBOOK */
+const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+R[2] = () => `
+<div class="o2">
+  <div class="o2-head">
+    <div class="o2-orn">✦ ❧ ✦</div>
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong)}</div>
+  </div>
+  ${STOPS.map((s,i) => `
+    <div class="o2-ch">
+      ${s.now ? '<div class="o2-ribbon">YOU ARE HERE</div>' : ''}
+      <div class="o2-hour">CHAPTER ${ROMAN[i]} · ${esc(s.time)}</div>
+      <div class="o2-body">
+        <div class="o2-cap">${esc(s.name.trim().charAt(0))}</div>
+        <div class="o2-txt">
+          <h4>${esc(s.name)}</h4>
+          <p>${esc(s.note)}</p>
+        </div>
+      </div>
+    </div>`).join('')}
+</div>`;
+
+/* 03 — PARK ROUTE */
+const PIN = '<svg viewBox="0 0 46 56"><path d="M23 1C11.9 1 3 9.9 3 21c0 14.5 20 34 20 34s20-19.5 20-34C43 9.9 34.1 1 23 1z" fill="#8fe0b0" stroke="#0c1a14" stroke-width="2"/></svg>';
+R[3] = () => `
+<div class="o3">
+  <div class="o3-head">
+    <span class="b">WALKING ROUTE · 5 STOPS</span>
+    <h3>${esc(DAY.park)} · ${esc(DAY.dateShort)}</h3>
+  </div>
+  <div class="o3-route">
+    <div class="o3-line"></div>
+    ${STOPS.map((s,i) => `
+      <div class="o3-stop ${s.now?'is-now':''}">
+        <div class="o3-pin">${PIN}<div class="num">${i+1}</div></div>
+        <div class="o3-card">
+          <div class="t">${esc(s.time)}</div>
+          <h4>${esc(s.name)}</h4>
+          <p>${esc(s.note)}</p>
+          ${s.now ? '<span class="o3-you">YOU ARE HERE</span>' : ''}
+        </div>
+      </div>`).join('')}
+  </div>
+</div>`;
+
+/* 04 — CONCIERGE */
+R[4] = () => `
+<div class="o4">
+  <div class="o4-crest">
+    <div class="mark">G</div>
+    <div class="lab">The Garcia Family · Private Agenda</div>
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong)}</div>
+  </div>
+  <div class="o4-rule"></div>
+  ${STOPS.map((s,i) => `
+    <div class="o4-item ${s.now?'is-now':''}">
+      <h4>${esc(s.name)}</h4>
+      <div class="o4-time">${esc(s.time)}</div>
+      <p>${esc(s.note)}</p>
+      ${s.now ? '<div class="o4-note">In progress</div>' : (i===NEXT_I ? '<div class="o4-note">Next on the agenda</div>' : '')}
+    </div>`).join('')}
+</div>`;
+
+/* 05 — MAGICBAND */
+R[5] = () => `
+<div class="o5">
+  <div class="o5-head">
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+  </div>
+  <div class="o5-rail">
+    <div class="o5-band"></div>
+    ${STOPS.map((s,i) => `
+      <div class="o5-node ${s.now?'is-now':''}">
+        <div class="o5-puck" style="color:#2b3576">${ICON[s.kind]}</div>
+        <button class="o5-btn" aria-expanded="${s.now?'true':'false'}" data-toggle>
+          <span class="o5-top">
+            <span class="o5-t">${esc(s.time)}</span>
+            <span class="o5-n">${esc(s.name)}</span>
+            <span class="o5-chev">▾</span>
+          </span>
+          ${s.now ? '<span class="o5-now-tag">HAPPENING NOW</span>' : ''}
+        </button>
+        <div class="o5-det">${esc(s.note)}</div>
+      </div>`).join('')}
+  </div>
+</div>`;
+
+/* 06 — MARQUEE */
+R[6] = () => `
+<div class="o6">
+  <div class="o6-head">
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+  </div>
+  ${STOPS.map(s => `
+    <div class="o6-sign ${s.now?'is-now':''}">
+      <div class="o6-bulbs"></div>
+      ${s.now ? '<div class="o6-onnow">NOW SHOWING</div>' : ''}
+      <div class="o6-flap">
+        ${s.h.split('').map(c => c === ':' ? '<span class="sep">:</span>' : `<span>${esc(c)}</span>`).join('')}
+        <span class="mer">${esc(s.mer)}</span>
+      </div>
+      <div class="o6-name">${esc(s.name)}</div>
+      <div class="o6-note">${esc(s.note)}</div>
+    </div>`).join('')}
+</div>`;
+
+/* 07 — PASSPORT */
+R[7] = () => `
+<div class="o7">
+  <div class="o7-head">
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+  </div>
+  ${STOPS.map(s => `
+    <div class="o7-row">
+      <div class="o7-stamp">
+        <div class="hh">${esc(s.h)}</div>
+        <div class="mer">${esc(s.mer)}</div>
+        <div class="arc">ORLANDO</div>
+      </div>
+      <div class="o7-txt">
+        <h4>${esc(s.name)}</h4>
+        <p>${esc(s.note)}</p>
+        ${s.now ? '<span class="o7-mark">CURRENT ENTRY</span>' : ''}
+      </div>
+    </div>`).join('')}
+</div>`;
+
+/* 08 — DIMENSIONAL */
+const CASTLE = `<svg viewBox="0 0 400 150" fill="#0a0f28"><path d="M0 150V96h18V72l12-16 12 16v24h20V60l16-22 16 22v36h26V44l14-20 14 20v62h30V30l18-26 18 26v76h30V48l15-21 15 21v58h24V70l13-18 13 18v26h20v54z"/></svg>`;
+const TREES = `<svg viewBox="0 0 400 60" fill="#060a1c"><path d="M0 60V44l10-14 10 14 8-10 8 10 12-16 12 16 10-12 10 12 14-18 14 18 9-11 9 11 13-15 13 15 11-13 11 13 12-16 12 16 10-12 10 12 14-17 14 17 9-10 9 10 12-14 12 14 10-12 10 12 8-9 8 9v16z"/></svg>`;
+R[8] = () => `
+<div class="o8">
+  <div class="o8-inner">
+    <div class="o8-head">
+      <h3>${esc(DAY.park)}</h3>
+      <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+    </div>
+    ${STOPS.map((s,i) => `
+      <div class="o8-slab ${s.now?'is-now':''}">
+        <div class="o8-t">${esc(s.time)}</div>
+        <div class="o8-n">${esc(s.name)}</div>
+        <div class="o8-p">${esc(s.note)}</div>
+        ${s.now ? '<span class="o8-badge">HAPPENING NOW</span>' : (i===NEXT_I ? '<span class="o8-badge" style="background:rgba(255,255,255,.24);color:#fff">UP NEXT</span>' : '')}
+      </div>`).join('')}
+  </div>
+  <div class="o8-far"></div>
+  <div class="o8-castle">${CASTLE}</div>
+  <div class="o8-tree">${TREES}</div>
+</div>`;
+
+/* 09 — DAY DIAL */
+R[9] = () => {
+  const mins = t => { const [hm,mer] = t.split(' '); let [h,m] = hm.split(':').map(Number); if (mer==='PM' && h!==12) h+=12; return h*60+m; };
+  const lo = mins(STOPS[0].time) - 40, hi = mins(STOPS[STOPS.length-1].time) + 40;
+  const marks = STOPS.map((s,i) => {
+    const f = (mins(s.time) - lo) / (hi - lo);
+    const ang = -215 + f * 250, rad = ang * Math.PI/180;
+    const x = 50 + 41 * Math.cos(rad), y = 50 + 41 * Math.sin(rad);
+    return `<div class="o9-mk ${s.now?'is-now':''}" style="left:${x}%;top:${y}%" title="${esc(s.time)} — ${esc(s.name)}">${i+1}</div>`;
+  }).join('');
+  return `
+<div class="o9">
+  <div class="o9-head">
+    <h3>${esc(DAY.park)}</h3>
+    <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+  </div>
+  <div class="o9-dial">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="41" fill="none" stroke="rgba(140,170,255,.18)" stroke-width="7"/>
+      <circle cx="50" cy="50" r="41" fill="none" stroke="url(#g9)" stroke-width="7" stroke-linecap="round"
+              stroke-dasharray="${(250/360)*2*Math.PI*41} ${2*Math.PI*41}" transform="rotate(-215 50 50)"/>
+      <defs><linearGradient id="g9" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#7d92ff"/><stop offset="60%" stop-color="#ffd77a"/><stop offset="100%" stop-color="#f0a516"/>
+      </linearGradient></defs>
+    </svg>
+    ${marks}
+    <div class="o9-hub">
+      <div class="l">HAPPENING NOW</div>
+      <div class="t">${esc(STOPS[NOW_I].time)}</div>
+      <div class="n">${esc(STOPS[NOW_I].name)}</div>
+    </div>
+  </div>
+  <div class="o9-list">
+    ${STOPS.map((s,i) => `
+      <div class="o9-row ${s.now?'is-now':''}">
+        <div class="i">${i+1}</div>
+        <div class="t">${esc(s.time)}</div>
+        <div><div class="n">${esc(s.name)}</div><div class="p">${esc(s.note)}</div></div>
+      </div>`).join('')}
+  </div>
+</div>`;
+};
+
+/* 10 — MEMORY BOOK */
+R[10] = () => `
+<div class="o10">
+  <div class="o10-head">
+    <h3>Our ${esc(DAY.park)} day</h3>
+    <div class="d">${esc(DAY.dateLong).toUpperCase()}</div>
+  </div>
+  ${STOPS.map(s => `
+    <div class="o10-item ${s.now?'is-now':''}">
+      <div class="o10-tape">${esc(s.time)}</div>
+      <div class="o10-frame" style="color:#4a5a76">${ICON[s.kind]}</div>
+      <h4>${esc(s.name)}</h4>
+      <p>${esc(s.note)}</p>
+      ${s.now ? '<span class="o10-pin">← we\'re here right now!</span>' : ''}
+    </div>`).join('')}
+</div>`;
+
+/* ============================================================
+   OPTION REGISTRY + SHELL
+   ============================================================ */
+const OPTIONS = [
+  { n:1,  name:'Golden Hour',    why:'The background sky travels from dawn blue through sunset gold into night, so scrolling the day literally feels like living it.' },
+  { n:2,  name:'Storybook',      why:'Each stop is a numbered chapter on parchment with a drop cap and a ribbon marking where the family is — a day told as a fairy tale.' },
+  { n:3,  name:'Park Route',     why:'A dashed walking path threads numbered map pins, turning the schedule into a route you follow rather than a list you read.' },
+  { n:4,  name:'Concierge',      why:'Letterpress serif typography with times set right on a hairline rule — the restrained luxury of a five-star hotel agenda card.' },
+  { n:5,  name:'MagicBand',      why:'A glowing wristband rail with tap-to-expand pucks; details stay collapsed so the day fits one screen until you ask for more.' },
+  { n:6,  name:'Marquee',        why:'Every stop is a bulb-lit attraction sign with split-flap time tiles, borrowing the theatre marquee language of Main Street.' },
+  { n:7,  name:'Passport',       why:'Times are struck as rotated ink stamps in a travel journal, so the schedule reads as a record of a journey being collected.' },
+  { n:8,  name:'Dimensional',    why:'Staggered slabs float at depth over a layered castle-and-treeline horizon, giving the day real foreground and background.' },
+  { n:9,  name:'Day Dial',       why:'A radial arc places each stop by its true clock position, so the shape of the day and the gaps in it are visible at a glance.' },
+  { n:10, name:'Memory Book',    why:'Taped scrapbook cards with handwritten notes — designed to feel like a keepsake the family keeps after the trip, not a schedule.' }
+];
+
+const picker = document.getElementById('picker');
+const meta = document.getElementById('meta');
+const stage = document.getElementById('stage');
+let current = 1;
+
+OPTIONS.forEach(o => {
+  const b = document.createElement('button');
+  b.className = 'pick';
+  b.setAttribute('role','tab');
+  b.setAttribute('aria-selected','false');
+  b.dataset.n = o.n;
+  b.innerHTML = `<span class="n">${String(o.n).padStart(2,'0')}</span> ${o.name}`;
+  b.addEventListener('click', () => show(o.n));
+  picker.appendChild(b);
+});
+
+function show(n){
+  current = n;
+  const o = OPTIONS.find(x => x.n === n);
+  meta.innerHTML = `<div class="num">OPTION ${String(n).padStart(2,'0')}</div><h2>${o.name}</h2><p>${o.why}</p>`;
+  stage.innerHTML = R[n]();
+  [...picker.children].forEach(b => b.setAttribute('aria-selected', String(+b.dataset.n === n)));
+  const active = picker.querySelector('[aria-selected="true"]');
+  if (active) active.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+  location.hash = 'opt' + n;
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+stage.addEventListener('click', e => {
+  const btn = e.target.closest('[data-toggle]');
+  if (!btn) return;
+  btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+});
+
+document.getElementById('prev').addEventListener('click', () => show(current === 1 ? 10 : current - 1));
+document.getElementById('next').addEventListener('click', () => show(current === 10 ? 1 : current + 1));
+
+const fromHash = parseInt((location.hash || '').replace('#opt',''), 10);
+show(fromHash >= 1 && fromHash <= 10 ? fromHash : 1);
+</script>
