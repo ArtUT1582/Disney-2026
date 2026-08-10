@@ -1271,6 +1271,15 @@ function charFallback(img){
 
 
 <!-- Orlando Weather — full-width horizontal command bar -->
+<div class="cd-wrap" id="countdown">
+  <div class="cd-grid">
+    <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
+    <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
+    <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Minutes</div></div>
+    <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seconds</div></div>
+  </div>
+</div>
+
 <section id="flights">
   
   <div class="center-grid">
@@ -1326,14 +1335,7 @@ function charFallback(img){
 </section>
 
 <!-- Countdown clock — moved to the top of the page -->
-<div class="cd-wrap" id="countdown">
-  <div class="cd-grid">
-    <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Minutes</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seconds</div></div>
-  </div>
-</div>
+
 
 
 
@@ -1631,9 +1633,8 @@ button.expd-day:focus-visible{
       <h2 class="ed-park">Animal Kingdom</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
-      <p class="ed-dek"><span><i>Park day</i>02 of 07</span>
-        <span><i>Date</i>Mon · Oct 12</span>
-        <span><i>Stops planned</i>10</span></p>
+      <p class="ed-dek"><span><i>Date</i>Mon · Oct 12</span>
+        <span><i>Stops planned</i>9</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -1645,21 +1646,13 @@ button.expd-day:focus-visible{
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
-          <span class="ed-t">5:45AM</span>
-          <span class="ed-h">Wake &amp; coffee</span>
-          <span class="ed-n">Pre-stage backpacks, water bottles, sunscreen, ponchos.</span>
-        </span>
-        
-      </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-body">
           <span class="ed-t">6:30AM</span>
           <span class="ed-h">On bus to AK</span>
           <span class="ed-n">Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.</span>
         </span>
         
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -1668,7 +1661,7 @@ button.expd-day:focus-visible{
         </span>
         
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
           <span class="ed-h">ROPE DROP — Kilimanjaro Safari</span>
@@ -1677,7 +1670,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/kilimanjaro-safari.jpg?v=2026081003" alt="ROPE DROP — Kilimanjaro Safari"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">Na'vi River Journey</span>
@@ -1686,7 +1679,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/navi-river-journey.jpg?v=2026081003" alt="Na'vi River Journey"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Wildlife Express → Rafiki's</span>
@@ -1695,7 +1688,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/wildlife-express.jpg?v=2026081003" alt="Wildlife Express → Rafiki's"
           loading="lazy" decoding="async" width="150" height="100">
       </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Lightning Lane Single Pass — Avatar Flight of Passage</span>
@@ -1704,7 +1697,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/avatar-flight-of-passage.jpg?v=2026081003" alt="Lightning Lane Single Pass — Avatar Flight of Passage"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
           <span class="ed-t">2:30PM</span>
           <span class="ed-h">Festival of the Lion King</span>
@@ -1713,7 +1706,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/festival-of-the-lion-king.jpg?v=2026081003" alt="Festival of the Lion King"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
           <span class="ed-t">5:00PM</span>
           <span class="ed-h">Tree of Life Awakenings</span>
@@ -1722,7 +1715,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/ak/tree-of-life-awakenings.jpg?v=2026081003" alt="Tree of Life Awakenings"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-body">
           <span class="ed-t">7:45PM</span>
           <span class="ed-h">Park close — Pandora at dusk</span>
@@ -1742,8 +1735,7 @@ button.expd-day:focus-visible{
       <h2 class="ed-park">Hollywood Studios</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
-      <p class="ed-dek"><span><i>Park day</i>03 of 07</span>
-        <span><i>Date</i>Tue · Oct 13</span>
+      <p class="ed-dek"><span><i>Date</i>Tue · Oct 13</span>
         <span><i>Stops planned</i>13</span></p>
     </div>
   </header>
@@ -1883,8 +1875,7 @@ button.expd-day:focus-visible{
       <h2 class="ed-park">Magic Kingdom</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
-      <p class="ed-dek"><span><i>Park day</i>04 of 07</span>
-        <span><i>Date</i>Wed · Oct 14</span>
+      <p class="ed-dek"><span><i>Date</i>Wed · Oct 14</span>
         <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
@@ -2094,8 +2085,7 @@ button.expd-day:focus-visible{
       <h2 class="ed-park">HHN 35</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
-      <p class="ed-dek"><span><i>Park day</i>05 of 07</span>
-        <span><i>Date</i>Thu · Oct 15</span>
+      <p class="ed-dek"><span><i>Date</i>Thu · Oct 15</span>
         <span><i>Stops planned</i>18</span></p>
     </div>
   </header>
@@ -2266,8 +2256,7 @@ button.expd-day:focus-visible{
       <h2 class="ed-park">Epic Universe</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
-      <p class="ed-dek"><span><i>Park day</i>06 of 07</span>
-        <span><i>Date</i>Fri · Oct 16</span>
+      <p class="ed-dek"><span><i>Date</i>Fri · Oct 16</span>
         <span><i>Stops planned</i>19</span></p>
     </div>
   </header>
