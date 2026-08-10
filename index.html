@@ -1499,20 +1499,23 @@ button.expd-day:focus-visible{
 /* Full-bleed with no viewport units and no JS: the wrapper is a direct child of <body>,
    so 100% already equals the content width. 100vw would include the scrollbar, and a
    JS-measured width goes stale the moment a resize event is missed. */
-.expd-inline{width:100%;max-width:100%;margin:0}
+.expd-inline{width:100%;max-width:100%;margin:0;
+  /* one shared content width for the cover AND the spread, so the masthead can never
+     sit wider than the itinerary underneath it */
+  --ed-w:1180px; --ed-pad:clamp(20px,4vw,48px)}
 .ed-day{position:relative}
 
 /* --- cover --- */
-.ed-cover{position:relative;min-height:min(86vh,780px);display:flex;align-items:flex-end;
+.ed-cover{position:relative;min-height:min(62vh,540px);display:flex;align-items:flex-end;
   background-size:cover;background-position:center;padding:0}
 .ed-cover::after{content:"";position:absolute;inset:0;
   background:linear-gradient(0deg,rgba(0,0,0,.92) 4%,rgba(0,0,0,.42) 46%,rgba(0,0,0,.34))}
-.ed-cover-in{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px) clamp(34px,5vw,64px)}
+.ed-cover-in{position:relative;z-index:2;width:100%;max-width:var(--ed-w);margin:0 auto;padding:0 var(--ed-pad) clamp(28px,4vw,52px)}
 .ed-issue{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
   font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.34em;text-transform:uppercase;
   color:rgba(255,255,255,.86);border-bottom:1px solid rgba(255,255,255,.34);padding-bottom:14px}
 .ed-park{font-family:'Playfair Display',Georgia,serif;font-weight:800;
-  font-size:clamp(46px,10.5vw,148px);line-height:.86;letter-spacing:-.035em;color:#fff;margin:clamp(18px,3vw,34px) 0 0;
+  font-size:clamp(30px,5.2vw,74px);line-height:.92;letter-spacing:-.028em;color:#fff;margin:clamp(14px,2vw,24px) 0 0;
   text-shadow:0 18px 60px rgba(0,0,0,.6)}
 .ed-dek{display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,42px);margin-top:clamp(14px,2vw,22px)}
 .ed-dek span{font-family:'Playfair Display',serif;font-size:clamp(15px,1.9vw,21px);color:#fff}
@@ -1521,7 +1524,7 @@ button.expd-day:focus-visible{
 
 /* --- spread --- */
 .ed-spread{background:#f5f2ea;color:#171310}
-.ed-spread-in{max-width:1280px;margin:0 auto;padding:clamp(30px,5vw,64px) clamp(20px,4vw,56px) clamp(40px,6vw,80px)}
+.ed-spread-in{max-width:var(--ed-w);margin:0 auto;padding:clamp(30px,5vw,64px) var(--ed-pad) clamp(40px,6vw,80px)}
 .ed-quote{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;
   font-size:clamp(23px,4vw,50px);line-height:1.1;letter-spacing:-.02em;color:var(--acc,#b1291a);
   border-top:3px solid #171310;border-bottom:3px solid #171310;padding:clamp(20px,3vw,34px) 0;
