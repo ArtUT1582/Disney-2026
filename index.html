@@ -1076,7 +1076,7 @@ img, svg, video{ max-width: 100%; }
     { glyph:'🎟', html:'HHN tickets on sale now · <b>$91–$130</b> per adult' },
     { glyph:'🏰', html:'<b>Magic Kingdom</b> · Be Our Guest lunch reservation locked' },
     { glyph:'🍽', html:'<b>Storybook Dining</b> · Tuesday · 6:30 PM · party of 12' },
-    { glyph:'⌖', html:'Resort: <b>Art of Animation</b> · Little Mermaid wing · Oct 11–17' },
+    { glyph:'⌖', html:'Resort: <b>Disney\'s Pop Century</b> · Skyliner to Epcot &amp; Hollywood Studios · Oct 11–17' },
     { glyph:'☼', html:'Orlando forecast looking <em>partly sunny</em> · pack ponchos for afternoon showers' },
     { glyph:'❤', html:'For <em>Abui &amp; Abui Temo</em> — the heart of every day' }
   ];
@@ -1568,7 +1568,7 @@ button.expd-day:focus-visible{
 
   <div class="alarm-panel bbb">
     <h3>👑 Bibbidi Bobbidi Boutique — TOP PRIORITY</h3>
-    <p>Magic Kingdom BBB (inside the castle) opens at <b>midnight Eastern</b> on your 60-day mark — <b>not</b> 6 AM like dining. Same Eastern day as castle dining (Wed Aug 12), but midnight ET lands on the night before in Central: <b style="color:#ff8fd1">Tue Aug 11, 11:00 PM CT</b>. Art of Animation makes you a resort guest, so book the whole Oct 11–17 stay in that one session. Be logged in by 10:45 PM CT — slots go in minutes.</p>
+    <p>Opens <b style="color:#ff8fd1">Tue Aug 11, 11:00 PM</b> — six hours <em>before</em> castle dining, not the same moment. Just Annelise. <b>Pop Century makes you a Disney resort guest</b>, so book the whole Oct 11–17 stay in that one session. Be logged in by <b style="color:#ff8fd1">10:45 PM</b> — slots go in minutes.</p>
     <div class="alarm-btns">
       <button class="alarm-btn bbb" id="testBbbBtn">🔔 Test BBB</button>
       <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 11 · 11:00 PM CT</button>
@@ -1583,7 +1583,7 @@ button.expd-day:focus-visible{
 
   <div class="alarm-panel crt">
     <h3>🏰 Princess Castle Dining — Cinderella's Royal Table</h3>
-    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Disney dining opens 6:00 AM ET — that's <b style="color:#93c5fd">Wed Aug 12, 5:00 AM CT</b>, six hours after the BBB window on the same Eastern day. Resort guests get 60+10, so book every ADR for the whole stay in this session. Be logged in by 4:45 AM CT. Full prepayment required.</p>
+    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Opens <b style="color:#93c5fd">Wed Aug 12, 5:00 AM</b> — six hours after the BBB window. Resort guests get 60+10, so book every ADR for the whole stay in this session. Be logged in by <b style="color:#93c5fd">4:45 AM</b>. Full prepayment required.</p>
     <div class="alarm-btns">
       <button class="alarm-btn" id="testCrtBtn">🔔 Test Castle</button>
       <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12 · 5:00 AM CT</button>
@@ -1593,7 +1593,7 @@ button.expd-day:focus-visible{
   </div>
   <div class="alarm-panel">
     <h3>📢 Lightning Lane Multi Pass Alarm</h3>
-    <p>Opens <b style="color:#fde68a">Sun Oct 4, 6:00 AM CT</b> (7:00 AM ET) — 7 days before check-in. Art of Animation is a Disney resort, so you book <b>all 7 days in that one session</b>; off-site guests wait until 3 days out. Alarm fires <b style="color:#fde68a">5:59 AM CT</b> with voice + flashing screen.</p>
+    <p>Opens <b style="color:#fde68a">Sun Oct 4, 6:00 AM</b> — 7 days before check-in. Pop Century is a Disney resort, so you book <b>all 7 days in that one session</b>; off-site guests wait until 3 days out. Alarm fires <b style="color:#fde68a">5:59 AM</b> with voice + flashing screen.</p>
     <div class="alarm-btns">
       <button class="alarm-btn" id="testAlarmBtn">🔔 Test Now</button>
       <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule Oct 4 · 5:59 AM CT</button>
@@ -1633,17 +1633,17 @@ function startAlarm(t){
   o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
 }
 window.stopAlarm=function(){ document.getElementById('alarmOverlay').classList.remove('active','bbb-mode'); if(aI){clearInterval(aI);aI=null;} if('speechSynthesis' in window)window.speechSynthesis.cancel(); };
-/* LLMP window opens 7:00 AM ET Oct 4 (7 days before check-in). Anchored to an Eastern offset so it
-   fires correctly from Houston or Orlando — a local-clock 6:59 would misfire by an hour from CT. */
-const LL=new Date('2026-10-04T06:59:00-04:00');
+/* All three written in Central offsets — Artemio's clock. The explicit -05:00 keeps them firing at
+   the right instant from any device, instead of drifting with whatever timezone the browser is in. */
+const LL=new Date('2026-10-04T05:59:00-05:00');  /* Sun Oct 4 · 5:59 AM Central (window opens 6:00) */
 document.getElementById('testAlarmBtn').onclick=()=>startAlarm('ll');
 document.getElementById('scheduleAlarmBtn').onclick=()=>{ if(llT)clearTimeout(llT); const d=LL-new Date(); if(d<=0){document.getElementById('alarmStatus').innerHTML='⚠️ Window already opened';return;} llT=setTimeout(()=>startAlarm('ll'),d); document.getElementById('alarmStatus').innerHTML=`✅ Armed for <b>${LL.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelAlarmBtn').onclick=()=>{ if(llT){clearTimeout(llT);llT=null;} document.getElementById('alarmStatus').textContent='No alarm scheduled.'; };
-const BBB=new Date('2026-08-12T00:00:00-04:00');
+const BBB=new Date('2026-08-11T23:00:00-05:00'); /* Tue Aug 11 · 11:00 PM Central */
 document.getElementById('testBbbBtn').onclick=()=>startAlarm('bbb');
 document.getElementById('scheduleBbbBtn').onclick=()=>{ if(bbbT)clearTimeout(bbbT); const d=BBB-new Date(); if(d<=0){document.getElementById('bbbStatus').innerHTML='⚠️ Window already opened';return;} bbbT=setTimeout(()=>startAlarm('bbb'),d); document.getElementById('bbbStatus').innerHTML=`✅ Armed for <b>${BBB.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelBbbBtn').onclick=()=>{ if(bbbT){clearTimeout(bbbT);bbbT=null;} document.getElementById('bbbStatus').textContent='No alarm scheduled.'; };
-const CRT=new Date('2026-08-12T06:00:00-04:00');
+const CRT=new Date('2026-08-12T05:00:00-05:00'); /* Wed Aug 12 · 5:00 AM Central */
 document.getElementById('testCrtBtn').onclick=()=>startAlarm('crt');
 document.getElementById('scheduleCrtBtn').onclick=()=>{ if(crtT)clearTimeout(crtT); const d=CRT-new Date(); if(d<=0){document.getElementById('crtStatus').innerHTML='⚠️ Window already opened';return;} crtT=setTimeout(()=>startAlarm('crt'),d); document.getElementById('crtStatus').innerHTML=`✅ Armed for <b>${CRT.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelCrtBtn').onclick=()=>{ if(crtT){clearTimeout(crtT);crtT=null;} document.getElementById('crtStatus').textContent='No alarm scheduled.'; };
