@@ -1022,6 +1022,92 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
 html, body{ overflow-x: hidden; max-width: 100%; }
 img, svg, video{ max-width: 100%; }
 </style>
+
+<style>
+/* only ever seen if both the remote and local images fail */
+.char-orb-badge{width:96px;height:96px;border-radius:50%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2px;flex:none;text-align:center;padding:6px;
+  background:linear-gradient(135deg,rgba(251,191,36,.28),rgba(168,85,247,.24));
+  border:1px solid rgba(255,255,255,.28);color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.45),inset 0 0 0 3px rgba(255,255,255,.08)}
+.char-orb-badge b{font-size:22px;line-height:1}
+.char-orb-badge span{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.9;line-height:1.15}
+</style>
+<script>
+function charFallback(img){
+  var local = img.getAttribute('data-local');
+  if (local && img.getAttribute('src') !== local) { img.setAttribute('src', local); return; }
+  var name = img.getAttribute('alt') || 'Character';
+  var b = document.createElement('div');
+  b.className = 'char-orb-badge';
+  b.setAttribute('role','img');
+  b.setAttribute('aria-label', name);
+  b.innerHTML = '<b>' + name.trim().charAt(0) + '</b><span>' + name + '</span>';
+  if (img.parentNode) img.parentNode.replaceChild(b, img);
+}
+</script>
+
+<script>
+/* Single source for every countdown. The ticker used Math.ceil while the nav pill and
+   hero used Math.floor, so they disagreed by a day continuously; the ticker also carried
+   a duplicate trip date and ran before TRIP_START existed. */
+window.TRIP = (function(){
+  var START = new Date('2026-10-11T07:25:00-05:00').getTime();
+  var END   = new Date('2026-10-17T23:59:59-04:00').getTime();
+  return { startMs:START, endMs:END, tz:'America/New_York', bookingTz:'America/Chicago',
+    msLeft:function(){ return START - Date.now(); },
+    daysLeft:function(){ return Math.max(0, Math.floor((START - Date.now())/86400000)); },
+    isDuringTrip:function(){ var n=Date.now(); return n>=START && n<=END; } };
+})();
+</script>
+
+<style id="chapter-tweaks">
+/* --- facts strip removed (weather / crowd / sunset / steps) ---
+   Hidden rather than stripped from the markup, so it is one line to bring back. */
+.expd-inline .ak-facts,.expd-inline .mk-facts,.expd-inline .hs-facts,
+.expd-inline .eu-facts,.expd-inline .hhn-facts{display:none !important}
+
+/* --- park wordmark at 50% --- */
+.expd-inline .ak-wordmark .wm-eyebrow{margin-bottom:7px !important}
+.expd-inline .ak-wordmark .wm-line{font-size:39px !important}
+.expd-inline .ak-wordmark .wm-divider{gap:6px !important;margin:4px 0 !important}
+.expd-inline .ak-wordmark .wm-rule{width:40px !important;height:1px !important}
+.expd-inline .ak-wordmark .wm-sub{margin-top:7px !important}
+.expd-inline .mk-wordmark .wm-eyebrow{margin-bottom:7px !important}
+.expd-inline .mk-wordmark .wm-magic{font-size:65px !important;margin-bottom:7px !important}
+.expd-inline .mk-wordmark .wm-kingdom{font-size:32px !important}
+.expd-inline .mk-wordmark .wm-divider{gap:6px !important;margin:7px 0 !important}
+.expd-inline .mk-wordmark .wm-rule{width:55px !important;height:1px !important}
+.expd-inline .mk-wordmark .wm-sub{margin-top:2px !important}
+.expd-inline .hs-wordmark .wm-eyebrow{margin-bottom:8px !important}
+.expd-inline .hs-wordmark .wm-disney{font-size:18px !important;margin-bottom:3px !important}
+.expd-inline .hs-wordmark .wm-line{font-size:46px !important}
+.expd-inline .hs-wordmark .wm-divider{gap:6px !important;margin:5px 0 !important}
+.expd-inline .hs-wordmark .wm-rule{width:45px !important;height:1px !important}
+.expd-inline .hs-wordmark .wm-studios{font-size:39px !important}
+.expd-inline .hs-wordmark .wm-sub{margin-top:8px !important}
+.expd-inline .eu-wordmark .wm-eyebrow{margin-bottom:9px !important}
+.expd-inline .eu-wordmark .wm-universal{margin-bottom:5px !important}
+.expd-inline .eu-wordmark .wm-epic{font-size:66px !important}
+.expd-inline .eu-wordmark .wm-universe{font-size:26px !important;margin-top:2px !important}
+.expd-inline .eu-wordmark .wm-divider{gap:7px !important;margin:11px 0 !important}
+.expd-inline .eu-wordmark .wm-rule{width:55px !important;height:1px !important}
+.expd-inline .eu-wordmark .wm-orb{width:11px !important;height:11px !important}
+.expd-inline .eu-wordmark .wm-sub{margin-top:3px !important}
+.expd-inline .hhn-wordmark .wm-eyebrow{margin-bottom:8px !important}
+.expd-inline .hhn-wordmark .wm-anniv{gap:6px !important;margin-bottom:6px !important}
+.expd-inline .hhn-wordmark .wm-num{font-size:38px !important}
+.expd-inline .hhn-wordmark .wm-universal{margin-bottom:4px !important}
+.expd-inline .hhn-wordmark .wm-halloween{font-size:45px !important;margin-bottom:3px !important}
+.expd-inline .hhn-wordmark .wm-horror{font-size:45px !important}
+.expd-inline .hhn-wordmark .wm-nights{font-size:21px !important;margin-top:4px !important}
+.expd-inline .hhn-wordmark .wm-divider{gap:7px !important;margin:11px 0 !important}
+.expd-inline .hhn-wordmark .wm-rule{width:55px !important;height:1px !important}
+.expd-inline .hhn-wordmark .wm-sub{margin-top:3px !important}
+/* tighten the header now that the wordmark is half the height */
+.expd-inline .ak-magic-head,.expd-inline .mk-magic-head,.expd-inline .hs-magic-head,
+.expd-inline .eu-head,.expd-inline .hhn-head{padding-top:clamp(18px,3vw,34px) !important}
+</style>
 </head>
 <body>
 
@@ -1081,10 +1167,7 @@ img, svg, video{ max-width: 100%; }
     { glyph:'❤', html:'For <em>Abui &amp; Abui Temo</em> — the heart of every day' }
   ];
 
-  function days(){
-    const t = (window.TRIP_START || new Date('2026-10-11T07:25:00-05:00').getTime()) - Date.now();
-    return Math.max(0, Math.ceil(t/86400000));
-  }
+  function days(){ return window.TRIP.daysLeft(); }
   function build(){
     const cd = days();
     const one = TICKER_MESSAGES.map(m =>
@@ -4961,18 +5044,18 @@ button.expd-day:focus-visible{
 <section id="cast">
   
 <div class="cast-grid" data-mode="side" data-locked="true">
-  <div class="cast" data-id="abui_temo"><div class="av-pair"><div class="av side has-photo" data-em="🐭" style="background-image:url('photos/abui_temo.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/r1jbtDXIAjq92/giphy.gif" alt="Mickey Mouse" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Grandpa · Pulga King</div><div class="name">Abui Temo</div><span class="ch">★ Mickey Mouse</span><div class="line">Pulga King and the paycheck. The hugs. The heart of the crew.</div></div>
-  <div class="cast" data-id="abui"><div class="av-pair"><div class="av side has-photo" data-em="🎀" style="background-image:url('photos/Abui.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ieau65amS2pXb4MTTp/giphy.gif" alt="Minnie Mouse" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Grandma · The Heart</div><div class="name">Abui</div><span class="ch">★ Minnie Mouse</span><div class="line">Bows, kindness, and quiet magic. The reason this works.</div></div>
-  <div class="cast" data-id="art"><div class="av-pair"><div class="av side has-photo" data-em="👷" style="background-image:url('photos/art.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/WwfP2C3z1PO9PUzVfk/giphy.gif" alt="Luigi" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · Player 2</div><div class="name">Art</div><span class="ch">★ Luigi</span><div class="line">Player 2. Always game for one more ride.</div></div>
-  <div class="cast" data-id="sandra"><div class="av-pair"><div class="av side has-photo" data-em="👑" style="background-image:url('photos/Sandra.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/G5GMnnA3PRhkdtzj73/giphy.gif" alt="Princess Peach" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · The Composure</div><div class="name">Sandra</div><span class="ch">★ Princess Peach</span><div class="line">Composed. Royal. Runs the kingdom.</div></div>
-  <div class="cast" data-id="annelise"><div class="av-pair"><div class="av side has-photo" data-em="🍄" style="background-image:url('photos/annelise.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/i2rNOf3b7vJgk/giphy.gif" alt="Mario" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">The Star · 4 yrs · 42"</div><div class="name">Annelise</div><span class="ch">★ Mario</span><div class="line">It's-a-me! Lead jumper. Lead Mario fan.</div></div>
-  <div class="cast" data-id="danny"><div class="av-pair"><div class="av side has-photo" data-em="🦍" style="background-image:url('photos/Danny.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/42xcZ72XW6tUrw5Mdn/giphy.gif" alt="Donkey Kong" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · Big Energy</div><div class="name">Danny</div><span class="ch">★ Donkey Kong</span><div class="line">Big energy, bigger laughs.</div></div>
-  <div class="cast" data-id="valeria"><div class="av-pair"><div class="av side has-photo" data-em="🐶" style="background-image:url('photos/Valeria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/2wKbtCMHTVoOY/giphy.gif" alt="Goofy" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · Pulga Queen</div><div class="name">Valeria</div><span class="ch">★ Goofy</span><div class="line">Softball arm, sharper jokes.</div></div>
-  <div class="cast" data-id="isabella"><div class="av-pair"><div class="av side has-photo" data-em="🌹" style="background-image:url('photos/Isabella.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ruEHx9JgxTqPC/giphy.gif" alt="Belle" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · The Reader</div><div class="name">Isabella</div><span class="ch">★ Belle</span><div class="line">Books in one hand, churro in the other.</div></div>
-  <div class="cast" data-id="john"><div class="av-pair"><div class="av side has-photo" data-em="⚔️" style="background-image:url('photos/John.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ZX6NHzA9Fcddm/giphy.gif" alt="Darth Vader" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Dad · The Anchor</div><div class="name">John</div><span class="ch">★ Darth Vader</span><div class="line">The dark side just brought sunscreen.</div></div>
-  <div class="cast" data-id="martha"><div class="av-pair"><div class="av side has-photo" data-em="🌼" style="background-image:url('photos/Martha.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/3osxY9V8yuIWrtcvoA/giphy.gif" alt="Daisy Duck" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Mom · Logistics Captain</div><div class="name">Martha</div><span class="ch">★ Daisy Duck</span><div class="line">Logistics captain. Bright, bold, never bored — quietly running the whole show.</div></div>
-  <div class="cast" data-id="victoria"><div class="av-pair"><div class="av side has-photo" data-em="❄️" style="background-image:url('photos/Victoria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/TnYky4cEHcKsdt5eoS/giphy.gif" alt="Anna" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · The Brave</div><div class="name">Victoria</div><span class="ch">★ Anna</span><div class="line">Brave, curious, ready for adventure.</div></div>
-  <div class="cast" data-id="valentina"><div class="av-pair"><div class="av side has-photo" data-em="🍯" style="background-image:url('photos/Valentina.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/fdWVI1op6wi88/giphy.gif" alt="Winnie the Pooh" loading="lazy" referrerpolicy="no-referrer"></div><div class="role">Cousin · Snack Patrol</div><div class="name">Valentina</div><span class="ch">★ Winnie the Pooh</span><div class="line">Snack patrol. Soft, sweet, hungry, happy.</div></div>
+  <div class="cast" data-id="abui_temo"><div class="av-pair"><div class="av side has-photo" data-em="🐭" style="background-image:url('photos/abui_temo.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/r1jbtDXIAjq92/giphy.gif" alt="Mickey Mouse" loading="lazy" referrerpolicy="no-referrer" data-local="characters/mickey.jpg" onerror="charFallback(this)"></div><div class="role">Grandpa · Pulga King</div><div class="name">Abui Temo</div><span class="ch">★ Mickey Mouse</span><div class="line">Pulga King and the paycheck. The hugs. The heart of the crew.</div></div>
+  <div class="cast" data-id="abui"><div class="av-pair"><div class="av side has-photo" data-em="🎀" style="background-image:url('photos/Abui.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ieau65amS2pXb4MTTp/giphy.gif" alt="Minnie Mouse" loading="lazy" referrerpolicy="no-referrer" data-local="characters/minnie.jpg" onerror="charFallback(this)"></div><div class="role">Grandma · The Heart</div><div class="name">Abui</div><span class="ch">★ Minnie Mouse</span><div class="line">Bows, kindness, and quiet magic. The reason this works.</div></div>
+  <div class="cast" data-id="art"><div class="av-pair"><div class="av side has-photo" data-em="👷" style="background-image:url('photos/art.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/WwfP2C3z1PO9PUzVfk/giphy.gif" alt="Luigi" loading="lazy" referrerpolicy="no-referrer" data-local="characters/luigi.jpg" onerror="charFallback(this)"></div><div class="role">Dad · Player 2</div><div class="name">Art</div><span class="ch">★ Luigi</span><div class="line">Player 2. Always game for one more ride.</div></div>
+  <div class="cast" data-id="sandra"><div class="av-pair"><div class="av side has-photo" data-em="👑" style="background-image:url('photos/Sandra.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/G5GMnnA3PRhkdtzj73/giphy.gif" alt="Princess Peach" loading="lazy" referrerpolicy="no-referrer" data-local="characters/peach.jpg" onerror="charFallback(this)"></div><div class="role">Mom · The Composure</div><div class="name">Sandra</div><span class="ch">★ Princess Peach</span><div class="line">Composed. Royal. Runs the kingdom.</div></div>
+  <div class="cast" data-id="annelise"><div class="av-pair"><div class="av side has-photo" data-em="🍄" style="background-image:url('photos/annelise.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/i2rNOf3b7vJgk/giphy.gif" alt="Mario" loading="lazy" referrerpolicy="no-referrer" data-local="characters/mario.jpg" onerror="charFallback(this)"></div><div class="role">The Star · 4 yrs · 42"</div><div class="name">Annelise</div><span class="ch">★ Mario</span><div class="line">It's-a-me! Lead jumper. Lead Mario fan.</div></div>
+  <div class="cast" data-id="danny"><div class="av-pair"><div class="av side has-photo" data-em="🦍" style="background-image:url('photos/Danny.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/42xcZ72XW6tUrw5Mdn/giphy.gif" alt="Donkey Kong" loading="lazy" referrerpolicy="no-referrer" data-local="characters/dk.jpg" onerror="charFallback(this)"></div><div class="role">Dad · Big Energy</div><div class="name">Danny</div><span class="ch">★ Donkey Kong</span><div class="line">Big energy, bigger laughs.</div></div>
+  <div class="cast" data-id="valeria"><div class="av-pair"><div class="av side has-photo" data-em="🐶" style="background-image:url('photos/Valeria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/2wKbtCMHTVoOY/giphy.gif" alt="Goofy" loading="lazy" referrerpolicy="no-referrer" data-local="characters/goofy.jpg" onerror="charFallback(this)"></div><div class="role">Mom · Pulga Queen</div><div class="name">Valeria</div><span class="ch">★ Goofy</span><div class="line">Softball arm, sharper jokes.</div></div>
+  <div class="cast" data-id="isabella"><div class="av-pair"><div class="av side has-photo" data-em="🌹" style="background-image:url('photos/Isabella.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ruEHx9JgxTqPC/giphy.gif" alt="Belle" loading="lazy" referrerpolicy="no-referrer" data-local="characters/belle.jpg" onerror="charFallback(this)"></div><div class="role">Cousin · The Reader</div><div class="name">Isabella</div><span class="ch">★ Belle</span><div class="line">Books in one hand, churro in the other.</div></div>
+  <div class="cast" data-id="john"><div class="av-pair"><div class="av side has-photo" data-em="⚔️" style="background-image:url('photos/John.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/ZX6NHzA9Fcddm/giphy.gif" alt="Darth Vader" loading="lazy" referrerpolicy="no-referrer" data-local="characters/vader.jpg" onerror="charFallback(this)"></div><div class="role">Dad · The Anchor</div><div class="name">John</div><span class="ch">★ Darth Vader</span><div class="line">The dark side just brought sunscreen.</div></div>
+  <div class="cast" data-id="martha"><div class="av-pair"><div class="av side has-photo" data-em="🌼" style="background-image:url('photos/Martha.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/3osxY9V8yuIWrtcvoA/giphy.gif" alt="Daisy Duck" loading="lazy" referrerpolicy="no-referrer" data-local="characters/daisy.jpg" onerror="charFallback(this)"></div><div class="role">Mom · Logistics Captain</div><div class="name">Martha</div><span class="ch">★ Daisy Duck</span><div class="line">Logistics captain. Bright, bold, never bored — quietly running the whole show.</div></div>
+  <div class="cast" data-id="victoria"><div class="av-pair"><div class="av side has-photo" data-em="❄️" style="background-image:url('photos/Victoria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/TnYky4cEHcKsdt5eoS/giphy.gif" alt="Anna" loading="lazy" referrerpolicy="no-referrer" data-local="characters/anna.jpg" onerror="charFallback(this)"></div><div class="role">Cousin · The Brave</div><div class="name">Victoria</div><span class="ch">★ Anna</span><div class="line">Brave, curious, ready for adventure.</div></div>
+  <div class="cast" data-id="valentina"><div class="av-pair"><div class="av side has-photo" data-em="🍯" style="background-image:url('photos/Valentina.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="https://media.giphy.com/media/fdWVI1op6wi88/giphy.gif" alt="Winnie the Pooh" loading="lazy" referrerpolicy="no-referrer" data-local="characters/pooh.jpg" onerror="charFallback(this)"></div><div class="role">Cousin · Snack Patrol</div><div class="name">Valentina</div><span class="ch">★ Winnie the Pooh</span><div class="line">Snack patrol. Soft, sweet, hungry, happy.</div></div>
 </div>
   <!-- legacy cast augment IIFE removed in v6 — cast cards are now fully static -->
 </section>
@@ -5026,7 +5109,7 @@ button.expd-day:focus-visible{
     <div class="alarm-btns">
       <button class="alarm-btn bbb" id="testBbbBtn">🔔 Test BBB</button>
       <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 11 · 11:00 PM CT</button>
-      <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel</button>
+      <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel</button><a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FBooking%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Abbb-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260810T120000Z%0D%0ADTSTART%3A20260812T040000Z%0D%0ADURATION%3APT30M%0D%0ASUMMARY%3ABOOK%20-%20Bibbidi%20Bobbidi%20Boutique%0D%0ADESCRIPTION%3AOpens%20midnight%20Eastern%20on%20the%2060-day%20mark.%20Magic%20Kingdom%20location%5C%2C%20not%20Disney%20Springs.%20Be%20signed%20in%20by%2010%3A45%20PM%20CT.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT15M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3ABooking%20window%20opens%20in%2015%20minutes%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="bbb-booking.ics" title="Downloads a calendar reminder that fires even with this page closed">📅 Calendar</a>
     </div>
     <div id="bbbStatus">No alarm scheduled.</div>
     <div class="mw-card">
@@ -5041,7 +5124,7 @@ button.expd-day:focus-visible{
     <div class="alarm-btns">
       <button class="alarm-btn" id="testCrtBtn">🔔 Test Castle</button>
       <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12 · 5:00 AM CT</button>
-      <button class="alarm-btn ghost" id="cancelCrtBtn">Cancel</button>
+      <button class="alarm-btn ghost" id="cancelCrtBtn">Cancel</button><a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FBooking%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Acrt-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260810T120000Z%0D%0ADTSTART%3A20260812T100000Z%0D%0ADURATION%3APT30M%0D%0ASUMMARY%3ABOOK%20-%20Cinderella's%20Royal%20Table%0D%0ADESCRIPTION%3ADisney%20dining%20opens%206%3A00%20AM%20Eastern.%20Party%20of%203%5C%2C%20Oct%2014%20lunch.%20Card%20charged%20in%20full.%20Be%20signed%20in%20by%204%3A45%20AM%20CT.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT15M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3ABooking%20window%20opens%20in%2015%20minutes%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="crt-booking.ics" title="Downloads a calendar reminder that fires even with this page closed">📅 Calendar</a>
     </div>
     <div id="crtStatus">No alarm scheduled.</div>
   </div>
@@ -5051,7 +5134,7 @@ button.expd-day:focus-visible{
     <div class="alarm-btns">
       <button class="alarm-btn" id="testAlarmBtn">🔔 Test Now</button>
       <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule Oct 4 · 5:59 AM CT</button>
-      <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel</button>
+      <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel</button><a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FBooking%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Allmp-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260810T120000Z%0D%0ADTSTART%3A20261004T110000Z%0D%0ADURATION%3APT30M%0D%0ASUMMARY%3ABOOK%20-%20Lightning%20Lane%20Multi%20Pass%0D%0ADESCRIPTION%3AOpens%207%3A00%20AM%20Eastern%5C%2C%207%20days%20before%20check-in.%20Pop%20Century%20is%20a%20Disney%20resort%5C%2C%20so%20all%207%20days%20book%20at%20once.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT15M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3ABooking%20window%20opens%20in%2015%20minutes%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="llmp-booking.ics" title="Downloads a calendar reminder that fires even with this page closed">📅 Calendar</a>
     </div>
     <div id="alarmStatus">No alarm scheduled.</div>
   </div>
@@ -5061,11 +5144,11 @@ button.expd-day:focus-visible{
 <footer>The Garcia Family Portal · Private · October 2026 · Aurora Glass · <b style="color:#fde68a">Premium Edition v4 · Flow Cut</b> · <em style="color:#fde68a;font-style:normal">For Abui &amp; Abui Temo, with love from the twelve.</em></footer>
 
 <script>
-const TRIP_START = new Date('2026-10-11T07:25:00-05:00').getTime();
+const TRIP_START = window.TRIP.startMs;
 function tick(){
-  let d = TRIP_START - Date.now();
+  let d = window.TRIP.msLeft();
   if(d<=0){ document.getElementById('cd-d').textContent='0'; return; }
-  const days=Math.floor(d/86400000), h=Math.floor((d%86400000)/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
+  const days=window.TRIP.daysLeft(), h=Math.floor((d%86400000)/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
   document.getElementById('cd-d').textContent=days;
   var nc=document.getElementById('nav-cd'); if(nc) nc.textContent=days;
   document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
