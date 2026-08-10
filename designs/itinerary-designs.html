@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinerary Design Options · Garcia Expedition 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Bebas+Neue&family=Tangerine:wght@700&family=Space+Grotesk:wght@400;500;700&family=Limelight&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0b10;color:#e8eaf0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ---------- chrome ---------- */
+.bar{position:sticky;top:0;z-index:50;background:rgba(10,11,16,.93);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.1);padding:14px 20px}
+.bar-in{max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.bar h1{font-family:'Cinzel',serif;font-size:15px;letter-spacing:.14em;font-weight:700;color:#fbbf24;white-space:nowrap}
+.grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.grp .lab{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#8892a6;margin-right:4px}
+.chip{padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#cbd3e1;font:600 11.5px/1 'Plus Jakarta Sans',sans-serif;cursor:pointer;letter-spacing:.04em;transition:.15s}
+.chip:hover{border-color:rgba(251,191,36,.5);color:#fff}
+.chip[aria-pressed="true"]{background:#fbbf24;border-color:#fbbf24;color:#141005}
+.hint{font-size:11.5px;color:#7d8798;margin-left:auto}
+.stage{max-width:1400px;margin:0 auto;padding:26px 20px 80px}
+.plate{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#8892a6;margin:0 0 12px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.plate b{color:#fbbf24;font-weight:700}
+
+/* =========================================================
+   Shared semantic shell. Every design restyles the SAME DOM.
+   ========================================================= */
+.itin{--pad:34px;border-radius:18px;overflow:hidden;position:relative}
+.itin .eyebrow,.itin .sub{letter-spacing:.24em;text-transform:uppercase;font-size:10.5px}
+.itin .park{line-height:.95}
+.itin .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px}
+.itin .fact{padding:12px 14px}
+.itin .fact-l{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.62}
+.itin .fact-v{font-size:14px;font-weight:700;margin-top:3px}
+.itin .cols{display:grid;gap:26px}
+@media(min-width:900px){.itin .cols{grid-template-columns:1fr 1fr}}
+.itin .col-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:.66;margin-bottom:12px}
+.itin ol{list-style:none}
+.itin .row{display:grid;grid-template-columns:74px 1fr;gap:14px;padding:11px 0;align-items:start}
+.itin .time{font:700 11.5px/1.4 'JetBrains Mono',monospace;letter-spacing:.02em;padding-top:2px;white-space:nowrap}
+.itin .title{font-weight:600;font-size:14px;line-height:1.38}
+.itin .note{font-size:12.2px;line-height:1.55;opacity:.76;margin-top:4px}
+.itin .extras{display:grid;gap:8px;margin-top:8px}
+.itin .xrow{display:flex;gap:10px;align-items:baseline;font-size:12.5px}
+.itin .xrow b{font-size:12.5px}
+
+/* ===== 1 · BOARDING PASS ================================= */
+[data-d="pass"] .itin{background:#f4f1e8;color:#1a1c22;border-radius:12px;
+  font-family:'JetBrains Mono',monospace;
+  background-image:repeating-linear-gradient(90deg,transparent 0 6px,rgba(0,0,0,.03) 6px 7px)}
+[data-d="pass"] .head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
+  padding:var(--pad);border-bottom:2px dashed #b9b2a0;flex-wrap:wrap}
+[data-d="pass"] .park{font-family:'Bebas Neue',sans-serif;font-size:clamp(34px,5.4vw,62px);letter-spacing:.02em}
+[data-d="pass"] .eyebrow{color:#a1591f;font-weight:700}
+[data-d="pass"] .stub{border-left:2px dashed #b9b2a0;padding-left:18px;text-align:right;font-size:11px}
+[data-d="pass"] .stub .big{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#a1591f;line-height:1}
+[data-d="pass"] .barcode{height:44px;margin-top:10px;
+  background:repeating-linear-gradient(90deg,#1a1c22 0 2px,transparent 2px 4px,#1a1c22 4px 5px,transparent 5px 9px)}
+[data-d="pass"] .facts{border-bottom:2px dashed #b9b2a0;background:#ded8c8}
+[data-d="pass"] .fact{background:#f4f1e8}
+[data-d="pass"] .body{padding:var(--pad)}
+[data-d="pass"] .row{border-bottom:1px dotted #c3bcaa}
+[data-d="pass"] .time{color:#a1591f}
+[data-d="pass"] .col-label{color:#a1591f;font-weight:700}
+
+/* ===== 2 · SWISS TIMETABLE =============================== */
+[data-d="swiss"] .itin{background:#fff;color:#111;border-radius:0;font-family:'Space Grotesk',sans-serif}
+[data-d="swiss"] .head{padding:var(--pad);border-bottom:4px solid #111}
+[data-d="swiss"] .eyebrow{color:#d61f26;font-weight:700}
+[data-d="swiss"] .park{font-size:clamp(38px,6.6vw,84px);font-weight:700;letter-spacing:-.035em;margin:6px 0}
+[data-d="swiss"] .sub{color:#666}
+[data-d="swiss"] .facts{gap:0;border-bottom:1px solid #111}
+[data-d="swiss"] .fact{border-right:1px solid #ddd}
+[data-d="swiss"] .fact-v{color:#d61f26}
+[data-d="swiss"] .body{padding:var(--pad)}
+[data-d="swiss"] .col-label{color:#d61f26;font-weight:700;border-bottom:2px solid #111;padding-bottom:6px}
+[data-d="swiss"] .row{grid-template-columns:88px 1fr;border-bottom:1px solid #e6e6e6;padding:13px 0}
+[data-d="swiss"] .time{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700}
+[data-d="swiss"] .note{opacity:.68}
+
+/* ===== 3 · FIELD JOURNAL ================================= */
+[data-d="journal"] .itin{background:#efe6d2;color:#33291b;
+  background-image:radial-gradient(circle at 20% 30%,rgba(150,120,70,.10),transparent 45%),
+                   radial-gradient(circle at 80% 70%,rgba(120,90,50,.10),transparent 45%)}
+[data-d="journal"] .head{padding:var(--pad);text-align:center;border-bottom:1px solid #c3b391}
+[data-d="journal"] .eyebrow{font-family:'JetBrains Mono',monospace;color:#7a6034}
+[data-d="journal"] .park{font-family:'Tangerine',cursive;font-size:clamp(58px,9vw,116px);font-weight:700;color:#4a3a22;line-height:.9;margin:4px 0}
+[data-d="journal"] .sub{font-family:'Cormorant Garamond',serif;font-style:italic;text-transform:none;letter-spacing:.04em;font-size:15px;color:#7a6034}
+[data-d="journal"] .facts{background:#c3b391}
+[data-d="journal"] .fact{background:#efe6d2}
+[data-d="journal"] .body{padding:var(--pad)}
+[data-d="journal"] .col-label{font-family:'Tangerine',cursive;font-size:30px;letter-spacing:0;text-transform:none;color:#7a6034;opacity:1}
+[data-d="journal"] .row{border-bottom:1px dashed #c3b391}
+[data-d="journal"] .time{color:#8a5a2b}
+[data-d="journal"] .title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700}
+[data-d="journal"] .note{font-family:'Cormorant Garamond',serif;font-size:14.5px;opacity:.85}
+
+/* ===== 4 · NEON MARQUEE ================================== */
+[data-d="neon"] .itin{background:#0b0713;color:#f3e9ff;border:1px solid rgba(255,0,190,.3)}
+[data-d="neon"] .head{padding:var(--pad);text-align:center;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(255,0,190,.20),transparent 70%)}
+[data-d="neon"] .eyebrow{color:#31e8ff;text-shadow:0 0 10px rgba(49,232,255,.85)}
+[data-d="neon"] .park{font-family:'Limelight',serif;font-size:clamp(32px,5.6vw,68px);color:#fff;
+  text-shadow:0 0 6px #ff4fd8,0 0 22px #ff00be,0 0 48px rgba(255,0,190,.55);margin:10px 0}
+[data-d="neon"] .sub{color:#b98fd8}
+[data-d="neon"] .facts{background:rgba(255,255,255,.10)}
+[data-d="neon"] .fact{background:#120c1e}
+[data-d="neon"] .fact-v{color:#31e8ff;text-shadow:0 0 10px rgba(49,232,255,.6)}
+[data-d="neon"] .body{padding:var(--pad)}
+[data-d="neon"] .col-label{color:#ff4fd8;text-shadow:0 0 10px rgba(255,79,216,.7)}
+[data-d="neon"] .row{border-bottom:1px solid rgba(255,79,216,.16)}
+[data-d="neon"] .time{color:#31e8ff}
+[data-d="neon"] .note{color:#c9b3dd;opacity:.8}
+
+/* ===== 5 · EDITORIAL ===================================== */
+[data-d="editorial"] .itin{background:#faf8f5;color:#16130f}
+[data-d="editorial"] .head{padding:var(--pad) var(--pad) 22px;border-bottom:1px solid #ded7cc}
+[data-d="editorial"] .eyebrow{color:#9a3412;font-weight:700}
+[data-d="editorial"] .park{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(40px,7vw,92px);letter-spacing:-.03em;margin:8px 0}
+[data-d="editorial"] .sub{font-family:'Cormorant Garamond',serif;font-style:italic;text-transform:none;letter-spacing:.02em;font-size:16px;color:#6b6157}
+[data-d="editorial"] .facts{background:#ded7cc}
+[data-d="editorial"] .fact{background:#faf8f5}
+[data-d="editorial"] .fact-v{font-family:'Playfair Display',serif}
+[data-d="editorial"] .body{padding:var(--pad);column-gap:44px}
+[data-d="editorial"] .col-label{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.16em;color:#9a3412;border-bottom:2px solid #16130f;padding-bottom:8px}
+[data-d="editorial"] .row{grid-template-columns:64px 1fr;border-bottom:1px solid #ebe5dc}
+[data-d="editorial"] .title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+[data-d="editorial"] .note{font-family:'Cormorant Garamond',serif;font-size:15px;opacity:.86}
+[data-d="editorial"] .time{color:#9a3412}
+
+/* ===== 6 · BLUEPRINT ===================================== */
+[data-d="blueprint"] .itin{background:#0a2540;color:#cfe6ff;
+  background-image:linear-gradient(rgba(120,190,255,.09) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(120,190,255,.09) 1px,transparent 1px);
+  background-size:26px 26px;border:1px solid rgba(120,190,255,.3)}
+[data-d="blueprint"] .head{padding:var(--pad);border-bottom:1px dashed rgba(120,190,255,.45)}
+[data-d="blueprint"] .eyebrow,[data-d="blueprint"] .time,[data-d="blueprint"] .fact-l{font-family:'JetBrains Mono',monospace}
+[data-d="blueprint"] .eyebrow{color:#7ec8ff}
+[data-d="blueprint"] .park{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(26px,4.4vw,52px);letter-spacing:.04em;margin:8px 0;color:#fff}
+[data-d="blueprint"] .sub{color:#8fb8dd}
+[data-d="blueprint"] .facts{background:rgba(120,190,255,.28)}
+[data-d="blueprint"] .fact{background:#0a2540}
+[data-d="blueprint"] .fact-v{color:#7ec8ff;font-family:'JetBrains Mono',monospace}
+[data-d="blueprint"] .body{padding:var(--pad)}
+[data-d="blueprint"] .col-label{color:#7ec8ff;font-family:'JetBrains Mono',monospace}
+[data-d="blueprint"] .row{border-bottom:1px dashed rgba(120,190,255,.22)}
+[data-d="blueprint"] .title{font-family:'JetBrains Mono',monospace;font-size:13px}
+[data-d="blueprint"] .note{color:#9dc3e6}
+
+/* ===== 7 · VINTAGE POSTER =============================== */
+[data-d="poster"] .itin{background:#1d4034;color:#f6e9c9;border:10px solid #e0b356}
+[data-d="poster"] .head{padding:var(--pad);text-align:center;background:#16332a;border-bottom:5px solid #e0b356}
+[data-d="poster"] .eyebrow{color:#e0b356;font-weight:700}
+[data-d="poster"] .park{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,8vw,104px);color:#f0c674;letter-spacing:.03em;line-height:.9;margin:8px 0}
+[data-d="poster"] .sub{color:#b8cbb3}
+[data-d="poster"] .facts{background:#e0b356}
+[data-d="poster"] .fact{background:#1d4034}
+[data-d="poster"] .fact-l{color:#a8bfa3}
+[data-d="poster"] .fact-v{color:#f0c674;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em}
+[data-d="poster"] .body{padding:var(--pad)}
+[data-d="poster"] .col-label{color:#e0b356;font-weight:700}
+[data-d="poster"] .row{border-bottom:1px solid rgba(224,179,86,.28)}
+[data-d="poster"] .time{color:#e0b356}
+[data-d="poster"] .title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.03em;font-weight:400}
+[data-d="poster"] .note{color:#cddcc8;opacity:.85}
+
+/* ===== 8 · TERMINAL ===================================== */
+[data-d="terminal"] .itin{background:#04100a;color:#57ff8f;border:1px solid rgba(87,255,143,.32);
+  font-family:'JetBrains Mono',monospace;border-radius:8px}
+[data-d="terminal"] .head{padding:var(--pad);border-bottom:1px solid rgba(87,255,143,.28)}
+[data-d="terminal"] .eyebrow{color:#2fd46f}
+[data-d="terminal"] .park{font-size:clamp(22px,3.6vw,42px);font-weight:700;margin:8px 0;color:#b6ffcf;text-shadow:0 0 14px rgba(87,255,143,.4)}
+[data-d="terminal"] .park::before{content:"$ ";color:#2fd46f}
+[data-d="terminal"] .sub{color:#3f9c63}
+[data-d="terminal"] .facts{background:rgba(87,255,143,.22)}
+[data-d="terminal"] .fact{background:#04100a}
+[data-d="terminal"] .fact-v{color:#b6ffcf}
+[data-d="terminal"] .body{padding:var(--pad)}
+[data-d="terminal"] .col-label{color:#2fd46f}
+[data-d="terminal"] .col-label::before{content:"## "}
+[data-d="terminal"] .row{border-bottom:1px dotted rgba(87,255,143,.18)}
+[data-d="terminal"] .title{font-size:13px;color:#d8ffe6}
+[data-d="terminal"] .title::before{content:"> ";color:#2fd46f}
+[data-d="terminal"] .note{color:#4bbb78}
+
+/* ===== 9 · STORYBOOK =================================== */
+[data-d="storybook"] .itin{background:#120a1f;color:#f0e6d2;border:1px solid rgba(212,175,110,.4);
+  background-image:radial-gradient(90% 60% at 50% 0%,rgba(212,175,110,.16),transparent 70%)}
+[data-d="storybook"] .head{padding:var(--pad);text-align:center;border-bottom:1px solid rgba(212,175,110,.35)}
+[data-d="storybook"] .eyebrow{color:#d4af6e}
+[data-d="storybook"] .park{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(30px,5.2vw,66px);
+  background:linear-gradient(180deg,#f7e3b0,#c9973f);-webkit-background-clip:text;background-clip:text;color:transparent;margin:10px 0}
+[data-d="storybook"] .sub{color:#a08fbd}
+[data-d="storybook"] .facts{background:rgba(212,175,110,.3)}
+[data-d="storybook"] .fact{background:#150c24}
+[data-d="storybook"] .fact-v{font-family:'Cinzel',serif;color:#e8c98a}
+[data-d="storybook"] .body{padding:var(--pad)}
+[data-d="storybook"] .col-label{font-family:'Cinzel',serif;color:#d4af6e;font-size:12px}
+[data-d="storybook"] .row{border-bottom:1px solid rgba(212,175,110,.16)}
+[data-d="storybook"] .time{color:#d4af6e}
+[data-d="storybook"] .title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:#fdf6e6}
+[data-d="storybook"] .note{font-family:'Cormorant Garamond',serif;font-size:15px;color:#c9bcd8}
+
+/* ===== 10 · OPS DASHBOARD ============================== */
+[data-d="ops"] .itin{background:#0e1117;color:#dbe3ef;border:1px solid rgba(255,255,255,.1)}
+[data-d="ops"] .head{padding:24px var(--pad);display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;
+  background:linear-gradient(135deg,rgba(56,139,253,.14),transparent)}
+[data-d="ops"] .eyebrow{color:#58a6ff}
+[data-d="ops"] .park{font-size:clamp(24px,3.8vw,44px);font-weight:800;letter-spacing:-.025em;margin:6px 0}
+[data-d="ops"] .sub{color:#7d8796}
+[data-d="ops"] .facts{background:rgba(255,255,255,.08)}
+[data-d="ops"] .fact{background:#0e1117}
+[data-d="ops"] .fact-v{color:#58a6ff;font-family:'JetBrains Mono',monospace}
+[data-d="ops"] .body{padding:var(--pad)}
+[data-d="ops"] .col-label{color:#58a6ff}
+[data-d="ops"] .row{grid-template-columns:78px 1fr;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:11px 13px;margin-bottom:7px;align-items:center}
+[data-d="ops"] .time{color:#58a6ff;background:rgba(88,166,255,.13);border:1px solid rgba(88,166,255,.3);
+  border-radius:6px;padding:4px 7px;text-align:center;font-size:10.5px}
+[data-d="ops"] .note{opacity:.7}
+[data-d="ops"] .tagchip{display:inline-block;margin-top:6px;font:700 9px/1 'JetBrains Mono',monospace;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 7px;border-radius:5px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#9fb0c8}
+.itin .tagchip{display:none}
+[data-d="ops"] .itin .tagchip{display:inline-block}
+
+@media print{.bar{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <h1>ITINERARY DESIGN OPTIONS</h1>
+    <div class="grp" id="dayPick"><span class="lab">Day</span></div>
+    <div class="grp" id="designPick"><span class="lab">Design</span></div>
+    <span class="hint">10 designs × 5 days · pick a combination</span>
+  </div>
+</div>
+
+<div class="stage">
+  <p class="plate" id="plate"></p>
+  <div id="mount"></div>
+</div>
+
+<script>
+const DATA = {"ak":{"key":"ak","day":"Day 02","park":"Animal Kingdom","date":"Mon · Oct 12","eyebrow":"★ PARK NIGHT ★","lines":["ANIMAL","KINGDOM"],"sub":"— EST. 1998 · ORLANDO —","deck":"Park Day One · Day 02 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"7:30a → 8p"},{"l":"Weather","v":"82°F · sunny"},{"l":"Crowd","v":"4/10"},{"l":"Sunset","v":"6:48 PM"},{"l":"Steps est.","v":"14,200"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"5:45AM","title":"Wake & coffee","note":"Pre-stage backpacks, water bottles, sunscreen, ponchos.","tag":"prep","kind":"none"},{"time":"6:30AM","title":"On bus to AK","note":"Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.","tag":"transit","kind":"none"},{"time":"6:59AM","title":"LLMP DROP — Avatar Flight of Passage","note":"Tap LLMP at 7:00 AM sharp · adults only · 44\" min.","tag":"alarm","kind":"none"},{"time":"7:30AM","title":"ROPE DROP — Kilimanjaro Safari","note":"Animals most active in the morning. Go LEFT at the entrance.","tag":"rope","kind":"ride"},{"time":"8:30AM","title":"Na'vi River Journey","note":"Mario's pick · gentle boat · no height min.","tag":"ride","kind":"ride"},{"time":"9:30AM","title":"Snack — Pongu Pongu","note":"Night Blossom + pretzel · sit by the floating mountains.","tag":"food","kind":"food"},{"time":"10:30AM","title":"Wildlife Express → Rafiki's","note":"Mario's pick · NEW Bluey-themed train.","tag":"ride","kind":"ride"}]},{"label":"AFTERNOON · PM","rows":[{"time":"1:30PM","title":"LLMP — Avatar Flight of Passage","note":"Adults rotate. Mario stays w/ grandparents (44\" min).","tag":"ride","kind":"ride"},{"time":"2:30PM","title":"Festival of the Lion King","note":"Mario's pick · A/C · seats fill 30 min before show.","tag":"show","kind":"none"},{"time":"3:45PM","title":"Dole Whip + cool down","note":"Tamu Tamu · find shade · regroup w/ grandparents.","tag":"food","kind":"food"},{"time":"5:00PM","title":"Tree of Life Awakenings","note":"First projection cycle at dusk. Catch it on the bridge.","tag":"show","kind":"none"},{"time":"6:30PM","title":"Dinner — Yak & Yeti counter","note":"Honey chicken · egg rolls · table by the river.","tag":"food","kind":"food"},{"time":"7:45PM","title":"Park close — Pandora at dusk","note":"Bioluminescent forest · last lap before bus home.","tag":"rope","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"hs":{"key":"hs","day":"Day 03","park":"Hollywood Studios","date":"Tue · Oct 13","eyebrow":"★ LIGHTS · CAMERA · ACTION ★","lines":["HOLLYWOOD","STUDIOS"],"sub":"— EST. 1989 · ORLANDO —","deck":"Park Day Two · Day 03 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"8:00a → 9:30p"},{"l":"Weather","v":"84°F · clear"},{"l":"Crowd","v":"5/10"},{"l":"Sunset","v":"6:46 PM"},{"l":"Steps est.","v":"16,800"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"7:00AM","title":"Coffee + pack","note":"Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.","tag":"studio","kind":"none"},{"time":"7:30AM","title":"Skyliner from Art of Animation","note":"Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.","tag":"transit","kind":"none"},{"time":"6:59AM","title":"LLMP DROP — Falcon → ToT → Rock 'n' Roller","note":"Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.","tag":"alarm","kind":"ride"},{"time":"8:30AM","title":"ROPE DROP — Slinky Dog Dash","note":"Slinky's LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38\").","tag":"rope","kind":"ride"},{"time":"9:15AM","title":"Alien Swirling Saucers + Toy Story Mania","note":"You're in Toy Story Land — knock both out before crowds build.","tag":"ride","kind":"ride"},{"time":"10:30AM","title":"Smugglers Run — NEW Mandalorian mission","note":"Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38\").","tag":"ride","kind":"ride"},{"time":"11:30AM","title":"Blue / Green Milk + Build a Droid","note":"Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.","tag":"food","kind":"food"}]},{"label":"AFTERNOON · PM","rows":[{"time":"12:30PM","title":"LLSP — Rise of the Resistance","note":"The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40\").","tag":"ride","kind":"ride"},{"time":"1:30PM","title":"Mickey & Minnie's Runaway Railway","note":"LLMP refresh. Cartoon physics, no height min. Mario will love it.","tag":"ride","kind":"ride"},{"time":"2:30PM","title":"Tower of Terror (LLMP #2)","note":"Drop sequence randomizes — never the same twice. Rider Switch if Mario's nervous.","tag":"ride","kind":"ride"},{"time":"3:30PM","title":"Star Tours","note":"Randomized destinations. Short waits typically. Mario rides ✅ (40\").","tag":"ride","kind":"ride"},{"time":"4:00PM","title":"Rock 'n' Roller — NEW Muppets","note":"Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario's 42\" / req 48\".","tag":"alarm","kind":"ride"},{"time":"5:30PM","title":"Dinner — Sci-Fi Dine-In","note":"Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.","tag":"food","kind":"food"},{"time":"7:00PM","title":"Beauty & the Beast + Villains Stage Show","note":"AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.","tag":"show","kind":"none"},{"time":"8:30PM","title":"Galaxy's Edge after dark","note":"Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.","tag":"studio","kind":"none"},{"time":"9:00PM","title":"Fantasmic!","note":"Be at amphitheater by 8:15 for a decent seat. Skip if Mario's wrecked — it's loud.","tag":"show","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"mk":{"key":"mk","day":"Day 04","park":"Magic Kingdom","date":"Wed · Oct 14","eyebrow":"★ WHERE DREAMS COME TRUE ★","lines":[],"sub":"— EST. 1971 · ORLANDO —","deck":"Park Day Three · Day 04 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"9a → 10p"},{"l":"Weather","v":"83°F · clear"},{"l":"Crowd","v":"6/10"},{"l":"Fireworks","v":"9:00 PM"},{"l":"Steps est.","v":"18,400"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"6:59AM","title":"LLMP DROP — Seven Dwarfs first","note":"Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.","tag":"alarm","kind":"none"},{"time":"7:30AM","title":"ROPE DROP — Peter Pan's Flight","note":"Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).","tag":"rope","kind":"ride"},{"time":"8:30AM","title":"Bibbidi Bobbidi Boutique","note":"Princess transformation · 60–90 min · check in 5 min early behind the castle.","tag":"castle","kind":"none"},{"time":"8:30AM","title":"SPLIT — Speedway + Buzz + PhilharMagic","note":"Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.","tag":"ride","kind":"ride"},{"time":"10:00AM","title":"THE CASTLE REVEAL","note":"Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.","tag":"castle","kind":"none"},{"time":"10:30AM","title":"Princess Fairytale Hall","note":"Cinderella + Tiana meet & greets. BBB outfit = pure magic.","tag":"castle","kind":"none"},{"time":"11:00AM","title":"Dumbo + Barnstormer","note":"Mario classics. Barnstormer (35\") is his first roller coaster — short, gentle, perfect intro.","tag":"ride","kind":"ride"},{"time":"11:30AM","title":"Seven Dwarfs Mine Train (LLMP)","note":"Use your locked-in slot. Mario rides ✅ (38\" min).","tag":"ride","kind":"ride"},{"time":"12:00PM","title":"Mickey's PhilharMagic + Small World","note":"4D show, AC, classic songs. Small World walk-on if time allows.","tag":"show","kind":"none"}]},{"label":"AFTERNOON & NIGHT · PM","rows":[{"time":"1:00PM","title":"RESORT BREAK — non-negotiable","note":"Back to Art of Animation. Pool, naps, hydrate, hair touch-up. Skip = meltdowns by 5 PM.","tag":"break","kind":"none"},{"time":"3:00PM","title":"Festival of Fantasy Parade · optional","note":"Only if kids rebound fast. Frontierland is less crowded than Main Street.","tag":"show","kind":"none"},{"time":"4:00PM","title":"Pirates of the Caribbean (LLMP refill)","note":"Mario rides ✅ (no min). Dark but more silly than scary.","tag":"ride","kind":"ride"},{"time":"4:45PM","title":"Jungle Cruise + Country Bears","note":"Corny skipper jokes, animatronics, AC. Quick easy wins.","tag":"ride","kind":"ride"},{"time":"5:30PM","title":"Big Thunder Mountain","note":"REOPENED May 2026 — refreshed scenery. Mario's first 'real' coaster ✅ (40\").","tag":"ride","kind":"ride"},{"time":"6:30PM","title":"Haunted Mansion (LLMP)","note":"Watch Mario's face in the stretching room. He'll love it.","tag":"ride","kind":"ride"},{"time":"7:15PM","title":"Buzz + Speedway","note":"New blasters & 'Buddy' character. Speedway: Mario 'drives' with adult — non-negotiable for him.","tag":"ride","kind":"ride"},{"time":"7:45PM","title":"TRON / Space Mountain — Rider Switch","note":"Mario can't ride (48\"/44\"). One parent waits w/ kids, other rides w/ daughter, swap.","tag":"ride","kind":"ride"},{"time":"8:30PM","title":"Stake your fireworks spot","note":"Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.","tag":"fireworks","kind":"none"},{"time":"9:00PM","title":"Happily Ever After (9:00 PM)","note":"18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. THE photo of the trip.","tag":"fireworks","kind":"none"},{"time":"9:30PM","title":"Exit — beat the exodus","note":"Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.","tag":"break","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"hhn":{"key":"hhn","day":"Day 05","park":"HHN 35","date":"Thu · Oct 15","eyebrow":"★ INFERNAL CARNIVAL OF NIGHTMARES ★","lines":[],"sub":"— UNIVERSAL STUDIOS FLORIDA · 6:30P → 1A —","deck":"Adults Night · Sitter for Mario · Day 04 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"6:30p → 1a"},{"l":"Houses","v":"10 all-new"},{"l":"Crowd","v":"6/10 (Thu)"},{"l":"Weather","v":"65°F night"},{"l":"Mario","v":"with sitter"},{"l":"Recovery","v":"Fri = Off"}],"columns":[{"label":"PRE-EVENT · EARLY NIGHT","rows":[{"time":"9:30AM","title":"Chef Mickey’s - Contemporary Resort","note":"Character breakfast - Mickey, Minnie, Donald, Goofy and Pluto come to the table. Monorail over from the Contemporary. Annelise’s big character meal on the rest-day morning, before the adults leave for HHN.","tag":"food","kind":"food"},{"time":"2:00PM","title":"Lunch + hydrate · resort","note":"Eat heavy. You won't sit again until 1 AM. Hand Mario off to the sitter at Art of Animation.","tag":"prep","kind":"food"},{"time":"3:30PM","title":"Leave for Universal","note":"Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.","tag":"travel","kind":"none"},{"time":"4:30PM","title":"Park at Universal","note":"Preferred Parking ($55) — closer in + faster exit when the park dumps at 1 AM.","tag":"travel","kind":"none"},{"time":"5:00PM","title":"Dinner · CityWalk","note":"Antojitos or Vivo. Skip in-park food — slow + overpriced. Full carb load before the marathon.","tag":"food","kind":"food"},{"time":"6:00PM","title":"Stadium queue · front gate","note":"Be at the turnstile by 6:00 sharp. Doors open ~6:15. First 30 min = the only time the park breathes.","tag":"prep","kind":"none"},{"time":"6:30PM","title":"EVENT START · sprint to House #1","note":"Newest IP house first — the longest line by 8 PM. This is the rule, every year.","tag":"house","kind":"ride"},{"time":"6:45PM","title":"Houses #2 + #3 · back lot","note":"Soundstage houses near Men in Black. Hit before crowds rotate back from the front.","tag":"house","kind":"ride"},{"time":"8:00PM","title":"Halloween Tribute Store","note":"Bag the merch run. Skip if the line wraps the building — come back after 11.","tag":"merch","kind":"none"},{"time":"8:30PM","title":"Scare Zones · NY + Hollywood","note":"Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.","tag":"zone","kind":"none"}]},{"label":"MIDNIGHT · CLOSE","rows":[{"time":"9:00PM","title":"Houses #4 + #5","note":"Crowds peak now. Use single-rider lines if posted. Standby times in the app run ~20% high.","tag":"house","kind":"ride"},{"time":"10:30PM","title":"Bar break · Finnegan's or Duff","note":"Reset. Charge phone. Finnegan's (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe.","tag":"bar","kind":"food"},{"time":"11:00PM","title":"Houses #6 + #7","note":"Lines drop sharply after 11. This is the window. Move fast.","tag":"house","kind":"ride"},{"time":"12:00AM","title":"House #8 · repeat favorite","note":"Wait times often under 20 min in the final hour. Hit the one you couldn't fully take in.","tag":"house","kind":"ride"},{"time":"12:30AM","title":"Chez Alcatraz · last drink","note":"San Francisco area. Sit. Watch the scare actors work the last shift.","tag":"bar","kind":"food"},{"time":"12:45AM","title":"Final scare-zone walk","note":"Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.","tag":"zone","kind":"none"},{"time":"1:00AM","title":"Park close · exit","note":"Restroom BEFORE leaving. Parking lot crawls — give it 15 min before fighting it.","tag":"travel","kind":"none"},{"time":"1:30AM","title":"On the road · Art of Animation","note":"Drive sober. Uber if needed. Sitter hand-off, then collapse. Friday is rest day.","tag":"travel","kind":"none"},{"time":"💀","title":"8 HOUSES · 5 ZONES · 1 NIGHT","note":"The Garcia adults survived the Infernal Carnival. Mario slept through it all.","tag":"finale","kind":"none"}]}],"extras":{"houses":[{"rank":"01","name":"Newest IP House","why":"Longest line by 8p — hit first"},{"rank":"02","name":"Second Hyped IP","why":"Crowd hits by 8p"},{"rank":"03","name":"Universal Monsters","why":"Strong second wave"},{"rank":"04","name":"Soundstage Houses","why":"Back-of-park · thinner"},{"rank":"05","name":"KidZone Sprung Tents","why":"Walk-on after 11p"},{"rank":"06","name":"Repeat Favorite","why":"<20 min in final hr"}],"worlds":[],"budget":[["HHN Wednesday ticket","$85–110"],["Express Pass · optional","$120–180"],["Preferred parking","$55"],["CityWalk dinner","$35–60"],["In-park snacks + 2 drinks","$40–60"],["Tribute Store merch · budget","$50"],["Total · no Express","$265–365"],["Total · with Express","$385–545"]]}},"eu":{"key":"eu","day":"Day 06","park":"Epic Universe","date":"Fri · Oct 16","eyebrow":"★ FIVE WORLDS · ONE PARK ★","lines":[],"sub":"— OPENED 2025 · ORLANDO —","deck":"Park Day Five · Day 06 of 07 · Garcia Trip Finale","facts":[{"l":"Hours","v":"9a → 9p"},{"l":"Weather","v":"82°F · clear"},{"l":"Crowd","v":"7/10"},{"l":"Rides","v":"12 of 15"},{"l":"Steps est.","v":"16,200"},{"l":"Mario","v":"42\" · ✅ 40\""}],"columns":[{"label":"PREP & MORNING · AM","rows":[{"time":"Thu PM","title":"NIGHT BEFORE — secure VQ + Express","note":"Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.","tag":"prep","kind":"none"},{"time":"8:30AM","title":"Uber from Art of Animation","note":"15–20 min · ~$20 each way. Disney transport doesn't reach Universal. Skip rope drop — you got wrecked at HHN last night and Express covers you.","tag":"prep","kind":"none"},{"time":"9:30AM","title":"ARRIVAL — Power-Up Bands on wrists","note":"Express linked. App open. Mario Kart VQ secured. Game on.","tag":"prep","kind":"ride"},{"time":"10:00AM","title":"Mario Kart: Bowser's Challenge (Express)","note":"Longest queue in the park — hit it first. Mario rides ✅ (40\" min, he's 42\"). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.","tag":"mario","kind":"ride"},{"time":"10:30AM","title":"Yoshi's Adventure","note":"No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.","tag":"mario-yellow","kind":"ride"},{"time":"11:00AM","title":"Mine-Cart Madness (Express)","note":"Donkey Kong Country. Mario rides ✅ (40\"). Innovative track design — feels like the cart is jumping rails.","tag":"mario","kind":"ride"},{"time":"11:30AM","title":"Power-Up Band activities","note":"Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Mario will lose his mind.","tag":"mario-blue","kind":"none"},{"time":"12:00PM","title":"BAND HACK — pass them around","note":"You don't need a band per person. Mario gets the most use — let him keep one strapped on all day.","tag":"prep","kind":"none"},{"time":"12:30PM","title":"Lunch · Toadstool Cafe","note":"Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.","tag":"food","kind":"food"}]},{"label":"AFTERNOON & NIGHT · PM","rows":[{"time":"1:30PM","title":"Curse of the Werewolf (Express)","note":"Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.","tag":"dark","kind":"ride"},{"time":"2:15PM","title":"Monsters Unchained (Express)","note":"Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.","tag":"dark","kind":"ride"},{"time":"3:00PM","title":"Hiccup's Wing Gliders (Express)","note":"Family coaster on Isle of Berk. Mario rides ✅ (40\"). Smooth, scenic, perfect for him.","tag":"dragon","kind":"ride"},{"time":"3:30PM","title":"Dragon Racer's Rally · only if line < 30 min","note":"Only ride NOT on Express in the park. Hop in if it's short, otherwise skip — you've got bigger fish.","tag":"dragon","kind":"ride"},{"time":"4:00PM","title":"Meet Toothless","note":"Lines build fast. Either grab now or end of night when they die down.","tag":"dragon","kind":"none"},{"time":"4:30PM","title":"Battle at the Ministry (Express)","note":"The biggest headliner in the park. Mario rides ✅ (40\"). Innovative ride system — moves through multiple show buildings.","tag":"magic","kind":"ride"},{"time":"5:30PM","title":"Butterbeer + Butterbeer ice cream","note":"Mandatory. Get the frozen version. Mario's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.","tag":"magic","kind":"food"},{"time":"6:30PM","title":"Dinner · Atlantic or Blue Dragon","note":"Both in Celestial Park. Sit-down, table service. You've earned it.","tag":"food","kind":"food"},{"time":"8:00PM","title":"Stardust Racers (Express) · Rider Switch","note":"Dueling coaster. Mario can't ride (48\"; he's 42\"). Both adults ride both sides via swap. Reopened Mar 2026.","tag":"celestial","kind":"ride"},{"time":"8:30PM","title":"Stardust Show — Celestial Park","note":"Nighttime show. Check showtimes in app. Good wind-down before exit.","tag":"celestial","kind":"none"},{"time":"8:45PM","title":"One last walk through Nintendo World","note":"All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.","tag":"mario-blue","kind":"none"},{"time":"9:00PM","title":"Uber back to Art of Animation","note":"Don't push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early.","tag":"break","kind":"none"},{"time":"🏆","title":"FIVE PARKS · ONE WEEK · TRIP COMPLETE","note":"The Garcia family conquered Orlando.","tag":"finale","kind":"none"}]}],"extras":{"houses":[],"worlds":[{"num":"LAND 01","name":"Super Nintendo World","tag":"Mario · DK"},{"num":"LAND 02","name":"Dark Universe","tag":"Monsters"},{"num":"LAND 03","name":"Isle of Berk","tag":"HtTYD"},{"num":"LAND 04","name":"Wizarding World","tag":"Ministry"},{"num":"LAND 05","name":"Celestial Park","tag":"Hub · Stardust"}],"budget":[]}}};
+
+const DESIGNS = [
+  ['pass',      '01 · Boarding Pass'],
+  ['swiss',     '02 · Swiss Timetable'],
+  ['journal',   '03 · Field Journal'],
+  ['neon',      '04 · Neon Marquee'],
+  ['editorial', '05 · Editorial'],
+  ['blueprint', '06 · Blueprint'],
+  ['poster',    '07 · Vintage Poster'],
+  ['terminal',  '08 · Terminal'],
+  ['storybook', '09 · Storybook'],
+  ['ops',       '10 · Ops Dashboard'],
+];
+const DAYS = ['ak','hs','mk','hhn','eu'];
+
+let curDay = 'ak', curDesign = 'pass';
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function extrasFor(d){
+  const e = d.extras || {};
+  if (e.houses && e.houses.length)
+    return `<div class="extras">${e.houses.map(h=>
+      `<div class="xrow"><b>${esc(h.rank)}</b><span><b>${esc(h.name)}</b> — ${esc(h.why)}</span></div>`).join('')}</div>`;
+  if (e.worlds && e.worlds.length)
+    return `<div class="extras">${e.worlds.map(w=>
+      `<div class="xrow"><b>${esc(w.num)}</b><span><b>${esc(w.name)}</b> — ${esc(w.tag)}</span></div>`).join('')}</div>`;
+  return '';
+}
+
+function render(){
+  const d = DATA[curDay];
+  document.body.setAttribute('data-d', curDesign);
+  const label = (DESIGNS.find(x=>x[0]===curDesign)||[])[1] || '';
+  document.getElementById('plate').innerHTML =
+    `<b>${esc(label)}</b> <span>·</span> <span>${esc(d.day)} — ${esc(d.park)} · ${esc(d.date)}</span>`;
+
+  const facts = d.facts.map(f=>
+    `<div class="fact"><div class="fact-l">${esc(f.l)}</div><div class="fact-v">${esc(f.v)}</div></div>`).join('');
+
+  const cols = d.columns.map(c=>`
+    <div class="col">
+      <div class="col-label">${esc(c.label)}</div>
+      <ol>${c.rows.map(r=>`
+        <li class="row">
+          <span class="time">${esc(r.time)}</span>
+          <span>
+            <span class="title">${esc(r.title)}</span>
+            ${r.note ? `<span class="note">${esc(r.note)}</span>` : ''}
+            ${r.tag ? `<span class="tagchip">${esc(r.tag)}</span>` : ''}
+          </span>
+        </li>`).join('')}</ol>
+    </div>`).join('');
+
+  // the boarding pass carries a stub; everything else uses the plain header
+  const stub = curDesign === 'pass'
+    ? `<div class="stub"><div>${esc(d.day)}</div><div class="big">${esc(d.date.split('·').pop().trim())}</div>
+       <div>${esc(d.facts[0] ? d.facts[0].v : '')}</div><div class="barcode"></div></div>` : '';
+
+  document.getElementById('mount').innerHTML = `
+    <div class="itin">
+      <div class="head">
+        <div>
+          <div class="eyebrow">${esc(d.eyebrow || d.day)}</div>
+          <div class="park">${d.lines.length ? d.lines.map(esc).join(' ') : esc(d.park)}</div>
+          <div class="sub">${esc(d.sub || d.date)}</div>
+        </div>
+        ${stub}
+      </div>
+      <div class="facts">${facts}</div>
+      <div class="body">
+        <div class="cols">${cols}</div>
+        ${extrasFor(d)}
+      </div>
+    </div>`;
+
+  document.querySelectorAll('#dayPick .chip').forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===curDay));
+  document.querySelectorAll('#designPick .chip').forEach(b=>b.setAttribute('aria-pressed', b.dataset.k===curDesign));
+}
+
+const dayBar = document.getElementById('dayPick');
+DAYS.forEach(k=>{
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.k=k; b.textContent=DATA[k].park;
+  b.onclick=()=>{curDay=k;render()};
+  dayBar.appendChild(b);
+});
+const dBar = document.getElementById('designPick');
+DESIGNS.forEach(([k,label])=>{
+  const b=document.createElement('button');
+  b.className='chip'; b.dataset.k=k; b.textContent=label;
+  b.onclick=()=>{curDesign=k;render()};
+  dBar.appendChild(b);
+});
+render();
+
+/* one runnable check: every design must render every day with all rows intact */
+function selfTest(){
+  const expect = Object.fromEntries(DAYS.map(k=>[k, DATA[k].columns.reduce((a,c)=>a+c.rows.length,0)]));
+  const bad=[];
+  for (const [dz] of DESIGNS) for (const k of DAYS){
+    curDesign=dz; curDay=k; render();
+    const got=document.querySelectorAll('#mount .row').length;
+    if (got!==expect[k]) bad.push(dz+'/'+k+' expected '+expect[k]+' got '+got);
+  }
+  curDay='ak'; curDesign='pass'; render();
+  return bad.length ? {ok:false,bad} : {ok:true,combos:DESIGNS.length*DAYS.length,rows:expect};
+}
+window.selfTest = selfTest;
+</script>
+</body>
+</html>
