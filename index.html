@@ -1084,12 +1084,12 @@ img, svg, video{ max-width: 100%; }
   color:#fff;background:var(--acc,#b1291a);display:inline-block;padding:9px 16px;border-radius:999px;
   margin:34px 0 18px}
 .ed-sec:first-child{margin-top:0}
-.ed-ev{display:grid;grid-template-columns:34px 40px 1fr;gap:14px;align-items:start;
+.ed-ev{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start;
   padding:16px 0;border-bottom:2px solid #e4ded1}
 /* rows with photography gain a fourth column; rows without keep the original three, so a
    day with no images is unaffected */
-.ed-ev.has-shot{grid-template-columns:34px 40px 1fr auto}
-.ed-shot{grid-column:4;width:150px;height:100px;object-fit:cover;border-radius:10px;
+.ed-ev.has-shot{grid-template-columns:34px 1fr auto}
+.ed-shot{grid-column:3;width:150px;height:100px;object-fit:cover;border-radius:10px;
   border:1px solid #ddd6c9;box-shadow:0 6px 18px rgba(0,0,0,.16);align-self:center}
 /* Phone layout. The trip is run off phones, so the photo goes full width under the text
    rather than squeezing into a column.
@@ -1097,18 +1097,16 @@ img, svg, video{ max-width: 100%; }
    grid-column:auto overrides the column half and auto-places the image into the 26px
    number column, which rendered every photo as a 26x150 sliver on phones. */
 @media(max-width:760px){
-  .ed-ev.has-shot{grid-template-columns:26px 32px 1fr;
-    grid-template-areas:"num icon body" "shot shot shot"}
+  .ed-ev.has-shot{grid-template-columns:26px 1fr;
+    grid-template-areas:"num body" "shot shot"}
   .ed-ev.has-shot .ed-num{grid-area:num}
-  .ed-ev.has-shot .ed-icon{grid-area:icon}
   .ed-ev.has-shot .ed-body{grid-area:body}
   .ed-shot{grid-area:shot;width:100%;height:200px;margin-top:12px;border-radius:12px}
 }
 .ed-ev:last-child{border-bottom:0}
 .ed-num{grid-column:1;font:800 15px/1 'JetBrains Mono',monospace;color:#a89e8c;
   padding-top:9px;text-align:right;font-variant-numeric:tabular-nums}
-.ed-icon{grid-column:2;font-size:27px;line-height:1;padding-top:4px}
-.ed-body{grid-column:3;display:block;min-width:0}
+.ed-body{grid-column:2;display:block;min-width:0}
 .ed-t{display:inline-block;font:800 13px/1 'JetBrains Mono',monospace;letter-spacing:.06em;
   color:#fff;background:#171310;padding:6px 11px;border-radius:7px;margin-bottom:9px;
   font-variant-numeric:tabular-nums}
@@ -1120,19 +1118,19 @@ img, svg, video{ max-width: 100%; }
 .ed-n{display:block;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
   font-size:clamp(15px,1.5vw,17px);line-height:1.55;color:#3c352d}
 @media(max-width:560px){
-  .ed-ev{grid-template-columns:26px 32px 1fr;gap:10px}
-  .ed-icon{font-size:22px}
+  .ed-ev{grid-template-columns:26px 1fr;gap:10px}
   .ed-num{font-size:13px}
 }
 
 /* --- flight cards at half height ---
    Measured 312px. Every band contributed, so the reduction is spread across all of them
    rather than shrinking the times alone, which would have left the whitespace behind. */
-#flights .center-card{padding:10px 14px}
-#flights .ce{margin-bottom:3px;font-size:10px}
-#flights .ch{font-size:15px;margin-bottom:4px}
-#flights .fl-route{margin:4px 0;gap:10px}
-#flights .fl-ap .t{font-size:19px}
+#flights .center-card{padding:8px 12px}
+#flights .ce{margin-bottom:1px;font-size:9px;letter-spacing:.2em}
+#flights .ch{font-size:13px;margin-bottom:1px}
+#flights .fl-route{margin:2px 0;gap:8px}
+#flights .fl-ap .t{font-size:15px}
+#flights .fl-arrow{font-size:12px}
 /* airport code and city were stacking on separate lines — the single biggest band in the
    card. Inline they read the same and cost one line instead of two. */
 #flights .fl-ap .c{display:inline;font-size:10px;margin-top:0;letter-spacing:.2em}
@@ -1273,6 +1271,43 @@ function charFallback(img){
 
 
 <!-- Orlando Weather — full-width horizontal command bar -->
+<section id="flights">
+  
+  <div class="center-grid">
+    <div class="center-card">
+      <div class="ce">🛫 Outbound · Sun, Oct 11, 2026</div>
+      <div class="ch">United <b>UA 2245</b> · Economy (Q)</div>
+      <div class="fl-route">
+        <div class="fl-ap"><div class="t">7:25 AM</div><div class="c">IAH</div><div class="n">Houston, TX</div></div>
+        <div class="fl-arrow">→</div>
+        <div class="fl-ap"><div class="t">10:54 AM</div><div class="c">MCO</div><div class="n">Orlando, FL</div></div>
+      </div>
+      <div class="fl-meta">Nonstop · ~2h 29m · leave for IAH by 4:45 AM — 12 people checking bags needs the full 2 hrs</div>
+      <div class="fl-links">
+        <a href="https://www.flightaware.com/live/flight/UAL2245" target="_blank" rel="noopener">📡 Live Status · FlightAware</a>
+        <a href="https://www.google.com/search?q=UA2245+flight+status" target="_blank" rel="noopener">🔍 Google</a>
+        <a href="https://www.united.com/en/us/flightstatus" target="_blank" rel="noopener">✈ United</a>
+      </div>
+    </div>
+    <div class="center-card">
+      <div class="ce">🛬 Return · Sat, Oct 17, 2026</div>
+      <div class="ch">United <b>UA 468</b> · Economy (T)</div>
+      <div class="fl-route">
+        <div class="fl-ap"><div class="t">7:00 AM</div><div class="c">MCO</div><div class="n">Orlando, FL</div></div>
+        <div class="fl-arrow">→</div>
+        <div class="fl-ap"><div class="t">8:38 AM</div><div class="c">IAH</div><div class="n">Houston, TX</div></div>
+      </div>
+      <div class="fl-meta">Nonstop · ~2h 38m · early start — pack the night before, breakfast lands in Houston</div>
+      <div class="fl-links">
+        <a href="https://www.flightaware.com/live/flight/UAL468" target="_blank" rel="noopener">📡 Live Status · FlightAware</a>
+        <a href="https://www.google.com/search?q=UA468+flight+status" target="_blank" rel="noopener">🔍 Google</a>
+        <a href="https://www.united.com/en/us/flightstatus" target="_blank" rel="noopener">✈ United</a>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
 <section class="weather-banner" id="weather" aria-label="Orlando 7-day weather forecast">
   <div class="wb-head">
     <div class="wb-eyebrow"><span class="liv"></span>⛅ Orlando Weather</div>
@@ -1584,42 +1619,7 @@ button.expd-day:focus-visible{
 }
 </style>
 
-<section id="flights">
-  
-  <div class="center-grid">
-    <div class="center-card">
-      <div class="ce">🛫 Outbound · Sun, Oct 11, 2026</div>
-      <div class="ch">United <b>UA 2245</b> · Economy (Q)</div>
-      <div class="fl-route">
-        <div class="fl-ap"><div class="t">7:25 AM</div><div class="c">IAH</div><div class="n">Houston, TX</div></div>
-        <div class="fl-arrow">→</div>
-        <div class="fl-ap"><div class="t">10:54 AM</div><div class="c">MCO</div><div class="n">Orlando, FL</div></div>
-      </div>
-      <div class="fl-meta">Nonstop · ~2h 29m · leave for IAH by 4:45 AM — 12 people checking bags needs the full 2 hrs</div>
-      <div class="fl-links">
-        <a href="https://www.flightaware.com/live/flight/UAL2245" target="_blank" rel="noopener">📡 Live Status · FlightAware</a>
-        <a href="https://www.google.com/search?q=UA2245+flight+status" target="_blank" rel="noopener">🔍 Google</a>
-        <a href="https://www.united.com/en/us/flightstatus" target="_blank" rel="noopener">✈ United</a>
-      </div>
-    </div>
-    <div class="center-card">
-      <div class="ce">🛬 Return · Sat, Oct 17, 2026</div>
-      <div class="ch">United <b>UA 468</b> · Economy (T)</div>
-      <div class="fl-route">
-        <div class="fl-ap"><div class="t">7:00 AM</div><div class="c">MCO</div><div class="n">Orlando, FL</div></div>
-        <div class="fl-arrow">→</div>
-        <div class="fl-ap"><div class="t">8:38 AM</div><div class="c">IAH</div><div class="n">Houston, TX</div></div>
-      </div>
-      <div class="fl-meta">Nonstop · ~2h 38m · early start — pack the night before, breakfast lands in Houston</div>
-      <div class="fl-links">
-        <a href="https://www.flightaware.com/live/flight/UAL468" target="_blank" rel="noopener">📡 Live Status · FlightAware</a>
-        <a href="https://www.google.com/search?q=UA468+flight+status" target="_blank" rel="noopener">🔍 Google</a>
-        <a href="https://www.united.com/en/us/flightstatus" target="_blank" rel="noopener">✈ United</a>
-      </div>
-    </div>
-  </div>
-  <p class="fl-note">The status buttons open live real-time tracking — gate, delay, and aircraft updates. Airlines publish live data starting ~48 hours before departure; before then the links show the schedule. Day-of: check status before leaving for the airport, and enable notifications for both flights in the United app (conf <b style="color:#fbbf24">DE9ZDL</b>).</p>
-</section>
+
 
 
 
@@ -1628,13 +1628,11 @@ button.expd-day:focus-visible{
 <article class="ed-day" id="day-ak" style="--acc:#2f7d4f;--cover-pos:50% 30%">
   <header class="ed-cover" style="background-image:url('sections/assets/ak-bg.jpg?v=2026081003')">
     <div class="ed-cover-in">
-      <div class="ed-issue">
-        <span>Garcia Expedition</span><span>Day 02</span><span>Mon · Oct 12</span>
-      </div>
       <h2 class="ed-park">Animal Kingdom</h2>
-      <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
-           Artemio removed that strip from the chapters. -->
+      <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
+           now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Park day</i>02 of 07</span>
+        <span><i>Date</i>Mon · Oct 12</span>
         <span><i>Stops planned</i>10</span></p>
     </div>
   </header>
@@ -1646,7 +1644,6 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
-        <span class="ed-icon" aria-hidden="true">🎒</span>
         <span class="ed-body">
           <span class="ed-t">5:45AM</span>
           <span class="ed-h">Wake &amp; coffee</span>
@@ -1655,7 +1652,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-icon" aria-hidden="true">🚌</span>
         <span class="ed-body">
           <span class="ed-t">6:30AM</span>
           <span class="ed-h">On bus to AK</span>
@@ -1664,7 +1660,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">3</span>
-        <span class="ed-icon" aria-hidden="true">⏰</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -1674,7 +1669,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
-        <span class="ed-icon" aria-hidden="true">🏃</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
           <span class="ed-h">ROPE DROP — Kilimanjaro Safari</span>
@@ -1684,7 +1678,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">Na'vi River Journey</span>
@@ -1694,7 +1687,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Wildlife Express → Rafiki's</span>
@@ -1704,7 +1696,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Lightning Lane Single Pass — Avatar Flight of Passage</span>
@@ -1714,7 +1705,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">2:30PM</span>
           <span class="ed-h">Festival of the Lion King</span>
@@ -1724,7 +1714,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">5:00PM</span>
           <span class="ed-h">Tree of Life Awakenings</span>
@@ -1734,7 +1723,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-icon" aria-hidden="true">🏃</span>
         <span class="ed-body">
           <span class="ed-t">7:45PM</span>
           <span class="ed-h">Park close — Pandora at dusk</span>
@@ -1751,13 +1739,11 @@ button.expd-day:focus-visible{
 <article class="ed-day" id="day-hs" style="--acc:#b1521a;--cover-pos:50% 45%">
   <header class="ed-cover" style="background-image:url('sections/assets/hs-bg.jpg?v=2026081003')">
     <div class="ed-cover-in">
-      <div class="ed-issue">
-        <span>Garcia Expedition</span><span>Day 03</span><span>Tue · Oct 13</span>
-      </div>
       <h2 class="ed-park">Hollywood Studios</h2>
-      <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
-           Artemio removed that strip from the chapters. -->
+      <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
+           now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Park day</i>03 of 07</span>
+        <span><i>Date</i>Tue · Oct 13</span>
         <span><i>Stops planned</i>13</span></p>
     </div>
   </header>
@@ -1769,7 +1755,6 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
-        <span class="ed-icon" aria-hidden="true">⏰</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -1779,7 +1764,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-icon" aria-hidden="true">🚡</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
           <span class="ed-h">Skyliner from Pop Century</span>
@@ -1789,7 +1773,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
-        <span class="ed-icon" aria-hidden="true">🏃</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">ROPE DROP — Slinky Dog Dash</span>
@@ -1799,7 +1782,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">9:15AM</span>
           <span class="ed-h">Alien Swirling Saucers + Toy Story Mania</span>
@@ -1809,7 +1791,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Smugglers Run — NEW Mandalorian mission</span>
@@ -1819,7 +1800,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
           <span class="ed-h">Lightning Lane Single Pass — Rise of the Resistance</span>
@@ -1829,7 +1809,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Mickey &amp; Minnie's Runaway Railway</span>
@@ -1839,7 +1818,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">2:30PM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -1850,7 +1828,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Star Tours</span>
@@ -1860,7 +1837,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-icon" aria-hidden="true">⏰</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
           <span class="ed-h">Rock 'n' Roller — NEW Muppets</span>
@@ -1870,7 +1846,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">11</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">7:00PM</span>
           <span class="ed-h">Beauty &amp; the Beast + Villains Stage Show</span>
@@ -1880,7 +1855,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
-        <span class="ed-icon" aria-hidden="true">🎬</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
           <span class="ed-h">Galaxy's Edge after dark</span>
@@ -1890,7 +1864,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
           <span class="ed-h">Fantasmic!</span>
@@ -1907,13 +1880,11 @@ button.expd-day:focus-visible{
 <article class="ed-day" id="day-mk" style="--acc:#a3316b;--cover-pos:50% 35%">
   <header class="ed-cover" style="background-image:url('sections/assets/mk-bg.jpg?v=2026081003')">
     <div class="ed-cover-in">
-      <div class="ed-issue">
-        <span>Garcia Expedition</span><span>Day 04</span><span>Wed · Oct 14</span>
-      </div>
       <h2 class="ed-park">Magic Kingdom</h2>
-      <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
-           Artemio removed that strip from the chapters. -->
+      <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
+           now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Park day</i>04 of 07</span>
+        <span><i>Date</i>Wed · Oct 14</span>
         <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
@@ -1925,7 +1896,6 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
-        <span class="ed-icon" aria-hidden="true">🚌</span>
         <span class="ed-body">
           <span class="ed-t">6:15AM</span>
           <span class="ed-h">Bus to Magic Kingdom</span>
@@ -1934,7 +1904,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-icon" aria-hidden="true">⏰</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -1944,7 +1913,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
-        <span class="ed-icon" aria-hidden="true">🏃</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
           <span class="ed-h">ROPE DROP — Peter Pan's Flight</span>
@@ -1954,7 +1922,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
-        <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
           <span class="ed-h">Bibbidi Bobbidi Boutique</span>
@@ -1964,7 +1931,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic</span>
@@ -1974,7 +1940,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t">10:00AM</span>
           <span class="ed-h">THE CASTLE REVEAL</span>
@@ -1984,7 +1949,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Princess Fairytale Hall</span>
@@ -1994,7 +1958,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
           <span class="ed-h">Cinderella's Royal Table — lunch</span>
@@ -2004,7 +1967,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">11:00AM</span>
           <span class="ed-h">Dumbo + Barnstormer</span>
@@ -2014,7 +1976,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
           <span class="ed-h">Seven Dwarfs Mine Train (Lightning Lane Single Pass)</span>
@@ -2024,7 +1985,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">11</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">12:00PM</span>
           <span class="ed-h">Mickey's PhilharMagic + Small World</span>
@@ -2034,7 +1994,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
-        <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">3:00PM</span>
           <span class="ed-h">Festival of Fantasy Parade · optional</span>
@@ -2044,7 +2003,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2055,7 +2013,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">14</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">4:45PM</span>
           <span class="ed-h">Jungle Cruise + Country Bears</span>
@@ -2065,7 +2022,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">15</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
           <span class="ed-h">Big Thunder Mountain</span>
@@ -2075,7 +2031,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">16</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">6:30PM</span><img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
               title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2086,7 +2041,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">17</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">7:15PM</span>
           <span class="ed-h">Buzz + Speedway</span>
@@ -2096,7 +2050,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">18</span>
-        <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">7:45PM</span>
           <span class="ed-h">TRON (Single Pass) / Space Mountain — Rider Switch</span>
@@ -2106,7 +2059,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">19</span>
-        <span class="ed-icon" aria-hidden="true">🎆</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
           <span class="ed-h">Stake your fireworks spot</span>
@@ -2115,7 +2067,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">20</span>
-        <span class="ed-icon" aria-hidden="true">🎆</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
           <span class="ed-h">Happily Ever After (9:00 PM)</span>
@@ -2125,7 +2076,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">21</span>
-        <span class="ed-icon" aria-hidden="true">😴</span>
         <span class="ed-body">
           <span class="ed-t">9:30PM</span>
           <span class="ed-h">Exit — beat the exodus</span>
@@ -2141,13 +2091,11 @@ button.expd-day:focus-visible{
 <article class="ed-day" id="day-hhn" style="--acc:#b1291a;--cover-pos:50% 50%">
   <header class="ed-cover" style="background-image:url('sections/assets/hhn-bg.jpg?v=2026081003')">
     <div class="ed-cover-in">
-      <div class="ed-issue">
-        <span>Garcia Expedition</span><span>Day 05</span><span>Thu · Oct 15</span>
-      </div>
       <h2 class="ed-park">HHN 35</h2>
-      <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
-           Artemio removed that strip from the chapters. -->
+      <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
+           now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Park day</i>05 of 07</span>
+        <span><i>Date</i>Thu · Oct 15</span>
         <span><i>Stops planned</i>18</span></p>
     </div>
   </header>
@@ -2159,7 +2107,6 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">PRE-EVENT · EARLY NIGHT</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">1</span>
-        <span class="ed-icon" aria-hidden="true">🍽️</span>
         <span class="ed-body">
           <span class="ed-t">9:30AM</span>
           <span class="ed-h">Chef Mickey’s - Contemporary Resort</span>
@@ -2169,7 +2116,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-icon" aria-hidden="true">🎒</span>
         <span class="ed-body">
           <span class="ed-t">2:00PM</span>
           <span class="ed-h">Lunch + hydrate · resort</span>
@@ -2178,7 +2124,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">3</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Leave for Universal</span>
@@ -2187,7 +2132,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">4</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">4:30PM</span>
           <span class="ed-h">Park at Universal</span>
@@ -2196,7 +2140,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-icon" aria-hidden="true">🎒</span>
         <span class="ed-body">
           <span class="ed-t">6:00PM</span>
           <span class="ed-h">Stadium queue · front gate</span>
@@ -2205,7 +2148,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-icon" aria-hidden="true">👻</span>
         <span class="ed-body">
           <span class="ed-t">6:30PM</span>
           <span class="ed-h">EVENT START · sprint to House #1</span>
@@ -2214,7 +2156,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-icon" aria-hidden="true">👻</span>
         <span class="ed-body">
           <span class="ed-t">6:45PM</span>
           <span class="ed-h">Houses #2 + #3 · back lot</span>
@@ -2223,7 +2164,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-icon" aria-hidden="true">🛍️</span>
         <span class="ed-body">
           <span class="ed-t">8:00PM</span>
           <span class="ed-h">Halloween Tribute Store</span>
@@ -2232,7 +2172,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-icon" aria-hidden="true">🌫️</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
           <span class="ed-h">Scare Zones · NY + Hollywood</span>
@@ -2241,7 +2180,6 @@ button.expd-day:focus-visible{
         
       </li><h3 class="ed-sec">MIDNIGHT · CLOSE</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-icon" aria-hidden="true">👻</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
           <span class="ed-h">Houses #4 + #5</span>
@@ -2250,7 +2188,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">11</span>
-        <span class="ed-icon" aria-hidden="true">🥤</span>
         <span class="ed-body">
           <span class="ed-t">10:30PM</span>
           <span class="ed-h">Bar break · Finnegan's or Duff</span>
@@ -2259,7 +2196,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">12</span>
-        <span class="ed-icon" aria-hidden="true">👻</span>
         <span class="ed-body">
           <span class="ed-t">11:00PM</span>
           <span class="ed-h">Houses #6 + #7</span>
@@ -2268,7 +2204,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">13</span>
-        <span class="ed-icon" aria-hidden="true">👻</span>
         <span class="ed-body">
           <span class="ed-t">12:00AM</span>
           <span class="ed-h">House #8 · repeat favorite</span>
@@ -2277,7 +2212,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">14</span>
-        <span class="ed-icon" aria-hidden="true">🥤</span>
         <span class="ed-body">
           <span class="ed-t">12:30AM</span>
           <span class="ed-h">Chez Alcatraz · last drink</span>
@@ -2286,7 +2220,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">15</span>
-        <span class="ed-icon" aria-hidden="true">🌫️</span>
         <span class="ed-body">
           <span class="ed-t">12:45AM</span>
           <span class="ed-h">Final scare-zone walk</span>
@@ -2295,7 +2228,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">16</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">1:00AM</span>
           <span class="ed-h">Park close · exit</span>
@@ -2304,7 +2236,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">17</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">1:30AM</span>
           <span class="ed-h">On the road · Pop Century</span>
@@ -2313,7 +2244,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">18</span>
-        <span class="ed-icon" aria-hidden="true">🏆</span>
         <span class="ed-body">
           <span class="ed-t">💀</span>
           <span class="ed-h">8 HOUSES · 5 ZONES · 1 NIGHT</span>
@@ -2333,13 +2263,11 @@ button.expd-day:focus-visible{
 <article class="ed-day" id="day-eu" style="--acc:#5b3a9e;--cover-pos:50% 50%">
   <header class="ed-cover" style="background-image:url('sections/assets/eu-bg.jpg?v=2026081003')">
     <div class="ed-cover-in">
-      <div class="ed-issue">
-        <span>Garcia Expedition</span><span>Day 06</span><span>Fri · Oct 16</span>
-      </div>
       <h2 class="ed-park">Epic Universe</h2>
-      <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
-           Artemio removed that strip from the chapters. -->
+      <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
+           now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Park day</i>06 of 07</span>
+        <span><i>Date</i>Fri · Oct 16</span>
         <span><i>Stops planned</i>19</span></p>
     </div>
   </header>
@@ -2351,7 +2279,6 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">PREP &amp; MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
-        <span class="ed-icon" aria-hidden="true">🎒</span>
         <span class="ed-body">
           <span class="ed-t">Thu PM</span>
           <span class="ed-h">NIGHT BEFORE — secure Virtual Queue + Express</span>
@@ -2360,7 +2287,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">Uber from Pop Century</span>
@@ -2369,7 +2295,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
-        <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
           <span class="ed-t">10:00AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2380,7 +2305,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
-        <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2391,7 +2315,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
           <span class="ed-t">11:00AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2402,7 +2325,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
           <span class="ed-h">Power-Up Band activities</span>
@@ -2412,7 +2334,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-icon" aria-hidden="true">🍽️</span>
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
           <span class="ed-h">Lunch · Toadstool Cafe</span>
@@ -2421,7 +2342,6 @@ button.expd-day:focus-visible{
         
       </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-icon" aria-hidden="true">🌙</span>
         <span class="ed-body">
           <span class="ed-t">1:30PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2432,7 +2352,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-icon" aria-hidden="true">🌙</span>
         <span class="ed-body">
           <span class="ed-t">2:15PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2443,7 +2362,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-icon" aria-hidden="true">🐉</span>
         <span class="ed-body">
           <span class="ed-t">3:00PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2454,7 +2372,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">11</span>
-        <span class="ed-icon" aria-hidden="true">🐉</span>
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Dragon Racer's Rally · only if line &lt; 30 min</span>
@@ -2464,7 +2381,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
-        <span class="ed-icon" aria-hidden="true">🐉</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
           <span class="ed-h">Meet Toothless</span>
@@ -2474,7 +2390,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
-        <span class="ed-icon" aria-hidden="true">✨</span>
         <span class="ed-body">
           <span class="ed-t">4:30PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2485,7 +2400,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">14</span>
-        <span class="ed-icon" aria-hidden="true">✨</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
           <span class="ed-h">Butterbeer + Butterbeer ice cream</span>
@@ -2495,7 +2409,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">15</span>
-        <span class="ed-icon" aria-hidden="true">⭐</span>
         <span class="ed-body">
           <span class="ed-t">8:00PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
               title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
@@ -2506,7 +2419,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">16</span>
-        <span class="ed-icon" aria-hidden="true">⭐</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
           <span class="ed-h">Stardust Show — Celestial Park</span>
@@ -2516,7 +2428,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">17</span>
-        <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
           <span class="ed-t">8:45PM</span>
           <span class="ed-h">One last walk through Nintendo World</span>
@@ -2526,7 +2437,6 @@ button.expd-day:focus-visible{
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">18</span>
-        <span class="ed-icon" aria-hidden="true">🚗</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
           <span class="ed-h">Uber back to Pop Century</span>
@@ -2535,7 +2445,6 @@ button.expd-day:focus-visible{
         
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">19</span>
-        <span class="ed-icon" aria-hidden="true">🏆</span>
         <span class="ed-body">
           <span class="ed-t">🏆</span>
           <span class="ed-h">FIVE PARKS · ONE WEEK · TRIP COMPLETE</span>
