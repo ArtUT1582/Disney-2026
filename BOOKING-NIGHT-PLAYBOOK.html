@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booking Night Playbook · BBB + Cinderella's Royal Table · Aug 11–12, 2026</title>
+<style>
+:root{
+  --ink:#06070d; --text:#f4f5f9; --muted:#9aa3b8; --dim:#7f8aa3;
+  --line:rgba(255,255,255,.10); --glass:rgba(255,255,255,.055);
+  --a1:#3b82f6; --a2:#a855f7; --a3:#ec4899; --a4:#06b6d4;
+  --pink:#f472b6; --pink-l:#fbcfe8;
+  --cyan:#22d3ee; --cyan-l:#a5f3fc;
+  --gold:#fbbf24; --gold-l:#fde68a;
+  --green:#34d399; --red:#fb7185;
+  --pane:0 18px 40px rgba(0,0,0,.38); --inset:inset 0 1px 0 rgba(255,255,255,.13);
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--text);
+  font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  font-size:16px;line-height:1.6;min-height:100vh;overflow-x:hidden;
+}
+.aurora{position:fixed;inset:-20%;z-index:-1;filter:blur(85px) saturate(140%);pointer-events:none}
+.aurora::before,.aurora::after{content:"";position:absolute;inset:0}
+.aurora::before{background:radial-gradient(900px 600px at 18% 18%,var(--a2) 0,transparent 60%),radial-gradient(900px 600px at 82% 28%,var(--a3) 0,transparent 60%);opacity:.5;animation:d1 26s ease-in-out infinite alternate}
+.aurora::after{background:radial-gradient(800px 500px at 72% 82%,var(--a1) 0,transparent 60%),radial-gradient(800px 500px at 28% 88%,var(--a4) 0,transparent 60%);opacity:.45;animation:d2 32s ease-in-out infinite alternate}
+@keyframes d1{from{transform:translate(-3%,-2%) scale(1)}to{transform:translate(3%,2%) scale(1.05)}}
+@keyframes d2{from{transform:translate(2%,-3%) scale(1.03)}to{transform:translate(-3%,3%) scale(1)}}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:20px;
+  -webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:var(--inset),var(--pane)}
+
+/* hero */
+.hero{padding:56px 22px 30px;text-align:center;max-width:1080px;margin:0 auto}
+.eyebrow{display:inline-block;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#cbd5e1;
+  border:1px solid var(--line);padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.04)}
+.hero h1{font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(34px,6.5vw,68px);letter-spacing:-.02em;line-height:1.05;margin:22px 0 10px}
+.hero h1 b{font-style:normal;font-weight:700;
+  background:linear-gradient(115deg,#fff,#fbcfe8 45%,#a5f3fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .deck{color:var(--muted);font-size:15.5px;max-width:660px;margin:0 auto}
+.hero .deck b{color:#fff;font-weight:600}
+
+/* the two moments */
+.moments{display:grid;gap:16px;margin:34px 0 8px}
+@media(min-width:800px){.moments{grid-template-columns:1fr 1fr}}
+.moment{padding:26px 24px;position:relative;overflow:hidden}
+.moment::after{content:"";position:absolute;inset:0 0 auto 0;height:2px}
+.moment.bbb::after{background:linear-gradient(90deg,transparent,var(--pink),transparent)}
+.moment.crt::after{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.moment.bbb{border-color:rgba(244,114,182,.34)}
+.moment.crt{border-color:rgba(34,211,238,.34)}
+.m-tag{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.moment h2{font-size:21px;font-weight:600;margin:9px 0 3px;letter-spacing:-.01em}
+.moment.bbb h2{color:var(--pink-l)} .moment.crt h2{color:var(--cyan-l)}
+.m-when{font-size:29px;font-weight:200;letter-spacing:-.03em;margin:14px 0 2px;color:#fff;font-variant-numeric:tabular-nums}
+.m-et{font-size:12.5px;color:var(--dim)}
+.m-cd{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+  font-size:13px;letter-spacing:.05em;color:var(--muted);font-variant-numeric:tabular-nums}
+.m-cd b{color:#fff;font-weight:600}
+
+/* sections */
+section{padding:44px 0 4px}
+.sec-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.sec-n{font-family:var(--serif);font-size:34px;font-weight:700;line-height:1;color:rgba(255,255,255,.16)}
+.sec-h h2{font-size:clamp(21px,3.2vw,30px);font-weight:300;letter-spacing:-.025em;color:#fff}
+.sec-h h2 b{font-weight:700}
+.sec-sub{color:var(--muted);font-size:14.5px;margin:0 0 22px 48px}
+@media(max-width:600px){.sec-sub{margin-left:0}}
+
+/* prep checklist */
+.chk-grid{display:grid;gap:11px}
+.chk{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;cursor:pointer;transition:border-color .2s,transform .2s}
+.chk:hover{border-color:rgba(255,255,255,.22);transform:translateX(2px)}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.box{flex:none;width:26px;height:26px;border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:transparent;margin-top:1px;transition:all .2s}
+.chk input:checked ~ .box{background:var(--green);border-color:var(--green);color:#06301f}
+.chk input:checked ~ .ctxt{opacity:.5;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.3)}
+.ctxt{transition:opacity .2s}
+.ctxt b{display:block;font-weight:600;font-size:15px;color:#fff;margin-bottom:3px}
+.ctxt span{font-size:13.5px;color:var(--muted);line-height:1.5}
+.ctxt span em{color:var(--gold-l);font-style:normal}
+.chk-prog{margin:16px 0 0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* timeline */
+.tl{position:relative;margin-left:8px;padding-left:30px}
+.tl::before{content:"";position:absolute;left:0;top:10px;bottom:22px;width:2px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.24),rgba(255,255,255,.06))}
+.step{position:relative;padding:0 0 26px}
+.step::before{content:"";position:absolute;left:-35px;top:8px;width:11px;height:11px;border-radius:50%;
+  background:var(--ink);border:2px solid rgba(255,255,255,.34)}
+.step.go::before{border-color:var(--green);background:var(--green);box-shadow:0 0 0 5px rgba(52,211,153,.16)}
+.step.warn::before{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 5px rgba(251,191,36,.14)}
+.t-time{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;
+  font-variant-numeric:tabular-nums;padding:4px 11px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid var(--line);color:#fff;margin-bottom:8px}
+.step.go .t-time{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.4);color:#a7f3d0}
+.step.warn .t-time{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.38);color:var(--gold-l)}
+.step h4{font-size:16.5px;font-weight:600;margin-bottom:5px;color:#fff}
+.step p{font-size:14.5px;color:var(--muted);line-height:1.62}
+.step p + p{margin-top:8px}
+.step b{color:#fff;font-weight:600}
+.step em{font-style:normal;color:var(--gold-l)}
+
+/* click path */
+.path{counter-reset:pstep;display:grid;gap:9px;margin-top:8px}
+.path li{list-style:none;counter-increment:pstep;position:relative;
+  padding:13px 16px 13px 48px;font-size:14.5px;line-height:1.55;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:13px;color:var(--muted)}
+.path li::before{content:counter(pstep);position:absolute;left:15px;top:12px;
+  width:21px;height:21px;border-radius:6px;background:rgba(255,255,255,.09);
+  font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+.path li b{color:#fff;font-weight:600}
+.path li code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:12.5px;
+  background:rgba(255,255,255,.09);padding:2px 7px;border-radius:5px;color:var(--cyan-l);white-space:nowrap}
+.path.pink li::before{background:rgba(244,114,182,.22);color:var(--pink-l)}
+.path.cyan li::before{background:rgba(34,211,238,.2);color:var(--cyan-l)}
+
+/* callouts */
+.call{padding:18px 20px;border-radius:16px;margin:20px 0;font-size:14.5px;line-height:1.6;
+  border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.call b{color:#fff}
+.call.warn{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.07)}
+.call.warn b{color:var(--gold-l)}
+.call.stop{border-color:rgba(251,113,133,.42);background:rgba(251,113,133,.08)}
+.call.stop b{color:#fecdd3}
+.call.ok{border-color:rgba(52,211,153,.38);background:rgba(52,211,153,.07)}
+.call.ok b{color:#a7f3d0}
+.call .lead{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:7px;opacity:.85}
+
+/* decisions table */
+.tbl-wrap{overflow-x:auto;border-radius:16px;border:1px solid var(--line);margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;background:rgba(255,255,255,.03)}
+th{text-align:left;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  font-weight:600;padding:13px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.04)}
+td{padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.055);color:var(--muted);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td b{color:#fff;font-weight:600}
+td.fill{color:var(--gold-l);font-weight:600}
+
+/* fallback cards */
+.fb{display:grid;gap:14px}
+@media(min-width:760px){.fb{grid-template-columns:1fr 1fr}}
+.fb .c{padding:20px 22px}
+.fb h4{font-size:16px;font-weight:600;color:#fff;margin-bottom:7px}
+.fb p{font-size:14px;color:var(--muted);line-height:1.6}
+.fb .num{display:inline-block;margin-top:11px;font-family:ui-monospace,Consolas,monospace;
+  font-size:15px;font-weight:700;color:var(--gold-l);letter-spacing:.03em}
+.fb a{color:var(--cyan-l);text-decoration:none;border-bottom:1px solid rgba(165,243,252,.35);font-size:14px}
+.fb a:hover{border-bottom-color:var(--cyan-l)}
+
+footer{text-align:center;padding:54px 22px 44px;color:var(--dim);font-size:13px;line-height:1.7}
+footer b{color:var(--gold-l)}
+
+@media print{
+  body{background:#fff;color:#111}
+  .aurora,.m-cd{display:none}
+  .glass,.call,.path li,table{background:#fff!important;border-color:#bbb!important;box-shadow:none!important;
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+  .hero h1 b{color:#111;-webkit-text-fill-color:#111}
+  h2,h4,.ctxt b,.step h4,td b,.path li b{color:#111!important}
+  p,span,td,.step p{color:#333!important}
+  .sec-n{color:#ccc}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="aurora"></div>
+
+<div class="hero">
+  <span class="eyebrow">Garcia Family · Disney 2026 · Booking Night</span>
+  <h1>Two reservations.<br><b>Six hours apart.</b></h1>
+  <p class="deck">Both windows open on the <b>same Eastern day — Wed Aug 12</b>, the 60-day mark off your Oct 11 check-in. Because Bibbidi Bobbidi Boutique unlocks at <b>midnight Eastern</b> and dining unlocks at <b>6:00 AM Eastern</b>, in Central time they land on two different calendar dates. That is the whole reason this looks confusing. Nothing is out of sync.</p>
+</div>
+
+<div class="wrap">
+  <div class="moments">
+    <div class="moment bbb glass">
+      <div class="m-tag">Reservation One · Top Priority</div>
+      <h2>👑 Bibbidi Bobbidi Boutique</h2>
+      <div class="m-when">Tue Aug 11 · 11:00 PM</div>
+      <div class="m-et">Central Time &nbsp;·&nbsp; = 12:00 AM ET Wed Aug 12</div>
+      <div class="m-cd" id="cdBBB">—</div>
+    </div>
+    <div class="moment crt glass">
+      <div class="m-tag">Reservation Two · Top Priority</div>
+      <h2>🏰 Cinderella's Royal Table</h2>
+      <div class="m-when">Wed Aug 12 · 5:00 AM</div>
+      <div class="m-et">Central Time &nbsp;·&nbsp; = 6:00 AM ET Wed Aug 12</div>
+      <div class="m-cd" id="cdCRT">—</div>
+    </div>
+  </div>
+
+  <div class="call warn">
+    <span class="lead">⚠ Why BBB is the hard one</span>
+    <b>BBB sells out in minutes, and there is no second chance at 5 AM.</b> Cinderella's Royal Table has hundreds of seats a day across three meal periods and releases cancellations constantly — if you fumble it at 5:00 AM you can usually still recover the same week. The boutique has a handful of chairs and one stylist rotation. <b>If you only get one of these right, make it the 11 PM one.</b>
+  </div>
+
+  <!-- ========== 0 · TODAY ========== -->
+  <section id="prep">
+    <div class="sec-h"><span class="sec-n">0</span><h2>Do this <b>today</b>, not at 10:58 PM</h2></div>
+    <p class="sec-sub">Every one of these takes minutes now and costs you the reservation if you discover it broken at midnight. Boxes save in this browser.</p>
+
+    <div class="chk-grid">
+      <label class="chk glass"><input type="checkbox" data-k="login"><div class="box">✓</div><div class="ctxt">
+        <b>Log into your Disney account on the laptop — right now</b>
+        <span>Go to <em>disneyworld.disney.go.com</em> and sign in. If it demands a password reset, a security code to an old email, or two-factor to a phone you no longer use, you want to find that out tonight. This is the single most common way people miss the window.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="resort"><div class="box">✓</div><div class="ctxt">
+        <b>Confirm the Art of Animation reservation is linked to My Disney Experience</b>
+        <span>Your 60-day window and the ability to book the <em>whole stay at once</em> both key off the linked resort reservation. If Disney doesn't see you as a resort guest, you get the off-site rules — one day at a time — and BBB becomes near-impossible. Check it shows <em>Oct 11–17</em>.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="family"><div class="box">✓</div><div class="ctxt">
+        <b>Add all 12 to Friends &amp; Family</b>
+        <span>You cannot attach people to a dining reservation who aren't in your list. Doing this at 5:00:30 AM while the good tables evaporate is not a plan. Annelise specifically must be there with the correct age for BBB.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="card"><div class="box">✓</div><div class="ctxt">
+        <b>Save the credit card in My Disney Experience</b>
+        <span>Both bookings need a card. Cinderella's Royal Table <em>charges the full amount immediately</em> — typing a 16-digit number under time pressure is how people lose the slot. Save it in the wallet in advance and confirm the expiry date is past October 2026.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="decide"><div class="box">✓</div><div class="ctxt">
+        <b>Fill in the decision sheet below — every field</b>
+        <span>Package, hairstyle, dress size, target times, fallback times. At midnight you are executing, not deciding. Print it or keep this page open on a second screen.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="devices"><div class="box">✓</div><div class="ctxt">
+        <b>Two devices, both logged in: laptop browser + phone app</b>
+        <span>Run the laptop as primary. Keep the My Disney Experience app open on the phone as backup — when the website stalls the app sometimes goes through, and vice versa. Log into both <em>tonight</em>.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="power"><div class="box">✓</div><div class="ctxt">
+        <b>Plug the laptop in · disable sleep · postpone Windows updates</b>
+        <span>A restart at 11:04 PM to install updates would be a genuinely painful way to lose this.</span></div></label>
+
+      <label class="chk glass"><input type="checkbox" data-k="alarms"><div class="box">✓</div><div class="ctxt">
+        <b>Set both alarms on your phone — not just on the portal</b>
+        <span><em>10:30 PM Tue</em> and <em>4:30 AM Wed</em>. The portal alarms only fire if that browser tab stays open and awake. For a booking this size, use the phone as the source of truth and the portal as the backup.</span></div></label>
+    </div>
+    <div class="chk-prog" id="prog">0 of 8 complete</div>
+  </section>
+
+  <!-- ========== DECISION SHEET ========== -->
+  <section id="decisions">
+    <div class="sec-h"><span class="sec-n">✎</span><h2>The <b>decision sheet</b></h2></div>
+    <p class="sec-sub">Fill the gold column in tonight. Print this page if it helps — it's formatted for it.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:26%">Field</th><th style="width:38%">What it's for</th><th>Your answer</th></tr></thead>
+        <tbody>
+          <tr><td><b>BBB date</b></td><td>Castle day — same day as the lunch</td><td class="fill">Wed Oct 14, 2026</td></tr>
+          <tr><td><b>BBB target time</b></td><td>Must finish well before the 11:30 lunch</td><td class="fill">~9:00 AM · accept 8:00–9:45</td></tr>
+          <tr><td><b>BBB fallback day</b></td><td>If Oct 14 has nothing at any time</td><td class="fill">_______________</td></tr>
+          <tr><td><b>Package</b></td><td>Decide before you're on the clock</td><td class="fill">_______________</td></tr>
+          <tr><td><b>Hairstyle</b></td><td>Sometimes asked at booking</td><td class="fill">_______________</td></tr>
+          <tr><td><b>Dress + size</b></td><td>Only if the package includes a gown</td><td class="fill">_______________</td></tr>
+          <tr><td><b>Guest of honor</b></td><td>Must be in Friends &amp; Family, ages 3–12</td><td class="fill">Annelise · age 4 ✓</td></tr>
+          <tr><td><b>CRT date + meal</b></td><td>Lunch inside the castle</td><td class="fill">Wed Oct 14 · Lunch</td></tr>
+          <tr><td><b>CRT party size</b></td><td>Locked earlier — 2 adults + Annelise</td><td class="fill">3 guests</td></tr>
+          <tr><td><b>CRT target time</b></td><td>~90 min after the boutique finishes</td><td class="fill">~11:30 AM · accept 11:00–12:30</td></tr>
+          <tr><td><b>Card on file</b></td><td>Expiry must be after Oct 2026</td><td class="fill">_______________</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="call">
+      <span class="lead">Order of operations</span>
+      <b>Book the boutique first, then fit the lunch around it.</b> BBB has almost no availability and dining has plenty, so the boutique slot is the fixed point. That's also why the two alarms are in this order — the 11 PM booking determines what you ask for at 5 AM.
+    </div>
+  </section>
+
+  <!-- ========== 1 · BBB ========== -->
+  <section id="bbb">
+    <div class="sec-h"><span class="sec-n">1</span><h2>Tue Aug 11 · <b>Bibbidi Bobbidi Boutique</b></h2></div>
+    <p class="sec-sub">Window opens 11:00:00 PM Central (midnight Eastern). Magic Kingdom location, inside Cinderella Castle.</p>
+
+    <div class="tl">
+      <div class="step">
+        <span class="t-time">10:30 PM CT</span>
+        <h4>At the desk. Awake. Laptop plugged in.</h4>
+        <p>Not "near the laptop." Sitting at it. Phone beside you with the app already open and logged in.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">10:45 PM CT</span>
+        <h4>Log in fresh and verify you're actually signed in</h4>
+        <p>Load <b>disneyworld.disney.go.com</b>, sign in, and confirm your name appears in the top corner. A session that <em>looks</em> logged in but silently expired will bounce you to a login screen at 11:00:01 — and that round trip is the reservation.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">10:52 PM CT</span>
+        <h4>Get to the Bibbidi Bobbidi Boutique booking page and stop there</h4>
+        <p>Search the site for <b>Bibbidi Bobbidi Boutique</b> and open the <b>Magic Kingdom</b> location — not Disney Springs, which is a separate boutique with its own inventory. Enter Oct 14 and the guest details so the form is fully filled in and sitting on the availability screen.</p>
+      </div>
+      <div class="step warn">
+        <span class="t-time">10:55 PM CT</span>
+        <h4>Expect it to say "no availability" — that's correct</h4>
+        <p>Until the window flips, Oct 14 is beyond the bookable range and the site will show nothing. <b>Do not conclude it's broken and start navigating around.</b> This is the moment most people talk themselves out of the correct page.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">10:59 PM CT</span>
+        <h4>Refresh every ~15 seconds. Nothing else.</h4>
+        <p>Don't open new tabs, don't clear cookies, don't switch browsers. Just re-run the same search on the same page. The inventory flips server-side at the top of the hour and you want to be the first request after it does.</p>
+      </div>
+      <div class="step go">
+        <span class="t-time">11:00:00 PM</span>
+        <h4>Book. Take the slot in front of you.</h4>
+        <p>The instant times appear, <b>grab the closest one to 9:00 AM and complete the booking.</b> Do not go back to hunt for something 30 minutes better — that slot will be gone when you return, and so will the one you left.</p>
+        <p><b>Anything on Oct 14 beats nothing.</b> A 10:15 AM appointment is a solvable problem: you move the lunch later at 5 AM. No appointment is not solvable.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">11:05 PM CT</span>
+        <h4>Screenshot the confirmation. Then check the email.</h4>
+        <p>Screenshot the confirmation number and the exact appointment time. Verify the confirmation email actually arrived — occasionally a booking appears to succeed on screen and doesn't stick. <b>Write the appointment time on the decision sheet</b>; you need it in six hours.</p>
+      </div>
+    </div>
+
+    <h4 style="margin:26px 0 4px;font-size:15px;color:var(--pink-l);letter-spacing:.02em">The click path</h4>
+    <ol class="path pink">
+      <li>Sign in at <code>disneyworld.disney.go.com</code> — confirm your name shows top-right</li>
+      <li>Search the site for <b>Bibbidi Bobbidi Boutique</b> and choose the <b>Magic Kingdom</b> location</li>
+      <li>Select <b>Check Availability</b> / <b>Book Now</b></li>
+      <li>Date <code>Oct 14, 2026</code> · one child · select <b>Annelise</b> from Friends &amp; Family</li>
+      <li>Choose your package, then pick the time closest to <b>9:00 AM</b></li>
+      <li>Card on file secures the appointment — <b>you are not charged now</b>, you pay at the boutique</li>
+      <li>Confirm → screenshot → verify the email landed</li>
+    </ol>
+
+    <div class="call">
+      <span class="lead">What it costs</span>
+      Packages run roughly <b>$60 to $450+</b> before tax, depending on what's included — a knight/adventure package at the low end, hair-and-makeup in the middle, a full gown-and-crown package at the top. <b>Published prices move and sources disagree, so treat these as a planning range and read the real number on the screen before you confirm.</b> The card on file only holds the appointment; you settle up at the boutique after choosing. Expect a <b>$10 fee</b> for a no-show or a cancellation inside 24 hours.
+    </div>
+
+    <div class="call ok">
+      <span class="lead">✓ Your advantage</span>
+      <b>Art of Animation makes you a resort guest</b>, so at midnight you can book across your whole stay rather than one single date. If Oct 14 is empty the moment the window opens, <b>immediately try Oct 12, 13, 15 and 16 in the same session</b> before the inventory is picked over. A boutique appointment on a different day is still a win — the castle lunch can move, or she simply has two magical mornings.
+    </div>
+  </section>
+
+  <!-- ========== INTERMISSION ========== -->
+  <section id="gap">
+    <div class="sec-h"><span class="sec-n">⏸</span><h2>The <b>six-hour gap</b></h2></div>
+    <div class="call stop">
+      <span class="lead">Go to bed</span>
+      <b>Do not stay up between 11:15 PM and 5:00 AM.</b> There is nothing to do in that window and nothing you can improve by watching. You need to be sharp at 5:00 AM for a booking that charges your card in full and involves twelve people. Alarm at <b>4:30 AM Central</b>, on your phone, across the room if that's what it takes.
+    </div>
+  </section>
+
+  <!-- ========== 2 · CRT ========== -->
+  <section id="crt">
+    <div class="sec-h"><span class="sec-n">2</span><h2>Wed Aug 12 · <b>Cinderella's Royal Table</b></h2></div>
+    <p class="sec-sub">Window opens 5:00:00 AM Central (6:00 AM Eastern). Full prepayment — your card is charged at booking.</p>
+
+    <div class="tl">
+      <div class="step">
+        <span class="t-time">4:30 AM CT</span>
+        <h4>Up. Coffee. Laptop open.</h4>
+        <p>Have last night's BBB appointment time in front of you — it determines which lunch seating you're aiming for.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">4:45 AM CT</span>
+        <h4>Sign in again — the session has expired overnight</h4>
+        <p>Six hours is long enough that you're almost certainly logged out. Sign in fresh and confirm it took. Widely repeated advice is to be <b>logged in and waiting by 5:45 AM Eastern</b>, which is <b>4:45 AM Central</b> — exactly now.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">4:55 AM CT</span>
+        <h4>Load the dining search and fill it in completely</h4>
+        <p>Restaurant <b>Cinderella's Royal Table</b>, date <b>Oct 14</b>, party of <b>3</b>, meal period <b>Lunch</b>. Leave it sitting there, filled in and unsubmitted.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">4:59 AM CT</span>
+        <h4>Refresh every ~15 seconds</h4>
+        <p>Same rule as midnight — same page, same search, no wandering.</p>
+      </div>
+      <div class="step go">
+        <span class="t-time">5:00:00 AM</span>
+        <h4>Book the seating that clears the boutique by ~90 minutes</h4>
+        <p>If BBB is at 9:00 AM, target <b>11:00 AM–12:00 PM</b>. If BBB landed later, push lunch later to match. She should arrive at the castle <b>already transformed</b> — that's the entire point of stacking these two on one day.</p>
+        <p><b>Your card is charged in full at this moment.</b> Expect roughly <b>$85–$90 per adult</b> and <b>$50–$55 for Annelise</b> (child pricing, ages 3–9) before tax and gratuity — call it <b>$220–$240</b> for the three of you. <b>Sources disagree on the exact 2026 figures, so read the total on the confirmation screen before you submit.</b></p>
+      </div>
+      <div class="step warn">
+        <span class="t-time">5:05 AM CT</span>
+        <h4>Don't log out — book the rest of the trip's dining now</h4>
+        <p>As a resort guest this one session covers <b>your whole stay</b>, not just Oct 14. Every other table you want for the twelve of you is bookable right now, and you will not get a cleaner shot at it. See the list below.</p>
+      </div>
+      <div class="step">
+        <span class="t-time">5:30 AM CT</span>
+        <h4>Screenshot everything · verify the charge · then go back to bed</h4>
+        <p>Confirmation numbers, times, party sizes. Check the card was charged once and not three times from retries.</p>
+      </div>
+    </div>
+
+    <h4 style="margin:26px 0 4px;font-size:15px;color:var(--cyan-l);letter-spacing:.02em">The click path</h4>
+    <ol class="path cyan">
+      <li>Sign in at <code>disneyworld.disney.go.com</code> — or open the <b>My Disney Experience</b> app</li>
+      <li>Go to <b>Dining</b> → <b>Make a Dining Reservation</b></li>
+      <li>Date <code>Oct 14, 2026</code> · party of <code>3</code> · meal period <b>Lunch</b></li>
+      <li>Search <b>Cinderella's Royal Table</b> · Magic Kingdom</li>
+      <li>Pick the seating that clears the boutique by ~90 min</li>
+      <li>Add the three guests from Friends &amp; Family</li>
+      <li><b>Prepay in full</b> with the saved card → confirm → screenshot</li>
+      <li><b>Stay logged in</b> and book the remaining meals for all 12</li>
+    </ol>
+
+    <div class="call">
+      <span class="lead">While you're in there — the rest of the stay</span>
+      Storybook Dining · any Epcot or Hollywood Studios sit-downs · a resort dinner for the full twelve · and confirm <b>Be Our Guest</b> is still locked. Large parties are the hardest thing to seat at Disney World and the 60-day morning is when the tables actually exist. <b>Anything you postpone to September, you are booking out of other people's cancellations.</b>
+    </div>
+
+    <div class="call warn">
+      <span class="lead">⚠ Cancellation terms — read them on screen</span>
+      Standard Disney dining is a <b>$10-per-person fee</b> unless you cancel at least <b>2 hours ahead</b>. Prepaid character meals like this one are commonly described as fully refundable on the same 2-hour rule, <b>but reporting on the exact prepaid terms is inconsistent and it's your money sitting there for two months.</b> Read the cancellation language on the confirmation screen before submitting, and screenshot it.
+    </div>
+  </section>
+
+  <!-- ========== 3 · FALLBACK ========== -->
+  <section id="fallback">
+    <div class="sec-h"><span class="sec-n">3</span><h2>If it <b>doesn't work</b></h2></div>
+    <p class="sec-sub">Missing the window is recoverable. Not having a plan when you miss it is what turns it into a lost reservation.</p>
+    <div class="fb">
+      <div class="c glass">
+        <h4>🐭 MouseWatcher — set this up regardless</h4>
+        <p>Watches for cancellations and texts or emails you the second one appears. This is genuinely how a large share of people end up with BBB. <b>Set the alert before booking night</b>, not after you've missed — it costs nothing to have running in the background.</p>
+        <a href="https://mousewatcher.com/restaurants/magic-kingdom-bibbidi-bobbidi-boutique-park" target="_blank" rel="noopener">Set up the BBB alert →</a>
+      </div>
+      <div class="c glass">
+        <h4>☎ Call the boutique line</h4>
+        <p>Phone booking opens <b>7:00 AM ET / 6:00 AM CT</b> — seven hours after online. Useless as your primary plan, genuinely useful for fixing a botched booking or asking what's actually left. Ask about <b>every day of Oct 11–17</b>, not just the 14th.</p>
+        <span class="num">(407) 939-7895</span>
+      </div>
+      <div class="c glass">
+        <h4>☎ Disney dining line</h4>
+        <p>For Cinderella's Royal Table and everything else. Cast members can sometimes see inventory the website hides, and are the right call for a <b>party of twelve</b>, which the site handles badly.</p>
+        <span class="num">(407) 939-3463</span>
+      </div>
+      <div class="c glass">
+        <h4>↻ Keep checking — seriously</h4>
+        <p>Disney dining cancellations churn constantly, and prepaid meals like CRT get dropped often as trips change. Check daily, and check again <b>2–3 days out</b> and on the morning itself. Same-day castle tables surface more often than people expect.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REFERENCE ========== -->
+  <section id="ref">
+    <div class="sec-h"><span class="sec-n">✦</span><h2>One-screen <b>reference</b></h2></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>&nbsp;</th><th>Bibbidi Bobbidi Boutique</th><th>Cinderella's Royal Table</th></tr></thead>
+        <tbody>
+          <tr><td><b>Opens (Central)</b></td><td><b style="color:#fbcfe8">Tue Aug 11 · 11:00 PM</b></td><td><b style="color:#a5f3fc">Wed Aug 12 · 5:00 AM</b></td></tr>
+          <tr><td><b>Opens (Eastern)</b></td><td>Wed Aug 12 · 12:00 AM</td><td>Wed Aug 12 · 6:00 AM</td></tr>
+          <tr><td><b>Be ready by</b></td><td>10:45 PM CT</td><td>4:45 AM CT</td></tr>
+          <tr><td><b>Appointment</b></td><td>Wed Oct 14 · ~9:00 AM</td><td>Wed Oct 14 · ~11:30 AM</td></tr>
+          <tr><td><b>Who</b></td><td>Annelise (4) · ages 3–12</td><td>2 adults + Annelise · party of 3</td></tr>
+          <tr><td><b>Payment</b></td><td>Card holds it · <b>pay at the boutique</b></td><td><b>Charged in full at booking</b></td></tr>
+          <tr><td><b>Rough cost</b></td><td>~$60–$450+ by package, pre-tax</td><td>~$220–$240 for three, pre-tax</td></tr>
+          <tr><td><b>Cancellation</b></td><td>$10 inside 24 hrs / no-show</td><td>Cancel ≥2 hrs ahead — verify on screen</td></tr>
+          <tr><td><b>Phone backup</b></td><td>(407) 939-7895 · from 6 AM CT</td><td>(407) 939-3463</td></tr>
+          <tr><td><b>Resort perk</b></td><td>Book the whole stay at once</td><td>60+10 — whole stay at once</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="call ok">
+      <span class="lead">✓ The one thing to remember</span>
+      <b>11 PM tonight-ish is the hard one. 5 AM is the recoverable one.</b> Take whatever the boutique gives you on Oct 14 without hesitating, then build the lunch around it six hours later.
+    </div>
+  </section>
+</div>
+
+<footer>
+  Booking Night Playbook · <b>Aug 11–12, 2026</b> · 60 days out from Oct 11 check-in<br>
+  Art of Animation · Little Mermaid · Oct 11–17 · party of twelve<br>
+  <em style="font-style:normal;color:var(--pink-l)">For Annelise — and for Abui &amp; Abui Temo, from the twelve.</em>
+</footer>
+
+<script>
+/* Both anchored to Eastern offsets so the countdown is correct from Houston or Orlando. */
+var BBB = new Date('2026-08-12T00:00:00-04:00'); /* 11:00 PM CT Tue Aug 11 */
+var CRT = new Date('2026-08-12T06:00:00-04:00'); /* 5:00 AM CT Wed Aug 12 */
+
+function fmt(ms){
+  if(ms<=0) return null;
+  var s=Math.floor(ms/1000), d=Math.floor(s/86400), h=Math.floor(s%86400/3600),
+      m=Math.floor(s%3600/60), x=s%60;
+  return (d>0? d+'d ' : '') + h+'h ' + m+'m ' + x+'s';
+}
+function tick(){
+  [['cdBBB',BBB],['cdCRT',CRT]].forEach(function(p){
+    var el=document.getElementById(p[0]); if(!el) return;
+    var left=fmt(p[1]-Date.now());
+    el.innerHTML = left ? 'Window opens in <b>'+left+'</b>'
+                        : '<b style="color:#a7f3d0">Window is open — go</b>';
+  });
+}
+tick(); setInterval(tick,1000);
+
+/* prep checklist persistence */
+var boxes=[].slice.call(document.querySelectorAll('.chk input'));
+function prog(){
+  var n=boxes.filter(function(b){return b.checked}).length;
+  document.getElementById('prog').textContent = n+' of '+boxes.length+' complete'+(n===boxes.length?' — you are ready':'');
+}
+function save(){
+  var o={}; boxes.forEach(function(b){o[b.dataset.k]=b.checked});
+  try{localStorage.setItem('bookingNightPrep',JSON.stringify(o))}catch(e){}
+}
+try{
+  var saved=JSON.parse(localStorage.getItem('bookingNightPrep')||'{}');
+  boxes.forEach(function(b){ if(saved[b.dataset.k]) b.checked=true });
+}catch(e){}
+boxes.forEach(function(b){ b.addEventListener('change',function(){save();prog()}) });
+prog();
+</script>
+</body>
+</html>
