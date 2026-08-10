@@ -1023,7 +1023,14 @@ html, body{ overflow-x: hidden; max-width: 100%; }
 img, svg, video{ max-width: 100%; }
 </style>
 <style id="shell-trim">
+/* 90px of empty margin sat between the countdown and the flights section. */
 #flights{margin-top:22px}
+
+/* The ticker was "position:sticky; top:86px" — 86px being the height of the nav bar it was
+   pinned beneath. With the nav removed, sticky pushes the ticker DOWN to 86px while its flow
+   space stays where it was, so the weather card slid up underneath it and was overlapped by
+   50px. Re-anchored to its own 12px margin now that nothing sits above it. */
+#ticker{top:12px}
 </style>
 <style id="expd-inline-css">
 /* ============ ITINERARIES — design 25, Cover & Spread ============ */
