@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinerary Designs · Round 2 · Garcia Expedition 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@200;300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#07080d;color:#eef1f7;font-family:'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+
+/* ---------------- chrome ---------------- */
+.bar{position:sticky;top:0;z-index:200;background:rgba(7,8,13,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.1);padding:12px 18px}
+.bar-in{max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.bar h1{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.2em;color:#ffcf5c;white-space:nowrap}
+.grp{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.grp .lab{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#7b8598;margin-right:3px}
+.chip{padding:6px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);
+  color:#c8d0de;font:600 11px/1 'Outfit',sans-serif;letter-spacing:.03em;transition:.15s}
+.chip:hover{border-color:rgba(255,207,92,.55);color:#fff}
+.chip[aria-pressed="true"]{background:#ffcf5c;border-color:#ffcf5c;color:#151005}
+.plate{max-width:1500px;margin:0 auto;padding:16px 18px 6px;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:#7b8598}
+.plate b{color:#ffcf5c}
+.plate .why{display:block;margin-top:6px;letter-spacing:.02em;text-transform:none;font-size:13px;color:#98a3b6}
+#mount{max-width:1500px;margin:0 auto;padding:14px 18px 90px}
+
+/* =================== 1 · SUN ARC =================== */
+.arc-wrap{background:radial-gradient(120% 100% at 50% 100%,#2a1a3e,#0a0713 70%);border-radius:26px;padding:34px 20px 24px;position:relative;overflow:hidden}
+.arc-wrap .sky{position:absolute;inset:0;background:
+  radial-gradient(60% 45% at 50% 92%,rgba(255,183,77,.35),transparent 70%),
+  radial-gradient(40% 30% at 15% 20%,rgba(120,90,255,.25),transparent 70%)}
+.arc-svg{position:relative;width:100%;height:auto;display:block}
+.arc-svg .track{fill:none;stroke:rgba(255,255,255,.13);stroke-width:2}
+.arc-svg .lit{fill:none;stroke:url(#sunGrad);stroke-width:4;stroke-linecap:round}
+.arc-node{cursor:pointer}
+.arc-node circle{fill:#0a0713;stroke:#ffb74d;stroke-width:2.5;transition:.2s}
+.arc-node:hover circle,.arc-node.on circle{fill:#ffb74d;r:9}
+.arc-node text{fill:#ffd79a;font:700 9px 'JetBrains Mono',monospace;text-anchor:middle}
+.arc-detail{position:relative;margin:6px auto 0;max-width:640px;text-align:center;min-height:96px}
+.arc-detail .t{font:700 11px/1 'JetBrains Mono',monospace;color:#ffb74d;letter-spacing:.14em}
+.arc-detail .h{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(20px,3vw,30px);margin:8px 0 6px}
+.arc-detail .n{color:#b9a8cf;font-size:14px;line-height:1.6}
+.arc-legend{position:relative;display:flex;justify-content:space-between;max-width:900px;margin:0 auto;
+  font:600 10px 'JetBrains Mono',monospace;color:#8b7aa8;letter-spacing:.16em}
+
+/* =================== 2 · METRO LINE =================== */
+.metro{background:#f2f3f5;color:#16181d;border-radius:24px;padding:36px 30px;font-family:'Space Grotesk',sans-serif}
+.metro h2{font-size:clamp(26px,4.4vw,52px);font-weight:700;letter-spacing:-.03em;margin-bottom:4px}
+.metro .rt{display:inline-block;background:#111;color:#fff;padding:5px 14px;border-radius:999px;
+  font:700 12px/1 'Space Grotesk';letter-spacing:.12em;margin-bottom:22px}
+.metro-line{position:relative;padding-left:52px}
+.metro-line::before{content:"";position:absolute;left:17px;top:8px;bottom:8px;width:8px;border-radius:8px;background:var(--ln,#e4572e)}
+.mstop{position:relative;padding:13px 0;display:grid;grid-template-columns:82px 1fr;gap:16px;align-items:baseline}
+.mstop::before{content:"";position:absolute;left:-42px;top:17px;width:18px;height:18px;border-radius:50%;
+  background:#fff;border:5px solid var(--ln,#e4572e)}
+.mstop.major::before{width:26px;height:26px;left:-46px;top:14px;border-width:7px}
+.mstop .mt{font:700 12px/1.4 'JetBrains Mono',monospace;color:#5a6270}
+.mstop .mn{font-size:16px;font-weight:700}
+.mstop .md{font-size:13px;color:#5a6270;margin-top:3px;line-height:1.5}
+.metro-key{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;padding-top:16px;border-top:2px solid #d8dbe0;font-size:11.5px;color:#5a6270}
+.metro-key i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* =================== 3 · SPLIT-FLAP BOARD =================== */
+.flap{background:#08090b;border:1px solid #23262d;border-radius:18px;padding:26px 20px;font-family:'JetBrains Mono',monospace}
+.flap-h{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  border-bottom:2px solid #ffb300;padding-bottom:14px;margin-bottom:6px}
+.flap-h .ttl{font-family:'Anton',sans-serif;font-size:clamp(22px,3.4vw,40px);letter-spacing:.06em;color:#ffb300}
+.flap-h .clk{font:700 13px 'JetBrains Mono';color:#7b8598;letter-spacing:.16em}
+.flap-row{display:grid;grid-template-columns:104px 1fr 92px;gap:14px;padding:11px 0;border-bottom:1px solid #16181d;align-items:center}
+.flap-row .cells{display:flex;gap:2px}
+.cell{display:inline-flex;align-items:center;justify-content:center;min-width:15px;height:22px;padding:0 2px;
+  background:linear-gradient(180deg,#1a1d23 0 49%,#101317 50% 100%);border-radius:3px;
+  color:#ffb300;font:700 12px/1 'JetBrains Mono';box-shadow:inset 0 -1px 0 rgba(0,0,0,.7);
+  animation:flip .34s ease-out backwards}
+@keyframes flip{from{transform:rotateX(-88deg);opacity:0}to{transform:rotateX(0);opacity:1}}
+.flap-row .dest{font-size:14px;color:#eef1f7;font-weight:700;letter-spacing:.02em}
+.flap-row .sub{font-size:11.5px;color:#79808d;margin-top:3px;line-height:1.5}
+.flap-row .stat{font:700 10px 'JetBrains Mono';letter-spacing:.14em;text-align:right;color:#3ddc84}
+.flap-sec{margin:18px 0 6px;font:700 10px 'JetBrains Mono';letter-spacing:.28em;color:#ffb300}
+
+/* =================== 4 · CINEMA CHAPTERS =================== */
+.cine{border-radius:24px;overflow:hidden;height:78vh;overflow-y:auto;scroll-snap-type:y mandatory;background:#000}
+.cine::-webkit-scrollbar{width:0}
+.chap{height:78vh;scroll-snap-align:start;position:relative;display:flex;align-items:flex-end;
+  padding:46px 40px;background-size:cover;background-position:center}
+.chap::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.92) 8%,rgba(0,0,0,.25) 60%,rgba(0,0,0,.6))}
+.chap .in{position:relative;z-index:2;max-width:760px}
+.chap .no{font:700 11px 'JetBrains Mono';letter-spacing:.34em;color:#ffcf5c}
+.chap .tm{font-family:'Anton',sans-serif;font-size:clamp(40px,9vw,120px);line-height:.86;letter-spacing:-.01em;margin:10px 0 6px;color:#fff}
+.chap .ti{font-family:'Outfit',sans-serif;font-weight:200;font-size:clamp(19px,3.2vw,34px);line-height:1.2;color:#fff}
+.chap .nt{margin-top:12px;font-size:15px;line-height:1.65;color:#cfd6e2;max-width:56ch}
+.cine-hint{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7b8598;margin-top:10px}
+
+/* =================== 5 · FILMSTRIP =================== */
+.strip-outer{background:#111;border-radius:20px;padding:20px 0;position:relative}
+.strip-outer .perf{height:20px;background:repeating-linear-gradient(90deg,transparent 0 14px,#000 14px 26px);
+  border-top:2px solid #2a2a2a;border-bottom:2px solid #2a2a2a;margin:0 0 14px}
+.strip-outer .perf.b{margin:14px 0 0}
+.strip{display:flex;gap:14px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory}
+.strip::-webkit-scrollbar{height:7px}.strip::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:4px}
+.frame{flex:0 0 268px;scroll-snap-align:center;background:#1b1b1b;border:1px solid #2e2e2e;border-radius:6px;
+  padding:16px;position:relative;transition:.25s}
+.frame:hover{transform:translateY(-6px);border-color:#e6c15a}
+.frame .fno{position:absolute;top:8px;right:11px;font:700 9px 'JetBrains Mono';color:#6a6a6a}
+.frame .ftime{font:700 20px 'Bebas Neue',sans-serif;letter-spacing:.06em;color:#e6c15a}
+.frame .ftitle{font-weight:700;font-size:14.5px;margin:7px 0 5px;line-height:1.3}
+.frame .fnote{font-size:12px;color:#9a9a9a;line-height:1.5}
+
+/* =================== 6 · DAY HEAT RIBBON =================== */
+.heat{background:#0d1016;border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:30px 26px}
+.heat h2{font-family:'Archivo Black',sans-serif;font-size:clamp(20px,3.2vw,34px);letter-spacing:-.02em;margin-bottom:3px}
+.heat .sub{color:#7b8598;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+.hb{position:relative;height:74px;border-radius:12px;overflow:hidden;background:#151a22;margin-bottom:10px}
+.hb i{position:absolute;top:0;bottom:0;opacity:.92}
+.haxis{position:relative;height:22px;margin-bottom:20px}
+.haxis span{position:absolute;transform:translateX(-50%);font:700 9.5px 'JetBrains Mono';color:#6d7684;letter-spacing:.08em}
+.hev{display:grid;grid-template-columns:76px 1fr;gap:14px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hev .ht{font:700 11px 'JetBrains Mono';color:#8fd0ff}
+.hev .hn{font-weight:600;font-size:14px}
+.hev .hd{font-size:12.2px;color:#8d97a8;margin-top:3px;line-height:1.5}
+.hpill{display:inline-block;background:#fff;border-radius:6px;padding:2px 7px;font:700 9.5px 'JetBrains Mono';
+  color:#111;position:absolute;transform:translateX(-50%);top:50%;margin-top:-9px;white-space:nowrap}
+
+/* =================== 7 · ISOMETRIC TRAIL =================== */
+.trail{background:linear-gradient(180deg,#132a1c,#07130d);border-radius:24px;padding:30px 20px;position:relative;overflow:hidden}
+.trail h2{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(22px,3.6vw,40px);text-align:center;color:#f6d98a;margin-bottom:4px}
+.trail .sub{text-align:center;color:#8fbfa0;font-size:11px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:18px}
+.trail svg{width:100%;height:auto;display:block}
+.trail .path{fill:none;stroke:#f6d98a;stroke-width:3;stroke-dasharray:9 7;opacity:.55}
+.pin{cursor:pointer}
+.pin circle{fill:#0d2116;stroke:#f6d98a;stroke-width:2.4;transition:.2s}
+.pin:hover circle,.pin.on circle{fill:#f6d98a}
+.pin text{font:700 8.5px 'JetBrains Mono';fill:#0d2116;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin.on text,.pin:hover text{fill:#0d2116}
+.trail-detail{max-width:620px;margin:12px auto 0;text-align:center;min-height:88px}
+.trail-detail .t{font:700 11px 'JetBrains Mono';color:#f6d98a;letter-spacing:.16em}
+.trail-detail .h{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(17px,2.6vw,25px);margin:7px 0 5px;color:#fff}
+.trail-detail .n{color:#a8cbb5;font-size:13.5px;line-height:1.6}
+
+/* =================== 8 · DIORAMA PARALLAX =================== */
+.dio{position:relative;border-radius:24px;overflow:hidden;background:#070a12;padding:44px 26px;perspective:900px}
+.dio .layer{position:absolute;inset:-8%;background-size:cover;background-position:center;will-change:transform}
+.dio .l0{filter:blur(9px) brightness(.42)}
+.dio .veil{position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 40%,transparent,rgba(4,6,12,.9))}
+.dio-in{position:relative;z-index:3}
+.dio h2{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(28px,5.4vw,66px);letter-spacing:-.035em;text-align:center;margin-bottom:26px;
+  text-shadow:0 12px 40px rgba(0,0,0,.85)}
+.dio-grid{display:grid;gap:13px}
+@media(min-width:820px){.dio-grid{grid-template-columns:repeat(2,1fr)}}
+.dcard{background:rgba(16,20,32,.62);border:1px solid rgba(255,255,255,.14);border-radius:15px;padding:15px 17px;
+  backdrop-filter:blur(14px) saturate(150%);box-shadow:0 22px 50px rgba(0,0,0,.5);
+  transform-style:preserve-3d;transition:transform .18s ease-out,border-color .2s;will-change:transform}
+.dcard:hover{border-color:rgba(255,207,92,.6)}
+.dcard .dt{font:700 10.5px 'JetBrains Mono';color:#ffcf5c;letter-spacing:.13em}
+.dcard .dh{font-weight:700;font-size:15px;margin:6px 0 4px}
+.dcard .dn{font-size:12.3px;color:#b3bccc;line-height:1.55}
+
+/* =================== 9 · CONSTELLATION =================== */
+.sky-wrap{background:radial-gradient(110% 90% at 50% 0%,#101a3a,#03050e 70%);border-radius:24px;padding:28px 18px;position:relative;overflow:hidden}
+.sky-wrap h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;text-align:center;
+  font-size:clamp(24px,4vw,44px);color:#dfe7ff;margin-bottom:2px}
+.sky-wrap .sub{text-align:center;color:#7b8bc0;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:14px}
+.sky-wrap svg{width:100%;height:auto;display:block}
+.cst-link{stroke:rgba(150,180,255,.4);stroke-width:1.2}
+.star{cursor:pointer}
+.star circle.g{fill:rgba(180,205,255,.22)}
+.star circle.c{fill:#eaf1ff;transition:.2s}
+.star:hover circle.c,.star.on circle.c{fill:#ffe9a8;r:6}
+.star text{fill:#93a6d8;font:600 8px 'JetBrains Mono';text-anchor:middle}
+@keyframes tw{0%,100%{opacity:.35}50%{opacity:1}}
+.tws{animation:tw 3.4s ease-in-out infinite}
+.sky-detail{max-width:600px;margin:10px auto 0;text-align:center;min-height:86px}
+.sky-detail .t{font:700 10.5px 'JetBrains Mono';color:#ffe9a8;letter-spacing:.18em}
+.sky-detail .h{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,3vw,28px);font-weight:600;margin:6px 0 5px;color:#fff}
+.sky-detail .n{color:#a3b2d8;font-size:13.5px;line-height:1.6}
+
+/* =================== 10 · BRUTALIST STACK =================== */
+.brut{background:#e8e4dc;color:#0c0c0c;border-radius:0;border:4px solid #0c0c0c;padding:0;overflow:hidden}
+.brut-h{background:#ff3b1f;color:#fff;padding:26px 24px;border-bottom:4px solid #0c0c0c}
+.brut-h .k{font:700 10px 'JetBrains Mono';letter-spacing:.32em}
+.brut-h h2{font-family:'Archivo Black',sans-serif;font-size:clamp(30px,7vw,86px);line-height:.86;letter-spacing:-.045em;margin-top:8px;text-transform:uppercase}
+.brut-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));border-bottom:4px solid #0c0c0c}
+.brut-facts div{padding:13px 16px;border-right:4px solid #0c0c0c}
+.brut-facts div:last-child{border-right:0}
+.brut-facts .l{font:700 9px 'JetBrains Mono';letter-spacing:.2em;text-transform:uppercase}
+.brut-facts .v{font-family:'Archivo Black',sans-serif;font-size:18px;margin-top:4px}
+.brut-sec{background:#0c0c0c;color:#fff;padding:9px 24px;font:700 10px 'JetBrains Mono';letter-spacing:.3em}
+.brow{display:grid;grid-template-columns:110px 1fr;border-bottom:2px solid #0c0c0c}
+.brow:nth-child(even){background:#dedad1}
+.brow .bt{background:#0c0c0c;color:#ffe600;padding:15px 12px;font:700 13px 'JetBrains Mono';display:flex;align-items:center}
+.brow .bb{padding:14px 18px}
+.brow .bh{font-family:'Archivo Black',sans-serif;font-size:16px;letter-spacing:-.015em;text-transform:uppercase;line-height:1.15}
+.brow .bn{font-size:12.5px;margin-top:5px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <h1>ROUND 2 · STRUCTURE, NOT SKINS</h1>
+    <div class="grp" id="dayPick"><span class="lab">Day</span></div>
+    <div class="grp" id="designPick"><span class="lab">Design</span></div>
+  </div>
+</div>
+<p class="plate" id="plate"></p>
+<div id="mount"></div>
+
+<script>
+const DATA = {"ak":{"key":"ak","day":"Day 02","park":"Animal Kingdom","date":"Mon · Oct 12","eyebrow":"★ PARK NIGHT ★","lines":["ANIMAL","KINGDOM"],"sub":"— EST. 1998 · ORLANDO —","deck":"Park Day One · Day 02 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"7:30a → 8p"},{"l":"Weather","v":"82°F · sunny"},{"l":"Crowd","v":"4/10"},{"l":"Sunset","v":"6:48 PM"},{"l":"Steps est.","v":"14,200"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"5:45AM","title":"Wake & coffee","note":"Pre-stage backpacks, water bottles, sunscreen, ponchos.","tag":"prep","kind":"none"},{"time":"6:30AM","title":"On bus to AK","note":"Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.","tag":"transit","kind":"none"},{"time":"6:59AM","title":"LLMP DROP — Avatar Flight of Passage","note":"Tap LLMP at 7:00 AM sharp · adults only · 44\" min.","tag":"alarm","kind":"none"},{"time":"7:30AM","title":"ROPE DROP — Kilimanjaro Safari","note":"Animals most active in the morning. Go LEFT at the entrance.","tag":"rope","kind":"ride"},{"time":"8:30AM","title":"Na'vi River Journey","note":"Mario's pick · gentle boat · no height min.","tag":"ride","kind":"ride"},{"time":"9:30AM","title":"Snack — Pongu Pongu","note":"Night Blossom + pretzel · sit by the floating mountains.","tag":"food","kind":"food"},{"time":"10:30AM","title":"Wildlife Express → Rafiki's","note":"Mario's pick · NEW Bluey-themed train.","tag":"ride","kind":"ride"}]},{"label":"AFTERNOON · PM","rows":[{"time":"1:30PM","title":"LLMP — Avatar Flight of Passage","note":"Adults rotate. Mario stays w/ grandparents (44\" min).","tag":"ride","kind":"ride"},{"time":"2:30PM","title":"Festival of the Lion King","note":"Mario's pick · A/C · seats fill 30 min before show.","tag":"show","kind":"none"},{"time":"3:45PM","title":"Dole Whip + cool down","note":"Tamu Tamu · find shade · regroup w/ grandparents.","tag":"food","kind":"food"},{"time":"5:00PM","title":"Tree of Life Awakenings","note":"First projection cycle at dusk. Catch it on the bridge.","tag":"show","kind":"none"},{"time":"6:30PM","title":"Dinner — Yak & Yeti counter","note":"Honey chicken · egg rolls · table by the river.","tag":"food","kind":"food"},{"time":"7:45PM","title":"Park close — Pandora at dusk","note":"Bioluminescent forest · last lap before bus home.","tag":"rope","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"hs":{"key":"hs","day":"Day 03","park":"Hollywood Studios","date":"Tue · Oct 13","eyebrow":"★ LIGHTS · CAMERA · ACTION ★","lines":["HOLLYWOOD","STUDIOS"],"sub":"— EST. 1989 · ORLANDO —","deck":"Park Day Two · Day 03 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"8:00a → 9:30p"},{"l":"Weather","v":"84°F · clear"},{"l":"Crowd","v":"5/10"},{"l":"Sunset","v":"6:46 PM"},{"l":"Steps est.","v":"16,800"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"7:00AM","title":"Coffee + pack","note":"Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.","tag":"studio","kind":"none"},{"time":"7:30AM","title":"Skyliner from Art of Animation","note":"Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.","tag":"transit","kind":"none"},{"time":"6:59AM","title":"LLMP DROP — Falcon → ToT → Rock 'n' Roller","note":"Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.","tag":"alarm","kind":"ride"},{"time":"8:30AM","title":"ROPE DROP — Slinky Dog Dash","note":"Slinky's LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38\").","tag":"rope","kind":"ride"},{"time":"9:15AM","title":"Alien Swirling Saucers + Toy Story Mania","note":"You're in Toy Story Land — knock both out before crowds build.","tag":"ride","kind":"ride"},{"time":"10:30AM","title":"Smugglers Run — NEW Mandalorian mission","note":"Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38\").","tag":"ride","kind":"ride"},{"time":"11:30AM","title":"Blue / Green Milk + Build a Droid","note":"Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.","tag":"food","kind":"food"}]},{"label":"AFTERNOON · PM","rows":[{"time":"12:30PM","title":"LLSP — Rise of the Resistance","note":"The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40\").","tag":"ride","kind":"ride"},{"time":"1:30PM","title":"Mickey & Minnie's Runaway Railway","note":"LLMP refresh. Cartoon physics, no height min. Mario will love it.","tag":"ride","kind":"ride"},{"time":"2:30PM","title":"Tower of Terror (LLMP #2)","note":"Drop sequence randomizes — never the same twice. Rider Switch if Mario's nervous.","tag":"ride","kind":"ride"},{"time":"3:30PM","title":"Star Tours","note":"Randomized destinations. Short waits typically. Mario rides ✅ (40\").","tag":"ride","kind":"ride"},{"time":"4:00PM","title":"Rock 'n' Roller — NEW Muppets","note":"Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario's 42\" / req 48\".","tag":"alarm","kind":"ride"},{"time":"5:30PM","title":"Dinner — Sci-Fi Dine-In","note":"Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.","tag":"food","kind":"food"},{"time":"7:00PM","title":"Beauty & the Beast + Villains Stage Show","note":"AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.","tag":"show","kind":"none"},{"time":"8:30PM","title":"Galaxy's Edge after dark","note":"Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.","tag":"studio","kind":"none"},{"time":"9:00PM","title":"Fantasmic!","note":"Be at amphitheater by 8:15 for a decent seat. Skip if Mario's wrecked — it's loud.","tag":"show","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"mk":{"key":"mk","day":"Day 04","park":"Magic Kingdom","date":"Wed · Oct 14","eyebrow":"★ WHERE DREAMS COME TRUE ★","lines":[],"sub":"— EST. 1971 · ORLANDO —","deck":"Park Day Three · Day 04 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"9a → 10p"},{"l":"Weather","v":"83°F · clear"},{"l":"Crowd","v":"6/10"},{"l":"Fireworks","v":"9:00 PM"},{"l":"Steps est.","v":"18,400"},{"l":"Heat index","v":"moderate"}],"columns":[{"label":"MORNING · AM","rows":[{"time":"6:59AM","title":"LLMP DROP — Seven Dwarfs first","note":"Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.","tag":"alarm","kind":"none"},{"time":"7:30AM","title":"ROPE DROP — Peter Pan's Flight","note":"Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).","tag":"rope","kind":"ride"},{"time":"8:30AM","title":"Bibbidi Bobbidi Boutique","note":"Princess transformation · 60–90 min · check in 5 min early behind the castle.","tag":"castle","kind":"none"},{"time":"8:30AM","title":"SPLIT — Speedway + Buzz + PhilharMagic","note":"Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.","tag":"ride","kind":"ride"},{"time":"10:00AM","title":"THE CASTLE REVEAL","note":"Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.","tag":"castle","kind":"none"},{"time":"10:30AM","title":"Princess Fairytale Hall","note":"Cinderella + Tiana meet & greets. BBB outfit = pure magic.","tag":"castle","kind":"none"},{"time":"11:00AM","title":"Dumbo + Barnstormer","note":"Mario classics. Barnstormer (35\") is his first roller coaster — short, gentle, perfect intro.","tag":"ride","kind":"ride"},{"time":"11:30AM","title":"Seven Dwarfs Mine Train (LLMP)","note":"Use your locked-in slot. Mario rides ✅ (38\" min).","tag":"ride","kind":"ride"},{"time":"12:00PM","title":"Mickey's PhilharMagic + Small World","note":"4D show, AC, classic songs. Small World walk-on if time allows.","tag":"show","kind":"none"}]},{"label":"AFTERNOON & NIGHT · PM","rows":[{"time":"1:00PM","title":"RESORT BREAK — non-negotiable","note":"Back to Art of Animation. Pool, naps, hydrate, hair touch-up. Skip = meltdowns by 5 PM.","tag":"break","kind":"none"},{"time":"3:00PM","title":"Festival of Fantasy Parade · optional","note":"Only if kids rebound fast. Frontierland is less crowded than Main Street.","tag":"show","kind":"none"},{"time":"4:00PM","title":"Pirates of the Caribbean (LLMP refill)","note":"Mario rides ✅ (no min). Dark but more silly than scary.","tag":"ride","kind":"ride"},{"time":"4:45PM","title":"Jungle Cruise + Country Bears","note":"Corny skipper jokes, animatronics, AC. Quick easy wins.","tag":"ride","kind":"ride"},{"time":"5:30PM","title":"Big Thunder Mountain","note":"REOPENED May 2026 — refreshed scenery. Mario's first 'real' coaster ✅ (40\").","tag":"ride","kind":"ride"},{"time":"6:30PM","title":"Haunted Mansion (LLMP)","note":"Watch Mario's face in the stretching room. He'll love it.","tag":"ride","kind":"ride"},{"time":"7:15PM","title":"Buzz + Speedway","note":"New blasters & 'Buddy' character. Speedway: Mario 'drives' with adult — non-negotiable for him.","tag":"ride","kind":"ride"},{"time":"7:45PM","title":"TRON / Space Mountain — Rider Switch","note":"Mario can't ride (48\"/44\"). One parent waits w/ kids, other rides w/ daughter, swap.","tag":"ride","kind":"ride"},{"time":"8:30PM","title":"Stake your fireworks spot","note":"Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.","tag":"fireworks","kind":"none"},{"time":"9:00PM","title":"Happily Ever After (9:00 PM)","note":"18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. THE photo of the trip.","tag":"fireworks","kind":"none"},{"time":"9:30PM","title":"Exit — beat the exodus","note":"Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.","tag":"break","kind":"none"}]}],"extras":{"houses":[],"worlds":[],"budget":[]}},"hhn":{"key":"hhn","day":"Day 05","park":"HHN 35","date":"Thu · Oct 15","eyebrow":"★ INFERNAL CARNIVAL OF NIGHTMARES ★","lines":[],"sub":"— UNIVERSAL STUDIOS FLORIDA · 6:30P → 1A —","deck":"Adults Night · Sitter for Mario · Day 04 of 07 · Garcia Expedition","facts":[{"l":"Hours","v":"6:30p → 1a"},{"l":"Houses","v":"10 all-new"},{"l":"Crowd","v":"6/10 (Thu)"},{"l":"Weather","v":"65°F night"},{"l":"Mario","v":"with sitter"},{"l":"Recovery","v":"Fri = Off"}],"columns":[{"label":"PRE-EVENT · EARLY NIGHT","rows":[{"time":"9:30AM","title":"Chef Mickey’s - Contemporary Resort","note":"Character breakfast - Mickey, Minnie, Donald, Goofy and Pluto come to the table. Monorail over from the Contemporary. Annelise’s big character meal on the rest-day morning, before the adults leave for HHN.","tag":"food","kind":"food"},{"time":"2:00PM","title":"Lunch + hydrate · resort","note":"Eat heavy. You won't sit again until 1 AM. Hand Mario off to the sitter at Art of Animation.","tag":"prep","kind":"food"},{"time":"3:30PM","title":"Leave for Universal","note":"Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.","tag":"travel","kind":"none"},{"time":"4:30PM","title":"Park at Universal","note":"Preferred Parking ($55) — closer in + faster exit when the park dumps at 1 AM.","tag":"travel","kind":"none"},{"time":"5:00PM","title":"Dinner · CityWalk","note":"Antojitos or Vivo. Skip in-park food — slow + overpriced. Full carb load before the marathon.","tag":"food","kind":"food"},{"time":"6:00PM","title":"Stadium queue · front gate","note":"Be at the turnstile by 6:00 sharp. Doors open ~6:15. First 30 min = the only time the park breathes.","tag":"prep","kind":"none"},{"time":"6:30PM","title":"EVENT START · sprint to House #1","note":"Newest IP house first — the longest line by 8 PM. This is the rule, every year.","tag":"house","kind":"ride"},{"time":"6:45PM","title":"Houses #2 + #3 · back lot","note":"Soundstage houses near Men in Black. Hit before crowds rotate back from the front.","tag":"house","kind":"ride"},{"time":"8:00PM","title":"Halloween Tribute Store","note":"Bag the merch run. Skip if the line wraps the building — come back after 11.","tag":"merch","kind":"none"},{"time":"8:30PM","title":"Scare Zones · NY + Hollywood","note":"Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.","tag":"zone","kind":"none"}]},{"label":"MIDNIGHT · CLOSE","rows":[{"time":"9:00PM","title":"Houses #4 + #5","note":"Crowds peak now. Use single-rider lines if posted. Standby times in the app run ~20% high.","tag":"house","kind":"ride"},{"time":"10:30PM","title":"Bar break · Finnegan's or Duff","note":"Reset. Charge phone. Finnegan's (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe.","tag":"bar","kind":"food"},{"time":"11:00PM","title":"Houses #6 + #7","note":"Lines drop sharply after 11. This is the window. Move fast.","tag":"house","kind":"ride"},{"time":"12:00AM","title":"House #8 · repeat favorite","note":"Wait times often under 20 min in the final hour. Hit the one you couldn't fully take in.","tag":"house","kind":"ride"},{"time":"12:30AM","title":"Chez Alcatraz · last drink","note":"San Francisco area. Sit. Watch the scare actors work the last shift.","tag":"bar","kind":"food"},{"time":"12:45AM","title":"Final scare-zone walk","note":"Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.","tag":"zone","kind":"none"},{"time":"1:00AM","title":"Park close · exit","note":"Restroom BEFORE leaving. Parking lot crawls — give it 15 min before fighting it.","tag":"travel","kind":"none"},{"time":"1:30AM","title":"On the road · Art of Animation","note":"Drive sober. Uber if needed. Sitter hand-off, then collapse. Friday is rest day.","tag":"travel","kind":"none"},{"time":"💀","title":"8 HOUSES · 5 ZONES · 1 NIGHT","note":"The Garcia adults survived the Infernal Carnival. Mario slept through it all.","tag":"finale","kind":"none"}]}],"extras":{"houses":[{"rank":"01","name":"Newest IP House","why":"Longest line by 8p — hit first"},{"rank":"02","name":"Second Hyped IP","why":"Crowd hits by 8p"},{"rank":"03","name":"Universal Monsters","why":"Strong second wave"},{"rank":"04","name":"Soundstage Houses","why":"Back-of-park · thinner"},{"rank":"05","name":"KidZone Sprung Tents","why":"Walk-on after 11p"},{"rank":"06","name":"Repeat Favorite","why":"<20 min in final hr"}],"worlds":[],"budget":[["HHN Wednesday ticket","$85–110"],["Express Pass · optional","$120–180"],["Preferred parking","$55"],["CityWalk dinner","$35–60"],["In-park snacks + 2 drinks","$40–60"],["Tribute Store merch · budget","$50"],["Total · no Express","$265–365"],["Total · with Express","$385–545"]]}},"eu":{"key":"eu","day":"Day 06","park":"Epic Universe","date":"Fri · Oct 16","eyebrow":"★ FIVE WORLDS · ONE PARK ★","lines":[],"sub":"— OPENED 2025 · ORLANDO —","deck":"Park Day Five · Day 06 of 07 · Garcia Trip Finale","facts":[{"l":"Hours","v":"9a → 9p"},{"l":"Weather","v":"82°F · clear"},{"l":"Crowd","v":"7/10"},{"l":"Rides","v":"12 of 15"},{"l":"Steps est.","v":"16,200"},{"l":"Mario","v":"42\" · ✅ 40\""}],"columns":[{"label":"PREP & MORNING · AM","rows":[{"time":"Thu PM","title":"NIGHT BEFORE — secure VQ + Express","note":"Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.","tag":"prep","kind":"none"},{"time":"8:30AM","title":"Uber from Art of Animation","note":"15–20 min · ~$20 each way. Disney transport doesn't reach Universal. Skip rope drop — you got wrecked at HHN last night and Express covers you.","tag":"prep","kind":"none"},{"time":"9:30AM","title":"ARRIVAL — Power-Up Bands on wrists","note":"Express linked. App open. Mario Kart VQ secured. Game on.","tag":"prep","kind":"ride"},{"time":"10:00AM","title":"Mario Kart: Bowser's Challenge (Express)","note":"Longest queue in the park — hit it first. Mario rides ✅ (40\" min, he's 42\"). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.","tag":"mario","kind":"ride"},{"time":"10:30AM","title":"Yoshi's Adventure","note":"No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.","tag":"mario-yellow","kind":"ride"},{"time":"11:00AM","title":"Mine-Cart Madness (Express)","note":"Donkey Kong Country. Mario rides ✅ (40\"). Innovative track design — feels like the cart is jumping rails.","tag":"mario","kind":"ride"},{"time":"11:30AM","title":"Power-Up Band activities","note":"Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Mario will lose his mind.","tag":"mario-blue","kind":"none"},{"time":"12:00PM","title":"BAND HACK — pass them around","note":"You don't need a band per person. Mario gets the most use — let him keep one strapped on all day.","tag":"prep","kind":"none"},{"time":"12:30PM","title":"Lunch · Toadstool Cafe","note":"Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.","tag":"food","kind":"food"}]},{"label":"AFTERNOON & NIGHT · PM","rows":[{"time":"1:30PM","title":"Curse of the Werewolf (Express)","note":"Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.","tag":"dark","kind":"ride"},{"time":"2:15PM","title":"Monsters Unchained (Express)","note":"Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.","tag":"dark","kind":"ride"},{"time":"3:00PM","title":"Hiccup's Wing Gliders (Express)","note":"Family coaster on Isle of Berk. Mario rides ✅ (40\"). Smooth, scenic, perfect for him.","tag":"dragon","kind":"ride"},{"time":"3:30PM","title":"Dragon Racer's Rally · only if line < 30 min","note":"Only ride NOT on Express in the park. Hop in if it's short, otherwise skip — you've got bigger fish.","tag":"dragon","kind":"ride"},{"time":"4:00PM","title":"Meet Toothless","note":"Lines build fast. Either grab now or end of night when they die down.","tag":"dragon","kind":"none"},{"time":"4:30PM","title":"Battle at the Ministry (Express)","note":"The biggest headliner in the park. Mario rides ✅ (40\"). Innovative ride system — moves through multiple show buildings.","tag":"magic","kind":"ride"},{"time":"5:30PM","title":"Butterbeer + Butterbeer ice cream","note":"Mandatory. Get the frozen version. Mario's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.","tag":"magic","kind":"food"},{"time":"6:30PM","title":"Dinner · Atlantic or Blue Dragon","note":"Both in Celestial Park. Sit-down, table service. You've earned it.","tag":"food","kind":"food"},{"time":"8:00PM","title":"Stardust Racers (Express) · Rider Switch","note":"Dueling coaster. Mario can't ride (48\"; he's 42\"). Both adults ride both sides via swap. Reopened Mar 2026.","tag":"celestial","kind":"ride"},{"time":"8:30PM","title":"Stardust Show — Celestial Park","note":"Nighttime show. Check showtimes in app. Good wind-down before exit.","tag":"celestial","kind":"none"},{"time":"8:45PM","title":"One last walk through Nintendo World","note":"All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.","tag":"mario-blue","kind":"none"},{"time":"9:00PM","title":"Uber back to Art of Animation","note":"Don't push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early.","tag":"break","kind":"none"},{"time":"🏆","title":"FIVE PARKS · ONE WEEK · TRIP COMPLETE","note":"The Garcia family conquered Orlando.","tag":"finale","kind":"none"}]}],"extras":{"houses":[],"worlds":[{"num":"LAND 01","name":"Super Nintendo World","tag":"Mario · DK"},{"num":"LAND 02","name":"Dark Universe","tag":"Monsters"},{"num":"LAND 03","name":"Isle of Berk","tag":"HtTYD"},{"num":"LAND 04","name":"Wizarding World","tag":"Ministry"},{"num":"LAND 05","name":"Celestial Park","tag":"Hub · Stardust"}],"budget":[]}}};
+
+const BG = {ak:'../sections/assets/ak-bg.jpg',hs:'../sections/assets/hs-bg.jpg',
+            mk:'../sections/assets/mk-bg.jpg',hhn:'../sections/assets/hhn-bg.jpg',eu:'../sections/assets/eu-bg.jpg'};
+const ACCENT = {ak:'#4ade80',hs:'#fb923c',mk:'#f472b6',hhn:'#ff6b1f',eu:'#a855f7'};
+const DAYS = ['ak','hs','mk','hhn','eu'];
+
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* flatten the two columns into one ordered list of events */
+function evs(d){
+  const out=[];
+  d.columns.forEach(c=>c.rows.forEach(r=>out.push({...r,sec:c.label})));
+  return out;
+}
+/* "5:45AM" -> minutes past midnight; null when there's no real clock time */
+function mins(t){
+  const m=String(t).match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+  if(!m) return null;
+  let h=+m[1]; const mm=+m[2], mer=(m[3]||'').toUpperCase();
+  if(mer==='PM'&&h!==12)h+=12; if(mer==='AM'&&h===12)h=0;
+  return h*60+mm;
+}
+/* every event gets a position, even the ones with no parseable time */
+function positioned(d){
+  const e=evs(d);
+  const known=e.map(x=>mins(x.time)).filter(v=>v!=null);
+  const lo=known.length?Math.min(...known):5*60, hi=known.length?Math.max(...known):23*60;
+  const span=Math.max(hi-lo,60);
+  return e.map((x,i)=>{
+    const m=mins(x.time);
+    const p = m!=null ? (m-lo)/span : i/Math.max(e.length-1,1);
+    return {...x, m, p:Math.min(Math.max(p,0),1), i};
+  });
+}
+const fmtHour=m=>{const h=Math.floor(m/60)%24;const ap=h<12?'AM':'PM';const hh=h%12===0?12:h%12;return hh+ap;};
+
+/* ============================ RENDERERS ============================ */
+const R = {};
+
+/* 1 · sun arc ---------------------------------------------------- */
+R.arc = d => {
+  const e=positioned(d), W=1000,H=430,cx=W/2,cy=H-24,rx=W/2-58,ry=H-96;
+  const pt=p=>{const a=Math.PI*(1-p);return [cx+rx*Math.cos(a), cy-ry*Math.sin(a)];};
+  const nodes=e.map((x,i)=>{const [px,py]=pt(x.p);
+    return `<g class="arc-node" data-i="${i}" transform="translate(${px.toFixed(1)},${py.toFixed(1)})">
+      <circle r="6.5"></circle><text y="-15">${esc(x.time)}</text></g>`;}).join('');
+  return `<div class="arc-wrap"><div class="sky"></div>
+    <svg class="arc-svg" viewBox="0 0 ${W} ${H}">
+      <defs><linearGradient id="sunGrad" x1="0" x2="1">
+        <stop offset="0" stop-color="#7c5cff"/><stop offset=".5" stop-color="#ffb74d"/><stop offset="1" stop-color="#ff6b6b"/>
+      </linearGradient></defs>
+      <path class="track" d="M ${cx-rx} ${cy} A ${rx} ${ry} 0 0 1 ${cx+rx} ${cy}"/>
+      <path class="lit"   d="M ${cx-rx} ${cy} A ${rx} ${ry} 0 0 1 ${cx+rx} ${cy}"/>
+      ${nodes}
+    </svg>
+    <div class="arc-legend"><span>SUNRISE</span><span>MIDDAY</span><span>PARK CLOSE</span></div>
+    <div class="arc-detail" id="arcD"></div></div>`;
+};
+R.arc.after = d => {
+  const e=positioned(d), box=document.getElementById('arcD');
+  const show=i=>{const x=e[i];
+    box.innerHTML=`<div class="t">${esc(x.time)} · ${esc(x.sec)}</div><div class="h">${esc(x.title)}</div><div class="n">${esc(x.note)}</div>`;
+    document.querySelectorAll('.arc-node').forEach(n=>n.classList.toggle('on',+n.dataset.i===i));};
+  document.querySelectorAll('.arc-node').forEach(n=>{
+    n.addEventListener('mouseenter',()=>show(+n.dataset.i));
+    n.addEventListener('click',()=>show(+n.dataset.i));});
+  show(0);
+};
+
+/* 2 · metro line -------------------------------------------------- */
+R.metro = d => {
+  const e=evs(d), ln=ACCENT[d.key];
+  const stops=e.map(x=>`<div class="mstop ${/rope|alarm|finale|fireworks|castle/.test(x.tag)?'major':''}">
+      <div class="mt">${esc(x.time)}</div>
+      <div><div class="mn">${esc(x.title)}</div>${x.note?`<div class="md">${esc(x.note)}</div>`:''}</div>
+    </div>`).join('');
+  return `<div class="metro" style="--ln:${ln}">
+    <h2>${esc(d.park)}</h2>
+    <span class="rt">LINE ${esc(d.day.replace(/\D/g,''))} · ${esc(d.date.toUpperCase())}</span>
+    <div class="metro-line">${stops}</div>
+    <div class="metro-key"><span><i style="background:${ln}"></i>Interchange = anchor moment</span>
+    <span>${e.length} stops · ${esc(d.facts.map(f=>f.l+' '+f.v).join(' · '))}</span></div></div>`;
+};
+
+/* 3 · split-flap departures --------------------------------------- */
+R.flap = d => {
+  const cells=s=>[...String(s)].map((c,i)=>
+    `<span class="cell" style="animation-delay:${(i*34)}ms">${esc(c)}</span>`).join('');
+  let html='', lastSec='';
+  evs(d).forEach((x,n)=>{
+    if(x.sec!==lastSec){lastSec=x.sec;html+=`<div class="flap-sec">▸ ${esc(x.sec)}</div>`;}
+    html+=`<div class="flap-row">
+      <div class="cells">${cells(x.time)}</div>
+      <div><div class="dest">${esc(x.title)}</div>${x.note?`<div class="sub">${esc(x.note)}</div>`:''}</div>
+      <div class="stat">${esc((x.tag||'ON TIME').toUpperCase())}</div></div>`;});
+  return `<div class="flap"><div class="flap-h">
+      <div class="ttl">${esc(d.park.toUpperCase())}</div>
+      <div class="clk">${esc(d.date.toUpperCase())} · ${esc(d.facts[0]?d.facts[0].v:'')}</div>
+    </div>${html}</div>`;
+};
+
+/* 4 · cinematic chapters ------------------------------------------ */
+R.cine = d => {
+  const e=evs(d);
+  return `<div class="cine">${e.map((x,i)=>`
+    <div class="chap" style="background-image:url('${BG[d.key]}')">
+      <div class="in">
+        <div class="no">${String(i+1).padStart(2,'0')} / ${String(e.length).padStart(2,'0')} · ${esc(x.sec)}</div>
+        <div class="tm">${esc(x.time)}</div>
+        <div class="ti">${esc(x.title)}</div>
+        ${x.note?`<div class="nt">${esc(x.note)}</div>`:''}
+      </div></div>`).join('')}</div>
+    <p class="cine-hint">scroll inside the frame — each moment snaps full-screen</p>`;
+};
+
+/* 5 · filmstrip ---------------------------------------------------- */
+R.strip = d => {
+  const e=evs(d);
+  return `<div class="strip-outer"><div class="perf"></div>
+    <div class="strip">${e.map((x,i)=>`
+      <div class="frame"><span class="fno">${String(i+1).padStart(2,'0')}</span>
+        <div class="ftime">${esc(x.time)}</div>
+        <div class="ftitle">${esc(x.title)}</div>
+        ${x.note?`<div class="fnote">${esc(x.note)}</div>`:''}
+      </div>`).join('')}</div>
+    <div class="perf b"></div></div>`;
+};
+
+/* 6 · day heat ribbon --------------------------------------------- */
+R.heat = d => {
+  const e=positioned(d).filter(x=>x.m!=null);
+  const all=positioned(d);
+  const lo=Math.min(...e.map(x=>x.m)), hi=Math.max(...e.map(x=>x.m));
+  const bands=e.map((x,i)=>{
+    const nx=e[i+1]?e[i+1].m:hi+30;
+    const l=((x.m-lo)/(hi-lo+30))*100, w=Math.max(((nx-x.m)/(hi-lo+30))*100,.7);
+    const heat=/rope|alarm|fireworks|finale|house/.test(x.tag)?'#ff5a3c':/food|break/.test(x.tag)?'#3ddc84':'#4c8dff';
+    return `<i style="left:${l}%;width:${w}%;background:linear-gradient(180deg,${heat},${heat}55)"></i>`;}).join('');
+  const ticks=[];
+  for(let m=Math.ceil(lo/120)*120;m<=hi;m+=120)
+    ticks.push(`<span style="left:${((m-lo)/(hi-lo+30))*100}%">${fmtHour(m)}</span>`);
+  /* labels ride in white pills so they never sit on a band */
+  const pills=e.filter((x,i)=>i%Math.ceil(e.length/6)===0).map(x=>
+    `<span class="hpill" style="left:${((x.m-lo)/(hi-lo+30))*100}%">${esc(x.time)}</span>`).join('');
+  return `<div class="heat">
+    <h2>${esc(d.park)}</h2><div class="sub">${esc(d.date)} · the shape of the day</div>
+    <div class="hb">${bands}${pills}</div>
+    <div class="haxis">${ticks.join('')}</div>
+    ${all.map(x=>`<div class="hev"><div class="ht">${esc(x.time)}</div>
+      <div><div class="hn">${esc(x.title)}</div>${x.note?`<div class="hd">${esc(x.note)}</div>`:''}</div></div>`).join('')}
+  </div>`;
+};
+
+/* 7 · isometric trail --------------------------------------------- */
+R.trail = d => {
+  const e=positioned(d), W=1000, rows=Math.ceil(e.length/4), H=150+rows*118;
+  const pos=e.map((x,i)=>{
+    const r=Math.floor(i/4), c=i%4, ltr=r%2===0;
+    const col=ltr?c:3-c;
+    return [120+col*253, 92+r*118];});
+  const path='M '+pos.map(p=>p.join(' ')).join(' L ');
+  const pins=pos.map((p,i)=>`<g class="pin" data-i="${i}" transform="translate(${p[0]},${p[1]})">
+      <circle r="19"></circle><text>${i+1}</text></g>`).join('');
+  return `<div class="trail"><h2>${esc(d.park)}</h2><div class="sub">${esc(d.date)} · ${e.length} waypoints</div>
+    <svg viewBox="0 0 ${W} ${H}"><path class="path" d="${path}"/>${pins}</svg>
+    <div class="trail-detail" id="trailD"></div></div>`;
+};
+R.trail.after = d => {
+  const e=positioned(d), box=document.getElementById('trailD');
+  const show=i=>{const x=e[i];
+    box.innerHTML=`<div class="t">${esc(x.time)} · WAYPOINT ${i+1}</div><div class="h">${esc(x.title)}</div><div class="n">${esc(x.note)}</div>`;
+    document.querySelectorAll('.pin').forEach(n=>n.classList.toggle('on',+n.dataset.i===i));};
+  document.querySelectorAll('.pin').forEach(n=>{
+    n.addEventListener('mouseenter',()=>show(+n.dataset.i));
+    n.addEventListener('click',()=>show(+n.dataset.i));});
+  show(0);
+};
+
+/* 8 · diorama parallax -------------------------------------------- */
+R.dio = d => `<div class="dio" id="dio">
+    <div class="layer l0" style="background-image:url('${BG[d.key]}')"></div>
+    <div class="veil"></div>
+    <div class="dio-in"><h2>${esc(d.park)}</h2>
+      <div class="dio-grid">${evs(d).map(x=>`
+        <div class="dcard"><div class="dt">${esc(x.time)} · ${esc(x.sec)}</div>
+          <div class="dh">${esc(x.title)}</div>${x.note?`<div class="dn">${esc(x.note)}</div>`:''}</div>`).join('')}
+      </div></div></div>`;
+R.dio.after = () => {
+  const wrap=document.getElementById('dio'); if(!wrap) return;
+  const bg=wrap.querySelector('.l0'), cards=[...wrap.querySelectorAll('.dcard')];
+  wrap.addEventListener('pointermove',ev=>{
+    const r=wrap.getBoundingClientRect();
+    const x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
+    bg.style.transform=`translate(${x*-26}px,${y*-18}px) scale(1.06)`;
+    cards.forEach((c,i)=>{const dp=1+(i%3)*.5;
+      c.style.transform=`translate(${x*7*dp}px,${y*5*dp}px) rotateX(${y*-3}deg) rotateY(${x*4}deg)`;});
+  });
+  wrap.addEventListener('pointerleave',()=>{
+    bg.style.transform='';cards.forEach(c=>c.style.transform='');});
+};
+
+/* 9 · constellation ------------------------------------------------ */
+R.sky = d => {
+  const e=positioned(d), W=1000, rows=Math.ceil(e.length/5), H=130+rows*104;
+  const pos=e.map((x,i)=>{const r=Math.floor(i/5),c=i%5;
+    const jx=((i*37)%23)-11, jy=((i*53)%19)-9;
+    return [110+c*195+jx, 80+r*104+jy];});
+  const links=pos.slice(1).map((p,i)=>
+    `<line class="cst-link" x1="${pos[i][0]}" y1="${pos[i][1]}" x2="${p[0]}" y2="${p[1]}"/>`).join('');
+  const dust=Array.from({length:70},(_,i)=>
+    `<circle class="tws" cx="${(i*137)%W}" cy="${(i*89)%H}" r="${(i%3)*.6+.5}" fill="#cfe0ff"
+      style="animation-delay:${(i%17)*.24}s"/>`).join('');
+  const stars=pos.map((p,i)=>`<g class="star" data-i="${i}" transform="translate(${p[0]},${p[1]})">
+      <circle class="g" r="13"></circle><circle class="c" r="4.5"></circle>
+      <text y="26">${esc(e[i].time)}</text></g>`).join('');
+  return `<div class="sky-wrap"><h2>${esc(d.park)}</h2>
+    <div class="sub">${esc(d.date)} · a constellation of ${e.length} moments</div>
+    <svg viewBox="0 0 ${W} ${H}">${dust}${links}${stars}</svg>
+    <div class="sky-detail" id="skyD"></div></div>`;
+};
+R.sky.after = d => {
+  const e=positioned(d), box=document.getElementById('skyD');
+  const show=i=>{const x=e[i];
+    box.innerHTML=`<div class="t">${esc(x.time)}</div><div class="h">${esc(x.title)}</div><div class="n">${esc(x.note)}</div>`;
+    document.querySelectorAll('.star').forEach(n=>n.classList.toggle('on',+n.dataset.i===i));};
+  document.querySelectorAll('.star').forEach(n=>{
+    n.addEventListener('mouseenter',()=>show(+n.dataset.i));
+    n.addEventListener('click',()=>show(+n.dataset.i));});
+  show(0);
+};
+
+/* 10 · brutalist stack --------------------------------------------- */
+R.brut = d => {
+  let html='',last='';
+  evs(d).forEach(x=>{
+    if(x.sec!==last){last=x.sec;html+=`<div class="brut-sec">${esc(x.sec)}</div>`;}
+    html+=`<div class="brow"><div class="bt">${esc(x.time)}</div>
+      <div class="bb"><div class="bh">${esc(x.title)}</div>${x.note?`<div class="bn">${esc(x.note)}</div>`:''}</div></div>`;});
+  return `<div class="brut"><div class="brut-h"><div class="k">${esc(d.day.toUpperCase())} · ${esc(d.date.toUpperCase())}</div>
+      <h2>${esc(d.park)}</h2></div>
+    <div class="brut-facts">${d.facts.map(f=>`<div><div class="l">${esc(f.l)}</div><div class="v">${esc(f.v)}</div></div>`).join('')}</div>
+    ${html}</div>`;
+};
+
+/* ============================ shell ============================ */
+const DESIGNS=[
+  ['arc','11 · Sun Arc','The whole day bent into the sun’s path — hover any point on the arc.'],
+  ['metro','12 · Metro Line','Your day as a transit line. Big interchanges are the anchor moments.'],
+  ['flap','13 · Departure Board','Airport split-flap board. The characters actually flip on load.'],
+  ['cine','14 · Cinematic Chapters','Every moment is a full-screen title card. Scroll inside the frame.'],
+  ['strip','15 · Filmstrip','35mm strip you scroll sideways, one frame per moment.'],
+  ['heat','16 · Day Heat Ribbon','See the shape of the day — intensity mapped along a real time axis.'],
+  ['trail','17 · Expedition Trail','A winding waypoint trail. Hover a pin to open it.'],
+  ['dio','18 · Diorama','Layered glass cards floating over the park. Move your mouse.'],
+  ['sky','19 · Constellation','The day drawn as a star map, joined into one constellation.'],
+  ['brut','20 · Brutalist Stack','Loud, blocky, unmissable. Zero decoration, maximum impact.'],
+];
+
+let curDay='ak', curDesign='arc';
+function render(){
+  const d=DATA[curDay], meta=DESIGNS.find(x=>x[0]===curDesign);
+  document.getElementById('plate').innerHTML =
+    `<b>${esc(meta[1])}</b> · ${esc(d.day)} ${esc(d.park)} · ${esc(d.date)}<span class="why">${esc(meta[2])}</span>`;
+  document.getElementById('mount').innerHTML = R[curDesign](d);
+  if (R[curDesign].after) R[curDesign].after(d);
+  document.querySelectorAll('#dayPick .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===curDay));
+  document.querySelectorAll('#designPick .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===curDesign));
+}
+const dp=document.getElementById('dayPick');
+DAYS.forEach(k=>{const b=document.createElement('button');
+  b.className='chip';b.dataset.k=k;b.textContent=DATA[k].park;
+  b.onclick=()=>{curDay=k;render()};dp.appendChild(b);});
+const gp=document.getElementById('designPick');
+DESIGNS.forEach(([k,l])=>{const b=document.createElement('button');
+  b.className='chip';b.dataset.k=k;b.textContent=l;
+  b.onclick=()=>{curDesign=k;render()};gp.appendChild(b);});
+render();
+
+/* One runnable check. Count rendered event NODES, not visible text: arc/trail/sky reveal
+   one event at a time on hover, and brut uppercases through CSS, so a text scan would
+   report false failures for three designs that are actually fine. */
+const NODE_OF={arc:'.arc-node',metro:'.mstop',flap:'.flap-row',cine:'.chap',strip:'.frame',
+               heat:'.hev',trail:'.pin',dio:'.dcard',sky:'.star',brut:'.brow'};
+window.selfTest=function(){
+  const bad=[];
+  for(const [dz] of DESIGNS) for(const k of DAYS){
+    curDesign=dz;curDay=k;
+    try{ render(); }catch(err){ bad.push(dz+'/'+k+' threw '+err.message); continue; }
+    const want=evs(DATA[k]).length;
+    const got=document.querySelectorAll('#mount '+NODE_OF[dz]).length;
+    if(got!==want) bad.push(dz+'/'+k+' rendered '+got+' of '+want+' events');
+  }
+  curDay='ak';curDesign='arc';render();
+  return bad.length?{ok:false,bad}:{ok:true,combos:DESIGNS.length*DAYS.length,
+    note:'every design rendered every event for all 5 days'};
+};
+</script>
+</body>
+</html>
