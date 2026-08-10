@@ -1537,21 +1537,35 @@ button.expd-day:focus-visible{
 .ed-qm{font-size:1.4em;line-height:0;vertical-align:-.12em;margin-right:.06em}
 .ed-quote cite{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-weight:600;
   font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#6b6259;margin-top:16px}
-.ed-cols{column-gap:clamp(28px,4vw,54px)}
-@media(min-width:760px){.ed-cols{columns:2}}
-@media(min-width:1180px){.ed-cols{columns:3}}
-.ed-sec{break-after:avoid;break-inside:avoid;font:600 10px/1 'JetBrains Mono',monospace;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--acc,#b1291a);
-  border-bottom:2px solid #171310;padding-bottom:9px;margin:0 0 18px}
-.ed-sec:not(:first-child){margin-top:26px}
-.ed-ev{break-inside:avoid;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #ddd6c9}
-.ed-t{font:700 10px/1 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--acc,#b1291a);margin-bottom:8px}
-.ed-h{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(16px,1.7vw,20px);
-  line-height:1.18;letter-spacing:-.012em;margin:0 0 6px}
-.ed-n{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(14.5px,1.5vw,16.5px);
-  line-height:1.55;color:#443c34;margin:0}
-.ed-lead .ed-h::first-letter{float:left;font-size:3.1em;line-height:.78;padding:.06em .1em 0 0;
-  color:var(--acc,#b1291a);font-weight:800}
+/* ONE vertical track, top to bottom. The previous 2–3 column layout forced you to read
+   down a column, jump back to the top, and read down again — times ran 7:00→9:15, then
+   10:30→2:30, then 3:30→8:30. A child cannot follow that. Everything below is sized for
+   a 10-year-old: numbered steps, a big time chip, an icon per activity type, plain sans
+   body text at real reading size, and dark ink instead of grey. */
+.ed-list{list-style:none;margin:0;padding:0;max-width:820px;counter-reset:step}
+.ed-sec{font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.3em;text-transform:uppercase;
+  color:#fff;background:var(--acc,#b1291a);display:inline-block;padding:9px 16px;border-radius:999px;
+  margin:34px 0 18px}
+.ed-sec:first-child{margin-top:0}
+.ed-ev{display:grid;grid-template-columns:34px 40px 1fr;gap:14px;align-items:start;
+  padding:16px 0;border-bottom:2px solid #e4ded1}
+.ed-ev:last-child{border-bottom:0}
+.ed-num{grid-column:1;font:800 15px/1 'JetBrains Mono',monospace;color:#a89e8c;
+  padding-top:9px;text-align:right;font-variant-numeric:tabular-nums}
+.ed-icon{grid-column:2;font-size:27px;line-height:1;padding-top:4px}
+.ed-body{grid-column:3;display:block;min-width:0}
+.ed-t{display:inline-block;font:800 13px/1 'JetBrains Mono',monospace;letter-spacing:.06em;
+  color:#fff;background:#171310;padding:6px 11px;border-radius:7px;margin-bottom:9px;
+  font-variant-numeric:tabular-nums}
+.ed-h{display:block;font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(19px,2vw,25px);line-height:1.2;letter-spacing:-.015em;color:#171310;margin-bottom:5px}
+.ed-n{display:block;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  font-size:clamp(15px,1.5vw,17px);line-height:1.55;color:#3c352d}
+@media(max-width:560px){
+  .ed-ev{grid-template-columns:26px 32px 1fr;gap:10px}
+  .ed-icon{font-size:22px}
+  .ed-num{font-size:13px}
+}
 
 /* --- ranked aside (HHN houses / EU worlds) --- */
 .ed-aside{margin-top:clamp(26px,4vw,44px);border-top:3px solid #171310;padding-top:22px}
@@ -1598,59 +1612,111 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Park close — Pandora at dusk
         <cite>7:45PM &middot; the moment the day turns on</cite>
       </blockquote>
-      <div class="ed-cols"><h3 class="ed-sec">MORNING · AM</h3><div class="ed-ev ed-lead">
-        <div class="ed-t">5:45AM</div>
-        <h4 class="ed-h">Wake &amp; coffee</h4>
-        <p class="ed-n">Pre-stage backpacks, water bottles, sunscreen, ponchos.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:30AM</div>
-        <h4 class="ed-h">On bus to AK</h4>
-        <p class="ed-n">Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:59AM</div>
-        <h4 class="ed-h">LLMP DROP — Avatar Flight of Passage</h4>
-        <p class="ed-n">Tap LLMP at 7:00 AM sharp · adults only · 44&quot; min.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:30AM</div>
-        <h4 class="ed-h">ROPE DROP — Kilimanjaro Safari</h4>
-        <p class="ed-n">Animals most active in the morning. Go LEFT at the entrance.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30AM</div>
-        <h4 class="ed-h">Na'vi River Journey</h4>
-        <p class="ed-n">Mario's pick · gentle boat · no height min.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:30AM</div>
-        <h4 class="ed-h">Snack — Pongu Pongu</h4>
-        <p class="ed-n">Night Blossom + pretzel · sit by the floating mountains.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:30AM</div>
-        <h4 class="ed-h">Wildlife Express → Rafiki's</h4>
-        <p class="ed-n">Mario's pick · NEW Bluey-themed train.</p>
-      </div><h3 class="ed-sec">AFTERNOON · PM</h3><div class="ed-ev">
-        <div class="ed-t">1:30PM</div>
-        <h4 class="ed-h">LLMP — Avatar Flight of Passage</h4>
-        <p class="ed-n">Adults rotate. Mario stays w/ grandparents (44&quot; min).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">2:30PM</div>
-        <h4 class="ed-h">Festival of the Lion King</h4>
-        <p class="ed-n">Mario's pick · A/C · seats fill 30 min before show.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:45PM</div>
-        <h4 class="ed-h">Dole Whip + cool down</h4>
-        <p class="ed-n">Tamu Tamu · find shade · regroup w/ grandparents.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">5:00PM</div>
-        <h4 class="ed-h">Tree of Life Awakenings</h4>
-        <p class="ed-n">First projection cycle at dusk. Catch it on the bridge.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:30PM</div>
-        <h4 class="ed-h">Dinner — Yak &amp; Yeti counter</h4>
-        <p class="ed-n">Honey chicken · egg rolls · table by the river.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:45PM</div>
-        <h4 class="ed-h">Park close — Pandora at dusk</h4>
-        <p class="ed-n">Bioluminescent forest · last lap before bus home.</p>
-      </div></div>
+      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">5:45AM</span>
+          <span class="ed-h">Wake &amp; coffee</span>
+          <span class="ed-n">Pre-stage backpacks, water bottles, sunscreen, ponchos.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-icon" aria-hidden="true">🚌</span>
+        <span class="ed-body">
+          <span class="ed-t">6:30AM</span>
+          <span class="ed-h">On bus to AK</span>
+          <span class="ed-n">Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-icon" aria-hidden="true">⏰</span>
+        <span class="ed-body">
+          <span class="ed-t">6:59AM</span>
+          <span class="ed-h">LLMP DROP — Avatar Flight of Passage</span>
+          <span class="ed-n">Tap LLMP at 7:00 AM sharp · adults only · 44&quot; min.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-icon" aria-hidden="true">🏃</span>
+        <span class="ed-body">
+          <span class="ed-t">7:30AM</span>
+          <span class="ed-h">ROPE DROP — Kilimanjaro Safari</span>
+          <span class="ed-n">Animals most active in the morning. Go LEFT at the entrance.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">Na'vi River Journey</span>
+          <span class="ed-n">Mario's pick · gentle boat · no height min.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">9:30AM</span>
+          <span class="ed-h">Snack — Pongu Pongu</span>
+          <span class="ed-n">Night Blossom + pretzel · sit by the floating mountains.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30AM</span>
+          <span class="ed-h">Wildlife Express → Rafiki's</span>
+          <span class="ed-n">Mario's pick · NEW Bluey-themed train.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">1:30PM</span>
+          <span class="ed-h">LLMP — Avatar Flight of Passage</span>
+          <span class="ed-n">Adults rotate. Mario stays w/ grandparents (44&quot; min).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">2:30PM</span>
+          <span class="ed-h">Festival of the Lion King</span>
+          <span class="ed-n">Mario's pick · A/C · seats fill 30 min before show.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">3:45PM</span>
+          <span class="ed-h">Dole Whip + cool down</span>
+          <span class="ed-n">Tamu Tamu · find shade · regroup w/ grandparents.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">5:00PM</span>
+          <span class="ed-h">Tree of Life Awakenings</span>
+          <span class="ed-n">First projection cycle at dusk. Catch it on the bridge.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">6:30PM</span>
+          <span class="ed-h">Dinner — Yak &amp; Yeti counter</span>
+          <span class="ed-n">Honey chicken · egg rolls · table by the river.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-icon" aria-hidden="true">🏃</span>
+        <span class="ed-body">
+          <span class="ed-t">7:45PM</span>
+          <span class="ed-h">Park close — Pandora at dusk</span>
+          <span class="ed-n">Bioluminescent forest · last lap before bus home.</span>
+        </span>
+      </li></ol>
       
     </div>
   </div>
@@ -1675,71 +1741,135 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Galaxy's Edge after dark
         <cite>8:30PM &middot; the moment the day turns on</cite>
       </blockquote>
-      <div class="ed-cols"><h3 class="ed-sec">MORNING · AM</h3><div class="ed-ev ed-lead">
-        <div class="ed-t">7:00AM</div>
-        <h4 class="ed-h">Coffee + pack</h4>
-        <p class="ed-n">Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:30AM</div>
-        <h4 class="ed-h">Skyliner from Pop Century</h4>
-        <p class="ed-n">Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:59AM</div>
-        <h4 class="ed-h">LLMP DROP — Falcon → ToT → Rock 'n' Roller</h4>
-        <p class="ed-n">Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30AM</div>
-        <h4 class="ed-h">ROPE DROP — Slinky Dog Dash</h4>
-        <p class="ed-n">Slinky's LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38&quot;).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:15AM</div>
-        <h4 class="ed-h">Alien Swirling Saucers + Toy Story Mania</h4>
-        <p class="ed-n">You're in Toy Story Land — knock both out before crowds build.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:30AM</div>
-        <h4 class="ed-h">Smugglers Run — NEW Mandalorian mission</h4>
-        <p class="ed-n">Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38&quot;).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:30AM</div>
-        <h4 class="ed-h">Blue / Green Milk + Build a Droid</h4>
-        <p class="ed-n">Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.</p>
-      </div><h3 class="ed-sec">AFTERNOON · PM</h3><div class="ed-ev">
-        <div class="ed-t">12:30PM</div>
-        <h4 class="ed-h">LLSP — Rise of the Resistance</h4>
-        <p class="ed-n">The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40&quot;).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">1:30PM</div>
-        <h4 class="ed-h">Mickey &amp; Minnie's Runaway Railway</h4>
-        <p class="ed-n">LLMP refresh. Cartoon physics, no height min. Mario will love it.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">2:30PM</div>
-        <h4 class="ed-h">Tower of Terror (LLMP #2)</h4>
-        <p class="ed-n">Drop sequence randomizes — never the same twice. Rider Switch if Mario's nervous.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:30PM</div>
-        <h4 class="ed-h">Star Tours</h4>
-        <p class="ed-n">Randomized destinations. Short waits typically. Mario rides ✅ (40&quot;).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:00PM</div>
-        <h4 class="ed-h">Rock 'n' Roller — NEW Muppets</h4>
-        <p class="ed-n">Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario's 42&quot; / req 48&quot;.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">5:30PM</div>
-        <h4 class="ed-h">Dinner — Sci-Fi Dine-In</h4>
-        <p class="ed-n">Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:00PM</div>
-        <h4 class="ed-h">Beauty &amp; the Beast + Villains Stage Show</h4>
-        <p class="ed-n">AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30PM</div>
-        <h4 class="ed-h">Galaxy's Edge after dark</h4>
-        <p class="ed-n">Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:00PM</div>
-        <h4 class="ed-h">Fantasmic!</h4>
-        <p class="ed-n">Be at amphitheater by 8:15 for a decent seat. Skip if Mario's wrecked — it's loud.</p>
-      </div></div>
+      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">⏰</span>
+        <span class="ed-body">
+          <span class="ed-t">6:59AM</span>
+          <span class="ed-h">LLMP DROP — Falcon → ToT → Rock 'n' Roller</span>
+          <span class="ed-n">Tap at 7:00 AM. Rebook after each tap-in. Buy LLSP for Rise of the Resistance.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-icon" aria-hidden="true">🎬</span>
+        <span class="ed-body">
+          <span class="ed-t">7:00AM</span>
+          <span class="ed-h">Coffee + pack</span>
+          <span class="ed-n">Sunscreen, ponchos, water. Easiest travel day — no bus, no parking.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-icon" aria-hidden="true">🚌</span>
+        <span class="ed-body">
+          <span class="ed-t">7:30AM</span>
+          <span class="ed-h">Skyliner from Pop Century</span>
+          <span class="ed-n">Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-icon" aria-hidden="true">🏃</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">ROPE DROP — Slinky Dog Dash</span>
+          <span class="ed-n">Slinky's LLMP sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38&quot;).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">9:15AM</span>
+          <span class="ed-h">Alien Swirling Saucers + Toy Story Mania</span>
+          <span class="ed-n">You're in Toy Story Land — knock both out before crowds build.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30AM</span>
+          <span class="ed-h">Smugglers Run — NEW Mandalorian mission</span>
+          <span class="ed-n">Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38&quot;).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">11:30AM</span>
+          <span class="ed-h">Blue / Green Milk + Build a Droid</span>
+          <span class="ed-n">Milk Stand Insta moment. Droid Depot is ~$100 walk-up — Mario will lose his mind.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">12:30PM</span>
+          <span class="ed-h">LLSP — Rise of the Resistance</span>
+          <span class="ed-n">The best ride at WDW. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40&quot;).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">1:30PM</span>
+          <span class="ed-h">Mickey &amp; Minnie's Runaway Railway</span>
+          <span class="ed-n">LLMP refresh. Cartoon physics, no height min. Mario will love it.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">2:30PM</span>
+          <span class="ed-h">Tower of Terror (LLMP #2)</span>
+          <span class="ed-n">Drop sequence randomizes — never the same twice. Rider Switch if Mario's nervous.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">3:30PM</span>
+          <span class="ed-h">Star Tours</span>
+          <span class="ed-n">Randomized destinations. Short waits typically. Mario rides ✅ (40&quot;).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-icon" aria-hidden="true">⏰</span>
+        <span class="ed-body">
+          <span class="ed-t">4:00PM</span>
+          <span class="ed-h">Rock 'n' Roller — NEW Muppets</span>
+          <span class="ed-n">Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario's 42&quot; / req 48&quot;.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">5:30PM</span>
+          <span class="ed-h">Dinner — Sci-Fi Dine-In</span>
+          <span class="ed-n">Eat in cars while B-movies play. Or Docking Bay 7 for Star Wars meal.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">7:00PM</span>
+          <span class="ed-h">Beauty &amp; the Beast + Villains Stage Show</span>
+          <span class="ed-n">AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-icon" aria-hidden="true">🎬</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">Galaxy's Edge after dark</span>
+          <span class="ed-n">Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">9:00PM</span>
+          <span class="ed-h">Fantasmic!</span>
+          <span class="ed-n">Be at amphitheater by 8:15 for a decent seat. Skip if Mario's wrecked — it's loud.</span>
+        </span>
+      </li></ol>
       
     </div>
   </div>
@@ -1764,87 +1894,167 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>THE CASTLE REVEAL
         <cite>10:00AM &middot; the moment the day turns on</cite>
       </blockquote>
-      <div class="ed-cols"><h3 class="ed-sec">MORNING · AM</h3><div class="ed-ev ed-lead">
-        <div class="ed-t">6:59AM</div>
-        <h4 class="ed-h">LLMP DROP — Seven Dwarfs first</h4>
-        <p class="ed-n">Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:30AM</div>
-        <h4 class="ed-h">ROPE DROP — Peter Pan's Flight</h4>
-        <p class="ed-n">Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30AM</div>
-        <h4 class="ed-h">Bibbidi Bobbidi Boutique</h4>
-        <p class="ed-n">Princess transformation · 60–90 min · check in 5 min early behind the castle.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30AM</div>
-        <h4 class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic</h4>
-        <p class="ed-n">Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:00AM</div>
-        <h4 class="ed-h">THE CASTLE REVEAL</h4>
-        <p class="ed-n">Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:30AM</div>
-        <h4 class="ed-h">Princess Fairytale Hall</h4>
-        <p class="ed-n">Cinderella + Tiana meet &amp; greets. BBB outfit = pure magic.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:00AM</div>
-        <h4 class="ed-h">Dumbo + Barnstormer</h4>
-        <p class="ed-n">Mario classics. Barnstormer (35&quot;) is his first roller coaster — short, gentle, perfect intro.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:30AM</div>
-        <h4 class="ed-h">Seven Dwarfs Mine Train (LLMP)</h4>
-        <p class="ed-n">Use your locked-in slot. Mario rides ✅ (38&quot; min).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:00PM</div>
-        <h4 class="ed-h">Mickey's PhilharMagic + Small World</h4>
-        <p class="ed-n">4D show, AC, classic songs. Small World walk-on if time allows.</p>
-      </div><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><div class="ed-ev">
-        <div class="ed-t">1:00PM</div>
-        <h4 class="ed-h">RESORT BREAK — non-negotiable</h4>
-        <p class="ed-n">Back to Pop Century. Pool, naps, hydrate, hair touch-up. Skip = meltdowns by 5 PM.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:00PM</div>
-        <h4 class="ed-h">Festival of Fantasy Parade · optional</h4>
-        <p class="ed-n">Only if kids rebound fast. Frontierland is less crowded than Main Street.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:00PM</div>
-        <h4 class="ed-h">Pirates of the Caribbean (LLMP refill)</h4>
-        <p class="ed-n">Mario rides ✅ (no min). Dark but more silly than scary.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:45PM</div>
-        <h4 class="ed-h">Jungle Cruise + Country Bears</h4>
-        <p class="ed-n">Corny skipper jokes, animatronics, AC. Quick easy wins.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">5:30PM</div>
-        <h4 class="ed-h">Big Thunder Mountain</h4>
-        <p class="ed-n">REOPENED May 2026 — refreshed scenery. Mario's first 'real' coaster ✅ (40&quot;).</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:30PM</div>
-        <h4 class="ed-h">Haunted Mansion (LLMP)</h4>
-        <p class="ed-n">Watch Mario's face in the stretching room. He'll love it.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:15PM</div>
-        <h4 class="ed-h">Buzz + Speedway</h4>
-        <p class="ed-n">New blasters &amp; 'Buddy' character. Speedway: Mario 'drives' with adult — non-negotiable for him.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">7:45PM</div>
-        <h4 class="ed-h">TRON / Space Mountain — Rider Switch</h4>
-        <p class="ed-n">Mario can't ride (48&quot;/44&quot;). One parent waits w/ kids, other rides w/ daughter, swap.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30PM</div>
-        <h4 class="ed-h">Stake your fireworks spot</h4>
-        <p class="ed-n">Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:00PM</div>
-        <h4 class="ed-h">Happily Ever After (9:00 PM)</h4>
-        <p class="ed-n">18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. THE photo of the trip.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:30PM</div>
-        <h4 class="ed-h">Exit — beat the exodus</h4>
-        <p class="ed-n">Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.</p>
-      </div></div>
+      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">⏰</span>
+        <span class="ed-body">
+          <span class="ed-t">6:59AM</span>
+          <span class="ed-h">LLMP DROP — Seven Dwarfs first</span>
+          <span class="ed-n">Phone in hand at 6:59. 7:00 sharp: Mine Train → Peter Pan backup → Buzz/Mansion. Refresh all day.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-icon" aria-hidden="true">🏃</span>
+        <span class="ed-body">
+          <span class="ed-t">7:30AM</span>
+          <span class="ed-h">ROPE DROP — Peter Pan's Flight</span>
+          <span class="ed-n">Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-icon" aria-hidden="true">🏰</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">Bibbidi Bobbidi Boutique</span>
+          <span class="ed-n">Princess transformation · 60–90 min · check in 5 min early behind the castle.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic</span>
+          <span class="ed-n">Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-icon" aria-hidden="true">🏰</span>
+        <span class="ed-body">
+          <span class="ed-t">10:00AM</span>
+          <span class="ed-h">THE CASTLE REVEAL</span>
+          <span class="ed-n">Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-icon" aria-hidden="true">🏰</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30AM</span>
+          <span class="ed-h">Princess Fairytale Hall</span>
+          <span class="ed-n">Cinderella + Tiana meet &amp; greets. BBB outfit = pure magic.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">11:00AM</span>
+          <span class="ed-h">Dumbo + Barnstormer</span>
+          <span class="ed-n">Mario classics. Barnstormer (35&quot;) is his first roller coaster — short, gentle, perfect intro.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">11:30AM</span>
+          <span class="ed-h">Seven Dwarfs Mine Train (LLMP)</span>
+          <span class="ed-n">Use your locked-in slot. Mario rides ✅ (38&quot; min).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">12:00PM</span>
+          <span class="ed-h">Mickey's PhilharMagic + Small World</span>
+          <span class="ed-n">4D show, AC, classic songs. Small World walk-on if time allows.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-icon" aria-hidden="true">😴</span>
+        <span class="ed-body">
+          <span class="ed-t">1:00PM</span>
+          <span class="ed-h">RESORT BREAK — non-negotiable</span>
+          <span class="ed-n">Back to Pop Century. Pool, naps, hydrate, hair touch-up. Skip = meltdowns by 5 PM.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-icon" aria-hidden="true">🎭</span>
+        <span class="ed-body">
+          <span class="ed-t">3:00PM</span>
+          <span class="ed-h">Festival of Fantasy Parade · optional</span>
+          <span class="ed-n">Only if kids rebound fast. Frontierland is less crowded than Main Street.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">4:00PM</span>
+          <span class="ed-h">Pirates of the Caribbean (LLMP refill)</span>
+          <span class="ed-n">Mario rides ✅ (no min). Dark but more silly than scary.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">4:45PM</span>
+          <span class="ed-h">Jungle Cruise + Country Bears</span>
+          <span class="ed-n">Corny skipper jokes, animatronics, AC. Quick easy wins.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">5:30PM</span>
+          <span class="ed-h">Big Thunder Mountain</span>
+          <span class="ed-n">REOPENED May 2026 — refreshed scenery. Mario's first 'real' coaster ✅ (40&quot;).</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">6:30PM</span>
+          <span class="ed-h">Haunted Mansion (LLMP)</span>
+          <span class="ed-n">Watch Mario's face in the stretching room. He'll love it.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">7:15PM</span>
+          <span class="ed-h">Buzz + Speedway</span>
+          <span class="ed-n">New blasters &amp; 'Buddy' character. Speedway: Mario 'drives' with adult — non-negotiable for him.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">17</span>
+        <span class="ed-icon" aria-hidden="true">🎢</span>
+        <span class="ed-body">
+          <span class="ed-t">7:45PM</span>
+          <span class="ed-h">TRON / Space Mountain — Rider Switch</span>
+          <span class="ed-n">Mario can't ride (48&quot;/44&quot;). One parent waits w/ kids, other rides w/ daughter, swap.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-icon" aria-hidden="true">🎆</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">Stake your fireworks spot</span>
+          <span class="ed-n">Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-icon" aria-hidden="true">🎆</span>
+        <span class="ed-body">
+          <span class="ed-t">9:00PM</span>
+          <span class="ed-h">Happily Ever After (9:00 PM)</span>
+          <span class="ed-n">18 min projection mapping + fireworks. Mario in arms, daughter in BBB outfit. THE photo of the trip.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">20</span>
+        <span class="ed-icon" aria-hidden="true">😴</span>
+        <span class="ed-body">
+          <span class="ed-t">9:30PM</span>
+          <span class="ed-h">Exit — beat the exodus</span>
+          <span class="ed-n">Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.</span>
+        </span>
+      </li></ol>
       
     </div>
   </div>
@@ -1869,83 +2079,159 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>8 HOUSES · 5 ZONES · 1 NIGHT
         <cite>💀 &middot; the moment the day turns on</cite>
       </blockquote>
-      <div class="ed-cols"><h3 class="ed-sec">PRE-EVENT · EARLY NIGHT</h3><div class="ed-ev ed-lead">
-        <div class="ed-t">9:30AM</div>
-        <h4 class="ed-h">Chef Mickey’s - Contemporary Resort</h4>
-        <p class="ed-n">Character breakfast - Mickey, Minnie, Donald, Goofy and Pluto come to the table. Monorail over from the Contemporary. Annelise’s big character meal on the rest-day morning, before the adults leave for HHN.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">2:00PM</div>
-        <h4 class="ed-h">Lunch + hydrate · resort</h4>
-        <p class="ed-n">Eat heavy. You won't sit again until 1 AM. Hand Mario off to the sitter at Pop Century.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:30PM</div>
-        <h4 class="ed-h">Leave for Universal</h4>
-        <p class="ed-n">Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:30PM</div>
-        <h4 class="ed-h">Park at Universal</h4>
-        <p class="ed-n">Preferred Parking ($55) — closer in + faster exit when the park dumps at 1 AM.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">5:00PM</div>
-        <h4 class="ed-h">Dinner · CityWalk</h4>
-        <p class="ed-n">Antojitos or Vivo. Skip in-park food — slow + overpriced. Full carb load before the marathon.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:00PM</div>
-        <h4 class="ed-h">Stadium queue · front gate</h4>
-        <p class="ed-n">Be at the turnstile by 6:00 sharp. Doors open ~6:15. First 30 min = the only time the park breathes.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:30PM</div>
-        <h4 class="ed-h">EVENT START · sprint to House #1</h4>
-        <p class="ed-n">Newest IP house first — the longest line by 8 PM. This is the rule, every year.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:45PM</div>
-        <h4 class="ed-h">Houses #2 + #3 · back lot</h4>
-        <p class="ed-n">Soundstage houses near Men in Black. Hit before crowds rotate back from the front.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:00PM</div>
-        <h4 class="ed-h">Halloween Tribute Store</h4>
-        <p class="ed-n">Bag the merch run. Skip if the line wraps the building — come back after 11.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30PM</div>
-        <h4 class="ed-h">Scare Zones · NY + Hollywood</h4>
-        <p class="ed-n">Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.</p>
-      </div><h3 class="ed-sec">MIDNIGHT · CLOSE</h3><div class="ed-ev">
-        <div class="ed-t">9:00PM</div>
-        <h4 class="ed-h">Houses #4 + #5</h4>
-        <p class="ed-n">Crowds peak now. Use single-rider lines if posted. Standby times in the app run ~20% high.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:30PM</div>
-        <h4 class="ed-h">Bar break · Finnegan's or Duff</h4>
-        <p class="ed-n">Reset. Charge phone. Finnegan's (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:00PM</div>
-        <h4 class="ed-h">Houses #6 + #7</h4>
-        <p class="ed-n">Lines drop sharply after 11. This is the window. Move fast.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:00AM</div>
-        <h4 class="ed-h">House #8 · repeat favorite</h4>
-        <p class="ed-n">Wait times often under 20 min in the final hour. Hit the one you couldn't fully take in.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:30AM</div>
-        <h4 class="ed-h">Chez Alcatraz · last drink</h4>
-        <p class="ed-n">San Francisco area. Sit. Watch the scare actors work the last shift.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:45AM</div>
-        <h4 class="ed-h">Final scare-zone walk</h4>
-        <p class="ed-n">Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">1:00AM</div>
-        <h4 class="ed-h">Park close · exit</h4>
-        <p class="ed-n">Restroom BEFORE leaving. Parking lot crawls — give it 15 min before fighting it.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">1:30AM</div>
-        <h4 class="ed-h">On the road · Pop Century</h4>
-        <p class="ed-n">Drive sober. Uber if needed. Sitter hand-off, then collapse. Friday is rest day.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">💀</div>
-        <h4 class="ed-h">8 HOUSES · 5 ZONES · 1 NIGHT</h4>
-        <p class="ed-n">The Garcia adults survived the Infernal Carnival. Mario slept through it all.</p>
-      </div></div>
+      <ol class="ed-list"><h3 class="ed-sec">PRE-EVENT · EARLY NIGHT</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">9:30AM</span>
+          <span class="ed-h">Chef Mickey’s - Contemporary Resort</span>
+          <span class="ed-n">Character breakfast - Mickey, Minnie, Donald, Goofy and Pluto come to the table. Monorail over from the Contemporary. Annelise’s big character meal on the rest-day morning, before the adults leave for HHN.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">2:00PM</span>
+          <span class="ed-h">Lunch + hydrate · resort</span>
+          <span class="ed-n">Eat heavy. You won't sit again until 1 AM. Hand Mario off to the sitter at Pop Century.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-icon" aria-hidden="true">🚗</span>
+        <span class="ed-body">
+          <span class="ed-t">3:30PM</span>
+          <span class="ed-h">Leave for Universal</span>
+          <span class="ed-n">Avoid the I-4 traffic spike around 4:30. Beat it by 30 min. Thursday traffic is lighter than Fri.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-icon" aria-hidden="true">🚗</span>
+        <span class="ed-body">
+          <span class="ed-t">4:30PM</span>
+          <span class="ed-h">Park at Universal</span>
+          <span class="ed-n">Preferred Parking ($55) — closer in + faster exit when the park dumps at 1 AM.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">5:00PM</span>
+          <span class="ed-h">Dinner · CityWalk</span>
+          <span class="ed-n">Antojitos or Vivo. Skip in-park food — slow + overpriced. Full carb load before the marathon.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">6:00PM</span>
+          <span class="ed-h">Stadium queue · front gate</span>
+          <span class="ed-n">Be at the turnstile by 6:00 sharp. Doors open ~6:15. First 30 min = the only time the park breathes.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-icon" aria-hidden="true">👻</span>
+        <span class="ed-body">
+          <span class="ed-t">6:30PM</span>
+          <span class="ed-h">EVENT START · sprint to House #1</span>
+          <span class="ed-n">Newest IP house first — the longest line by 8 PM. This is the rule, every year.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-icon" aria-hidden="true">👻</span>
+        <span class="ed-body">
+          <span class="ed-t">6:45PM</span>
+          <span class="ed-h">Houses #2 + #3 · back lot</span>
+          <span class="ed-n">Soundstage houses near Men in Black. Hit before crowds rotate back from the front.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-icon" aria-hidden="true">🛍️</span>
+        <span class="ed-body">
+          <span class="ed-t">8:00PM</span>
+          <span class="ed-h">Halloween Tribute Store</span>
+          <span class="ed-n">Bag the merch run. Skip if the line wraps the building — come back after 11.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-icon" aria-hidden="true">🌫️</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">Scare Zones · NY + Hollywood</span>
+          <span class="ed-n">Walk-throughs, no line. Eat a snack. Peak fog ≈ 9:30p — best photos.</span>
+        </span>
+      </li><h3 class="ed-sec">MIDNIGHT · CLOSE</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-icon" aria-hidden="true">👻</span>
+        <span class="ed-body">
+          <span class="ed-t">9:00PM</span>
+          <span class="ed-h">Houses #4 + #5</span>
+          <span class="ed-n">Crowds peak now. Use single-rider lines if posted. Standby times in the app run ~20% high.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-icon" aria-hidden="true">🥤</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30PM</span>
+          <span class="ed-h">Bar break · Finnegan's or Duff</span>
+          <span class="ed-n">Reset. Charge phone. Finnegan's (NY) for the live band; Duff Brewery (Springfield) for Flaming Moe.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-icon" aria-hidden="true">👻</span>
+        <span class="ed-body">
+          <span class="ed-t">11:00PM</span>
+          <span class="ed-h">Houses #6 + #7</span>
+          <span class="ed-n">Lines drop sharply after 11. This is the window. Move fast.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-icon" aria-hidden="true">👻</span>
+        <span class="ed-body">
+          <span class="ed-t">12:00AM</span>
+          <span class="ed-h">House #8 · repeat favorite</span>
+          <span class="ed-n">Wait times often under 20 min in the final hour. Hit the one you couldn't fully take in.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-icon" aria-hidden="true">🥤</span>
+        <span class="ed-body">
+          <span class="ed-t">12:30AM</span>
+          <span class="ed-h">Chez Alcatraz · last drink</span>
+          <span class="ed-n">San Francisco area. Sit. Watch the scare actors work the last shift.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-icon" aria-hidden="true">🌫️</span>
+        <span class="ed-body">
+          <span class="ed-t">12:45AM</span>
+          <span class="ed-h">Final scare-zone walk</span>
+          <span class="ed-n">Photos at the front-gate icon statue. Last looks at the carnival before they kill the lights.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">17</span>
+        <span class="ed-icon" aria-hidden="true">🚗</span>
+        <span class="ed-body">
+          <span class="ed-t">1:00AM</span>
+          <span class="ed-h">Park close · exit</span>
+          <span class="ed-n">Restroom BEFORE leaving. Parking lot crawls — give it 15 min before fighting it.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-icon" aria-hidden="true">🚗</span>
+        <span class="ed-body">
+          <span class="ed-t">1:30AM</span>
+          <span class="ed-h">On the road · Pop Century</span>
+          <span class="ed-n">Drive sober. Uber if needed. Sitter hand-off, then collapse. Friday is rest day.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-icon" aria-hidden="true">🏆</span>
+        <span class="ed-body">
+          <span class="ed-t">💀</span>
+          <span class="ed-h">8 HOUSES · 5 ZONES · 1 NIGHT</span>
+          <span class="ed-n">The Garcia adults survived the Infernal Carnival. Mario slept through it all.</span>
+        </span>
+      </li></ol>
       
       <aside class="ed-aside">
         <h4>The houses, ranked</h4>
@@ -1974,95 +2260,183 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Stardust Show — Celestial Park
         <cite>8:30PM &middot; the moment the day turns on</cite>
       </blockquote>
-      <div class="ed-cols"><h3 class="ed-sec">PREP &amp; MORNING · AM</h3><div class="ed-ev ed-lead">
-        <div class="ed-t">Thu PM</div>
-        <h4 class="ed-h">NIGHT BEFORE — secure VQ + Express</h4>
-        <p class="ed-n">Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30AM</div>
-        <h4 class="ed-h">Uber from Pop Century</h4>
-        <p class="ed-n">15–20 min · ~$20 each way. Disney transport doesn't reach Universal. Skip rope drop — you got wrecked at HHN last night and Express covers you.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:30AM</div>
-        <h4 class="ed-h">ARRIVAL — Power-Up Bands on wrists</h4>
-        <p class="ed-n">Express linked. App open. Mario Kart VQ secured. Game on.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:00AM</div>
-        <h4 class="ed-h">Mario Kart: Bowser's Challenge (Express)</h4>
-        <p class="ed-n">Longest queue in the park — hit it first. Mario rides ✅ (40&quot; min, he's 42&quot;). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">10:30AM</div>
-        <h4 class="ed-h">Yoshi's Adventure</h4>
-        <p class="ed-n">No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:00AM</div>
-        <h4 class="ed-h">Mine-Cart Madness (Express)</h4>
-        <p class="ed-n">Donkey Kong Country. Mario rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">11:30AM</div>
-        <h4 class="ed-h">Power-Up Band activities</h4>
-        <p class="ed-n">Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Mario will lose his mind.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:00PM</div>
-        <h4 class="ed-h">BAND HACK — pass them around</h4>
-        <p class="ed-n">You don't need a band per person. Mario gets the most use — let him keep one strapped on all day.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">12:30PM</div>
-        <h4 class="ed-h">Lunch · Toadstool Cafe</h4>
-        <p class="ed-n">Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.</p>
-      </div><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><div class="ed-ev">
-        <div class="ed-t">1:30PM</div>
-        <h4 class="ed-h">Curse of the Werewolf (Express)</h4>
-        <p class="ed-n">Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">2:15PM</div>
-        <h4 class="ed-h">Monsters Unchained (Express)</h4>
-        <p class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:00PM</div>
-        <h4 class="ed-h">Hiccup's Wing Gliders (Express)</h4>
-        <p class="ed-n">Family coaster on Isle of Berk. Mario rides ✅ (40&quot;). Smooth, scenic, perfect for him.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">3:30PM</div>
-        <h4 class="ed-h">Dragon Racer's Rally · only if line &lt; 30 min</h4>
-        <p class="ed-n">Only ride NOT on Express in the park. Hop in if it's short, otherwise skip — you've got bigger fish.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:00PM</div>
-        <h4 class="ed-h">Meet Toothless</h4>
-        <p class="ed-n">Lines build fast. Either grab now or end of night when they die down.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">4:30PM</div>
-        <h4 class="ed-h">Battle at the Ministry (Express)</h4>
-        <p class="ed-n">The biggest headliner in the park. Mario rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">5:30PM</div>
-        <h4 class="ed-h">Butterbeer + Butterbeer ice cream</h4>
-        <p class="ed-n">Mandatory. Get the frozen version. Mario's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">6:30PM</div>
-        <h4 class="ed-h">Dinner · Atlantic or Blue Dragon</h4>
-        <p class="ed-n">Both in Celestial Park. Sit-down, table service. You've earned it.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:00PM</div>
-        <h4 class="ed-h">Stardust Racers (Express) · Rider Switch</h4>
-        <p class="ed-n">Dueling coaster. Mario can't ride (48&quot;; he's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:30PM</div>
-        <h4 class="ed-h">Stardust Show — Celestial Park</h4>
-        <p class="ed-n">Nighttime show. Check showtimes in app. Good wind-down before exit.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">8:45PM</div>
-        <h4 class="ed-h">One last walk through Nintendo World</h4>
-        <p class="ed-n">All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">9:00PM</div>
-        <h4 class="ed-h">Uber back to Pop Century</h4>
-        <p class="ed-n">Don't push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early.</p>
-      </div><div class="ed-ev">
-        <div class="ed-t">🏆</div>
-        <h4 class="ed-h">FIVE PARKS · ONE WEEK · TRIP COMPLETE</h4>
-        <p class="ed-n">The Garcia family conquered Orlando.</p>
-      </div></div>
+      <ol class="ed-list"><h3 class="ed-sec">PREP &amp; MORNING · AM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">Thu PM</span>
+          <span class="ed-h">NIGHT BEFORE — secure VQ + Express</span>
+          <span class="ed-n">Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">Uber from Pop Century</span>
+          <span class="ed-n">15–20 min · ~$20 each way. Disney transport doesn't reach Universal. Skip rope drop — you got wrecked at HHN last night and Express covers you.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">9:30AM</span>
+          <span class="ed-h">ARRIVAL — Power-Up Bands on wrists</span>
+          <span class="ed-n">Express linked. App open. Mario Kart VQ secured. Game on.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-icon" aria-hidden="true">🍄</span>
+        <span class="ed-body">
+          <span class="ed-t">10:00AM</span>
+          <span class="ed-h">Mario Kart: Bowser's Challenge (Express)</span>
+          <span class="ed-n">Longest queue in the park — hit it first. Mario rides ✅ (40&quot; min, he's 42&quot;). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-icon" aria-hidden="true">🍄</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30AM</span>
+          <span class="ed-h">Yoshi's Adventure</span>
+          <span class="ed-n">No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-icon" aria-hidden="true">🍄</span>
+        <span class="ed-body">
+          <span class="ed-t">11:00AM</span>
+          <span class="ed-h">Mine-Cart Madness (Express)</span>
+          <span class="ed-n">Donkey Kong Country. Mario rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-icon" aria-hidden="true">🍄</span>
+        <span class="ed-body">
+          <span class="ed-t">11:30AM</span>
+          <span class="ed-h">Power-Up Band activities</span>
+          <span class="ed-n">Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Mario will lose his mind.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-icon" aria-hidden="true">🎒</span>
+        <span class="ed-body">
+          <span class="ed-t">12:00PM</span>
+          <span class="ed-h">BAND HACK — pass them around</span>
+          <span class="ed-n">You don't need a band per person. Mario gets the most use — let him keep one strapped on all day.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">12:30PM</span>
+          <span class="ed-h">Lunch · Toadstool Cafe</span>
+          <span class="ed-n">Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-icon" aria-hidden="true">🌙</span>
+        <span class="ed-body">
+          <span class="ed-t">1:30PM</span>
+          <span class="ed-h">Curse of the Werewolf (Express)</span>
+          <span class="ed-n">Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-icon" aria-hidden="true">🌙</span>
+        <span class="ed-body">
+          <span class="ed-t">2:15PM</span>
+          <span class="ed-h">Monsters Unchained (Express)</span>
+          <span class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-icon" aria-hidden="true">🐉</span>
+        <span class="ed-body">
+          <span class="ed-t">3:00PM</span>
+          <span class="ed-h">Hiccup's Wing Gliders (Express)</span>
+          <span class="ed-n">Family coaster on Isle of Berk. Mario rides ✅ (40&quot;). Smooth, scenic, perfect for him.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-icon" aria-hidden="true">🐉</span>
+        <span class="ed-body">
+          <span class="ed-t">3:30PM</span>
+          <span class="ed-h">Dragon Racer's Rally · only if line &lt; 30 min</span>
+          <span class="ed-n">Only ride NOT on Express in the park. Hop in if it's short, otherwise skip — you've got bigger fish.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-icon" aria-hidden="true">🐉</span>
+        <span class="ed-body">
+          <span class="ed-t">4:00PM</span>
+          <span class="ed-h">Meet Toothless</span>
+          <span class="ed-n">Lines build fast. Either grab now or end of night when they die down.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-icon" aria-hidden="true">✨</span>
+        <span class="ed-body">
+          <span class="ed-t">4:30PM</span>
+          <span class="ed-h">Battle at the Ministry (Express)</span>
+          <span class="ed-n">The biggest headliner in the park. Mario rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-icon" aria-hidden="true">✨</span>
+        <span class="ed-body">
+          <span class="ed-t">5:30PM</span>
+          <span class="ed-h">Butterbeer + Butterbeer ice cream</span>
+          <span class="ed-n">Mandatory. Get the frozen version. Mario's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">17</span>
+        <span class="ed-icon" aria-hidden="true">🍽️</span>
+        <span class="ed-body">
+          <span class="ed-t">6:30PM</span>
+          <span class="ed-h">Dinner · Atlantic or Blue Dragon</span>
+          <span class="ed-n">Both in Celestial Park. Sit-down, table service. You've earned it.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-icon" aria-hidden="true">⭐</span>
+        <span class="ed-body">
+          <span class="ed-t">8:00PM</span>
+          <span class="ed-h">Stardust Racers (Express) · Rider Switch</span>
+          <span class="ed-n">Dueling coaster. Mario can't ride (48&quot;; he's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-icon" aria-hidden="true">⭐</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">Stardust Show — Celestial Park</span>
+          <span class="ed-n">Nighttime show. Check showtimes in app. Good wind-down before exit.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">20</span>
+        <span class="ed-icon" aria-hidden="true">🍄</span>
+        <span class="ed-body">
+          <span class="ed-t">8:45PM</span>
+          <span class="ed-h">One last walk through Nintendo World</span>
+          <span class="ed-n">All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">21</span>
+        <span class="ed-icon" aria-hidden="true">😴</span>
+        <span class="ed-body">
+          <span class="ed-t">9:00PM</span>
+          <span class="ed-h">Uber back to Pop Century</span>
+          <span class="ed-n">Don't push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">22</span>
+        <span class="ed-icon" aria-hidden="true">🏆</span>
+        <span class="ed-body">
+          <span class="ed-t">🏆</span>
+          <span class="ed-h">FIVE PARKS · ONE WEEK · TRIP COMPLETE</span>
+          <span class="ed-n">The Garcia family conquered Orlando.</span>
+        </span>
+      </li></ol>
       
       <aside class="ed-aside">
         <h4>Five worlds, one park</h4>
