@@ -1106,6 +1106,8 @@ img, svg, video{ max-width: 100%; }
   color:#fff;background:#171310;padding:6px 11px;border-radius:7px;margin-bottom:9px;
   font-variant-numeric:tabular-nums}
 .ed-t.tbd{background:transparent;color:var(--acc,#b1291a);border:2px dashed var(--acc,#b1291a);padding:4px 9px}
+.ed-badge{display:inline-block;height:26px;width:auto;vertical-align:middle;margin-left:9px;
+  border-radius:5px;border:1px solid rgba(0,0,0,.18);box-shadow:0 2px 6px rgba(0,0,0,.18)}
 .ed-h{display:block;font-family:'Playfair Display',serif;font-weight:700;
   font-size:clamp(19px,2vw,25px);line-height:1.2;letter-spacing:-.015em;color:#171310;margin-bottom:5px}
 .ed-n{display:block;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
@@ -1770,7 +1772,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-icon" aria-hidden="true">🚌</span>
         <span class="ed-body">
-          <span class="ed-t">7:30AM</span>
+          <span class="ed-t">7:30AM</span><img class="ed-badge" src="sections/assets/badges/skyliner.jpg?v=2026081002" alt="Disney Skyliner"
+              title="Disney Skyliner" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Skyliner from Pop Century</span>
           <span class="ed-n">Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.</span>
         </span>
@@ -1901,7 +1904,7 @@ button.expd-day:focus-visible{
       <!-- facts deck (weather / crowd / sunset / steps) deliberately omitted —
            Artemio removed that strip from the chapters. -->
       <p class="ed-dek"><span><i>Park day</i>04 of 07</span>
-        <span><i>Stops planned</i>20</span></p>
+        <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -1912,6 +1915,15 @@ button.expd-day:focus-visible{
       </blockquote>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
+        <span class="ed-icon" aria-hidden="true">🚌</span>
+        <span class="ed-body">
+          <span class="ed-t">6:15AM</span>
+          <span class="ed-h">Bus to Magic Kingdom</span>
+          <span class="ed-n">Only Disney transport from Pop Century — no Skyliner or monorail on this route. Bus + security + the walk to the tapstiles runs ~60–75 min, so this is what makes the 7:30 rope drop. Tap Lightning Lane at 6:59 from the bus.</span>
+        </span>
+        
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-icon" aria-hidden="true">⏰</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span>
@@ -1920,7 +1932,7 @@ button.expd-day:focus-visible{
         </span>
         
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">2</span>
+        <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-icon" aria-hidden="true">🏃</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
@@ -1930,7 +1942,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/peter-pans-flight.jpg?v=2026081002" alt="ROPE DROP — Peter Pan's Flight"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">3</span>
+        <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
@@ -1940,7 +1952,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/bibbidi-bobbidi-boutique.jpg?v=2026081002" alt="Bibbidi Bobbidi Boutique"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">4</span>
+        <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
@@ -1950,7 +1962,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/speedway.jpg?v=2026081002" alt="SPLIT — Speedway + Buzz + PhilharMagic"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">5</span>
+        <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t">10:00AM</span>
@@ -1960,7 +1972,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/castle-reveal.jpg?v=2026081002" alt="THE CASTLE REVEAL"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
@@ -1970,7 +1982,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/princess-fairytale-hall.jpg?v=2026081002" alt="Princess Fairytale Hall"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-icon" aria-hidden="true">🏰</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
@@ -1980,7 +1992,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/cinderellas-royal-table.jpg?v=2026081002" alt="Cinderella's Royal Table — lunch"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">11:00AM</span>
@@ -1990,7 +2002,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/dumbo.jpg?v=2026081002" alt="Dumbo + Barnstormer"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
@@ -2000,7 +2012,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/seven-dwarfs-mine-train.jpg?v=2026081002" alt="Seven Dwarfs Mine Train (Lightning Lane Single Pass)"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-num" aria-hidden="true">11</span>
         <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">12:00PM</span>
@@ -2010,7 +2022,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/small-world.jpg?v=2026081002" alt="Mickey's PhilharMagic + Small World"
           loading="lazy" decoding="async" width="150" height="100">
       </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-icon" aria-hidden="true">🎭</span>
         <span class="ed-body">
           <span class="ed-t">3:00PM</span>
@@ -2020,7 +2032,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/festival-of-fantasy-parade.jpg?v=2026081002" alt="Festival of Fantasy Parade · optional"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
@@ -2030,7 +2042,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/pirates-of-the-caribbean.png?v=2026081002" alt="Pirates of the Caribbean (Lightning Lane Multi Pass refill)"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">4:45PM</span>
@@ -2040,7 +2052,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/jungle-cruise.jpg?v=2026081002" alt="Jungle Cruise + Country Bears"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
@@ -2050,7 +2062,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/big-thunder-mountain.jpg?v=2026081002" alt="Big Thunder Mountain"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">6:30PM</span>
@@ -2060,7 +2072,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/haunted-mansion.jpg?v=2026081002" alt="Haunted Mansion (Lightning Lane Multi Pass)"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">7:15PM</span>
@@ -2070,7 +2082,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/buzz.webp?v=2026081002" alt="Buzz + Speedway"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">17</span>
+        <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-icon" aria-hidden="true">🎢</span>
         <span class="ed-body">
           <span class="ed-t">7:45PM</span>
@@ -2080,7 +2092,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/tron.jpg?v=2026081002" alt="TRON (Single Pass) / Space Mountain — Rider Switch"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-num" aria-hidden="true">19</span>
         <span class="ed-icon" aria-hidden="true">🎆</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
@@ -2089,7 +2101,7 @@ button.expd-day:focus-visible{
         </span>
         
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-icon" aria-hidden="true">🎆</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
@@ -2099,7 +2111,7 @@ button.expd-day:focus-visible{
         <img class="ed-shot" src="sections/assets/mk/happily-ever-after.jpg?v=2026081002" alt="Happily Ever After (9:00 PM)"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">20</span>
+        <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-icon" aria-hidden="true">😴</span>
         <span class="ed-body">
           <span class="ed-t">9:30PM</span>
@@ -2346,7 +2358,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
-          <span class="ed-t">10:00AM</span>
+          <span class="ed-t">10:00AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Mario Kart: Bowser's Challenge (Express)</span>
           <span class="ed-n">Longest queue in the park — hit it first. Mario rides ✅ (40&quot; min, he's 42&quot;). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.</span>
         </span>
@@ -2356,17 +2369,19 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
-          <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Yoshi's Adventure</span>
+          <span class="ed-t">10:30AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
+          <span class="ed-h">Yoshi's Adventure (Express)</span>
           <span class="ed-n">No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.</span>
         </span>
-        <img class="ed-shot" src="sections/assets/eu/yoshis-adventure.jpg?v=2026081002" alt="Yoshi's Adventure"
+        <img class="ed-shot" src="sections/assets/eu/yoshis-adventure.jpg?v=2026081002" alt="Yoshi's Adventure (Express)"
           loading="lazy" decoding="async" width="150" height="100">
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-icon" aria-hidden="true">🍄</span>
         <span class="ed-body">
-          <span class="ed-t">11:00AM</span>
+          <span class="ed-t">11:00AM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Mine-Cart Madness (Express)</span>
           <span class="ed-n">Donkey Kong Country. Mario rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</span>
         </span>
@@ -2395,7 +2410,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-icon" aria-hidden="true">🌙</span>
         <span class="ed-body">
-          <span class="ed-t">1:30PM</span>
+          <span class="ed-t">1:30PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Curse of the Werewolf (Express)</span>
           <span class="ed-n">Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.</span>
         </span>
@@ -2405,7 +2421,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-icon" aria-hidden="true">🌙</span>
         <span class="ed-body">
-          <span class="ed-t">2:15PM</span>
+          <span class="ed-t">2:15PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Monsters Unchained (Express)</span>
           <span class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.</span>
         </span>
@@ -2415,7 +2432,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-icon" aria-hidden="true">🐉</span>
         <span class="ed-body">
-          <span class="ed-t">3:00PM</span>
+          <span class="ed-t">3:00PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Hiccup's Wing Gliders (Express)</span>
           <span class="ed-n">Family coaster on Isle of Berk. Mario rides ✅ (40&quot;). Smooth, scenic, perfect for him.</span>
         </span>
@@ -2445,7 +2463,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-icon" aria-hidden="true">✨</span>
         <span class="ed-body">
-          <span class="ed-t">4:30PM</span>
+          <span class="ed-t">4:30PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Battle at the Ministry (Express)</span>
           <span class="ed-n">The biggest headliner in the park. Mario rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</span>
         </span>
@@ -2465,7 +2484,8 @@ button.expd-day:focus-visible{
         <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-icon" aria-hidden="true">⭐</span>
         <span class="ed-body">
-          <span class="ed-t">8:00PM</span>
+          <span class="ed-t">8:00PM</span><img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081002" alt="Universal Express Pass"
+              title="Universal Express Pass" loading="lazy" decoding="async" width="58" height="26">
           <span class="ed-h">Stardust Racers (Express) · Rider Switch</span>
           <span class="ed-n">Dueling coaster. Mario can't ride (48&quot;; he's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
         </span>
