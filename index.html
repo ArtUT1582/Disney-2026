@@ -1510,9 +1510,8 @@ button.expd-day:focus-visible{
 /* --- cover --- */
 .ed-cover{position:relative;min-height:min(44vh,360px);display:flex;align-items:flex-end;
   background-size:cover;
-  /* biased low: these photos carry park signage baked into the upper area, and the design
-     supplies its own title — anchoring the crop below centre keeps that text out of frame */
-  background-position:50% 72%;padding:0}
+  /* anchor comes from --cover-pos, set per park (see COVER_POS) */
+  background-position:var(--cover-pos,50% 50%);padding:0}
 .ed-cover::after{content:"";position:absolute;inset:0;
   background:linear-gradient(0deg,rgba(0,0,0,.92) 4%,rgba(0,0,0,.42) 46%,rgba(0,0,0,.34))}
 .ed-cover-in{position:relative;z-index:2;width:100%;margin:0;padding:0 var(--ed-pad) clamp(22px,3vw,36px)}
@@ -1593,7 +1592,7 @@ button.expd-day:focus-visible{
 
 <div class="expd-inline">
 
-<article class="ed-day" id="day-ak" style="--acc:#2f7d4f">
+<article class="ed-day" id="day-ak" style="--acc:#2f7d4f;--cover-pos:50% 30%">
   <header class="ed-cover" style="background-image:url('sections/assets/ak-bg.jpg')">
     <div class="ed-cover-in">
       <div class="ed-issue">
@@ -1722,7 +1721,7 @@ button.expd-day:focus-visible{
   </div>
 </article>
 
-<article class="ed-day" id="day-hs" style="--acc:#b1521a">
+<article class="ed-day" id="day-hs" style="--acc:#b1521a;--cover-pos:50% 45%">
   <header class="ed-cover" style="background-image:url('sections/assets/hs-bg.jpg')">
     <div class="ed-cover-in">
       <div class="ed-issue">
@@ -1875,7 +1874,7 @@ button.expd-day:focus-visible{
   </div>
 </article>
 
-<article class="ed-day" id="day-mk" style="--acc:#a3316b">
+<article class="ed-day" id="day-mk" style="--acc:#a3316b;--cover-pos:50% 35%">
   <header class="ed-cover" style="background-image:url('sections/assets/mk-bg.jpg')">
     <div class="ed-cover-in">
       <div class="ed-issue">
@@ -2060,7 +2059,7 @@ button.expd-day:focus-visible{
   </div>
 </article>
 
-<article class="ed-day" id="day-hhn" style="--acc:#b1291a">
+<article class="ed-day" id="day-hhn" style="--acc:#b1291a;--cover-pos:50% 50%">
   <header class="ed-cover" style="background-image:url('sections/assets/hhn-bg.jpg')">
     <div class="ed-cover-in">
       <div class="ed-issue">
@@ -2241,7 +2240,7 @@ button.expd-day:focus-visible{
   </div>
 </article>
 
-<article class="ed-day" id="day-eu" style="--acc:#5b3a9e">
+<article class="ed-day" id="day-eu" style="--acc:#5b3a9e;--cover-pos:50% 50%">
   <header class="ed-cover" style="background-image:url('sections/assets/eu-bg.jpg')">
     <div class="ed-cover-in">
       <div class="ed-issue">
