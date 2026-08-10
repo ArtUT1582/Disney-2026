@@ -1071,8 +1071,8 @@ img, svg, video{ max-width: 100%; }
     { glyph:'✈', html:'<b>UA 2245</b> · IAH 7:25a → MCO 10:54a · Oct 11 · conf <b>DE9ZDL</b>' },
     { glyph:'✈', html:'<b>UA 468</b> · MCO 7:00a → IAH 8:38a · Oct 17 · all 12 booked' },
     { glyph:'◎', html:'Verify park hours before locking the final itinerary' },
-    { glyph:'⚡', html:'<b>Lightning Lane Multi-Pass</b> drops 7 days out · <em>7:00a CT</em>' },
-    { glyph:'👑', html:'<b>BBB</b> bookings open August 11 · <em>11:00 PM CT</em>' },
+    { glyph:'⚡', html:'<b>Lightning Lane Multi-Pass</b> · book all 7 days <b>Sun Oct 4</b> · <em>6:00 AM CT</em>' },
+    { glyph:'👑', html:'<b>BBB</b> bookings open <b>Tue Aug 11</b> · <em>11:00 PM CT</em> — 6 hrs before castle dining' },
     { glyph:'🎟', html:'HHN tickets on sale now · <b>$91–$130</b> per adult' },
     { glyph:'🏰', html:'<b>Magic Kingdom</b> · Be Our Guest lunch reservation locked' },
     { glyph:'🍽', html:'<b>Storybook Dining</b> · Tuesday · 6:30 PM · party of 12' },
@@ -1560,10 +1560,10 @@ button.expd-day:focus-visible{
 
   <div class="alarm-panel bbb">
     <h3>👑 Bibbidi Bobbidi Boutique — TOP PRIORITY</h3>
-    <p>Books up in MINUTES at midnight EST exactly 60 days before check-in. For Oct 11: <b style="color:#ff8fd1">Tue Aug 11, 11:00 PM CT</b>.</p>
+    <p>Magic Kingdom BBB (inside the castle) opens at <b>midnight Eastern</b> on your 60-day mark — <b>not</b> 6 AM like dining. Same Eastern day as castle dining (Wed Aug 12), but midnight ET lands on the night before in Central: <b style="color:#ff8fd1">Tue Aug 11, 11:00 PM CT</b>. Art of Animation makes you a resort guest, so book the whole Oct 11–17 stay in that one session. Be logged in by 10:45 PM CT — slots go in minutes.</p>
     <div class="alarm-btns">
       <button class="alarm-btn bbb" id="testBbbBtn">🔔 Test BBB</button>
-      <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 11</button>
+      <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 11 · 11:00 PM CT</button>
       <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel</button>
     </div>
     <div id="bbbStatus">No alarm scheduled.</div>
@@ -1575,20 +1575,20 @@ button.expd-day:focus-visible{
 
   <div class="alarm-panel crt">
     <h3>🏰 Princess Castle Dining — Cinderella's Royal Table</h3>
-    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Disney dining opens 6:00 AM ET — that's <b style="color:#93c5fd">Wed Aug 12, 5:00 AM CT</b>, six hours after the BBB window. Full prepayment required.</p>
+    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Disney dining opens 6:00 AM ET — that's <b style="color:#93c5fd">Wed Aug 12, 5:00 AM CT</b>, six hours after the BBB window on the same Eastern day. Resort guests get 60+10, so book every ADR for the whole stay in this session. Be logged in by 4:45 AM CT. Full prepayment required.</p>
     <div class="alarm-btns">
       <button class="alarm-btn" id="testCrtBtn">🔔 Test Castle</button>
-      <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12</button>
+      <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12 · 5:00 AM CT</button>
       <button class="alarm-btn ghost" id="cancelCrtBtn">Cancel</button>
     </div>
     <div id="crtStatus">No alarm scheduled.</div>
   </div>
   <div class="alarm-panel">
-    <h3>📢 Lightning Lane Alarm</h3>
-    <p>Fires at 6:59 AM with voice + flashing screen. LLMP drops at 7:00 AM exactly.</p>
+    <h3>📢 Lightning Lane Multi Pass Alarm</h3>
+    <p>Opens <b style="color:#fde68a">Sun Oct 4, 6:00 AM CT</b> (7:00 AM ET) — 7 days before check-in. Art of Animation is a Disney resort, so you book <b>all 7 days in that one session</b>; off-site guests wait until 3 days out. Alarm fires <b style="color:#fde68a">5:59 AM CT</b> with voice + flashing screen.</p>
     <div class="alarm-btns">
       <button class="alarm-btn" id="testAlarmBtn">🔔 Test Now</button>
-      <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule 6:59 AM</button>
+      <button class="alarm-btn" id="scheduleAlarmBtn">⏰ Schedule Oct 4 · 5:59 AM CT</button>
       <button class="alarm-btn ghost" id="cancelAlarmBtn">Cancel</button>
     </div>
     <div id="alarmStatus">No alarm scheduled.</div>
@@ -1625,9 +1625,11 @@ function startAlarm(t){
   o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
 }
 window.stopAlarm=function(){ document.getElementById('alarmOverlay').classList.remove('active','bbb-mode'); if(aI){clearInterval(aI);aI=null;} if('speechSynthesis' in window)window.speechSynthesis.cancel(); };
-function next659(){const n=new Date(),t=new Date(); t.setHours(6,59,0,0); if(t<=n)t.setDate(t.getDate()+1); return t;}
+/* LLMP window opens 7:00 AM ET Oct 4 (7 days before check-in). Anchored to an Eastern offset so it
+   fires correctly from Houston or Orlando — a local-clock 6:59 would misfire by an hour from CT. */
+const LL=new Date('2026-10-04T06:59:00-04:00');
 document.getElementById('testAlarmBtn').onclick=()=>startAlarm('ll');
-document.getElementById('scheduleAlarmBtn').onclick=()=>{ if(llT)clearTimeout(llT); const t=next659(); llT=setTimeout(()=>startAlarm('ll'),t-new Date()); document.getElementById('alarmStatus').innerHTML=`✅ Armed for <b>${t.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
+document.getElementById('scheduleAlarmBtn').onclick=()=>{ if(llT)clearTimeout(llT); const d=LL-new Date(); if(d<=0){document.getElementById('alarmStatus').innerHTML='⚠️ Window already opened';return;} llT=setTimeout(()=>startAlarm('ll'),d); document.getElementById('alarmStatus').innerHTML=`✅ Armed for <b>${LL.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelAlarmBtn').onclick=()=>{ if(llT){clearTimeout(llT);llT=null;} document.getElementById('alarmStatus').textContent='No alarm scheduled.'; };
 const BBB=new Date('2026-08-12T00:00:00-04:00');
 document.getElementById('testBbbBtn').onclick=()=>startAlarm('bbb');
