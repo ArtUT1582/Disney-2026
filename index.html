@@ -1810,12 +1810,20 @@ button.expd-day:focus-visible{
   font-size:20px;line-height:1.15;letter-spacing:-.015em;color:#fff}
 .pm-stops{margin-top:3px;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
 
-.pm-frame{position:relative;margin:12px 0 0;height:210px;background:#0b0e17;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.pm-frame iframe{width:100%;height:100%;border:0;display:block;
-  /* OSM tiles are a light basemap dropped into a very dark page - knocking the
-     brightness back stops the card glowing like a lightbox next to its siblings */
-  filter:saturate(.85) brightness(.92) contrast(1.05)}
+/* The thumbnail crops to the illustrated half of the guidemap - on every one of these
+   the park art sits left and the numbered listing runs down the right, so a left crop
+   previews something recognisable instead of a wall of 6pt type. Tap opens the full
+   3000px scan, which is where the numbers and the legend are actually readable. */
+.pm-frame{position:relative;display:block;margin:12px 0 0;height:200px;background:#0b0e17;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
+.pm-shot{width:100%;height:100%;display:block;object-fit:cover;
+  object-position:var(--pos,left center)}
+.pm-frame::after{content:"⤢ Tap for full map";position:absolute;right:8px;bottom:8px;
+  padding:5px 9px;border-radius:999px;background:rgba(8,10,18,.82);color:#fde68a;
+  border:1px solid rgba(251,191,36,.45);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:600;pointer-events:none}
+.pm-frame:hover .pm-shot{transform:scale(1.03)}
+.pm-shot{transition:transform .3s ease}
 .pm-acts{display:flex;gap:8px;padding:12px 18px 16px;flex-wrap:wrap}
 .pm-btn{flex:1 1 auto;text-align:center;display:inline-flex;align-items:center;
   justify-content:center;gap:6px;padding:9px 12px;border-radius:999px;
@@ -1842,8 +1850,10 @@ button.expd-day:focus-visible{
   <div class="pm-head">
     <div class="pm-eyebrow"><span class="liv"></span>🗺️ Park Maps</div>
     <div class="pm-title">Where you'll <b>be each day</b></div>
-    <p class="pm-note">Pan and zoom each map — paths, lands and individual attractions are all in
-      there. Directions open in Google Maps; the official page has live wait times and the app map.</p>
+    <p class="pm-note">The official guidemaps handed out at the gate — numbered attractions by land,
+      dining, height minimums and the full legend. Tap any map to open it full size; they are scanned
+      at 3000px so the numbers stay readable when you pinch-zoom. Directions open in Google Maps, and
+      the official page carries live wait times.</p>
   </div>
 
   <div class="pm-grid">
@@ -1854,10 +1864,11 @@ button.expd-day:focus-visible{
         <h3 class="pm-park">Animal Kingdom</h3>
         <div class="pm-stops">9 stops planned</div>
       </div>
-      <div class="pm-frame">
-        <iframe loading="lazy" title="Map of Disney's Animal Kingdom"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5981767,28.3526551,-81.5833743,28.3689118&amp;layer=mapnik&amp;marker=28.3607674,-81.5914841"></iframe>
-      </div>
+      <a class="pm-frame" href="sections/assets/maps/ak.jpg?v=2026081104" target="_blank" rel="noopener"
+        style="--pos:left center" title="Open the full-size AK guidemap">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
+          src="sections/assets/maps/ak.jpg?v=2026081104" alt="Disney's Animal Kingdom guidemap - illustrated park map with numbered attractions and legend">
+      </a>
       <div class="pm-acts">
         <a class="pm-btn" target="_blank" rel="noopener"
           href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3607674,-81.5914841">Directions</a>
@@ -1872,10 +1883,11 @@ button.expd-day:focus-visible{
         <h3 class="pm-park">Hollywood Studios</h3>
         <div class="pm-stops">13 stops planned</div>
       </div>
-      <div class="pm-frame">
-        <iframe loading="lazy" title="Map of Disney's Hollywood Studios"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5637875,28.3525322,-81.5563928,28.3620618&amp;layer=mapnik&amp;marker=28.3572521,-81.5606175"></iframe>
-      </div>
+      <a class="pm-frame" href="sections/assets/maps/hs.jpg?v=2026081104" target="_blank" rel="noopener"
+        style="--pos:left center" title="Open the full-size HS guidemap">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
+          src="sections/assets/maps/hs.jpg?v=2026081104" alt="Disney's Hollywood Studios guidemap - illustrated park map with numbered attractions and legend">
+      </a>
       <div class="pm-acts">
         <a class="pm-btn" target="_blank" rel="noopener"
           href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3572521,-81.5606175">Directions</a>
@@ -1890,10 +1902,11 @@ button.expd-day:focus-visible{
         <h3 class="pm-park">Magic Kingdom</h3>
         <div class="pm-stops">23 stops planned · Bibbidi Bobbidi Boutique</div>
       </div>
-      <div class="pm-frame">
-        <iframe loading="lazy" title="Map of Magic Kingdom"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5869975,28.4148969,-81.5758593,28.4232773&amp;layer=mapnik&amp;marker=28.4190753,-81.5817158"></iframe>
-      </div>
+      <a class="pm-frame" href="sections/assets/maps/mk.jpg?v=2026081104" target="_blank" rel="noopener"
+        style="--pos:left center" title="Open the full-size MK guidemap">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
+          src="sections/assets/maps/mk.jpg?v=2026081104" alt="Magic Kingdom guidemap - illustrated park map with numbered attractions and legend">
+      </a>
       <div class="pm-acts">
         <a class="pm-btn" target="_blank" rel="noopener"
           href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4190753,-81.5817158">Directions</a>
@@ -1908,10 +1921,11 @@ button.expd-day:focus-visible{
         <h3 class="pm-park">HHN 35 · Universal Studios Florida</h3>
         <div class="pm-stops">22 stops planned</div>
       </div>
-      <div class="pm-frame">
-        <iframe loading="lazy" title="Map of Universal Studios Florida, venue for Halloween Horror Nights"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.4735500,28.4728287,-81.4649240,28.4816483&amp;layer=mapnik&amp;marker=28.4772482,-81.4697068"></iframe>
-      </div>
+      <a class="pm-frame" href="sections/assets/maps/usf.jpg?v=2026081104" target="_blank" rel="noopener"
+        style="--pos:left center" title="Open the full-size USF guidemap">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
+          src="sections/assets/maps/usf.jpg?v=2026081104" alt="Universal Studios Florida guidemap - illustrated park map with numbered attractions and legend">
+      </a>
       <div class="pm-acts">
         <a class="pm-btn" target="_blank" rel="noopener"
           href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4772482,-81.4697068">Directions</a>
@@ -1926,15 +1940,38 @@ button.expd-day:focus-visible{
         <h3 class="pm-park">Epic Universe</h3>
         <div class="pm-stops">18 stops planned</div>
       </div>
-      <div class="pm-frame">
-        <iframe loading="lazy" title="Map of Universal Epic Universe"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.4529484,28.4372625,-81.4425336,28.4497431&amp;layer=mapnik&amp;marker=28.4437046,-81.4477664"></iframe>
-      </div>
+      <a class="pm-frame" href="sections/assets/maps/eu.jpg?v=2026081104" target="_blank" rel="noopener"
+        style="--pos:left center" title="Open the full-size EU guidemap">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
+          src="sections/assets/maps/eu.jpg?v=2026081104" alt="Universal Epic Universe guidemap - illustrated park map with numbered attractions and legend">
+      </a>
       <div class="pm-acts">
         <a class="pm-btn" target="_blank" rel="noopener"
           href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4437046,-81.4477664">Directions</a>
         <a class="pm-btn ghost" target="_blank" rel="noopener"
           href="https://www.universalorlando.com/web/en/us/things-to-do/parks/epic-universe">Official page</a>
+      </div>
+    </article>
+
+    <!-- Home base rather than a park day, so it carries the gold accent the rest of the
+         page uses for logistics instead of one of the five park colours. -->
+    <article class="pm-card" style="--acc:#fbbf24">
+      <div class="pm-card-in">
+        <span class="pm-when" style="color:#171310">Oct 11–17 · Home base</span>
+        <h3 class="pm-park">Disney's Pop Century</h3>
+        <div class="pm-stops">Artemio · Sandra · Annelise — Skyliner + bus depot</div>
+      </div>
+      <a class="pm-frame" href="sections/assets/maps/pop-century.jpg?v=2026081104" target="_blank"
+        rel="noopener" style="--pos:center top" title="Open the full-size Pop Century resort map">
+        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="3883"
+          src="sections/assets/maps/pop-century.jpg?v=2026081104"
+          alt="Disney's Pop Century Resort map showing the decade sections, bus depot and Skyliner station">
+      </a>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3556,-81.5439">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://disneyworld.disney.go.com/resorts/pop-century-resort/">Official page</a>
       </div>
     </article>
 
