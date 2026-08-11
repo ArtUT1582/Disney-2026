@@ -42,7 +42,7 @@ html,body{ background:var(--ink); color:var(--text); font-family: ui-sans-serif,
   .nav-links a{ padding: 6px 9px; font-size: 10px; letter-spacing:.22em; }
 }
 
-section{ max-width:1280px; margin: 90px auto; padding: 0 22px; }
+section{ max-width:1280px; margin: var(--stack-gap, 22px) auto; padding: 0 22px; }
 .hero{ text-align:center; margin-top: 28px; padding-top: 0; }
 .eyebrow{ display:inline-flex; gap:8px; align-items:center; font-size:11.5px; letter-spacing:.32em; color:#cbd5e1; text-transform:uppercase; border:1px solid var(--line); padding:8px 14px; border-radius:999px; background: rgba(255,255,255,.04); backdrop-filter: blur(10px); }
 .eyebrow .liv{ width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow: 0 0 10px #34d399; animation: blink 1.6s infinite; }
@@ -990,7 +990,7 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
    handset widths. Desktop rules above are untouched.
    ============================================================ */
 @media (max-width: 760px){
-  section{ margin: 54px auto; padding: 0 14px; }
+  section{ margin: var(--stack-gap, 22px) auto; padding: 0 14px; }
   .section-h{ margin-bottom: 32px; }
 
   /* countdown reads as two rows instead of four cramped columns */
@@ -1230,14 +1230,34 @@ img, svg, video{ max-width: 100%; }
    other two being dragged down to 108. The card centres its content vertically instead of
    growing padding, so the route line stays optically centred at every width. */
 :root{--stack-gap:22px}
+/* #ticker and the countdown are divs, not sections, so they need saying explicitly.
+   Every <section> picks the gap up from the base rule rewritten further down. */
 #ticker{margin-top:var(--stack-gap) !important}
 .cd-wrap{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
-#flights{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
+/* the forecast carries its own 24px top margin, which wins the collapse against the
+   section rule's 22 and left one gap on the page 2px wider than the rest */
 .weather-banner{margin-top:var(--stack-gap) !important}
 /* the forecast card and the first chapter cover were touching at 0px — the chapters carry
    no top margin of their own, so the Animal Kingdom photo started on the forecast's bottom
-   edge. Same gap as the three above it. */
+   edge. Same gap as everything above it. */
 #expedition{margin-top:var(--stack-gap) !important}
+
+/* ---- one width for the whole page ----
+   Measured at 1440 there were three different boxes: ticker / countdown / forecast at
+   1280, the flight cards at 1236, the chapters at 1180. Three causes:
+     NB no backticks in this comment — it lives inside a JS template literal.
+     - the base rule gives every <section> a horizontal padding of 22px, which insets
+       the CONTENT.
+       For the forecast that is right (the section is the visible card and needs inner
+       padding) but for flights, cast and alarms the section is a transparent wrapper and
+       the padding was pushing the visible cards 22px in on each side.
+     - the chapters were pinned to their own --ed-w of 1180px.
+   Everything visible now resolves to the same box: calc(100% - 28px), capped at 1280,
+   centred — which is what the ticker and countdown already used. */
+#flights,#cast,#alarms{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
+  margin-right:auto;padding-left:0;padding-right:0}
+.expd-inline{--ed-w:1280px}
+.ed-day{width:calc(100% - 28px)}
 /* 13.8vw tracks the countdown's own 4.3vw numerals, so the two stay level as the window
    changes rather than matching at exactly one width */
 #flights .center-card{min-height:clamp(118px,13.8vw,180px);
