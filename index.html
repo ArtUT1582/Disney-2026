@@ -1005,6 +1005,10 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
   .ge2-card{ padding: 18px 16px; }
 
   /* flights */
+  /* Below 760 the route collapses to one column, so the times, codes and meta line all
+     centre themselves — but .ce and .ch inherit text-align:start from the card and stayed
+     hard left, which is what made the stacked card read as off-centre. */
+  #flights .center-card{ text-align: center; }
   .fl-route{ grid-template-columns: 1fr; gap: 8px; margin: 18px 0 14px; }
   .fl-arrow{ transform: rotate(90deg); }
   .fl-ap .t{ font-size: 26px; }
@@ -1839,6 +1843,8 @@ button.expd-day:focus-visible{
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/ak/avatar-flight-of-passage.jpg?v=2026081003" alt="Lightning Lane Single Pass — Avatar Flight of Passage"
           loading="lazy" decoding="async" width="150" height="100">
+        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
+          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
         
       </span>
       </li><li class="ed-ev has-shot">
@@ -1969,6 +1975,8 @@ button.expd-day:focus-visible{
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/rise-of-the-resistance.jpg?v=2026081003" alt="Lightning Lane Single Pass — Rise of the Resistance"
           loading="lazy" decoding="async" width="150" height="100">
+        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
+          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
         
       </span>
       </li><li class="ed-ev has-shot">
@@ -2192,6 +2200,8 @@ button.expd-day:focus-visible{
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/seven-dwarfs-mine-train.jpg?v=2026081003" alt="Seven Dwarfs Mine Train (Lightning Lane Single Pass)"
           loading="lazy" decoding="async" width="150" height="100">
+        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
+          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
         
       </span>
       </li><li class="ed-ev has-shot">
@@ -2306,6 +2316,8 @@ button.expd-day:focus-visible{
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/tron.jpg?v=2026081003" alt="TRON (Single Pass) / Space Mountain — Rider Switch"
           loading="lazy" decoding="async" width="150" height="100">
+        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
+          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
         
       </span>
       </li><li class="ed-ev">
