@@ -1166,6 +1166,59 @@ img, svg, video{ max-width: 100%; }
   .ed-spread{background:#fff}
   .ed-day{page-break-after:always}
 }
+
+.bp{display:grid;grid-template-columns:1.55fr 1fr;border-radius:20px;overflow:hidden;
+  background:linear-gradient(150deg,#12151d,#0a0c12);border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.bp-main{padding:clamp(18px,2.6vw,32px);position:relative}
+/* the perforation — a dashed rule, not a border, so it reads as a tear line */
+.bp-main::after{content:"";position:absolute;right:0;top:6%;bottom:6%;width:1px;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.30) 0 6px,transparent 6px 13px)}
+.bp-brand{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
+  color:#fbbf24;border-bottom:1px solid rgba(255,255,255,.10);padding-bottom:12px}
+.bp-brand span:last-child{color:#7c869a}
+.bp-route{display:flex;align-items:center;gap:clamp(10px,2vw,26px);margin:clamp(14px,2.2vw,24px) 0}
+.bp-code{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1;color:#fff;
+  font-size:clamp(24px,3.8vw,44px);letter-spacing:-.02em}
+.bp-city{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.24em;
+  text-transform:uppercase;color:#8e97ab;margin-top:6px}
+.bp-dash{flex:1;height:1px;position:relative;min-width:40px;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 5px,transparent 5px 11px)}
+.bp-dash svg{position:absolute;right:-5px;top:50%;transform:translateY(-50%);width:18px;height:18px}
+.bp-fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  border-top:1px solid rgba(255,255,255,.10);padding-top:14px}
+.bp-l{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.24em;
+  text-transform:uppercase;color:#7c869a}
+.bp-d{font-family:'JetBrains Mono',monospace;font-size:clamp(10.5px,1.3vw,13.5px);color:#e6eaf3;
+  margin-top:6px;letter-spacing:.03em}
+.bp-stub{padding:clamp(16px,2.2vw,26px) clamp(12px,1.8vw,20px);text-align:center;
+  background:linear-gradient(180deg,rgba(251,191,36,.12),rgba(255,255,255,.02));
+  display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.bp-cap{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.28em;
+  text-transform:uppercase;color:#fcd34d}
+.bp-cap.bp-dim{color:#7c869a;letter-spacing:.2em;margin-top:7px}
+.bp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 8px}
+/* tabular figures so 9 -> 10 never shifts the column */
+.bp-v{font-family:'JetBrains Mono',monospace;font-weight:700;line-height:1;color:#fff;
+  font-size:clamp(20px,2.8vw,32px);font-variant-numeric:tabular-nums}
+.bp-k{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#9aa3b8;margin-top:6px}
+.bp-bars{display:flex;align-items:flex-end;justify-content:center;gap:2px;height:32px}
+.bp-bars i{display:block;width:var(--bw,2px);height:100%;background:#dfe4ee;border-radius:1px}
+/* Phone: the pass stacks and the perforation runs horizontally instead of vertically,
+   so the stub still reads as a tear-off rather than a second unrelated card. */
+@media(max-width:760px){
+  .bp{grid-template-columns:1fr}
+  .bp-main::after{right:6%;left:6%;top:auto;bottom:0;width:auto;height:1px;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.30) 0 6px,transparent 6px 13px)}
+  /* two up with the resort spanning, rather than three stacked rows — one field per
+     row pushed the pass to nearly a full phone screen on its own */
+  .bp-fields{grid-template-columns:1fr 1fr}
+  .bp-f:last-child{grid-column:1/-1}
+  .bp-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media (prefers-reduced-motion: reduce){.bp *{animation:none !important;transition:none !important}}
 </style>
 
 <script>
@@ -1276,11 +1329,31 @@ function charFallback(img){
 
 <!-- Orlando Weather — full-width horizontal command bar -->
 <div class="cd-wrap" id="countdown">
-  <div class="cd-grid">
-    <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Minutes</div></div>
-    <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Seconds</div></div>
+  <div class="bp">
+    <div class="bp-main">
+      <div class="bp-brand"><span>Garcia Family · Boarding Pass</span><span>United UA 2245</span></div>
+      <div class="bp-route">
+        <div class="bp-ap"><div class="bp-code">IAH</div><div class="bp-city">Houston</div></div>
+        <div class="bp-dash"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#fbbf24"><path d="M21 12c0 .6-.5 1-1.1 1l-5.1-.3-2.5 5.6c-.1.3-.4.5-.8.5H10l1.3-6.4-4.4-.3-1.4 1.9c-.2.2-.4.3-.6.3H3.7l1-3-1-3h.9c.2 0 .5.1.6.3l1.4 1.9 4.4-.3L10 4.2h1.5c.4 0 .7.2.8.5l2.5 5.6 5.1-.3c.6 0 1.1.4 1.1 1z"/></svg></div>
+        <div class="bp-ap"><div class="bp-code">MCO</div><div class="bp-city">Orlando</div></div>
+      </div>
+      <div class="bp-fields">
+        <div class="bp-f"><div class="bp-l">Departs</div><div class="bp-d">11 OCT 2026 · 07:25 CT</div></div>
+        <div class="bp-f"><div class="bp-l">Travelers</div><div class="bp-d">Garcia Family · 12</div></div>
+        <div class="bp-f"><div class="bp-l">Resort</div><div class="bp-d">Disney's Pop Century</div></div>
+      </div>
+    </div>
+    <div class="bp-stub">
+      <div class="bp-cap">Time to Departure</div>
+      <div class="bp-grid">
+        <div><div class="bp-v" id="cd-d">--</div><div class="bp-k">Days</div></div>
+        <div><div class="bp-v" id="cd-h">--</div><div class="bp-k">Hours</div></div>
+        <div><div class="bp-v" id="cd-m">--</div><div class="bp-k">Min</div></div>
+        <div><div class="bp-v" id="cd-s">--</div><div class="bp-k">Sec</div></div>
+      </div>
+      <div><div class="bp-bars" aria-hidden="true"><i style="--bw:1px;opacity:0.55"></i><i style="--bw:3px;opacity:0.71"></i><i style="--bw:3px;opacity:0.63"></i><i style="--bw:2px;opacity:0.87"></i><i style="--bw:2px;opacity:0.71"></i><i style="--bw:1px;opacity:0.63"></i><i style="--bw:3px;opacity:0.79"></i><i style="--bw:1px;opacity:0.63"></i><i style="--bw:1px;opacity:0.79"></i><i style="--bw:2px;opacity:0.79"></i><i style="--bw:3px;opacity:0.79"></i><i style="--bw:2px;opacity:0.63"></i><i style="--bw:1px;opacity:0.79"></i><i style="--bw:2px;opacity:0.55"></i><i style="--bw:1px;opacity:0.79"></i><i style="--bw:3px;opacity:0.71"></i><i style="--bw:1px;opacity:0.55"></i><i style="--bw:1px;opacity:0.55"></i><i style="--bw:3px;opacity:0.79"></i><i style="--bw:3px;opacity:0.63"></i><i style="--bw:1px;opacity:0.87"></i><i style="--bw:3px;opacity:0.63"></i><i style="--bw:2px;opacity:0.63"></i><i style="--bw:3px;opacity:0.87"></i><i style="--bw:2px;opacity:0.71"></i><i style="--bw:2px;opacity:0.87"></i><i style="--bw:2px;opacity:0.71"></i><i style="--bw:1px;opacity:0.55"></i><i style="--bw:1px;opacity:0.71"></i><i style="--bw:3px;opacity:0.79"></i><i style="--bw:3px;opacity:0.71"></i><i style="--bw:1px;opacity:0.71"></i><i style="--bw:1px;opacity:0.87"></i><i style="--bw:2px;opacity:0.87"></i><i style="--bw:2px;opacity:0.63"></i><i style="--bw:1px;opacity:0.71"></i><i style="--bw:1px;opacity:0.71"></i><i style="--bw:3px;opacity:0.71"></i><i style="--bw:3px;opacity:0.72"></i><i style="--bw:2px;opacity:0.79"></i><i style="--bw:1px;opacity:0.87"></i><i style="--bw:2px;opacity:0.71"></i><i style="--bw:1px;opacity:0.87"></i><i style="--bw:1px;opacity:0.55"></i><i style="--bw:1px;opacity:0.63"></i><i style="--bw:2px;opacity:0.79"></i></div>
+        <div class="bp-cap bp-dim">Decorative · not scannable</div></div>
+    </div>
   </div>
 </div>
 
@@ -2728,7 +2801,7 @@ button.expd-day:focus-visible{
 const TRIP_START = window.TRIP.startMs;
 function tick(){
   let d = window.TRIP.msLeft();
-  if(d<=0){ document.getElementById('cd-d').textContent='0'; return; }
+  if(d<=0){ ['cd-d','cd-h','cd-m','cd-s'].forEach(function(k){ var e=document.getElementById(k); if(e) e.textContent = k==='cd-d' ? '0' : '00'; }); var n0=document.getElementById('nav-cd'); if(n0) n0.textContent='0'; return; }
   const days=window.TRIP.daysLeft(), h=Math.floor((d%86400000)/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
   document.getElementById('cd-d').textContent=days;
   var nc=document.getElementById('nav-cd'); if(nc) nc.textContent=days;
