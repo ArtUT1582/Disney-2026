@@ -1234,6 +1234,10 @@ img, svg, video{ max-width: 100%; }
 .cd-wrap{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
 #flights{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
 .weather-banner{margin-top:var(--stack-gap) !important}
+/* the forecast card and the first chapter cover were touching at 0px — the chapters carry
+   no top margin of their own, so the Animal Kingdom photo started on the forecast's bottom
+   edge. Same gap as the three above it. */
+#expedition{margin-top:var(--stack-gap) !important}
 /* 13.8vw tracks the countdown's own 4.3vw numerals, so the two stay level as the window
    changes rather than matching at exactly one width */
 #flights .center-card{min-height:clamp(118px,13.8vw,180px);
