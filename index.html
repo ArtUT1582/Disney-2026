@@ -1223,99 +1223,106 @@ img, svg, video{ max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce){.cdh *{animation:none !important;transition:none !important}}
 
-/* ============ HALLOWEEN HORROR NIGHTS 35 — Oct 15 ============
-   Every selector below is prefixed #day-hhn so the horror palette cannot reach the four
-   daytime parks, which stay on the cream spread. */
-#day-hhn{--hhn-ink:#0a0609;--hhn-blood:#8b0f14;--hhn-blood-lt:#c1121f;
-  --hhn-purple:#3b1150;--hhn-purple-lt:#7c3aed;--hhn-txt:#f6f2f4;--hhn-dim:#c3b6bd}
-#day-hhn .ed-spread{background:var(--hhn-ink);color:var(--hhn-txt)}
-/* fog: two very slow, very low-contrast washes. Static under reduced motion. */
-#day-hhn .ed-spread{position:relative;isolation:isolate}
-#day-hhn .ed-spread::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(60% 42% at 12% 0%,rgba(139,15,20,.30),transparent 62%),
-             radial-gradient(52% 40% at 88% 12%,rgba(59,17,80,.38),transparent 64%),
-             radial-gradient(70% 46% at 50% 100%,rgba(124,58,237,.14),transparent 68%)}
-#day-hhn .ed-spread-in{position:relative;z-index:1}
-#day-hhn .ed-quote{color:#fff}
-#day-hhn .ed-quote cite{color:var(--hhn-dim)}
-#day-hhn .ed-sec{background:var(--hhn-blood);color:#fff}
-#day-hhn .ed-ev{border-bottom-color:rgba(255,255,255,.13)}
-#day-hhn .ed-num{color:#8d7f86}
-#day-hhn .ed-t{background:#1a0f14;color:#fff;border:1px solid rgba(193,18,31,.5)}
-#day-hhn .ed-h{color:#fff}
-#day-hhn .ed-n{color:var(--hhn-dim)}
-#day-hhn .ed-shot,#day-hhn .ed-badge{border-color:rgba(255,255,255,.18)}
-/* a provisional time is marked in the chip itself, so it cannot be read as booked */
-#day-hhn .ed-t.prov{border-style:dashed;border-color:var(--hhn-purple-lt);color:#e9d5ff}
+/* ============ HALLOWEEN HORROR NIGHTS 35 — Oct 15 ============ */
+
+/* 1. house artwork in the standard thumbnail slot. The shared .ed-shot uses object-fit:cover,
+      right for a square-ish park photo and wrong for a 2800x1200 key art — cover would crop
+      the title lettering straight off. Contain on a dark plate keeps every logo intact
+      inside exactly the same 150x100 box the other days use. */
+#day-hhn .ed-shot{object-fit:contain;background:#140c10;padding:3px}
+/* Phone rows stack the thumbnail full width, same as every other day. The shared rule
+   fixes that stacked box at 200px tall, which suits a cover-cropped park photo; a 7:3
+   letterbox contained inside it leaves ~90px of empty plate above and below. Same
+   placement and same behaviour, just sized to the artwork. */
+@media(max-width:760px){#day-hhn .ed-shot{height:auto;aspect-ratio:7/3}}
+
+/* 2. a schedule-dependent showtime is marked in the chip itself, so it cannot be read as
+      booked. Same pill geometry as every other time. */
+#day-hhn .ed-t.prov{background:#2a1020;border:1px solid #7c3aed;color:#e9d5ff}
 #day-hhn .ed-t.prov::after{content:" · time TBC";opacity:.85;font-weight:400}
 
-#day-hhn .hhn{margin-top:clamp(30px,4.4vw,50px);border-top:3px solid var(--hhn-blood);padding-top:26px}
-#day-hhn .hhn-h{font-family:'Playfair Display',serif;font-weight:800;color:#fff;
-  font-size:clamp(23px,3.4vw,38px);line-height:1.06;margin:0 0 6px;letter-spacing:-.02em}
-#day-hhn .hhn-sub{font-family:'JetBrains Mono',monospace;font-size:clamp(9px,1vw,11px);
-  letter-spacing:.26em;text-transform:uppercase;color:#e9a2a8;margin:0 0 20px}
+/* the flexible-headliner note. Sits in the list flow but takes no sequence number — it is
+   guidance about the next three rows, not a step of its own. */
+.ed-flexnote{list-style:none;display:block;margin:4px 0 2px;padding:11px 14px;
+  border-left:3px solid var(--acc,#b1291a);background:rgba(177,41,26,.07);border-radius:0 8px 8px 0;
+  font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  font-size:clamp(13px,1.35vw,14.5px);line-height:1.55;color:#3c352d}
+.ed-flexnote b{font-weight:700}
 
-#day-hhn .hhn-badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0}
-#day-hhn .hhn-badges li{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;
+/* ---- supplemental: official artwork and downloads. A self-contained dark module BELOW
+        the schedule. Nothing in here inherits into the itinerary rows. ---- */
+#day-hhn .hhn{--hhn-blood:#8b0f14;--hhn-blood-lt:#c1121f;--hhn-purple-lt:#7c3aed;
+  --hhn-txt:#f6f2f4;--hhn-dim:#c3b6bd;
+  margin-top:clamp(30px,4.4vw,50px);border-radius:18px;overflow:hidden;
+  padding:clamp(20px,3vw,34px);color:var(--hhn-txt);
+  background:radial-gradient(60% 42% at 12% 0%,rgba(139,15,20,.34),transparent 62%),
+             radial-gradient(52% 40% at 88% 12%,rgba(59,17,80,.44),transparent 64%),
+             #0a0609;
+  border:1px solid rgba(255,255,255,.14)}
+#day-hhn .hhn-h{font-family:'Playfair Display',serif;font-weight:800;color:#fff;
+  font-size:clamp(21px,3vw,32px);line-height:1.08;margin:0 0 6px;letter-spacing:-.02em}
+#day-hhn .hhn-sub{font-family:'JetBrains Mono',monospace;font-size:clamp(9px,1vw,10.5px);
+  letter-spacing:.24em;text-transform:uppercase;color:#e9a2a8;margin:0 0 18px}
+
+#day-hhn .hhn-badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0}
+#day-hhn .hhn-badges li{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
   text-transform:uppercase;padding:7px 12px;border-radius:999px;color:#e7dde1;
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
 #day-hhn .hhn-badges .b-date{background:rgba(124,58,237,.20);border-color:rgba(124,58,237,.55);color:#e9d5ff}
 #day-hhn .hhn-badges .b-key{background:rgba(193,18,31,.22);border-color:rgba(193,18,31,.6);color:#ffd9dc}
 #day-hhn .hhn-badges .b-warn{background:rgba(251,191,36,.14);border-color:rgba(251,191,36,.5);color:#fde68a}
 
-#day-hhn .hhn-panel{border-radius:14px;padding:clamp(16px,2.2vw,24px);margin:0 0 18px;
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14)}
+#day-hhn .hhn-panel{border-radius:12px;padding:clamp(15px,2vw,22px);margin:0 0 16px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
 #day-hhn .hhn-panel h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(16px,1.9vw,21px);margin:0 0 10px}
+  font-size:clamp(15.5px,1.8vw,20px);margin:0 0 10px}
 #day-hhn .hhn-panel p,#day-hhn .hhn-panel li{font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
-  font-size:clamp(13.5px,1.4vw,15px);line-height:1.6;color:#ded2d8}
+  font-size:clamp(13px,1.35vw,14.5px);line-height:1.6;color:#ded2d8}
 #day-hhn .hhn-panel ul{margin:0;padding-left:20px;display:grid;gap:7px}
 #day-hhn .hhn-panel p+ul{margin-top:10px}
 #day-hhn .hhn-panel b{color:#fff}
-#day-hhn .hhn-warn{background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.42)}
+#day-hhn .hhn-warn{background:rgba(251,191,36,.10);border-color:rgba(251,191,36,.42)}
 #day-hhn .hhn-warn h5{color:#fde68a}
-#day-hhn .hhn-tix{background:rgba(193,18,31,.11);border-color:rgba(193,18,31,.45)}
+#day-hhn .hhn-tix{background:rgba(193,18,31,.13);border-color:rgba(193,18,31,.45)}
 #day-hhn .hhn-tix h5{color:#ffb3b9}
-#day-hhn .hhn-photo{background:rgba(59,17,80,.24);border-color:rgba(124,58,237,.42)}
+#day-hhn .hhn-photo{background:rgba(59,17,80,.30);border-color:rgba(124,58,237,.42)}
 #day-hhn .hhn-photo h5{color:#e9d5ff}
 
-#day-hhn .hhn-btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+#day-hhn .hhn-btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
 #day-hhn .hhn-btns a,#day-hhn .hhn-dl,#day-hhn .hhn-zip,#day-hhn .hhn-reset{
-  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
   font-weight:600;text-decoration:none;cursor:pointer;border-radius:9px;padding:10px 14px;
   display:inline-flex;align-items:center;justify-content:center;text-align:center;
   color:#ffe3e5;background:rgba(193,18,31,.24);border:1px solid rgba(193,18,31,.62);
   transition:background .18s,border-color .18s,transform .18s}
 #day-hhn .hhn-btns a:hover,#day-hhn .hhn-dl:hover,#day-hhn .hhn-zip:hover,#day-hhn .hhn-reset:hover{
   background:rgba(193,18,31,.4);transform:translateY(-1px)}
-/* focus must be visible on a near-black ground — a default outline disappears here */
 #day-hhn .hhn a:focus-visible,#day-hhn .hhn button:focus-visible,#day-hhn .hhn input:focus-visible{
   outline:3px solid #fbbf24;outline-offset:3px;border-radius:6px}
 
-#day-hhn .hhn-zones{margin:0 0 22px}
+#day-hhn .hhn-zones{margin:0 0 20px}
 #day-hhn .hhn-zones h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(16px,1.9vw,21px);margin:0 0 12px}
+  font-size:clamp(15.5px,1.8vw,20px);margin:0 0 12px}
 #day-hhn .hhn-zones ol{list-style:none;counter-reset:z;margin:0;padding:0;display:grid;gap:10px}
 @media(min-width:760px){#day-hhn .hhn-zones ol{grid-template-columns:repeat(2,1fr);column-gap:26px}}
 #day-hhn .hhn-zones li{counter-increment:z;display:grid;grid-template-columns:30px 1fr;gap:10px;
   padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.12)}
 #day-hhn .hhn-zones li::before{content:counter(z,decimal-leading-zero);
   font:700 12px/1.4 'JetBrains Mono',monospace;color:var(--hhn-blood-lt)}
-/* both must be pinned to column 2. The ::before counter takes column 1, <b> auto-places
-   into column 2, and then <span> wraps onto the next ROW and lands back in the 30px
-   counter column — which rendered every description one word per line. */
+/* both pinned to column 2 — a bare <span> auto-places onto the next row and lands back in
+   the 30px counter column, which renders the description one word per line */
 #day-hhn .hhn-zones li b{grid-column:2;font-family:'Playfair Display',serif;font-size:15.5px;
   color:#fff;display:block}
 #day-hhn .hhn-zones li span{grid-column:2;font-size:13.5px;color:var(--hhn-dim);display:block;
   margin-top:2px;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
-#day-hhn .hhn-note{font-size:13px;line-height:1.6;color:var(--hhn-dim);margin:12px 0 0;
+#day-hhn .hhn-note{font-size:12.5px;line-height:1.6;color:var(--hhn-dim);margin:12px 0 0;
   font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
 
-#day-hhn .hhn-gal-h{margin:26px 0 14px}
+#day-hhn .hhn-gal-h{margin:24px 0 14px}
 #day-hhn .hhn-gal-h h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(17px,2.1vw,23px);margin:0 0 12px}
+  font-size:clamp(16px,2vw,22px);margin:0 0 12px}
 #day-hhn .hhn-gal-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-#day-hhn .hhn-count{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;
+#day-hhn .hhn-count{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;
   text-transform:uppercase;color:#a7f3d0;background:rgba(52,211,153,.12);
   border:1px solid rgba(52,211,153,.4);border-radius:999px;padding:9px 14px;margin:0}
 #day-hhn .hhn-zip{background:rgba(124,58,237,.26);border-color:rgba(124,58,237,.62);color:#e9d5ff}
@@ -1323,22 +1330,20 @@ img, svg, video{ max-width: 100%; }
 #day-hhn .hhn-reset{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.24);color:#ded2d8}
 #day-hhn .hhn-reset:hover{background:rgba(255,255,255,.12)}
 
-#day-hhn .hhn-gal{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+#day-hhn .hhn-gal{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 @media(min-width:640px){#day-hhn .hhn-gal{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1100px){#day-hhn .hhn-gal{grid-template-columns:repeat(3,1fr)}}
 #day-hhn .hhn-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
-  border-radius:14px;overflow:hidden;display:flex;flex-direction:column;
+  border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
   transition:border-color .18s,transform .18s}
 #day-hhn .hhn-card:hover{border-color:rgba(193,18,31,.6);transform:translateY(-2px)}
-/* the artwork is a 7:3 letterbox; reserving the ratio stops the gallery jumping as the
-   ten lazy-loaded files arrive */
 #day-hhn .hhn-art{width:100%;height:auto;aspect-ratio:7/3;object-fit:cover;display:block;
   background:#140a0e;border-bottom:1px solid rgba(255,255,255,.12)}
-#day-hhn .hhn-card-b{padding:15px 15px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+#day-hhn .hhn-card-b{padding:14px 14px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
 #day-hhn .hhn-card-b h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:16.5px;line-height:1.25;margin:0}
+  font-size:16px;line-height:1.25;margin:0}
 #day-hhn .hhn-desc{font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
-  font-size:13.5px;line-height:1.55;color:var(--hhn-dim);margin:0}
+  font-size:13px;line-height:1.55;color:var(--hhn-dim);margin:0}
 #day-hhn .hhn-meta{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;
   font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;font-size:12.5px}
 #day-hhn .hhn-meta dt{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
@@ -1350,13 +1355,14 @@ img, svg, video{ max-width: 100%; }
   color:#cfc2c8}
 #day-hhn .hhn-chk{width:17px;height:17px;accent-color:var(--hhn-blood-lt);cursor:pointer;flex:none}
 #day-hhn .hhn-dl{width:100%}
-#day-hhn .hhn-src{font-size:11.5px;line-height:1.6;color:#9c8f95;margin:20px 0 0;
+#day-hhn .hhn-src{font-size:11.5px;line-height:1.6;color:#9c8f95;margin:18px 0 0;
   font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
 
-@media print{#day-hhn .ed-spread{background:#fff;color:#111}
+@media print{#day-hhn .hhn{background:#fff;color:#111;border-color:#ccc}
   #day-hhn .hhn-btns,#day-hhn .hhn-dl,#day-hhn .hhn-zip,#day-hhn .hhn-reset{display:none}}
 @media (prefers-reduced-motion: reduce){
-  #day-hhn *,#day-hhn *::before,#day-hhn *::after{animation:none !important;transition:none !important}
+  #day-hhn .hhn *,#day-hhn .hhn *::before,#day-hhn .hhn *::after{
+    animation:none !important;transition:none !important}
   #day-hhn .hhn-card:hover{transform:none}
 }
 
@@ -2514,30 +2520,42 @@ button.expd-day:focus-visible{
           <span class="ed-n">Wristband verification has to be done before the early houses open. Take the main Universal Studios / HHN entrance photo while the light is still good.</span>
         </span>
         
-      </li><h3 class="ed-sec">EARLY ACCESS · STANDBY WHILE IT IS QUIET</h3><li class="ed-ev">
+      </li><h3 class="ed-sec">EARLY ACCESS · STANDBY WHILE IT IS QUIET</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
           <span class="ed-t">2:00PM</span>
           <span class="ed-h">House 1 — Stranger Things 5</span>
           <span class="ed-n">Standby while waits are low. Save the one-time Express entry for a night repeat. Marquee photo before you go in.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/04-stranger-things-5.jpg?v=2026081003" alt="House 1 — Stranger Things 5"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
           <span class="ed-t">2:35PM</span>
           <span class="ed-h">House 2 — Hellraiser</span>
           <span class="ed-n">Standby if the wait is still reasonable. Photograph the Pinhead entrance artwork.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/03-hellraiser.jpg?v=2026081003" alt="House 2 — Hellraiser"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
           <span class="ed-t">3:10PM</span>
           <span class="ed-h">House 3 — Jack &amp; Oddfellow: Chaos &amp; Control</span>
           <span class="ed-n">Standby. Marquee photo. More Jack and Oddfellow photo setups may appear in the Infernal Carnival area.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/06-jack-oddfellow-chaos-control.jpg?v=2026081003" alt="House 3 — Jack &amp; Oddfellow: Chaos &amp; Control"
+          loading="lazy" decoding="async" width="150" height="100">
         
+      </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-body">
@@ -2546,30 +2564,42 @@ button.expd-day:focus-visible{
           <span class="ed-n">Check the app for the next early-opening house. Drink water. Do not eat anything heavy — you have nine hours left.</span>
         </span>
         
-      </li><li class="ed-ev">
+      </li><li class="ed-flexnote">Recommended order shown. Reorder these three based on which queues open first and the live waits in the Universal app.</li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
-          <span class="ed-h">House 4 — Sinners or Ozzy Osbourne</span>
-          <span class="ed-n">Whichever opens first. Standby if under ~30 min, otherwise use the app to pick the lowest posted wait.</span>
+          <span class="ed-h">House 4 — Sinners</span>
+          <span class="ed-n">Standby if under ~30 min, otherwise use the app to pick whichever of these three has the lowest posted wait.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/05-sinners.jpg?v=2026081003" alt="House 4 — Sinners"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">11</span>
         <span class="ed-body">
           <span class="ed-t">4:45PM</span>
-          <span class="ed-h">House 5 — the other headliner</span>
-          <span class="ed-n">Sinners, Ozzy Osbourne or Evil Dead Burn — whichever of the three is open and shortest. Keep this slot flexible.</span>
+          <span class="ed-h">House 5 — Ozzy Osbourne: Prince of Darkness</span>
+          <span class="ed-n">Take whichever of the three opened first. Keep this slot flexible.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/01-ozzy-osbourne-prince-of-darkness.jpg?v=2026081003" alt="House 5 — Ozzy Osbourne: Prince of Darkness"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
-          <span class="ed-h">House 6 — Evil Dead Burn or the remaining headliner</span>
+          <span class="ed-h">House 6 — Evil Dead Burn</span>
           <span class="ed-n">Start using HHN Express here if standby has climbed past ~30–40 min.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/02-evil-dead-burn.jpg?v=2026081003" alt="House 6 — Evil Dead Burn"
+          loading="lazy" decoding="async" width="150" height="100">
         
+      </span>
       </li><h3 class="ed-sec">EVENT NIGHT · EXPRESS FROM HERE</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-body">
@@ -2578,22 +2608,30 @@ button.expd-day:focus-visible{
           <span class="ed-n">An HHN food booth or quick service — not a table-service meal. Shoot the scare-zone scenery as it switches to night lighting.</span>
         </span>
         
-      </li><li class="ed-ev">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
           <span class="ed-t">6:45PM</span>
           <span class="ed-h">House 7 — H.R. Bloodengutz Presents</span>
           <span class="ed-n">HHN Express. Photograph the WKNB television-style artwork.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/10-hr-bloodengutz-fright-tacular.jpg?v=2026081003" alt="House 7 — H.R. Bloodengutz Presents"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-body">
           <span class="ed-t">7:30PM</span>
           <span class="ed-h">House 8 — Cybergoria</span>
           <span class="ed-n">HHN Express. Photograph the metallic cybernetic artwork.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/07-cybergoria.jpg?v=2026081003" alt="House 8 — Cybergoria"
+          loading="lazy" decoding="async" width="150" height="100">
         
+      </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-body">
@@ -2610,22 +2648,30 @@ button.expd-day:focus-visible{
           <span class="ed-n">Time is provisional. Pick an actual performance in the Universal Orlando app on Oct 15 — Universal has not published the Oct 15 showtimes.</span>
         </span>
         
-      </li><li class="ed-ev">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-body">
           <span class="ed-t">9:30PM</span>
           <span class="ed-h">House 9 — MADLANDS: Caged Cannibals</span>
           <span class="ed-n">HHN Express. Photograph the graffiti / abandoned-zoo artwork.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/09-madlands-caged-cannibals.jpg?v=2026081003" alt="House 9 — MADLANDS: Caged Cannibals"
+          loading="lazy" decoding="async" width="150" height="100">
         
-      </li><li class="ed-ev">
+      </span>
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">19</span>
         <span class="ed-body">
           <span class="ed-t">10:15PM</span>
           <span class="ed-h">House 10 — INVASION: Alien Abduction</span>
           <span class="ed-n">HHN Express. Photograph the alien-abduction / UFO artwork. That is all ten.</span>
         </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/08-invasion-alien-abduction.jpg?v=2026081003" alt="House 10 — INVASION: Alien Abduction"
+          loading="lazy" decoding="async" width="150" height="100">
         
+      </span>
       </li><h3 class="ed-sec">LATE NIGHT · REPEATS AND OUT</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-body">
@@ -2712,7 +2758,9 @@ button.expd-day:focus-visible{
         </div>
 
         <div class="hhn-gal-h">
-          <h5>All 10 houses &mdash; official artwork</h5>
+          <h5>Official House Artwork &amp; Downloads</h5>
+          <p class="hhn-note" style="margin:0 0 12px">Full-resolution copies of all ten. Each house
+             also carries its artwork beside its own row in the schedule above.</p>
           <div class="hhn-gal-tools">
             <p class="hhn-count" id="hhn-count" role="status" aria-live="polite">0 of 10 houses completed</p>
             <a class="hhn-zip" href="assets/hhn-2026/Halloween-Horror-Nights-35-Official-House-Artwork.zip" download>Download all 10 house images (.ZIP)</a>
