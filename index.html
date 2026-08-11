@@ -1291,7 +1291,7 @@ img, svg, video{ max-width: 100%; }
      - the chapters were pinned to their own --ed-w of 1180px.
    Everything visible now resolves to the same box: calc(100% - 28px), capped at 1280,
    centred — which is what the ticker and countdown already used. */
-#flights,#cast,#alarms,#parkmaps{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
+#flights,#cast,#alarms,#homebase{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
   margin-right:auto;padding-left:0;padding-right:0}
 .expd-inline{--ed-w:1280px}
 .ed-day{width:calc(100% - 28px)}
@@ -1458,6 +1458,27 @@ function charFallback(img){
     </div>
   </div>
   
+</section>
+
+<!-- Pop Century has no park chapter to live in, so the resort sheet sits with the
+     arrival logistics instead - flights in, then where you are sleeping all week. -->
+<section id="homebase" aria-label="Home base resort map">
+  <div class="center-grid" style="grid-template-columns:1fr">
+    <div class="center-card">
+      <div class="ce">🏨 Home base · Oct 11–17</div>
+      <div class="ch">Disney's <b>Pop Century</b> · Artemio, Sandra &amp; Annelise</div>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/pop-century.jpg?v=2026081105"
+          style="--pos:center top" title="Open the Pop Century resort map">
+          <img loading="lazy" decoding="async" width="3000" height="3883"
+            src="sections/assets/maps/pop-century.jpg?v=2026081105"
+            alt="Disney's Pop Century Resort map showing the decade sections, bus depot and Skyliner station">
+        </a>
+        <figcaption><b>Pop Century resort map.</b> Decade sections, food court, bus depot and the
+          Skyliner station. Skyliner runs to Hollywood Studios and EPCOT; Magic Kingdom is bus only.</figcaption>
+      </figure>
+    </div>
+  </div>
 </section>
 
 <section class="weather-banner" id="weather" aria-label="Orlando 7-day weather forecast">
@@ -1771,212 +1792,156 @@ button.expd-day:focus-visible{
 <div class="expd-inline" id="expedition">
 
 <style id="parkmaps-css">
-/* ── Park maps ──────────────────────────────────────────────────────────────
-   One card per park day, in trip order. The map itself is an OpenStreetMap
-   embed rather than a screenshot of Disney's or Universal's own map art:
-   it pans and zooms on a phone, needs no API key, and OSM has both resorts
-   mapped down to individual attractions. Bounding boxes came from Nominatim,
-   so each frame opens already framed on that park rather than on Orlando.  */
-#parkmaps{margin-top:var(--stack-gap)}
-.pm-head{margin-bottom:16px}
-.pm-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;
-  letter-spacing:.34em;text-transform:uppercase;color:#fde68a;font-weight:600}
-.pm-eyebrow .liv{width:7px;height:7px;border-radius:50%;background:#fbbf24;
-  box-shadow:0 0 10px #fbbf24;animation:blink 1.6s infinite}
-.pm-title{margin-top:10px;font-size:clamp(22px,2.4vw,30px);font-weight:200;
-  letter-spacing:-.02em;line-height:1.05;color:#fff}
-.pm-title b{font-weight:600}
-.pm-note{margin-top:8px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:300;max-width:70ch}
+/* ── In-chapter guidemap ────────────────────────────────────────────────────
+   The map lives inside the park's own chapter, directly above that day's stop
+   list, so the numbers on the sheet and the numbers in the plan are read
+   together. Styled to the cream editorial spread, not the dark logistics
+   cards at the top of the page. */
+.ed-map{margin:0 0 26px}
+.ed-map-link{position:relative;display:block;height:clamp(190px,22vw,300px);
+  overflow:hidden;border:1px solid #ddd6c9;border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.10);background:#e9e3d6}
+.ed-map-link img{width:100%;height:100%;display:block;object-fit:cover;
+  object-position:var(--pos,left center);transition:transform .35s ease}
+.ed-map-link:hover img{transform:scale(1.03)}
+/* the sheet is mostly 6pt type at thumbnail size, so the affordance has to be
+   explicit - people do not intuitively tap a picture of a map */
+.ed-map-link::after{content:"⤢ Tap for the full sheet";position:absolute;right:10px;bottom:10px;
+  padding:6px 11px;border-radius:999px;background:rgba(23,19,16,.86);color:#f4efe4;
+  font:600 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.12em;
+  text-transform:uppercase;pointer-events:none}
+.ed-map figcaption{margin-top:9px;font-size:11.5px;line-height:1.5;color:#6f6557;
+  letter-spacing:.04em}
+.ed-map figcaption b{color:#171310;font-weight:600}
+#homebase{margin-top:var(--stack-gap)}
+#homebase .center-card{padding:16px 18px}
+#homebase .ed-map{margin:12px 0 0}
+#homebase .ed-map-link{border-color:rgba(255,255,255,.14);background:#0b0e17}
+#homebase figcaption{color:var(--muted)}
+@media(max-width:760px){ .ed-map-link{height:200px} }
 
-/* 350 is picked, not guessed. At 300 the five parks land 4+1 over the 1280 box and
-   strand the last card on its own row; at 360 a 768 tablet drops to one 725px card
-   with a letterboxed map. 350 holds 3+2 at 1280 (1296/366 = 3) and still fits two
-   tracks at 768 (741/366 = 2). */
-.pm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:16px}
-.pm-card{position:relative;display:flex;flex-direction:column;
-  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),rgba(8,10,18,.55);
-  border:1px solid var(--line);border-radius:20px;overflow:hidden;
-  backdrop-filter:blur(22px) saturate(160%);
-  box-shadow:0 22px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.10)}
-/* the accent is the same per-park colour the day article already uses, so the
-   map card and its chapter downpage read as the same thing */
-.pm-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--acc),transparent 85%)}
-.pm-card-in{padding:16px 18px 12px}
-.pm-when{display:inline-block;font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.06em;
-  color:#fff;background:var(--acc);padding:5px 10px;border-radius:6px;
-  font-variant-numeric:tabular-nums}
-.pm-park{margin-top:10px;font-family:'Playfair Display',serif;font-weight:700;
-  font-size:20px;line-height:1.15;letter-spacing:-.015em;color:#fff}
-.pm-stops{margin-top:3px;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
-
-/* The thumbnail crops to the illustrated half of the guidemap - on every one of these
-   the park art sits left and the numbered listing runs down the right, so a left crop
-   previews something recognisable instead of a wall of 6pt type. Tap opens the full
-   3000px scan, which is where the numbers and the legend are actually readable. */
-.pm-frame{position:relative;display:block;margin:12px 0 0;height:200px;background:#0b0e17;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
-.pm-shot{width:100%;height:100%;display:block;object-fit:cover;
-  object-position:var(--pos,left center)}
-.pm-frame::after{content:"⤢ Tap for full map";position:absolute;right:8px;bottom:8px;
-  padding:5px 9px;border-radius:999px;background:rgba(8,10,18,.82);color:#fde68a;
-  border:1px solid rgba(251,191,36,.45);font-size:9.5px;letter-spacing:.1em;
-  text-transform:uppercase;font-weight:600;pointer-events:none}
-.pm-frame:hover .pm-shot{transform:scale(1.03)}
-.pm-shot{transition:transform .3s ease}
-.pm-acts{display:flex;gap:8px;padding:12px 18px 16px;flex-wrap:wrap}
-.pm-btn{flex:1 1 auto;text-align:center;display:inline-flex;align-items:center;
-  justify-content:center;gap:6px;padding:9px 12px;border-radius:999px;
-  background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.45);color:#fde68a;
-  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
-  font-weight:600;transition:all .2s;white-space:nowrap}
-.pm-btn:hover{background:rgba(251,191,36,.22);transform:translateY(-1px)}
-.pm-btn.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
-.pm-btn.ghost:hover{background:rgba(255,255,255,.06);color:#fff}
-
-@media(max-width:760px){
-  .pm-grid{grid-template-columns:1fr;gap:14px}
-  .pm-frame{height:240px}
-  .pm-acts{padding:12px 14px 14px}
-  .pm-btn{flex:1 1 100%}
-}
+/* ── Map viewer/* ── Map viewer ─────────────────────────────────────────────────────────────
+   Opening the raw .jpg in a new tab left no way back - a new tab has no
+   history, so the back arrow is dead and closing the tab is the only exit.
+   This keeps the map on the page instead. The anchors still carry their real
+   href, so with JS off they simply navigate, and because there is no longer a
+   target the back button works in that case too. */
+.pmv{position:fixed;inset:0;z-index:9999;display:none;background:rgba(4,6,12,.96);
+  backdrop-filter:blur(6px)}
+.pmv.open{display:block}
+.pmv-scroll{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;
+  display:flex;align-items:center;justify-content:center;padding:12px}
+.pmv-img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+  border-radius:6px;cursor:zoom-in}
+/* actual-size mode: drop the caps so the scroller takes over and the sheet can be
+   panned around at full resolution */
+.pmv.zoomed .pmv-scroll{display:block}
+.pmv.zoomed .pmv-img{max-width:none;max-height:none;width:var(--natural,3000px);
+  cursor:zoom-out;border-radius:0}
+.pmv-bar{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;
+  gap:10px;padding:10px 12px;background:linear-gradient(180deg,rgba(4,6,12,.92),transparent)}
+.pmv-title{flex:1;min-width:0;color:#fff;font-size:12.5px;letter-spacing:.06em;
+  font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmv-btn{flex:none;min-width:44px;height:38px;padding:0 12px;border-radius:999px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;
+  font:600 11px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;
+  justify-content:center;gap:6px}
+.pmv-btn:hover{background:rgba(255,255,255,.18)}
+.pmv-btn.close{background:rgba(251,191,36,.16);border-color:rgba(251,191,36,.5);color:#fde68a;
+  font-size:17px;letter-spacing:0}
+.pmv-hint{position:absolute;left:0;right:0;bottom:10px;text-align:center;color:#9aa3b8;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;pointer-events:none}
+body.pmv-lock{overflow:hidden}
+@media(max-width:760px){ .pmv-hint{display:none} .pmv-title{font-size:11px} }
 @media (prefers-reduced-motion: reduce){
   .pm-eyebrow .liv{animation:none}
   .pm-btn:hover{transform:none}
 }
 </style>
 
-<section id="parkmaps" aria-label="Park maps for each day of the trip">
-  <div class="pm-head">
-    <div class="pm-eyebrow"><span class="liv"></span>🗺️ Park Maps</div>
-    <div class="pm-title">Where you'll <b>be each day</b></div>
-    <p class="pm-note">The official guidemaps handed out at the gate — numbered attractions by land,
-      dining, height minimums and the full legend. Tap any map to open it full size; they are scanned
-      at 3000px so the numbers stay readable when you pinch-zoom. Directions open in Google Maps, and
-      the official page carries live wait times.</p>
+
+<div class="pmv" id="mapViewer" role="dialog" aria-modal="true" aria-label="Park map viewer" hidden>
+  <div class="pmv-scroll" id="pmvScroll">
+    <img class="pmv-img" id="pmvImg" alt="">
   </div>
-
-  <div class="pm-grid">
-
-    <article class="pm-card" style="--acc:#2f7d4f">
-      <div class="pm-card-in">
-        <span class="pm-when">Mon · Oct 12</span>
-        <h3 class="pm-park">Animal Kingdom</h3>
-        <div class="pm-stops">9 stops planned</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/ak.jpg?v=2026081104" target="_blank" rel="noopener"
-        style="--pos:left center" title="Open the full-size AK guidemap">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
-          src="sections/assets/maps/ak.jpg?v=2026081104" alt="Disney's Animal Kingdom guidemap - illustrated park map with numbered attractions and legend">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3607674,-81.5914841">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://disneyworld.disney.go.com/destinations/animal-kingdom/">Official page</a>
-      </div>
-    </article>
-
-    <article class="pm-card" style="--acc:#b1521a">
-      <div class="pm-card-in">
-        <span class="pm-when">Tue · Oct 13</span>
-        <h3 class="pm-park">Hollywood Studios</h3>
-        <div class="pm-stops">13 stops planned</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/hs.jpg?v=2026081104" target="_blank" rel="noopener"
-        style="--pos:left center" title="Open the full-size HS guidemap">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
-          src="sections/assets/maps/hs.jpg?v=2026081104" alt="Disney's Hollywood Studios guidemap - illustrated park map with numbered attractions and legend">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3572521,-81.5606175">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://disneyworld.disney.go.com/destinations/hollywood-studios/">Official page</a>
-      </div>
-    </article>
-
-    <article class="pm-card" style="--acc:#a3316b">
-      <div class="pm-card-in">
-        <span class="pm-when">Wed · Oct 14</span>
-        <h3 class="pm-park">Magic Kingdom</h3>
-        <div class="pm-stops">23 stops planned · Bibbidi Bobbidi Boutique</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/mk.jpg?v=2026081104" target="_blank" rel="noopener"
-        style="--pos:left center" title="Open the full-size MK guidemap">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
-          src="sections/assets/maps/mk.jpg?v=2026081104" alt="Magic Kingdom guidemap - illustrated park map with numbered attractions and legend">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4190753,-81.5817158">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://disneyworld.disney.go.com/destinations/magic-kingdom/">Official page</a>
-      </div>
-    </article>
-
-    <article class="pm-card" style="--acc:#b1291a">
-      <div class="pm-card-in">
-        <span class="pm-when">Thu · Oct 15</span>
-        <h3 class="pm-park">HHN 35 · Universal Studios Florida</h3>
-        <div class="pm-stops">22 stops planned</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/usf.jpg?v=2026081104" target="_blank" rel="noopener"
-        style="--pos:left center" title="Open the full-size USF guidemap">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
-          src="sections/assets/maps/usf.jpg?v=2026081104" alt="Universal Studios Florida guidemap - illustrated park map with numbered attractions and legend">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4772482,-81.4697068">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://www.universalorlando.com/web/en/us/events/halloween-horror-nights">Official page</a>
-      </div>
-    </article>
-
-    <article class="pm-card" style="--acc:#5b3a9e">
-      <div class="pm-card-in">
-        <span class="pm-when">Fri · Oct 16</span>
-        <h3 class="pm-park">Epic Universe</h3>
-        <div class="pm-stops">18 stops planned</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/eu.jpg?v=2026081104" target="_blank" rel="noopener"
-        style="--pos:left center" title="Open the full-size EU guidemap">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="1400"
-          src="sections/assets/maps/eu.jpg?v=2026081104" alt="Universal Epic Universe guidemap - illustrated park map with numbered attractions and legend">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4437046,-81.4477664">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://www.universalorlando.com/web/en/us/things-to-do/parks/epic-universe">Official page</a>
-      </div>
-    </article>
-
-    <!-- Home base rather than a park day, so it carries the gold accent the rest of the
-         page uses for logistics instead of one of the five park colours. -->
-    <article class="pm-card" style="--acc:#fbbf24">
-      <div class="pm-card-in">
-        <span class="pm-when" style="color:#171310">Oct 11–17 · Home base</span>
-        <h3 class="pm-park">Disney's Pop Century</h3>
-        <div class="pm-stops">Artemio · Sandra · Annelise — Skyliner + bus depot</div>
-      </div>
-      <a class="pm-frame" href="sections/assets/maps/pop-century.jpg?v=2026081104" target="_blank"
-        rel="noopener" style="--pos:center top" title="Open the full-size Pop Century resort map">
-        <img class="pm-shot" loading="lazy" decoding="async" width="3000" height="3883"
-          src="sections/assets/maps/pop-century.jpg?v=2026081104"
-          alt="Disney's Pop Century Resort map showing the decade sections, bus depot and Skyliner station">
-      </a>
-      <div class="pm-acts">
-        <a class="pm-btn" target="_blank" rel="noopener"
-          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3556,-81.5439">Directions</a>
-        <a class="pm-btn ghost" target="_blank" rel="noopener"
-          href="https://disneyworld.disney.go.com/resorts/pop-century-resort/">Official page</a>
-      </div>
-    </article>
-
+  <div class="pmv-bar">
+    <span class="pmv-title" id="pmvTitle"></span>
+    <button class="pmv-btn" id="pmvZoom" type="button">Actual size</button>
+    <button class="pmv-btn close" id="pmvClose" type="button" aria-label="Close map">&#10005;</button>
   </div>
-</section>
+  <div class="pmv-hint">Esc or click the backdrop to close</div>
+</div>
+
+<script>
+/* Map viewer. The cards' anchors keep a real href to the .jpg, so this is pure
+   enhancement - if the script never runs the links still work, and since they no
+   longer open a new tab the back button gets you home. */
+(function(){
+  var v=document.getElementById('mapViewer'), img=document.getElementById('pmvImg'),
+      title=document.getElementById('pmvTitle'), zoomBtn=document.getElementById('pmvZoom'),
+      scroll=document.getElementById('pmvScroll'), lastFocus=null;
+  if(!v) return;
+
+  function open(href, label, alt){
+    lastFocus=document.activeElement;
+    img.src=href; img.alt=alt||label||'Park map';
+    title.textContent=label||'Park map';
+    v.hidden=false; v.classList.add('open'); v.classList.remove('zoomed');
+    zoomBtn.textContent='Actual size';
+    document.body.classList.add('pmv-lock');
+    document.getElementById('pmvClose').focus();
+  }
+  function close(){
+    v.classList.remove('open','zoomed'); v.hidden=true;
+    document.body.classList.remove('pmv-lock');
+    /* drop the decoded bitmap - six 3000px sheets held at once is real memory on a phone */
+    img.removeAttribute('src');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function toggleZoom(){
+    var z=v.classList.toggle('zoomed');
+    zoomBtn.textContent = z ? 'Fit to screen' : 'Actual size';
+    if(z){
+      /* centre the scroller on the middle of the sheet rather than dumping the
+         viewer in the top-left corner of an 8-foot-wide map */
+      img.style.setProperty('--natural', (img.naturalWidth||3000)+'px');
+      requestAnimationFrame(function(){
+        scroll.scrollLeft=(scroll.scrollWidth-scroll.clientWidth)/2;
+        scroll.scrollTop=(scroll.scrollHeight-scroll.clientHeight)/2;
+      });
+    } else { scroll.scrollTop=0; scroll.scrollLeft=0; }
+  }
+
+  document.addEventListener('click', function(e){
+    var a=e.target.closest && e.target.closest('a.ed-map-link');
+    if(a){
+      e.preventDefault();
+      /* Label comes from the figcaption's own bold lead-in, which already names the
+         sheet, and the chapter's date line when there is one. Reading it off the
+         markup means the caption and the viewer title can never drift apart. */
+      var fig=a.closest('figure.ed-map'),
+          lead=fig?fig.querySelector('figcaption b'):null,
+          day=a.closest('article.ed-day'),
+          dek=day?day.querySelector('.ed-dek span'):null,
+          im=a.querySelector('img'),
+          label=(lead?lead.textContent.replace(/\.$/,''):'Park map');
+      if(dek) label += ' · ' + dek.textContent.replace(/^Date/,'').trim();
+      open(a.getAttribute('href'), label, im?im.alt:'');
+      return;
+    }
+    if(e.target===v || e.target===scroll) close();
+  });
+  document.getElementById('pmvClose').addEventListener('click', close);
+  zoomBtn.addEventListener('click', toggleZoom);
+  img.addEventListener('click', function(e){ e.stopPropagation(); toggleZoom(); });
+  document.addEventListener('keydown', function(e){
+    if(!v.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='z' || e.key==='Z') toggleZoom();
+  });
+})();
+</script>
 
 <article class="ed-day" id="day-ak" style="--acc:#2f7d4f;--cover-pos:50% 30%">
   <header class="ed-cover" style="background-image:url('sections/assets/ak-bg.jpg?v=2026081003')">
@@ -1994,6 +1959,14 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Park close — Pandora at dusk
         <cite>7:45PM &middot; the moment the day turns on</cite>
       </blockquote>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/ak.jpg?v=2026081105" style="--pos:left center"
+          title="Open the Animal Kingdom guidemap">
+          <img loading="lazy" decoding="async" width="3000" height="1368"
+            src="sections/assets/maps/ak.jpg?v=2026081105" alt="Disney's Animal Kingdom guidemap — illustrated park map with numbered attractions, dining and legend">
+        </a>
+        <figcaption><b>Animal Kingdom guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
+      </figure>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
@@ -2122,6 +2095,14 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Galaxy's Edge after dark
         <cite>8:30PM &middot; the moment the day turns on</cite>
       </blockquote>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/hs.jpg?v=2026081105" style="--pos:left center"
+          title="Open the Hollywood Studios guidemap">
+          <img loading="lazy" decoding="async" width="3000" height="1367"
+            src="sections/assets/maps/hs.jpg?v=2026081105" alt="Disney's Hollywood Studios guidemap — illustrated park map with numbered attractions, dining and legend">
+        </a>
+        <figcaption><b>Hollywood Studios guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
+      </figure>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
@@ -2303,6 +2284,14 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>THE CASTLE REVEAL
         <cite>10:00AM &middot; the moment the day turns on</cite>
       </blockquote>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/mk.jpg?v=2026081105" style="--pos:left center"
+          title="Open the Magic Kingdom guidemap">
+          <img loading="lazy" decoding="async" width="3000" height="1367"
+            src="sections/assets/maps/mk.jpg?v=2026081105" alt="Magic Kingdom guidemap — illustrated park map with numbered attractions, dining and legend">
+        </a>
+        <figcaption><b>Magic Kingdom guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. Tiana’s is drawn as &ldquo;coming 2024&rdquo; and Rivers of America still appears &mdash; every stop on this day is on the sheet.</figcaption>
+      </figure>
       <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
@@ -2587,6 +2576,14 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>House 1 — Stranger Things 5
         <cite>2:00PM &middot; the moment the day turns on</cite>
       </blockquote>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/usf.jpg?v=2026081105" style="--pos:left center"
+          title="Open the Universal Studios Florida guidemap">
+          <img loading="lazy" decoding="async" width="3000" height="1942"
+            src="sections/assets/maps/usf.jpg?v=2026081105" alt="Universal Studios Florida guidemap — illustrated park map with numbered attractions, dining and legend">
+        </a>
+        <figcaption><b>Universal Studios Florida guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. Base park sheet. The HHN house and scare-zone layout changes yearly and only lives in the app.</figcaption>
+      </figure>
       <ol class="ed-list"><h3 class="ed-sec">DAYTIME · GETTING THERE</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
@@ -2829,6 +2826,14 @@ button.expd-day:focus-visible{
         <span class="ed-qm">&ldquo;</span>Stardust Show — Celestial Park
         <cite>8:30PM &middot; the moment the day turns on</cite>
       </blockquote>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/eu.jpg?v=2026081105" style="--pos:left center"
+          title="Open the Epic Universe guidemap">
+          <img loading="lazy" decoding="async" width="3000" height="1942"
+            src="sections/assets/maps/eu.jpg?v=2026081105" alt="Universal Epic Universe guidemap — illustrated park map with numbered attractions, dining and legend">
+        </a>
+        <figcaption><b>Epic Universe guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
+      </figure>
       <ol class="ed-list"><h3 class="ed-sec">PREP &amp; MORNING · AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
