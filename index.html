@@ -1219,6 +1219,30 @@ img, svg, video{ max-width: 100%; }
   .cdh-foot i{display:none}
 }
 @media (prefers-reduced-motion: reduce){.cdh *{animation:none !important;transition:none !important}}
+
+/* ---- top-of-page rhythm ----
+   Measured before touching anything: ticker 46, countdown 177, flights 108, weather 172,
+   with gaps of 14 / 22 / 90px. The 90 was #flights' own margin-bottom, left over from when
+   the section still carried a footnote and three status buttons under each card.
+
+   Every gap is now the same single value. Heights: the countdown and the forecast were
+   already within 5px of each other, so flights is brought up to meet them rather than the
+   other two being dragged down to 108. The card centres its content vertically instead of
+   growing padding, so the route line stays optically centred at every width. */
+:root{--stack-gap:22px}
+#ticker{margin-top:var(--stack-gap) !important}
+.cd-wrap{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
+#flights{margin-top:var(--stack-gap) !important;margin-bottom:0 !important}
+.weather-banner{margin-top:var(--stack-gap) !important}
+/* 13.8vw tracks the countdown's own 4.3vw numerals, so the two stay level as the window
+   changes rather than matching at exactly one width */
+#flights .center-card{min-height:clamp(118px,13.8vw,180px);
+  display:flex;flex-direction:column;justify-content:center}
+@media(max-width:760px){
+  /* stacked on a phone the two cards would each be 175px and the pair would tower over
+     everything else — let them size to their content there */
+  #flights .center-card{min-height:0;display:block}
+}
 </style>
 
 <script>
