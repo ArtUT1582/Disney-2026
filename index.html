@@ -1463,10 +1463,14 @@ function charFallback(img){
 <!-- Pop Century has no park chapter to live in, so the resort sheet sits with the
      arrival logistics instead - flights in, then where you are sleeping all week. -->
 <section id="homebase" aria-label="Home base resort map">
-  <div class="center-grid" style="grid-template-columns:1fr">
+  <!-- The party is split across two resorts. They sit side by side here because
+       they sit side by side in real life - Pop Century and Art of Animation face
+       each other across Hourglass Lake and share one Skyliner station. -->
+  <div class="center-grid">
     <div class="center-card">
       <div class="ce">🏨 Home base · Oct 11–17</div>
       <div class="ch">Disney's <b>Pop Century</b> · Artemio, Sandra &amp; Annelise</div>
+      <div class="fl-meta" style="text-align:left;margin-top:6px">3 of 12 · Artemio · Sandra · Annelise</div>
       <figure class="ed-map">
         <a class="ed-map-link" href="sections/assets/maps/pop-century.jpg?v=2026081105"
           style="--pos:center top" title="Open the Pop Century resort map">
@@ -1476,6 +1480,27 @@ function charFallback(img){
         </a>
         <figcaption><b>Pop Century resort map.</b> Decade sections, food court, bus depot and the
           Skyliner station. Skyliner runs to Hollywood Studios and EPCOT; Magic Kingdom is bus only.</figcaption>
+      </figure>
+    </div>
+    <div class="center-card">
+      <div class="ce">🎨 Home base · Oct 11–17</div>
+      <div class="ch">Disney's <b>Art of Animation</b> · the other nine</div>
+      <div class="fl-meta" style="text-align:left;margin-top:6px">9 of 12 · Abui Temo · Abui · Danny · Valeria · Isabella · John · Martha · Victoria · Valentina</div>
+      <figure class="ed-map">
+        <a class="ed-map-link" href="sections/assets/maps/art-of-animation.jpg?v=2026081106"
+          style="--pos:center top" title="Open the Art of Animation resort map">
+          <img loading="lazy" decoding="async" width="3000" height="3883"
+            src="sections/assets/maps/art-of-animation.jpg?v=2026081106"
+            alt="Disney's Art of Animation Resort map showing the Little Mermaid, Lion King, Finding Nemo and Cars wings, Animation Hall and the bus stops">
+        </a>
+        <figcaption><b>Art of Animation resort map.</b> Four themed wings — Little Mermaid, Lion King,
+          Finding Nemo and Cars — with Animation Hall for check-in, the Landscape of Flavors food court
+          and the Big Blue Pool. <b>A footbridge over Hourglass Lake connects the two resorts</b>, so both
+          halves of the family can walk to each other in a few minutes rather than waiting on a bus.
+          Art of Animation shares the Pop Century Skyliner station: Hollywood Studios and EPCOT by
+          Skyliner, Magic Kingdom by bus. <i>This is an older printed sheet, so it predates the
+          Skyliner and still shows Magical Express, which ended in 2022 — the building numbers,
+          wings and walkways are unchanged.</i></figcaption>
       </figure>
     </div>
   </div>
@@ -1813,6 +1838,13 @@ button.expd-day:focus-visible{
 .ed-map figcaption{margin-top:9px;font-size:11.5px;line-height:1.5;color:#6f6557;
   letter-spacing:.04em}
 .ed-map figcaption b{color:#171310;font-weight:600}
+/* The caption above is tuned for the cream park chapters, where a near-black bold run
+   is correct. The home-base cards are dark glass, so the same rule rendered the bold
+   lead-in invisible - "Pop Century resort map." simply vanished and left the sentence
+   starting on a dangling comma. Re-light the caption inside #homebase only. */
+#homebase .ed-map figcaption{color:#cbd5e1}
+#homebase .ed-map figcaption b{color:#fff}
+#homebase .ed-map figcaption i{color:#9aa3b8}
 #homebase{margin-top:var(--stack-gap)}
 #homebase .center-card{padding:16px 18px}
 #homebase .ed-map{margin:12px 0 0}
