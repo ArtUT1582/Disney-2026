@@ -1005,10 +1005,6 @@ footer{ text-align:center; padding:60px 20px 40px; color:var(--muted); font-size
   .ge2-card{ padding: 18px 16px; }
 
   /* flights */
-  /* Below 760 the route collapses to one column, so the times, codes and meta line all
-     centre themselves — but .ce and .ch inherit text-align:start from the card and stayed
-     hard left, which is what made the stacked card read as off-centre. */
-  #flights .center-card{ text-align: center; }
   .fl-route{ grid-template-columns: 1fr; gap: 8px; margin: 18px 0 14px; }
   .fl-arrow{ transform: rotate(90deg); }
   .fl-ap .t{ font-size: 26px; }
@@ -1124,6 +1120,14 @@ img, svg, video{ max-width: 100%; }
 .ed-t.tbd{background:transparent;color:var(--acc,#b1291a);border:2px dashed var(--acc,#b1291a);padding:4px 9px}
 .ed-badge{height:62px;width:auto;border-radius:8px;border:1px solid #ddd6c9;
   box-shadow:0 6px 18px rgba(0,0,0,.16)}
+/* The Single Pass mark is a circle baked onto a white square, so the 8px card
+   radius left four white corners showing against the cream page. Sampling the
+   source confirms the circle is inscribed edge to edge - the mid-edge pixels are
+   already blue - so a 50% radius clips exactly the white and none of the logo.
+   Matched on filename so the rectangular Multi Pass and Express lockups, which
+   share this class, keep their rounded-rectangle treatment. Cannot be solved by
+   keying out white in the file: the mark has its own white panel at the centre. */
+.ed-badge[src*="lightning-lane-single"]{border-radius:50%;border:0}
 .ed-h{display:block;font-family:'Playfair Display',serif;font-weight:700;
   font-size:clamp(19px,2vw,25px);line-height:1.2;letter-spacing:-.015em;color:#171310;margin-bottom:5px}
 .ed-n{display:block;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
@@ -1293,7 +1297,12 @@ img, svg, video{ max-width: 100%; }
 .ed-day{width:calc(100% - 28px)}
 /* 13.8vw tracks the countdown's own 4.3vw numerals, so the two stay level as the window
    changes rather than matching at exactly one width */
-#flights .center-card{min-height:clamp(118px,13.8vw,180px);
+/* Everything inside a flight card centres, at every width. The route line, the airport
+   codes and the meta line already centred themselves, but the eyebrow and the headline
+   inherited text-align:start from the card and sat hard left - so both cards read as
+   lopsided on desktop as well as stacked on a phone. This was scoped to the 760px block
+   at first; it belongs on the base rule. */
+#flights .center-card{min-height:clamp(118px,13.8vw,180px);text-align:center;
   display:flex;flex-direction:column;justify-content:center}
 @media(max-width:760px){
   /* stacked on a phone the two cards would each be 175px and the pair would tower over
