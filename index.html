@@ -1089,8 +1089,11 @@ img, svg, video{ max-width: 100%; }
 /* rows with photography gain a fourth column; rows without keep the original three, so a
    day with no images is unaffected */
 .ed-ev.has-shot{grid-template-columns:34px 1fr auto}
-/* photo and pass logo share the column; a row with both reads photo-then-logo left to right */
-.ed-media{grid-column:3;display:flex;align-items:center;gap:10px;align-self:center}
+/* Photo and pass logo share the column. row-reverse, not a DOM reorder: the markup keeps
+   the photo first so it stays the row's primary image for screen readers and for print,
+   while visually the pass logo sits left of the photo. */
+.ed-media{grid-column:3;display:flex;flex-direction:row-reverse;align-items:center;gap:10px;
+  align-self:center}
 .ed-shot{width:150px;height:100px;object-fit:cover;border-radius:10px;
   border:1px solid #ddd6c9;box-shadow:0 6px 18px rgba(0,0,0,.16)}
 /* Phone layout. The trip is run off phones, so the photo goes full width under the text
@@ -1225,19 +1228,16 @@ img, svg, video{ max-width: 100%; }
 
 /* ============ HALLOWEEN HORROR NIGHTS 35 — Oct 15 ============ */
 
-/* 1. house artwork in the standard thumbnail slot. The shared .ed-shot uses object-fit:cover,
-      right for a square-ish park photo and wrong for a 2800x1200 key art — cover would crop
-      the title lettering straight off. Contain on a dark plate keeps every logo intact
-      inside exactly the same 150x100 box the other days use. */
+/* house artwork in the standard thumbnail slot. The shared .ed-shot cover-crops, which is
+   right for a square-ish park photo and would slice the house names off a 7:3 key art. */
 #day-hhn .ed-shot{object-fit:contain;background:#140c10;padding:3px}
-/* Phone rows stack the thumbnail full width, same as every other day. The shared rule
-   fixes that stacked box at 200px tall, which suits a cover-cropped park photo; a 7:3
-   letterbox contained inside it leaves ~90px of empty plate above and below. Same
-   placement and same behaviour, just sized to the artwork. */
+/* Phone rows stack the thumbnail full width like every other day. The shared rule fixes
+   that stacked box at 200px tall, which suits a cover-cropped photo; a 7:3 letterbox
+   contained inside it leaves ~90px of empty plate. Same placement, sized to the artwork. */
 @media(max-width:760px){#day-hhn .ed-shot{height:auto;aspect-ratio:7/3}}
 
-/* 2. a schedule-dependent showtime is marked in the chip itself, so it cannot be read as
-      booked. Same pill geometry as every other time. */
+/* a schedule-dependent showtime is marked in the chip itself, so it cannot be read as
+   booked. Same pill geometry as every other time. */
 #day-hhn .ed-t.prov{background:#2a1020;border:1px solid #7c3aed;color:#e9d5ff}
 #day-hhn .ed-t.prov::after{content:" · time TBC";opacity:.85;font-weight:400}
 
@@ -1247,124 +1247,6 @@ img, svg, video{ max-width: 100%; }
   border-left:3px solid var(--acc,#b1291a);background:rgba(177,41,26,.07);border-radius:0 8px 8px 0;
   font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
   font-size:clamp(13px,1.35vw,14.5px);line-height:1.55;color:#3c352d}
-.ed-flexnote b{font-weight:700}
-
-/* ---- supplemental: official artwork and downloads. A self-contained dark module BELOW
-        the schedule. Nothing in here inherits into the itinerary rows. ---- */
-#day-hhn .hhn{--hhn-blood:#8b0f14;--hhn-blood-lt:#c1121f;--hhn-purple-lt:#7c3aed;
-  --hhn-txt:#f6f2f4;--hhn-dim:#c3b6bd;
-  margin-top:clamp(30px,4.4vw,50px);border-radius:18px;overflow:hidden;
-  padding:clamp(20px,3vw,34px);color:var(--hhn-txt);
-  background:radial-gradient(60% 42% at 12% 0%,rgba(139,15,20,.34),transparent 62%),
-             radial-gradient(52% 40% at 88% 12%,rgba(59,17,80,.44),transparent 64%),
-             #0a0609;
-  border:1px solid rgba(255,255,255,.14)}
-#day-hhn .hhn-h{font-family:'Playfair Display',serif;font-weight:800;color:#fff;
-  font-size:clamp(21px,3vw,32px);line-height:1.08;margin:0 0 6px;letter-spacing:-.02em}
-#day-hhn .hhn-sub{font-family:'JetBrains Mono',monospace;font-size:clamp(9px,1vw,10.5px);
-  letter-spacing:.24em;text-transform:uppercase;color:#e9a2a8;margin:0 0 18px}
-
-#day-hhn .hhn-badges{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;padding:0}
-#day-hhn .hhn-badges li{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;padding:7px 12px;border-radius:999px;color:#e7dde1;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16)}
-#day-hhn .hhn-badges .b-date{background:rgba(124,58,237,.20);border-color:rgba(124,58,237,.55);color:#e9d5ff}
-#day-hhn .hhn-badges .b-key{background:rgba(193,18,31,.22);border-color:rgba(193,18,31,.6);color:#ffd9dc}
-#day-hhn .hhn-badges .b-warn{background:rgba(251,191,36,.14);border-color:rgba(251,191,36,.5);color:#fde68a}
-
-#day-hhn .hhn-panel{border-radius:12px;padding:clamp(15px,2vw,22px);margin:0 0 16px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
-#day-hhn .hhn-panel h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(15.5px,1.8vw,20px);margin:0 0 10px}
-#day-hhn .hhn-panel p,#day-hhn .hhn-panel li{font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
-  font-size:clamp(13px,1.35vw,14.5px);line-height:1.6;color:#ded2d8}
-#day-hhn .hhn-panel ul{margin:0;padding-left:20px;display:grid;gap:7px}
-#day-hhn .hhn-panel p+ul{margin-top:10px}
-#day-hhn .hhn-panel b{color:#fff}
-#day-hhn .hhn-warn{background:rgba(251,191,36,.10);border-color:rgba(251,191,36,.42)}
-#day-hhn .hhn-warn h5{color:#fde68a}
-#day-hhn .hhn-tix{background:rgba(193,18,31,.13);border-color:rgba(193,18,31,.45)}
-#day-hhn .hhn-tix h5{color:#ffb3b9}
-#day-hhn .hhn-photo{background:rgba(59,17,80,.30);border-color:rgba(124,58,237,.42)}
-#day-hhn .hhn-photo h5{color:#e9d5ff}
-
-#day-hhn .hhn-btns{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
-#day-hhn .hhn-btns a,#day-hhn .hhn-dl,#day-hhn .hhn-zip,#day-hhn .hhn-reset{
-  font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:600;text-decoration:none;cursor:pointer;border-radius:9px;padding:10px 14px;
-  display:inline-flex;align-items:center;justify-content:center;text-align:center;
-  color:#ffe3e5;background:rgba(193,18,31,.24);border:1px solid rgba(193,18,31,.62);
-  transition:background .18s,border-color .18s,transform .18s}
-#day-hhn .hhn-btns a:hover,#day-hhn .hhn-dl:hover,#day-hhn .hhn-zip:hover,#day-hhn .hhn-reset:hover{
-  background:rgba(193,18,31,.4);transform:translateY(-1px)}
-#day-hhn .hhn a:focus-visible,#day-hhn .hhn button:focus-visible,#day-hhn .hhn input:focus-visible{
-  outline:3px solid #fbbf24;outline-offset:3px;border-radius:6px}
-
-#day-hhn .hhn-zones{margin:0 0 20px}
-#day-hhn .hhn-zones h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(15.5px,1.8vw,20px);margin:0 0 12px}
-#day-hhn .hhn-zones ol{list-style:none;counter-reset:z;margin:0;padding:0;display:grid;gap:10px}
-@media(min-width:760px){#day-hhn .hhn-zones ol{grid-template-columns:repeat(2,1fr);column-gap:26px}}
-#day-hhn .hhn-zones li{counter-increment:z;display:grid;grid-template-columns:30px 1fr;gap:10px;
-  padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.12)}
-#day-hhn .hhn-zones li::before{content:counter(z,decimal-leading-zero);
-  font:700 12px/1.4 'JetBrains Mono',monospace;color:var(--hhn-blood-lt)}
-/* both pinned to column 2 — a bare <span> auto-places onto the next row and lands back in
-   the 30px counter column, which renders the description one word per line */
-#day-hhn .hhn-zones li b{grid-column:2;font-family:'Playfair Display',serif;font-size:15.5px;
-  color:#fff;display:block}
-#day-hhn .hhn-zones li span{grid-column:2;font-size:13.5px;color:var(--hhn-dim);display:block;
-  margin-top:2px;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
-#day-hhn .hhn-note{font-size:12.5px;line-height:1.6;color:var(--hhn-dim);margin:12px 0 0;
-  font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
-
-#day-hhn .hhn-gal-h{margin:24px 0 14px}
-#day-hhn .hhn-gal-h h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:clamp(16px,2vw,22px);margin:0 0 12px}
-#day-hhn .hhn-gal-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-#day-hhn .hhn-count{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;
-  text-transform:uppercase;color:#a7f3d0;background:rgba(52,211,153,.12);
-  border:1px solid rgba(52,211,153,.4);border-radius:999px;padding:9px 14px;margin:0}
-#day-hhn .hhn-zip{background:rgba(124,58,237,.26);border-color:rgba(124,58,237,.62);color:#e9d5ff}
-#day-hhn .hhn-zip:hover{background:rgba(124,58,237,.42)}
-#day-hhn .hhn-reset{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.24);color:#ded2d8}
-#day-hhn .hhn-reset:hover{background:rgba(255,255,255,.12)}
-
-#day-hhn .hhn-gal{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-@media(min-width:640px){#day-hhn .hhn-gal{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1100px){#day-hhn .hhn-gal{grid-template-columns:repeat(3,1fr)}}
-#day-hhn .hhn-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
-  border-radius:12px;overflow:hidden;display:flex;flex-direction:column;
-  transition:border-color .18s,transform .18s}
-#day-hhn .hhn-card:hover{border-color:rgba(193,18,31,.6);transform:translateY(-2px)}
-#day-hhn .hhn-art{width:100%;height:auto;aspect-ratio:7/3;object-fit:cover;display:block;
-  background:#140a0e;border-bottom:1px solid rgba(255,255,255,.12)}
-#day-hhn .hhn-card-b{padding:14px 14px 15px;display:flex;flex-direction:column;gap:9px;flex:1}
-#day-hhn .hhn-card-b h5{font-family:'Playfair Display',serif;font-weight:700;color:#fff;
-  font-size:16px;line-height:1.25;margin:0}
-#day-hhn .hhn-desc{font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
-  font-size:13px;line-height:1.55;color:var(--hhn-dim);margin:0}
-#day-hhn .hhn-meta{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;
-  font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;font-size:12.5px}
-#day-hhn .hhn-meta dt{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
-  text-transform:uppercase;color:#9c8f95;padding-top:2px}
-#day-hhn .hhn-meta dd{margin:0;color:#ded2d8;line-height:1.5}
-#day-hhn .hhn-track{display:flex;flex-wrap:wrap;gap:12px;padding-top:2px;margin-top:auto}
-#day-hhn .hhn-track label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;
-  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:#cfc2c8}
-#day-hhn .hhn-chk{width:17px;height:17px;accent-color:var(--hhn-blood-lt);cursor:pointer;flex:none}
-#day-hhn .hhn-dl{width:100%}
-#day-hhn .hhn-src{font-size:11.5px;line-height:1.6;color:#9c8f95;margin:18px 0 0;
-  font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
-
-@media print{#day-hhn .hhn{background:#fff;color:#111;border-color:#ccc}
-  #day-hhn .hhn-btns,#day-hhn .hhn-dl,#day-hhn .hhn-zip,#day-hhn .hhn-reset{display:none}}
-@media (prefers-reduced-motion: reduce){
-  #day-hhn .hhn *,#day-hhn .hhn *::before,#day-hhn .hhn *::after{
-    animation:none !important;transition:none !important}
-  #day-hhn .hhn-card:hover{transform:none}
-}
 
 
 /* ---- top-of-page rhythm ----
@@ -2493,7 +2375,7 @@ button.expd-day:focus-visible{
         <span class="ed-body">
           <span class="ed-t">12:15PM</span>
           <span class="ed-h">Drop Annelise with the grandparents</span>
-          <span class="ed-n">Childcare handover before you leave. HHN is not a night she can come to — see the Parents’ Night Out note below.</span>
+          <span class="ed-n">Childcare handover before you leave. Universal states HHN may be too intense for young children and is not recommended for guests under 13 — this is a parents’ night out.</span>
         </span>
         
       </li><li class="ed-ev">
@@ -2517,7 +2399,7 @@ button.expd-day:focus-visible{
         <span class="ed-body">
           <span class="ed-t">1:45PM</span>
           <span class="ed-h">Enter and get HHN wristbands</span>
-          <span class="ed-n">Wristband verification has to be done before the early houses open. Take the main Universal Studios / HHN entrance photo while the light is still good.</span>
+          <span class="ed-n">Wristband verification has to be done before the early houses open. No costumes or costume masks on standard HHN nights, and the event runs rain or shine — bring a compact poncho. Take the main entrance photo while the light is still good.</span>
         </span>
         
       </li><h3 class="ed-sec">EARLY ACCESS · STANDBY WHILE IT IS QUIET</h3><li class="ed-ev has-shot">
@@ -2698,314 +2580,6 @@ button.expd-day:focus-visible{
         
       </li></ol>
       
-      <section class="hhn" aria-labelledby="hhn-h">
-        <h4 id="hhn-h" class="hhn-h">Halloween Horror Nights 35</h4>
-        <p class="hhn-sub">Universal Studios Florida &middot; Thursday, October 15, 2026 &middot; Parents&rsquo; Night Out</p>
-
-        <ul class="hhn-badges">
-          <li class="b-date">Thursday, October 15</li><li class="b-key">HHN 35</li><li>10 Haunted Houses</li><li>Scream Early Recommended</li><li>Separate HHN Express Recommended</li><li class="b-warn">Adults Only</li><li class="b-warn">Schedule Subject to Change</li>
-        </ul>
-
-        <div class="hhn-panel hhn-warn">
-          <h5>Parents&rsquo; Night Out &middot; childcare required</h5>
-          <p>Universal states that Halloween Horror Nights may be too intense for young children and
-             is <b>not recommended for guests under 13</b>. Childcare should be arranged for Annelise
-             during this event.</p>
-          <ul>
-            <li>No costumes or costume masks are permitted during standard HHN nights.</li>
-            <li>The event happens <b>rain or shine</b>.</li>
-            <li>Comfortable shoes, hydration and a compact poncho are recommended.</li>
-          </ul>
-        </div>
-
-        <div class="hhn-panel hhn-tix">
-          <h5>Tickets required &mdash; read before Oct 15</h5>
-          <ul>
-            <li>Halloween Horror Nights requires <b>separate event admission</b>.</li>
-            <li>A regular daytime or Epic Universe Express Pass <b>does not</b> provide HHN Express access.</li>
-            <li>A <b>separate Halloween Horror Nights Express Pass</b> is required.</li>
-            <li>HHN Express provides <b>one Express entry at each</b> of the 10 houses and participating attractions.</li>
-            <li><b>Scream Early</b> or valid same-day Universal Studios Florida daytime admission is recommended.</li>
-            <li>Eligible <b>Stay &amp; Scream</b> guests can access select houses beginning at <b>2:00 PM</b>.</li>
-            <li>The complete HHN event begins at <b>6:30 PM</b>.</li>
-            <li>Check the Universal Orlando app on Oct 15 for live waits, house locations and showtimes.</li>
-          </ul>
-          <div class="hhn-btns">
-            <a href="https://www.universalorlando.com/hhn/en/us" target="_blank" rel="noopener noreferrer">Official HHN page</a>
-            <a href="https://www.universalorlando.com/hhn/en/us/haunted-houses" target="_blank" rel="noopener noreferrer">Haunted-house lineup</a>
-            <a href="https://www.universalorlando.com/hhn/en/us/extras" target="_blank" rel="noopener noreferrer">HHN event extras</a>
-            <a href="https://www.universalorlando.com/web/en/us/plan-your-visit/universal-orlando-resort-app" target="_blank" rel="noopener noreferrer">Universal Orlando app</a>
-          </div>
-        </div>
-
-        <div class="hhn-panel hhn-photo">
-          <h5>Photography policy</h5>
-          <ul>
-            <li>Photography and video are <b>not permitted inside the haunted houses</b>.</li>
-            <li><b>Flash photography is not permitted.</b></li>
-            <li>Take your photos at entrance marquees, exterior displays, scare zones and other permitted locations.</li>
-            <li>For daytime, lights-on interior views, consider the <b>Behind the Screams: Unmasking the Horror</b> tour.</li>
-            <li>Photography availability during tours varies by house — follow the guide&rsquo;s instructions.</li>
-          </ul>
-        </div>
-
-        <div class="hhn-zones">
-          <h5>Scare zones &mdash; all four</h5>
-          <ol><li><b>Infernal Carnival of Nightmares</b><span>Jack and Oddfellow's territory — the richest photo backdrop of the four.</span></li><li><b>Sideshow of Decay</b><span>Carnival rot. Heavy practical detail, good under the night lighting.</span></li><li><b>FORTNITEMARES</b><span>The Fortnite crossover zone.</span></li><li><b>Downtown Clowntown</b><span>Clowns, at volume. Expect close contact.</span></li></ol>
-          <p class="hhn-note">The scare zones are where your own photographs come from. Camera use is not
-             permitted inside the houses, so the zones, marquees and exterior sets are the night&rsquo;s
-             only shooting opportunities.</p>
-        </div>
-
-        <div class="hhn-gal-h">
-          <h5>Official House Artwork &amp; Downloads</h5>
-          <p class="hhn-note" style="margin:0 0 12px">Full-resolution copies of all ten. Each house
-             also carries its artwork beside its own row in the schedule above.</p>
-          <div class="hhn-gal-tools">
-            <p class="hhn-count" id="hhn-count" role="status" aria-live="polite">0 of 10 houses completed</p>
-            <a class="hhn-zip" href="assets/hhn-2026/Halloween-Horror-Nights-35-Official-House-Artwork.zip" download>Download all 10 house images (.ZIP)</a>
-            <button type="button" class="hhn-reset" id="hhn-reset">Reset tracker</button>
-          </div>
-        </div>
-        <ul class="hhn-gal">
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/01-ozzy-osbourne-prince-of-darkness.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Ozzy Osbourne: Prince of Darkness"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Ozzy Osbourne: Prince of Darkness</h5>
-          <p class="hhn-desc">A trip through the life and music of the Prince of Darkness, staged as a descent into his darkest imagery.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 4 or 5 · 4:00–5:30 PM</dd>
-            <dt>Express</dt><dd>Standby if under ~30 min, otherwise take whichever of Sinners / Ozzy opens first.</dd>
-            <dt>Photo</dt><dd>Shoot the marquee lettering before you queue.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h01-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h01-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/01-ozzy-osbourne-prince-of-darkness.jpg" download="01-ozzy-osbourne-prince-of-darkness.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/02-evil-dead-burn.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Evil Dead Burn"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Evil Dead Burn</h5>
-          <p class="hhn-desc">The Deadites return. A cabin, a book, and a night that does not end well for anyone inside.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 5 or 6 · 4:45–6:15 PM</dd>
-            <dt>Express</dt><dd>Start burning Express here if standby has climbed past ~30–40 min.</dd>
-            <dt>Photo</dt><dd>The exterior facade lights up well once the sun drops.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h02-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h02-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/02-evil-dead-burn.jpg" download="02-evil-dead-burn.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/03-hellraiser.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Hellraiser"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Hellraiser</h5>
-          <p class="hhn-desc">The Cenobites have such sights to show you. Pinhead and the puzzle box, brought into a walkthrough.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 2 · 2:35–3:10 PM</dd>
-            <dt>Express</dt><dd>Standby while the early-access crowd is still thin. Save your Express entry.</dd>
-            <dt>Photo</dt><dd>The Pinhead entrance artwork is the shot of the afternoon.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h03-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h03-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/03-hellraiser.jpg" download="03-hellraiser.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/04-stranger-things-5.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Stranger Things 5"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Stranger Things 5</h5>
-          <p class="hhn-desc">Hawkins in its final chapter. The Upside Down rendered at full scale.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 1 · 2:00–2:35 PM</dd>
-            <dt>Express</dt><dd>Standby first thing. Hold your one Express entry for a night repeat — this is the house worth doing twice.</dd>
-            <dt>Photo</dt><dd>Marquee shot before you go in; the interior is a no-camera zone.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h04-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h04-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/04-stranger-things-5.jpg" download="04-stranger-things-5.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/05-sinners.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Sinners"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Sinners</h5>
-          <p class="hhn-desc">A Mississippi juke joint in 1932, and the thing that comes through the door once the music starts.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 4 or 5 · 4:00–5:30 PM</dd>
-            <dt>Express</dt><dd>Pair with Ozzy — take whichever posts the shorter wait in the app.</dd>
-            <dt>Photo</dt><dd>Exterior signage, then move on. Queue photography slows the line.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h05-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h05-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/05-sinners.jpg" download="05-sinners.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/06-jack-oddfellow-chaos-control.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Jack &amp; Oddfellow: Chaos &amp; Control"
-             width="2808" height="1204" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Jack &amp; Oddfellow: Chaos &amp; Control</h5>
-          <p class="hhn-desc">HHN's own icons head to head — Jack's chaos against Oddfellow's control.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 3 · 3:10–3:45 PM</dd>
-            <dt>Express</dt><dd>Standby during early access. Worth a repeat after midnight.</dd>
-            <dt>Photo</dt><dd>Marquee here, and look for more Jack and Oddfellow setups in the Infernal Carnival zone.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h06-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h06-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/06-jack-oddfellow-chaos-control.jpg" download="06-jack-oddfellow-chaos-control.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/07-cybergoria.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house Cybergoria"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>Cybergoria</h5>
-          <p class="hhn-desc">Chrome, wire and surgical light. A machine future that has stopped asking for consent.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 8 · 7:30–8:15 PM</dd>
-            <dt>Express</dt><dd>Express. Standby will be deep by this hour.</dd>
-            <dt>Photo</dt><dd>The metallic cybernetic artwork photographs best under the night lighting.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h07-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h07-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/07-cybergoria.jpg" download="07-cybergoria.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/08-invasion-alien-abduction.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house INVASION: Alien Abduction"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>INVASION: Alien Abduction</h5>
-          <p class="hhn-desc">Something came down over a quiet town, and it is still collecting.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 10 · 10:15–11:00 PM</dd>
-            <dt>Express</dt><dd>Express.</dd>
-            <dt>Photo</dt><dd>The UFO / abduction artwork is worth the stop before you enter.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h08-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h08-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/08-invasion-alien-abduction.jpg" download="08-invasion-alien-abduction.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/09-madlands-caged-cannibals.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house MADLANDS: Caged Cannibals"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>MADLANDS: Caged Cannibals</h5>
-          <p class="hhn-desc">A wasteland zoo where the cages did not hold and the exhibits are hunting.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 9 · 9:30–10:15 PM</dd>
-            <dt>Express</dt><dd>Express.</dd>
-            <dt>Photo</dt><dd>Graffiti and abandoned-zoo signage — a strong night shot.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h09-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h09-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/09-madlands-caged-cannibals.jpg" download="09-madlands-caged-cannibals.jpg">Download image</a>
-        </div>
-      </li>
-      <li class="hhn-card">
-        <img class="hhn-art" src="assets/hhn-2026/houses/10-hr-bloodengutz-fright-tacular.jpg?v=hhn1"
-             alt="Official Universal Orlando key art for the Halloween Horror Nights 35 haunted house H.R. Bloodengutz Presents: A Halloween Fright-Tacular!"
-             width="2800" height="1200" loading="lazy" decoding="async">
-        <div class="hhn-card-b">
-          <h5>H.R. Bloodengutz Presents: A Halloween Fright-Tacular!</h5>
-          <p class="hhn-desc">The late-night horror host is back on the air, and the broadcast is going very wrong.</p>
-          <dl class="hhn-meta">
-            <dt>When</dt><dd>House 7 · 6:45–7:30 PM</dd>
-            <dt>Express</dt><dd>First Express house of the night.</dd>
-            <dt>Photo</dt><dd>The WKNB television-style artwork is the one to capture here.</dd>
-          </dl>
-          <div class="hhn-track">
-            <label><input type="checkbox" class="hhn-chk" data-k="h10-v"> Visited</label>
-            <label><input type="checkbox" class="hhn-chk" data-k="h10-p"> Photo captured</label>
-          </div>
-          <a class="hhn-dl" href="assets/hhn-2026/houses/10-hr-bloodengutz-fright-tacular.jpg" download="10-hr-bloodengutz-fright-tacular.jpg">Download image</a>
-        </div>
-      </li></ul>
-
-        <p class="hhn-src">Artwork &copy; Universal Orlando Resort, saved locally from
-           universalorlando.com. House lineup and scare zones are confirmed; <b>house locations,
-           showtimes and waits are not published for Oct 15</b> — check the Universal Orlando app
-           on the day.</p>
-      </section>
-
-      <script>
-      /* HHN tracker. Plain localStorage under one namespaced key so it cannot collide with
-         anything else the page stores, and every read is guarded — a corrupt or foreign value
-         must not throw and take the rest of the page's scripts down with it. */
-      (function(){
-        var KEY = 'hhn35-tracker-v1';
-        var boxes = document.querySelectorAll('.hhn-chk');
-        var out = document.getElementById('hhn-count');
-        var reset = document.getElementById('hhn-reset');
-        if (!boxes.length || !out || !reset) return;
-
-        function read(){
-          try { var v = JSON.parse(localStorage.getItem(KEY)); return (v && typeof v === 'object') ? v : {}; }
-          catch (e) { return {}; }
-        }
-        function write(v){ try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
-
-        function count(){
-          var state = read(), done = 0;
-          for (var i = 1; i <= 10; i++) if (state['h' + (i < 10 ? '0' + i : i) + '-v']) done++;
-          out.textContent = done + ' of 10 houses completed';
-        }
-
-        var state = read();
-        Array.prototype.forEach.call(boxes, function(b){
-          b.checked = !!state[b.dataset.k];
-          b.addEventListener('change', function(){
-            var s = read();
-            if (b.checked) s[b.dataset.k] = 1; else delete s[b.dataset.k];
-            write(s); count();
-          });
-        });
-        reset.addEventListener('click', function(){
-          write({});
-          Array.prototype.forEach.call(boxes, function(b){ b.checked = false; });
-          count();
-          out.textContent = 'Tracker reset \u2014 0 of 10 houses completed';
-        });
-        count();
-      })();
-      </script>
     </div>
   </div>
 </article>
