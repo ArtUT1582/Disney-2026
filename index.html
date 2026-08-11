@@ -1287,7 +1287,7 @@ img, svg, video{ max-width: 100%; }
      - the chapters were pinned to their own --ed-w of 1180px.
    Everything visible now resolves to the same box: calc(100% - 28px), capped at 1280,
    centred — which is what the ticker and countdown already used. */
-#flights,#cast,#alarms{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
+#flights,#cast,#alarms,#parkmaps{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
   margin-right:auto;padding-left:0;padding-right:0}
 .expd-inline{--ed-w:1280px}
 .ed-day{width:calc(100% - 28px)}
@@ -1760,6 +1760,177 @@ button.expd-day:focus-visible{
 
 
 <div class="expd-inline" id="expedition">
+
+<style id="parkmaps-css">
+/* ── Park maps ──────────────────────────────────────────────────────────────
+   One card per park day, in trip order. The map itself is an OpenStreetMap
+   embed rather than a screenshot of Disney's or Universal's own map art:
+   it pans and zooms on a phone, needs no API key, and OSM has both resorts
+   mapped down to individual attractions. Bounding boxes came from Nominatim,
+   so each frame opens already framed on that park rather than on Orlando.  */
+#parkmaps{margin-top:var(--stack-gap)}
+.pm-head{margin-bottom:16px}
+.pm-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;
+  letter-spacing:.34em;text-transform:uppercase;color:#fde68a;font-weight:600}
+.pm-eyebrow .liv{width:7px;height:7px;border-radius:50%;background:#fbbf24;
+  box-shadow:0 0 10px #fbbf24;animation:blink 1.6s infinite}
+.pm-title{margin-top:10px;font-size:clamp(22px,2.4vw,30px);font-weight:200;
+  letter-spacing:-.02em;line-height:1.05;color:#fff}
+.pm-title b{font-weight:600}
+.pm-note{margin-top:8px;font-size:12px;line-height:1.55;color:var(--muted);font-weight:300;max-width:70ch}
+
+/* 350 is picked, not guessed. At 300 the five parks land 4+1 over the 1280 box and
+   strand the last card on its own row; at 360 a 768 tablet drops to one 725px card
+   with a letterboxed map. 350 holds 3+2 at 1280 (1296/366 = 3) and still fits two
+   tracks at 768 (741/366 = 2). */
+.pm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:16px}
+.pm-card{position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),rgba(8,10,18,.55);
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 22px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.10)}
+/* the accent is the same per-park colour the day article already uses, so the
+   map card and its chapter downpage read as the same thing */
+.pm-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--acc),transparent 85%)}
+.pm-card-in{padding:16px 18px 12px}
+.pm-when{display:inline-block;font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.06em;
+  color:#fff;background:var(--acc);padding:5px 10px;border-radius:6px;
+  font-variant-numeric:tabular-nums}
+.pm-park{margin-top:10px;font-family:'Playfair Display',serif;font-weight:700;
+  font-size:20px;line-height:1.15;letter-spacing:-.015em;color:#fff}
+.pm-stops{margin-top:3px;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+.pm-frame{position:relative;margin:12px 0 0;height:210px;background:#0b0e17;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pm-frame iframe{width:100%;height:100%;border:0;display:block;
+  /* OSM tiles are a light basemap dropped into a very dark page - knocking the
+     brightness back stops the card glowing like a lightbox next to its siblings */
+  filter:saturate(.85) brightness(.92) contrast(1.05)}
+.pm-acts{display:flex;gap:8px;padding:12px 18px 16px;flex-wrap:wrap}
+.pm-btn{flex:1 1 auto;text-align:center;display:inline-flex;align-items:center;
+  justify-content:center;gap:6px;padding:9px 12px;border-radius:999px;
+  background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.45);color:#fde68a;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  font-weight:600;transition:all .2s;white-space:nowrap}
+.pm-btn:hover{background:rgba(251,191,36,.22);transform:translateY(-1px)}
+.pm-btn.ghost{background:transparent;border-color:var(--line);color:var(--muted)}
+.pm-btn.ghost:hover{background:rgba(255,255,255,.06);color:#fff}
+
+@media(max-width:760px){
+  .pm-grid{grid-template-columns:1fr;gap:14px}
+  .pm-frame{height:240px}
+  .pm-acts{padding:12px 14px 14px}
+  .pm-btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion: reduce){
+  .pm-eyebrow .liv{animation:none}
+  .pm-btn:hover{transform:none}
+}
+</style>
+
+<section id="parkmaps" aria-label="Park maps for each day of the trip">
+  <div class="pm-head">
+    <div class="pm-eyebrow"><span class="liv"></span>🗺️ Park Maps</div>
+    <div class="pm-title">Where you'll <b>be each day</b></div>
+    <p class="pm-note">Pan and zoom each map — paths, lands and individual attractions are all in
+      there. Directions open in Google Maps; the official page has live wait times and the app map.</p>
+  </div>
+
+  <div class="pm-grid">
+
+    <article class="pm-card" style="--acc:#2f7d4f">
+      <div class="pm-card-in">
+        <span class="pm-when">Mon · Oct 12</span>
+        <h3 class="pm-park">Animal Kingdom</h3>
+        <div class="pm-stops">9 stops planned</div>
+      </div>
+      <div class="pm-frame">
+        <iframe loading="lazy" title="Map of Disney's Animal Kingdom"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5981767,28.3526551,-81.5833743,28.3689118&amp;layer=mapnik&amp;marker=28.3607674,-81.5914841"></iframe>
+      </div>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3607674,-81.5914841">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://disneyworld.disney.go.com/destinations/animal-kingdom/">Official page</a>
+      </div>
+    </article>
+
+    <article class="pm-card" style="--acc:#b1521a">
+      <div class="pm-card-in">
+        <span class="pm-when">Tue · Oct 13</span>
+        <h3 class="pm-park">Hollywood Studios</h3>
+        <div class="pm-stops">13 stops planned</div>
+      </div>
+      <div class="pm-frame">
+        <iframe loading="lazy" title="Map of Disney's Hollywood Studios"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5637875,28.3525322,-81.5563928,28.3620618&amp;layer=mapnik&amp;marker=28.3572521,-81.5606175"></iframe>
+      </div>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.3572521,-81.5606175">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://disneyworld.disney.go.com/destinations/hollywood-studios/">Official page</a>
+      </div>
+    </article>
+
+    <article class="pm-card" style="--acc:#a3316b">
+      <div class="pm-card-in">
+        <span class="pm-when">Wed · Oct 14</span>
+        <h3 class="pm-park">Magic Kingdom</h3>
+        <div class="pm-stops">23 stops planned · Bibbidi Bobbidi Boutique</div>
+      </div>
+      <div class="pm-frame">
+        <iframe loading="lazy" title="Map of Magic Kingdom"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.5869975,28.4148969,-81.5758593,28.4232773&amp;layer=mapnik&amp;marker=28.4190753,-81.5817158"></iframe>
+      </div>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4190753,-81.5817158">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://disneyworld.disney.go.com/destinations/magic-kingdom/">Official page</a>
+      </div>
+    </article>
+
+    <article class="pm-card" style="--acc:#b1291a">
+      <div class="pm-card-in">
+        <span class="pm-when">Thu · Oct 15</span>
+        <h3 class="pm-park">HHN 35 · Universal Studios Florida</h3>
+        <div class="pm-stops">22 stops planned</div>
+      </div>
+      <div class="pm-frame">
+        <iframe loading="lazy" title="Map of Universal Studios Florida, venue for Halloween Horror Nights"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.4735500,28.4728287,-81.4649240,28.4816483&amp;layer=mapnik&amp;marker=28.4772482,-81.4697068"></iframe>
+      </div>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4772482,-81.4697068">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://www.universalorlando.com/web/en/us/events/halloween-horror-nights">Official page</a>
+      </div>
+    </article>
+
+    <article class="pm-card" style="--acc:#5b3a9e">
+      <div class="pm-card-in">
+        <span class="pm-when">Fri · Oct 16</span>
+        <h3 class="pm-park">Epic Universe</h3>
+        <div class="pm-stops">18 stops planned</div>
+      </div>
+      <div class="pm-frame">
+        <iframe loading="lazy" title="Map of Universal Epic Universe"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-81.4529484,28.4372625,-81.4425336,28.4497431&amp;layer=mapnik&amp;marker=28.4437046,-81.4477664"></iframe>
+      </div>
+      <div class="pm-acts">
+        <a class="pm-btn" target="_blank" rel="noopener"
+          href="https://www.google.com/maps/dir/?api=1&amp;destination=28.4437046,-81.4477664">Directions</a>
+        <a class="pm-btn ghost" target="_blank" rel="noopener"
+          href="https://www.universalorlando.com/web/en/us/things-to-do/parks/epic-universe">Official page</a>
+      </div>
+    </article>
+
+  </div>
+</section>
 
 <article class="ed-day" id="day-ak" style="--acc:#2f7d4f;--cover-pos:50% 30%">
   <header class="ed-cover" style="background-image:url('sections/assets/ak-bg.jpg?v=2026081003')">
