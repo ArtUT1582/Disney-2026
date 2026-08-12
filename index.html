@@ -1311,6 +1311,27 @@ img, svg, video{ max-width: 100%; }
      - the chapters were pinned to their own --ed-w of 1180px.
    Everything visible now resolves to the same box: calc(100% - 28px), capped at 1280,
    centred — which is what the ticker and countdown already used. */
+
+/* ── In-flight wifi note ────────────────────────────────────────────────────
+   Sits under both flight cards because it applies to both legs. The T-Mobile
+   perk this family expected to use ended 13 Jul 2026, before this trip, so the
+   note exists mainly to stop them looking for an option that is no longer there
+   and paying out of confusion. */
+#flights .fl-wifi{margin-top:14px;padding:14px 17px;border-radius:14px;
+  background:linear-gradient(160deg,rgba(96,165,250,.12),rgba(168,85,247,.08)),rgba(8,10,18,.55);
+  border:1px solid rgba(96,165,250,.34);text-align:left}
+#flights .fl-wifi .hd{display:flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:#93c5fd;font-weight:700}
+#flights .fl-wifi p{margin-top:8px;font-size:12.4px;line-height:1.6;color:#cbd5e1;font-weight:300}
+#flights .fl-wifi p b{color:#fff;font-weight:600}
+#flights .fl-wifi .dead{color:#fda4af;font-weight:600}
+#flights .fl-wifi .good{color:#6ee7b7;font-weight:600}
+#flights .fl-wifi ul{list-style:none;margin-top:9px;display:grid;gap:6px}
+#flights .fl-wifi li{position:relative;padding-left:19px;font-size:12.2px;line-height:1.5;color:#cbd5e1}
+#flights .fl-wifi li:before{content:"";position:absolute;left:0;top:2px;width:11px;height:11px;
+  border:1.5px solid #60a5fa;border-radius:2.5px}
+#flights .fl-wifi li b{color:#fff}
+@media(max-width:760px){ #flights .fl-wifi{padding:12px 14px} }
 #flights,#cast,#alarms,#homebase{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
   margin-right:auto;padding-left:0;padding-right:0}
 .expd-inline{--ed-w:1280px}
@@ -1476,6 +1497,27 @@ function charFallback(img){
       <div class="fl-meta">Nonstop · ~2h 38m · early start — pack the night before, breakfast lands in Houston</div>
       
     </div>
+  </div>
+  <div class="fl-wifi">
+    <div class="hd">&#128246; In-flight wifi &mdash; do not pay by mistake</div>
+    <p><span class="dead">The T-Mobile free-wifi perk on United ended 13 July 2026</span> &mdash; before
+      this trip. Do not board looking for a T-Mobile option; there isn&rsquo;t one any more.</p>
+    <p><span class="good">What replaced it:</span> United now gives <b>free Starlink wifi to MileagePlus
+      members</b>, and MileagePlus is <b>free to join</b>. On a Starlink-equipped aircraft you sign in
+      with the MileagePlus account rather than paying. On a plane not yet converted, MileagePlus members
+      pay about <b>$8</b> for the older service.</p>
+    <ul>
+      <li><b>Before the trip:</b> create free MileagePlus accounts for Artemio and Sandra, and add the
+        numbers to the bookings.</li>
+      <li><b>On board:</b> connect to United wifi, sign in with MileagePlus, and only pay if it is
+        genuinely still asking after you are signed in.</li>
+      <li><b>Return leg is the better bet.</b> Reporting points to free MileagePlus access broadening
+        around <b>15 Oct</b> &mdash; after the 11 Oct outbound, before the 17 Oct return. Expect to pay
+        on the way out and not on the way home.</li>
+    </ul>
+    <p style="margin-top:9px;font-size:11.5px;color:#9aa3b8">Rollout is aircraft-by-aircraft and dates
+      move. <b style="color:#fbbf24">Check the screen before buying anything</b> &mdash; this note is a
+      prompt to look, not a guarantee.</p>
   </div>
   
 </section>
