@@ -1128,6 +1128,26 @@ img, svg, video{ max-width: 100%; }
    share this class, keep their rounded-rectangle treatment. Cannot be solved by
    keying out white in the file: the mark has its own white panel at the centre. */
 .ed-badge[src*="lightning-lane-single"]{border-radius:50%;border:0}
+/* ── Land badges on the Magic Kingdom stops ──────────────────────────────
+   Added so a stop can be found on the guidemap without reading the whole
+   itinerary. Colours match the land colours used in the coverage breakdown.
+   Sits inline at the end of the headline, so it wraps with the title rather
+   than pushing the layout around on a phone. */
+.ed-land{display:inline-block;vertical-align:middle;position:relative;top:-2px;
+  margin-left:9px;padding:3px 9px;border-radius:999px;white-space:nowrap;
+  font:700 9.5px/1.6 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  letter-spacing:.11em;text-transform:uppercase;
+  background:#ece6d8;color:#4a4237;border:1px solid rgba(0,0,0,.12)}
+.ed-land[data-land="fantasy"]  {background:#fbe4f0;color:#8a2f5f;border-color:#f0c2da}
+.ed-land[data-land="tomorrow"] {background:#e2edfa;color:#2a5580;border-color:#bcd6ef}
+.ed-land[data-land="frontier"] {background:#f7e8d3;color:#7a4f18;border-color:#e6cba3}
+.ed-land[data-land="adventure"]{background:#e4f0e2;color:#2f5c2f;border-color:#c2ddbe}
+.ed-land[data-land="liberty"]  {background:#e8f0e6;color:#3d5c37;border-color:#c9dcc4}
+.ed-land[data-land="main"]     {background:#f6ecd8;color:#6b5320;border-color:#e5d3ac}
+.ed-land[data-land="transit"],
+.ed-land[data-land="app"]      {background:#eceaea;color:#5a545a;border-color:#d8d4d4}
+@media(max-width:560px){ .ed-land{font-size:9px;margin-left:7px;padding:2px 7px} }
+@media print{ .ed-land{border-color:#999} }
 .ed-h{display:block;font-family:'Playfair Display',serif;font-weight:700;
   font-size:clamp(19px,2vw,25px);line-height:1.2;letter-spacing:-.015em;color:#171310;margin-bottom:5px}
 .ed-n{display:block;font-family:ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
@@ -2164,7 +2184,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">ROPE DROP — Slinky Dog Dash</span>
-          <span class="ed-n">Slinky's Lightning Lane Multi Pass sells out FASTEST. Standby hits 90+ min by 10. Mario rides ✅ (38&quot;).</span>
+          <span class="ed-n">Slinky's Lightning Lane Multi Pass sells out FASTEST. Standby hits 90+ min by 10. Annelise rides ✅ (38&quot;).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/slinky-dog-dash.webp?v=2026081003" alt="ROPE DROP — Slinky Dog Dash"
@@ -2188,7 +2208,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Smugglers Run — NEW Mandalorian mission</span>
-          <span class="ed-n">Ask to be Pilot. Bespin / Endor / Coruscant. Mario rides ✅ (38&quot;).</span>
+          <span class="ed-n">Ask to be Pilot. Bespin / Endor / Coruscant. Annelise rides ✅ (38&quot;).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/smugglers-run.jpg?v=2026081003" alt="Smugglers Run — NEW Mandalorian mission"
@@ -2200,7 +2220,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
           <span class="ed-h">Lightning Lane Single Pass — Rise of the Resistance</span>
-          <span class="ed-n">The best ride at Walt Disney World. 18 min, multi-vehicle, story-driven. Mario rides ✅ (40&quot;).</span>
+          <span class="ed-n">The best ride at Walt Disney World. 18 min, multi-vehicle, story-driven. Annelise rides ✅ (40&quot;).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/rise-of-the-resistance.jpg?v=2026081003" alt="Lightning Lane Single Pass — Rise of the Resistance"
@@ -2214,7 +2234,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Mickey &amp; Minnie's Runaway Railway</span>
-          <span class="ed-n">Lightning Lane Multi Pass refresh. Cartoon physics, no height min. Mario will love it.</span>
+          <span class="ed-n">Lightning Lane Multi Pass refresh. Cartoon physics, no height min. She'll love it.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/runaway-railway.jpg?v=2026081003" alt="Mickey &amp; Minnie's Runaway Railway"
@@ -2226,7 +2246,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">2:30PM</span>
           <span class="ed-h">Tower of Terror (Lightning Lane Multi Pass #2)</span>
-          <span class="ed-n">Drop sequence randomizes — never the same twice. Rider Switch if Mario's nervous.</span>
+          <span class="ed-n">Drop sequence randomizes — never the same twice. Rider Switch if Annelise is nervous.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/tower-of-terror.jpg?v=2026081003" alt="Tower of Terror (Lightning Lane Multi Pass #2)"
@@ -2239,7 +2259,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Star Tours</span>
-          <span class="ed-n">Randomized destinations. Short waits typically. Mario rides ✅ (40&quot;).</span>
+          <span class="ed-n">Randomized destinations. Short waits typically. Annelise rides ✅ (40&quot;).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/star-tours.jpg?v=2026081003" alt="Star Tours"
@@ -2251,7 +2271,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
           <span class="ed-h">Rock 'n' Roller — NEW Muppets</span>
-          <span class="ed-n">Reopened May 2026 w/ Electric Mayhem. Rider Switch — Mario's 42&quot; / req 48&quot;.</span>
+          <span class="ed-n">Reopened May 2026 w/ Electric Mayhem. Rider Switch — Annelise is 42&quot; / req 48&quot;.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/rock-n-roller.jpg?v=2026081003" alt="Rock 'n' Roller — NEW Muppets"
@@ -2287,7 +2307,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
           <span class="ed-h">Fantasmic!</span>
-          <span class="ed-n">Be at amphitheater by 8:15 for a decent seat. Skip if Mario's wrecked — it's loud.</span>
+          <span class="ed-n">Be at amphitheater by 8:15 for a decent seat. Skip if Annelise is wrecked — it's loud.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/fantasmic.jpg?v=2026081003" alt="Fantasmic!"
@@ -2307,7 +2327,7 @@ body.pmv-lock{overflow:hidden}
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Wed · Oct 14</span>
-        <span><i>Stops planned</i>23</span></p>
+        <span><i>Stops planned</i>24</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -2328,7 +2348,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
           <span class="ed-t">6:15AM</span>
-          <span class="ed-h">Bus to Magic Kingdom</span>
+          <span class="ed-h">Bus to Magic Kingdom<span class="ed-land" data-land="transit">Transit</span></span>
           <span class="ed-n">Only Disney transport from Pop Century — no Skyliner or monorail on this route. Bus + security + the walk to the tapstiles runs ~60–75 min, so this is what makes the 7:30 rope drop. Tap Lightning Lane at 6:59 from the bus.</span>
         </span>
         
@@ -2336,7 +2356,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span>
-          <span class="ed-h">Lightning Lane — first Multi Pass tap</span>
+          <span class="ed-h">Lightning Lane — first Multi Pass tap<span class="ed-land" data-land="app">In the app</span></span>
           <span class="ed-n">Seven Dwarfs and TRON are Single Pass, already bought Oct 4 — neither is a Multi Pass pick. Spend this tap on Peter Pan, then Buzz / Haunted Mansion. Rebook after each tap-in.</span>
         </span>
         <span class="ed-media">
@@ -2348,8 +2368,8 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
-          <span class="ed-h">ROPE DROP — Peter Pan's Flight</span>
-          <span class="ed-n">Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Mario rides ✅ (no min).</span>
+          <span class="ed-h">ROPE DROP — Peter Pan's Flight<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n">Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Annelise rides ✅ (no min).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/peter-pans-flight.jpg?v=2026081003" alt="ROPE DROP — Peter Pan's Flight"
@@ -2360,7 +2380,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
-          <span class="ed-h">Bibbidi Bobbidi Boutique</span>
+          <span class="ed-h">Bibbidi Bobbidi Boutique<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">Book Wed Aug 12, 5:00 AM CT (6:00 AM Orlando time). Annelise transforms before the castle lunch — update this time once the appointment is confirmed.</span>
         </span>
         <span class="ed-media">
@@ -2372,8 +2392,8 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
-          <span class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic</span>
-          <span class="ed-n">Other parent + Mario hits Tomorrowland. Buzz reopened Apr 2026 with new vehicles.</span>
+          <span class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic<span class="ed-land" data-land="tomorrow">Tomorrowland</span><span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n">Other parent + Annelise hit Tomorrowland. Buzz reopened Apr 2026 with new vehicles.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/speedway.jpg?v=2026081003" alt="SPLIT — Speedway + Buzz + PhilharMagic"
@@ -2384,7 +2404,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
           <span class="ed-t">10:00AM</span>
-          <span class="ed-h">THE CASTLE REVEAL</span>
+          <span class="ed-h">THE CASTLE REVEAL<span class="ed-land" data-land="main">Main Street · Hub</span></span>
           <span class="ed-n">Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.</span>
         </span>
         <span class="ed-media">
@@ -2396,7 +2416,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Princess Fairytale Hall</span>
+          <span class="ed-h">Princess Fairytale Hall<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">Cinderella + Tiana meet &amp; greets. Bibbidi Bobbidi Boutique outfit = pure magic.</span>
         </span>
         <span class="ed-media">
@@ -2408,7 +2428,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
           <span class="ed-t tbd">TBD · not booked</span>
-          <span class="ed-h">Cinderella's Royal Table — lunch</span>
+          <span class="ed-h">Cinderella's Royal Table — lunch<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">Inside the castle · 2 adults + Annelise · book Wed Aug 12, 5:00 AM CT. Prepaid in full at booking — update this time once confirmed.</span>
         </span>
         <span class="ed-media">
@@ -2420,7 +2440,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-body">
           <span class="ed-t">11:00AM</span>
-          <span class="ed-h">Dumbo + The Barnstormer (Goofy's coaster)</span>
+          <span class="ed-h">Dumbo + The Barnstormer (Goofy's coaster)<span class="ed-land" data-land="fantasy">Fantasyland · Storybook Circus</span></span>
           <span class="ed-n">Storybook Circus, side by side. The Barnstormer is 35&quot; — Annelise rides both.</span>
         </span>
         <span class="ed-media">
@@ -2432,7 +2452,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
-          <span class="ed-h">Seven Dwarfs Mine Train (Lightning Lane Single Pass)</span>
+          <span class="ed-h">Seven Dwarfs Mine Train (Lightning Lane Single Pass)<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">Bought Oct 4, ~$25pp for all three. Annelise rides — 38&quot; min.</span>
         </span>
         <span class="ed-media">
@@ -2446,7 +2466,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">11</span>
         <span class="ed-body">
           <span class="ed-t">12:00PM</span>
-          <span class="ed-h">Mickey's PhilharMagic + Small World</span>
+          <span class="ed-h">Mickey's PhilharMagic + Small World<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">4D show, AC, classic songs. Small World walk-on if time allows.</span>
         </span>
         <span class="ed-media">
@@ -2458,7 +2478,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
-          <span class="ed-h">Enchanted Tales with Belle</span>
+          <span class="ed-h">Enchanted Tales with Belle<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
           <span class="ed-n">Maurice's cottage in Fantasyland · ~20 min, no height minimum. Volunteer Annelise for a part — kids get cast as the wardrobe, a napkin, a knight. Lightning Lane Multi Pass, so refill onto it after the morning tap.</span>
         </span>
         
@@ -2466,7 +2486,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-body">
           <span class="ed-t">1:00PM</span>
-          <span class="ed-h">RESORT BREAK — non-negotiable</span>
+          <span class="ed-h">RESORT BREAK — non-negotiable<span class="ed-land" data-land="transit">Pop Century</span></span>
           <span class="ed-n">Back to Pop Century. Pool, naps, hydrate, hair touch-up. This is also the Magic Kingdom crowd peak — let it thin out and walk back into a different park around 3. Skip it and you get meltdowns by 5 PM.</span>
         </span>
         
@@ -2474,7 +2494,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
           <span class="ed-t">3:00PM</span>
-          <span class="ed-h">Festival of Fantasy Parade · optional</span>
+          <span class="ed-h">Festival of Fantasy Parade · optional<span class="ed-land" data-land="main">Main Street · Frontierland</span></span>
           <span class="ed-n">Only if kids rebound fast. Frontierland is less crowded than Main Street.</span>
         </span>
         <span class="ed-media">
@@ -2486,8 +2506,8 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
-          <span class="ed-h">Pirates of the Caribbean (Lightning Lane Multi Pass refill)</span>
-          <span class="ed-n">Mario rides ✅ (no min). Dark but more silly than scary.</span>
+          <span class="ed-h">Pirates of the Caribbean (Lightning Lane Multi Pass refill)<span class="ed-land" data-land="adventure">Adventureland</span></span>
+          <span class="ed-n">Annelise rides ✅ (no min). Dark but more silly than scary.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/pirates-of-the-caribbean.jpg?v=2026081003" alt="Pirates of the Caribbean (Lightning Lane Multi Pass refill)"
@@ -2499,7 +2519,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-body">
           <span class="ed-t">4:45PM</span>
-          <span class="ed-h">Jungle Cruise + Country Bears</span>
+          <span class="ed-h">Jungle Cruise + Country Bears<span class="ed-land" data-land="adventure">Adventureland</span><span class="ed-land" data-land="frontier">Frontierland</span></span>
           <span class="ed-n">Corny skipper jokes, animatronics, AC. Quick easy wins.</span>
         </span>
         <span class="ed-media">
@@ -2511,20 +2531,28 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
-          <span class="ed-h">Big Thunder Mountain</span>
-          <span class="ed-n">REOPENED May 2026 — refreshed scenery. Mario's first 'real' coaster ✅ (40&quot;).</span>
+          <span class="ed-h">Big Thunder Mountain<span class="ed-land" data-land="frontier">Frontierland</span></span>
+          <span class="ed-n">REOPENED May 2026 — refreshed scenery. Annelise's first 'real' coaster ✅ (40&quot;).</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/big-thunder-mountain.jpg?v=2026081003" alt="Big Thunder Mountain"
           loading="lazy" decoding="async" width="150" height="100">
         
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-body">
-          <span class="ed-t">6:30PM</span>
-          <span class="ed-h">Haunted Mansion (Lightning Lane Multi Pass)</span>
-          <span class="ed-n">Watch Mario's face in the stretching room. He'll love it.</span>
+          <span class="ed-t">6:00PM</span>
+          <span class="ed-h">Tiana’s Bayou Adventure<span class="ed-land" data-land="frontier">Frontierland</span></span>
+          <span class="ed-n"><b>Non-negotiable.</b> Newest headliner in the park and a two-minute walk from Big Thunder — same land, no crossing. Annelise rides ✅ (40&quot; min, she’s 42&quot; — same bar as Big Thunder). Ends in a <b>52-ft drop and you will get wet</b>: ponchos on, phones bagged, and put the camera away for this one. Lightning Lane Multi Pass refill target. If standby is over 45 min, drop the 3:00 PM parade rather than this.</span>
+        </span>
+        
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-body">
+          <span class="ed-t">6:45PM</span>
+          <span class="ed-h">Haunted Mansion (Lightning Lane Multi Pass)<span class="ed-land" data-land="liberty">Liberty Square</span></span>
+          <span class="ed-n">Watch Annelise's face in the stretching room. She'll love it.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/haunted-mansion.jpg?v=2026081003" alt="Haunted Mansion (Lightning Lane Multi Pass)"
@@ -2533,11 +2561,11 @@ body.pmv-lock{overflow:hidden}
           title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
       </span>
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-body">
           <span class="ed-t">7:15PM</span>
-          <span class="ed-h">Buzz + Speedway</span>
-          <span class="ed-n">New blasters &amp; 'Buddy' character. Speedway: Mario 'drives' with adult — non-negotiable for him.</span>
+          <span class="ed-h">Buzz + Speedway<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
+          <span class="ed-n">New blasters &amp; 'Buddy' character. Speedway: Annelise 'drives' with an adult — non-negotiable for her.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/buzz.webp?v=2026081003" alt="Buzz + Speedway"
@@ -2545,10 +2573,10 @@ body.pmv-lock{overflow:hidden}
         
       </span>
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">20</span>
+        <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-body">
           <span class="ed-t">7:45PM</span>
-          <span class="ed-h">TRON (Single Pass) / Space Mountain — Rider Switch</span>
+          <span class="ed-h">TRON (Single Pass) / Space Mountain — Rider Switch<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
           <span class="ed-n">TRON is Single Pass, bought Oct 4 for the two adults. Annelise cannot ride either (48&quot; / 44&quot;) — one parent waits, the other rides, then swap.</span>
         </span>
         <span class="ed-media">
@@ -2559,19 +2587,19 @@ body.pmv-lock{overflow:hidden}
         
       </span>
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">21</span>
+        <span class="ed-num" aria-hidden="true">22</span>
         <span class="ed-body">
           <span class="ed-t">8:30PM</span>
-          <span class="ed-h">Stake your fireworks spot</span>
+          <span class="ed-h">Stake your fireworks spot<span class="ed-land" data-land="main">Main Street · Hub</span></span>
           <span class="ed-n">Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.</span>
         </span>
         
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">22</span>
+        <span class="ed-num" aria-hidden="true">23</span>
         <span class="ed-body">
           <span class="ed-t">9:00PM</span>
-          <span class="ed-h">Happily Ever After (9:00 PM)</span>
-          <span class="ed-n">18 min projection mapping + fireworks. Mario in arms, daughter in Bibbidi Bobbidi Boutique outfit. THE photo of the trip.</span>
+          <span class="ed-h">Happily Ever After (9:00 PM)<span class="ed-land" data-land="main">Main Street · Hub</span></span>
+          <span class="ed-n">18 min projection mapping + fireworks. Annelise in arms in her Bibbidi Bobbidi Boutique dress. THE photo of the trip.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/happily-ever-after.jpg?v=2026081003" alt="Happily Ever After (9:00 PM)"
@@ -2579,10 +2607,10 @@ body.pmv-lock{overflow:hidden}
         
       </span>
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">23</span>
+        <span class="ed-num" aria-hidden="true">24</span>
         <span class="ed-body">
           <span class="ed-t">9:30PM</span>
-          <span class="ed-h">Exit — beat the exodus</span>
+          <span class="ed-h">Exit — beat the exodus<span class="ed-land" data-land="main">Main Street</span></span>
           <span class="ed-n">Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.</span>
         </span>
         
@@ -2887,7 +2915,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">10:00AM</span>
           <span class="ed-h">Mario Kart: Bowser's Challenge (Express)</span>
-          <span class="ed-n">Longest queue in the park — hit it first. Mario rides ✅ (40&quot; min, he's 42&quot;). Touch his hand to the M on the wheel to link his band; he'll collect coins as he rides.</span>
+          <span class="ed-n">Longest queue in the park — hit it first. Annelise rides ✅ (40&quot; min, sshe's 42&quot;). Touch her hand to the M on the wheel to link her band; she'll collect coins as she rides.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/mario-kart.jpg?v=2026081003" alt="Mario Kart: Bowser's Challenge (Express)"
@@ -2900,7 +2928,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
           <span class="ed-h">Yoshi's Adventure (Express)</span>
-          <span class="ed-n">No height req. Slow family ride with great views of the land. Probably Mario's favorite of the day.</span>
+          <span class="ed-n">No height req. Slow family ride with great views of the land. Probably Annelise's favorite of the day.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/yoshis-adventure.jpg?v=2026081003" alt="Yoshi's Adventure (Express)"
@@ -2913,7 +2941,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">11:00AM</span>
           <span class="ed-h">Mine-Cart Madness (Express)</span>
-          <span class="ed-n">Donkey Kong Country. Mario rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</span>
+          <span class="ed-n">Donkey Kong Country. Annelise rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/mine-cart-madness.jpg?v=2026081003" alt="Mine-Cart Madness (Express)"
@@ -2926,7 +2954,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
           <span class="ed-h">Power-Up Band activities</span>
-          <span class="ed-n">Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Mario will lose his mind.</span>
+          <span class="ed-n">Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Annelise will lose her mind.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/power-up-bands.jpg?v=2026081003" alt="Power-Up Band activities"
@@ -2938,7 +2966,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
           <span class="ed-h">Lunch · Toadstool Cafe</span>
-          <span class="ed-n">Mario mushroom soup · Princess Peach cake. Photo-worthy food Mario will actually eat.</span>
+          <span class="ed-n">Mario mushroom soup · Princess Peach cake. Photo-worthy food Annelise will actually eat.</span>
         </span>
         
       </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev has-shot">
@@ -2946,7 +2974,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Curse of the Werewolf (Express)</span>
-          <span class="ed-n">Family coaster but dark theming may be too much for Mario. Rider Switch; adults swap rides while one stays with him.</span>
+          <span class="ed-n">Family coaster but dark theming may be too much for Annelise. Rider Switch; adults swap rides while one stays with him.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/curse-of-the-werewolf.jpg?v=2026081003" alt="Curse of the Werewolf (Express)"
@@ -2959,7 +2987,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">2:15PM</span>
           <span class="ed-h">Monsters Unchained (Express)</span>
-          <span class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Mario. Rider Switch. Stroller parking outside both rides.</span>
+          <span class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Annelise. Rider Switch. Stroller parking outside both rides.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/monsters-unchained.jpg?v=2026081003" alt="Monsters Unchained (Express)"
@@ -2972,7 +3000,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">3:00PM</span>
           <span class="ed-h">Hiccup's Wing Gliders (Express)</span>
-          <span class="ed-n">Family coaster on Isle of Berk. Mario rides ✅ (40&quot;). Smooth, scenic, perfect for him.</span>
+          <span class="ed-n">Family coaster on Isle of Berk. Annelise rides ✅ (40&quot;). Smooth, scenic, perfect for her.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/hiccups-wing-gliders.jpg?v=2026081003" alt="Hiccup's Wing Gliders (Express)"
@@ -3009,7 +3037,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">4:30PM</span>
           <span class="ed-h">Battle at the Ministry (Express)</span>
-          <span class="ed-n">The biggest headliner in the park. Mario rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</span>
+          <span class="ed-n">The biggest headliner in the park. Annelise rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/battle-at-the-ministry.jpg?v=2026081003" alt="Battle at the Ministry (Express)"
@@ -3022,7 +3050,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
           <span class="ed-h">Butterbeer + Butterbeer ice cream</span>
-          <span class="ed-n">Mandatory. Get the frozen version. Mario's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.</span>
+          <span class="ed-n">Mandatory. Get the frozen version. Annelise's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/butterbeer.jpg?v=2026081003" alt="Butterbeer + Butterbeer ice cream"
@@ -3034,7 +3062,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">8:00PM</span>
           <span class="ed-h">Stardust Racers (Express) · Rider Switch</span>
-          <span class="ed-n">Dueling coaster. Mario can't ride (48&quot;; he's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
+          <span class="ed-n">Dueling coaster. Annelise can't ride (48&quot;; sshe's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/stardust-racers.jpg?v=2026081003" alt="Stardust Racers (Express) · Rider Switch"
@@ -3059,7 +3087,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">8:45PM</span>
           <span class="ed-h">One last walk through Nintendo World</span>
-          <span class="ed-n">All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Mario.</span>
+          <span class="ed-n">All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Annelise.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/nintendo-world.jpg?v=2026081003" alt="One last walk through Nintendo World"
@@ -3229,7 +3257,7 @@ function spk(p){if(!('speechSynthesis' in window))return; const u=new SpeechSynt
 function prime(){if(!('speechSynthesis' in window))return; const p=new SpeechSynthesisUtterance(' '); p.volume=0; window.speechSynthesis.speak(p);}
 function startAlarm(t){
   const o=document.getElementById('alarmOverlay'); let ph;
-  if(t==='bbb'){ document.getElementById('alarmIcon').textContent='👑✨'; document.getElementById('alarmTitle').textContent='BOOK BIBBIDI BOBBIDI BOUTIQUE!'; document.getElementById('alarmMsg').textContent='Reserve Mario\'s appointment NOW'; o.classList.add('bbb-mode'); ph='Book Bibbidi Bobbidi Boutique!'; }
+  if(t==='bbb'){ document.getElementById('alarmIcon').textContent='👑✨'; document.getElementById('alarmTitle').textContent='BOOK BIBBIDI BOBBIDI BOUTIQUE!'; document.getElementById('alarmMsg').textContent='Reserve Annelise\'s appointment NOW'; o.classList.add('bbb-mode'); ph='Book Bibbidi Bobbidi Boutique!'; }
   else if(t==='crt'){ document.getElementById('alarmIcon').textContent='🏰👑'; document.getElementById('alarmTitle').textContent='BOOK CINDERELLA\'S ROYAL TABLE!'; document.getElementById('alarmMsg').textContent='Princess Castle lunch · 2 adults + Annelise · Oct 14'; o.classList.remove('bbb-mode'); ph='Book Cinderella\'s Royal Table!'; }
   else { document.getElementById('alarmIcon').textContent='🚨'; document.getElementById('alarmTitle').textContent='BOOK LIGHTNING LANE!'; document.getElementById('alarmMsg').textContent='Open My Disney Experience NOW'; o.classList.remove('bbb-mode'); ph='Book Lightning Lane!'; }
   o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
