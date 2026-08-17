@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bibbidi Bobbidi Boutique · Inventory &amp; Budget · Oct 14 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06070d; --card:rgba(8,10,18,.55); --line:rgba(255,255,255,.10);
+  --text:#f4f5f9; --muted:#9aa3b8; --dim:#6f7a91;
+  --gold:#e0b352; --gold-dk:#a8802a; --pink:#ff7ad9; --green:#34d399; --red:#fb7185;
+  --pad:clamp(16px,3vw,26px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);
+  font:400 15px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 500px at 12% -5%,rgba(168,85,247,.16),transparent 62%),
+    radial-gradient(800px 460px at 88% 4%,rgba(236,72,153,.13),transparent 62%);
+  background-attachment:fixed}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(14px,3vw,26px) 110px}
+
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),var(--card);
+  border:1px solid var(--line);border-radius:24px;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 22px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.10);
+  padding:var(--pad);margin-top:16px}
+
+header.hero{text-align:center;padding:clamp(22px,4vw,38px) var(--pad)}
+.eyebrow{font:700 10px/1 'JetBrains Mono',monospace;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold)}
+h1{margin-top:14px;font:800 clamp(28px,5vw,52px)/1.02 'Playfair Display',serif;letter-spacing:-.03em;
+  color:#fff7ef;text-shadow:0 0 5px #fff,0 0 16px var(--pink),0 0 40px rgba(255,122,217,.6)}
+.sub{margin-top:14px;font:600 11px/1.7 'JetBrains Mono',monospace;letter-spacing:.2em;
+  text-transform:uppercase;color:#8ff0ff;text-shadow:0 0 8px rgba(89,229,255,.6)}
+.tube{height:2px;width:min(360px,70%);margin:16px auto 0;border-radius:2px;background:#59e5ff;
+  box-shadow:0 0 7px #59e5ff,0 0 20px #22c7e6}
+
+h2{font:800 clamp(19px,2.6vw,26px)/1.15 'Playfair Display',serif;letter-spacing:-.02em;color:#fff}
+h2 .num{font:700 11px/1 'JetBrains Mono',monospace;color:var(--gold);letter-spacing:.2em;
+  display:block;margin-bottom:8px}
+.lead{margin-top:10px;color:var(--muted);font-size:14px;max-width:78ch}
+.lead b{color:var(--text);font-weight:600}
+
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px}
+th{text-align:left;padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.2);
+  font:700 9px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+td{padding:11px 10px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:700;white-space:nowrap}
+.g{color:var(--gold)} .gr{color:var(--green)} .rd{color:var(--red)} .mut{color:var(--muted)}
+.tag{display:inline-block;padding:3px 8px;border-radius:999px;font:700 8.5px/1.5 'JetBrains Mono',monospace;
+  letter-spacing:.14em;text-transform:uppercase}
+.tag.in{background:rgba(52,211,153,.16);color:#6ee7b7;border:1px solid rgba(52,211,153,.4)}
+.tag.out{background:rgba(251,113,133,.14);color:#fda4af;border:1px solid rgba(251,113,133,.36)}
+.tag.add{background:rgba(224,179,82,.16);color:#f0cd8a;border:1px solid rgba(224,179,82,.4)}
+
+.grid{display:grid;gap:12px;margin-top:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.tile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  padding:15px}
+.tile i{font:700 8.5px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);font-style:normal}
+.tile .v{margin-top:9px;font:800 25px/1 'Playfair Display',serif;color:#fff}
+.tile .d{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.5}
+
+.pick{border-color:rgba(52,211,153,.45)!important;
+  box-shadow:0 0 0 1px rgba(52,211,153,.25),0 18px 40px rgba(0,0,0,.4)}
+.pick .v{color:#6ee7b7}
+
+.callout{margin-top:16px;padding:14px 16px;border-radius:14px;
+  background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.3)}
+.callout b{color:#fcd34d}
+.callout.warn{background:rgba(251,113,133,.07);border-color:rgba(251,113,133,.32)}
+.callout.warn b{color:#fda4af}
+.callout p{font-size:13px;color:#d8d3c6;line-height:1.6}
+.callout p + p{margin-top:8px}
+
+footer{margin-top:34px;text-align:center;color:var(--dim);font-size:11.5px;line-height:1.8}
+footer a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(224,179,82,.35)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.gowns{display:grid;gap:11px;margin-top:16px;
+  grid-template-columns:repeat(auto-fill,minmax(146px,1fr))}
+.gown{display:block;text-decoration:none;color:inherit;text-align:center;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:13px 11px 14px;transition:border-color .2s,transform .2s,background .2s}
+.gown:hover{border-color:rgba(224,179,82,.55);transform:translateY(-3px);
+  background:rgba(255,255,255,.07)}
+.gown .art{height:104px;display:grid;place-items:center}
+.gown .art svg{height:100%;width:auto;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))}
+.gown .nm{margin-top:9px;font:700 13.5px/1.2 Inter,sans-serif;color:#fff;letter-spacing:-.01em}
+.gown .pr{margin-top:5px;font:800 17px/1 'JetBrains Mono',monospace;color:var(--gold)}
+.gown .tag{margin-top:8px}
+.gown .nt{margin-top:8px;font-size:10.5px;line-height:1.45;color:var(--dim)}
+.gown.sig{border-color:rgba(224,179,82,.32);
+  background:linear-gradient(180deg,rgba(224,179,82,.10),rgba(255,255,255,.02))}
+.tag.sigt{background:rgba(224,179,82,.2);color:#f3d79a;border:1px solid rgba(224,179,82,.5)}
+.sub-h{margin-top:26px;font:800 17px/1.2 'Playfair Display',serif;color:#fff}
+@media (max-width:520px){ .gowns{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .gown .art{height:86px} }
+
+table.acc td.ic{width:44px;padding-right:0}
+table.acc .ico{width:30px;height:30px;display:block;
+  filter:drop-shadow(0 3px 7px rgba(0,0,0,.5))}
+table.acc td.c,table.acc th.c{text-align:center;font-family:'JetBrains Mono',monospace;
+  font-weight:700;white-space:nowrap}
+table.acc .pw{font:700 9px/1.6 'JetBrains Mono',monospace;color:var(--gold);letter-spacing:.08em}
+table.acc tr.sep td{border-top:1px solid rgba(255,255,255,.22)}
+table.acc td{font-size:12.5px}
+@media print{body{background:#fff;color:#000}.panel{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="panel hero">
+  <div class="eyebrow">Wed Oct 14 2026 · 4:40 PM · conf on file</div>
+  <h1>Bibbidi Bobbidi Boutique</h1>
+  <div class="sub">Inventory &amp; Budget · Miss Annelise Garcia, age 4</div>
+  <div class="tube"></div>
+</header>
+
+<section class="panel">
+  <h2><span class="num">01</span>Read this before anything else</h2>
+  <div class="callout warn">
+    <p><b>Most BBB information online is out of date.</b> Disney collapsed the boutique from seven
+    packages down to three in <b>October 2025</b>. Any guide describing <i>Carriage, Courtyard, Castle,
+    Deluxe or Knight</i> packages predates that change &mdash; those tiers no longer exist, and their
+    prices ($99.99 / $149.99 / $199.99 / $249.99 / $450) are dead numbers.</p>
+    <p>Everything below is drawn from 2026 sources only. <b>Prices are pre-tax</b> and Disney has not
+    frozen 2026 rates, so treat these as a planning basis and confirm at check-in.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">02</span>The three packages</h2>
+  <p class="lead">Only one of these matters for Annelise. <b>Adventure</b> is the knight package
+  &mdash; sword and shield, no dress, no makeup. Listed for completeness only.</p>
+  <div class="scroll">
+  <table>
+    <tr><th>Included</th><th class="n">Adventure<br>$59.99</th><th class="n">Fairy Tale<br>$119.99</th><th class="n">Kingdom<br>$229.99</th></tr>
+    <tr><td>Choice of hairstyle</td><td class="n mut">gel only</td><td class="n gr">&#10003;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Shimmering makeup</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Nail polish</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Princess sash</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Cinch bag</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Boutique t-shirt</td><td class="n mut">knight shirt</td><td class="n gr">&#10003;</td><td class="n rd">&mdash;</td></tr>
+    <tr><td><b>Disney Princess dress</b></td><td class="n rd">&mdash;</td><td class="n rd">&mdash;</td><td class="n gr"><b>&#10003;</b></td></tr>
+    <tr><td>Crown / tiara</td><td class="n rd">&mdash;</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Wand</td><td class="n rd">&mdash;</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Necklace</td><td class="n rd">&mdash;</td><td class="n rd">&mdash;</td><td class="n gr">&#10003;</td></tr>
+    <tr><td>Sword &amp; shield</td><td class="n gr">&#10003;</td><td class="n rd">&mdash;</td><td class="n rd">&mdash;</td></tr>
+  </table>
+  </div>
+  <div class="callout">
+    <p><b>The dress is the whole decision.</b> Fairy Tale and Kingdom are identical services &mdash;
+    same chair, same stylist, same hair and makeup. The <b>$110 difference is the gown, crown, wand
+    and necklace.</b> Nothing about the experience changes.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">03</span>Dress inventory &amp; prices</h2>
+  <p class="lead">Disney cut the roster hard in Oct 2025. <b>Eight gowns remain</b> in the boutique,
+  plus two Encanto add-ons. You are <b>not required to buy one</b> &mdash; a dress from home is
+  explicitly allowed and is the single biggest lever on this budget.</p>
+
+  <div class="callout">
+    <p><b>These are drawings, not Disney photographs.</b> Product photography is copyrighted, so each
+    gown here is an original silhouette in that character&rsquo;s palette &mdash; enough to tell them
+    apart at a glance. <b>Every card links to shopDisney&rsquo;s live costume page</b> for the real
+    photograph and current retail price.</p>
+  </div>
+
+  <div class="gowns">
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn1" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fc9e8"/><stop offset="1" stop-color="#6fa8d0"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#e8f3fa"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#e8f3fa"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn1)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#6fa8d0" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#6fa8d0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#6fa8d0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#cfe6f5"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#6fa8d0"/>
+  <circle cx="50" cy="61" r="2.4" fill="#e8f3fa"/>
+  
+</svg></div>
+      <div class="nm">Cinderella</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Also in Signature</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#a9dcef"/><stop offset="1" stop-color="#78c2e0"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#ecf8fd"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#ecf8fd"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn2)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#78c2e0" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#78c2e0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#78c2e0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#d2edf8"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#78c2e0"/>
+  <circle cx="50" cy="61" r="2.4" fill="#ecf8fd"/>
+  
+</svg></div>
+      <div class="nm">Elsa</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Also in Signature</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn3" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3a8c2"/><stop offset="1" stop-color="#d97fa3"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#fce0e9"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#fce0e9"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn3)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#d97fa3" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#d97fa3" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#d97fa3" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#f8c8d8"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#d97fa3"/>
+  <circle cx="50" cy="61" r="2.4" fill="#fce0e9"/>
+  
+</svg></div>
+      <div class="nm">Aurora</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Light pink · also Signature</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn4" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f0c75e"/><stop offset="1" stop-color="#cfa32f"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#fbeec2"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#fbeec2"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn4)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#cfa32f" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#cfa32f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#cfa32f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#f7dd97"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#cfa32f"/>
+  <circle cx="50" cy="61" r="2.4" fill="#fbeec2"/>
+  
+</svg></div>
+      <div class="nm">Belle</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Also in Signature</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn5" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#4bb89a"/><stop offset="1" stop-color="#2e8f76"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#b3e5d7"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#b3e5d7"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn5)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#2e8f76" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#2e8f76" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#2e8f76" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#7fd0b8"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#2e8f76"/>
+  <circle cx="50" cy="61" r="2.4" fill="#b3e5d7"/>
+  
+</svg></div>
+      <div class="nm">Ariel</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Standard only</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn6" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#3fbfbf"/><stop offset="1" stop-color="#2a9a9a"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#a8e8e8"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#a8e8e8"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn6)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#2a9a9a" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#2a9a9a" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#2a9a9a" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#6fd6d6"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#2a9a9a"/>
+  <circle cx="50" cy="61" r="2.4" fill="#a8e8e8"/>
+  
+</svg></div>
+      <div class="nm">Jasmine</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Standard only</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn7" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#b193d6"/><stop offset="1" stop-color="#8a68b8"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#e2d4f2"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#e2d4f2"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn7)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#8a68b8" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#8a68b8" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#8a68b8" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#cdb4e6"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#8a68b8"/>
+  <circle cx="50" cy="61" r="2.4" fill="#e2d4f2"/>
+  
+</svg></div>
+      <div class="nm">Rapunzel</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Standard only</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn8" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#56a86f"/><stop offset="1" stop-color="#3a8050"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#aedcbb"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#aedcbb"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn8)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#3a8050" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#3a8050" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#3a8050" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#7fc294"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#3a8050"/>
+  <circle cx="50" cy="61" r="2.4" fill="#aedcbb"/>
+  
+</svg></div>
+      <div class="nm">Tiana</div>
+      <div class="pr">$65</div>
+      <span class="tag in">Standard</span>
+      <div class="nt">Standard only</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn9" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f0e4cd"/><stop offset="1" stop-color="#4a9d8f"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#fbf7ee"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#fbf7ee"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn9)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#4a9d8f" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#4a9d8f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#4a9d8f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#f7f0e2"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#4a9d8f"/>
+  <circle cx="50" cy="61" r="2.4" fill="#fbf7ee"/>
+  
+</svg></div>
+      <div class="nm">Mirabel</div>
+      <div class="pr">$69.99</div>
+      <span class="tag add">Add-on</span>
+      <div class="nt">Encanto add-on · Feb 2026</div>
+    </a>
+    <a class="gown" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn10" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#c77dc7"/><stop offset="1" stop-color="#9b4f9b"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#eecdee"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#eecdee"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn10)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#9b4f9b" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#9b4f9b" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#9b4f9b" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#dda6dd"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#9b4f9b"/>
+  <circle cx="50" cy="61" r="2.4" fill="#eecdee"/>
+  
+</svg></div>
+      <div class="nm">Isabela</div>
+      <div class="pr">$69.99</div>
+      <span class="tag add">Add-on</span>
+      <div class="nt">Encanto add-on · Feb 2026</div>
+    </a>
+  </div>
+
+  <h3 class="sub-h">Signature Collection &mdash; $350</h3>
+  <p class="lead">Heirloom quality, crystal tiara, garment bag. <b>Sold separately at Bonjour! Village
+  Gifts</b>, then paired with a package &mdash; these are not stocked in the styling chair.</p>
+  <div class="gowns">
+    <a class="gown sig" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn11" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fc9e8"/><stop offset="1" stop-color="#6fa8d0"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#e8f3fa"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#e8f3fa"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn11)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#6fa8d0" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#6fa8d0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#6fa8d0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#cfe6f5"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#6fa8d0"/>
+  <circle cx="50" cy="61" r="2.4" fill="#e8f3fa"/>
+  <path d="M50,10 l3.2,6.4 7,1 -5,4.9 1.2,7-6.4-3.4-6.4,3.4 1.2-7-5-4.9 7-1 Z" fill="#e0b352"/>
+</svg></div>
+      <div class="nm">Cinderella</div>
+      <div class="pr">$350</div>
+      <span class="tag sigt">Signature</span>
+      <div class="nt">Bonjour! Village Gifts</div>
+    </a>
+    <a class="gown sig" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn12" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f3a8c2"/><stop offset="1" stop-color="#d97fa3"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#fce0e9"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#fce0e9"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn12)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#d97fa3" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#d97fa3" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#d97fa3" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#f8c8d8"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#d97fa3"/>
+  <circle cx="50" cy="61" r="2.4" fill="#fce0e9"/>
+  <path d="M50,10 l3.2,6.4 7,1 -5,4.9 1.2,7-6.4-3.4-6.4,3.4 1.2-7-5-4.9 7-1 Z" fill="#e0b352"/>
+</svg></div>
+      <div class="nm">Aurora</div>
+      <div class="pr">$350</div>
+      <span class="tag sigt">Signature</span>
+      <div class="nt">Bonjour! Village Gifts</div>
+    </a>
+    <a class="gown sig" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn13" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f0c75e"/><stop offset="1" stop-color="#cfa32f"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#fbeec2"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#fbeec2"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn13)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#cfa32f" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#cfa32f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#cfa32f" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#f7dd97"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#cfa32f"/>
+  <circle cx="50" cy="61" r="2.4" fill="#fbeec2"/>
+  <path d="M50,10 l3.2,6.4 7,1 -5,4.9 1.2,7-6.4-3.4-6.4,3.4 1.2-7-5-4.9 7-1 Z" fill="#e0b352"/>
+</svg></div>
+      <div class="nm">Belle</div>
+      <div class="pr">$350</div>
+      <span class="tag sigt">Signature</span>
+      <div class="nt">Bonjour! Village Gifts</div>
+    </a>
+    <a class="gown sig" href="https://www.shopdisney.com/girls/clothes/costumes" target="_blank" rel="noopener">
+      <div class="art"><svg viewBox="0 0 100 150" role="img" aria-hidden="true">
+  <defs><linearGradient id="gwn14" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#a9dcef"/><stop offset="1" stop-color="#78c2e0"/></linearGradient></defs>
+  <ellipse cx="31" cy="31" rx="9.5" ry="8" fill="#ecf8fd"/>
+  <ellipse cx="69" cy="31" rx="9.5" ry="8" fill="#ecf8fd"/>
+  <path d="M41,64 C29,84 17,110 11,136 Q50,148 89,136 C83,110 71,84 59,64 Z"
+        fill="url(#gwn14)"/>
+  <path d="M50,66 C49,92 47,114 46,141" stroke="#78c2e0" stroke-width="1.1"
+        fill="none" opacity=".5"/>
+  <path d="M63,66 C64,92 66,114 68,139" stroke="#78c2e0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M37,66 C36,92 34,114 32,139" stroke="#78c2e0" stroke-width="1"
+        fill="none" opacity=".33"/>
+  <path d="M36,27 Q50,37 64,27 L60,60 Q50,65 40,60 Z" fill="#d2edf8"/>
+  <rect x="38.5" y="58" width="23" height="5.5" rx="2.6" fill="#78c2e0"/>
+  <circle cx="50" cy="61" r="2.4" fill="#ecf8fd"/>
+  <path d="M50,10 l3.2,6.4 7,1 -5,4.9 1.2,7-6.4-3.4-6.4,3.4 1.2-7-5-4.9 7-1 Z" fill="#e0b352"/>
+</svg></div>
+      <div class="nm">Elsa</div>
+      <div class="pr">$350</div>
+      <span class="tag sigt">Signature</span>
+      <div class="nt">Bonjour! Village Gifts</div>
+    </a>
+  </div>
+
+  <div class="callout warn">
+    <p><b>Discontinued &mdash; do not plan around these:</b> Anna, Moana, Merida, Mulan, Snow White,
+    Tinker Bell, Elena and the Frozen II variants were all pulled in the Oct 2025 cut. Mirabel and
+    Isabela returned in Feb 2026 but <b>only as a paid add-on</b>, not as a package dress.</p>
+    <p><b>Adaptive and extended sizing</b> is now offered on select gowns &mdash; new as of Feb 2026.</p>
+  </div>
+
+  <div class="callout">
+    <p><b>The Kingdom package includes one standard gown at no extra charge.</b> Any of the eight
+    above. The Encanto pair is an upcharge on top of whichever package you pick.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">04</span>Accessories &mdash; what you get, and what you don&rsquo;t</h2>
+  <p class="lead">The good news for budgeting: <b>at the Kingdom tier the accessories are not a
+  separate line.</b> Crown, wand, necklace, sash and bag are all in the package price. The hairstyle
+  extras &mdash; flower crown, bow, coloured hairpiece &mdash; are free at either princess tier.</p>
+
+  <div class="scroll">
+  <table class="acc">
+    <tr><th colspan="2">Item</th><th class="c">Adventure<br><span class="pw">$59.99</span></th>
+        <th class="c">Fairy Tale<br><span class="pw">$119.99</span></th>
+        <th class="c">Kingdom<br><span class="pw">$229.99</span></th><th>Notes</th></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M6,34 L10,16 18,26 24,12 30,26 38,16 42,34 Z" fill="#e0b352"/><rect x="5" y="34" width="38" height="5" rx="2.5" fill="#a8802a"/><circle cx="24" cy="12" r="3" fill="#fff"/><circle cx="10" cy="16" r="2.4" fill="#fff"/><circle cx="38" cy="16" r="2.4" fill="#fff"/></svg></td><td><b>Crown / tiara</b></td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td>Included in Kingdom. Also the finish on the <i>Enchanted</i> hairstyle at either princess tier.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><rect x="21.5" y="20" width="5" height="24" rx="2.5" fill="#a8802a" transform="rotate(18 24 32)"/><path d="M24,2 l4.6,9.4 10.4,1.5 -7.5,7.3 1.8,10.3 -9.3-4.9 -9.3,4.9 1.8-10.3 -7.5-7.3 10.4-1.5 Z" fill="#e0b352"/></svg></td><td><b>Wand</b></td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td>Included in Kingdom only.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M10,10 C10,28 38,28 38,10" stroke="#e0b352" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="24" cy="30" r="6" fill="#ff7ad9"/><circle cx="24" cy="30" r="2.4" fill="#fff" opacity=".7"/></svg></td><td><b>Princess necklace</b></td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td>Included in Kingdom only.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M12,6 L22,6 36,42 26,42 Z" fill="#ff7ad9"/><path d="M14,14 L31,14" stroke="#fff" stroke-width="2" opacity=".55"/></svg></td><td><b>Princess sash</b></td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td class="c gr">&#10003;</td><td>Both princess tiers.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M12,18 L36,18 39,42 9,42 Z" fill="#ff7ad9"/><path d="M16,18 C16,10 32,10 32,18" stroke="#a8802a" stroke-width="3" fill="none"/><rect x="9" y="20" width="30" height="3" fill="#a8802a" opacity=".5"/></svg></td><td><b>Cinch bag</b></td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td class="c gr">&#10003;</td><td>Both princess tiers.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><rect x="18" y="18" width="12" height="22" rx="3" fill="#ff7ad9"/><rect x="20.5" y="6" width="7" height="12" rx="2.5" fill="#a8802a"/><rect x="18" y="26" width="12" height="14" rx="2" fill="#fff" opacity=".28"/></svg></td><td><b>Makeup + nail polish</b></td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td class="c gr">&#10003;</td><td>Shimmering makeup, face gem and polish. Both princess tiers.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><circle cx="24" cy="34" r="3.5" fill="#e0b352"/><circle cx="8.964918067425465" cy="24.237778423417645" r="5.2" fill="#fff" opacity=".9"/><circle cx="14.822777018383258" cy="18.98932751282109" r="5.2" fill="#ff7ad9" opacity=".9"/><circle cx="23.999999999999996" cy="17.0" r="5.2" fill="#fff" opacity=".9"/><circle cx="33.17722298161674" cy="18.98932751282109" r="5.2" fill="#ff7ad9" opacity=".9"/><circle cx="39.035081932574535" cy="24.237778423417645" r="5.2" fill="#fff" opacity=".9"/></svg></td><td><b>Flower crown</b></td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td class="c gr">&#10003;</td><td>Comes with <i>Pixie Magic</i> and <i>Fantasy</i>. No upcharge.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M24,24 C16,12 4,16 6,26 8,36 18,32 24,24 Z" fill="#ff7ad9"/><path d="M24,24 C32,12 44,16 42,26 40,36 30,32 24,24 Z" fill="#ff7ad9"/><rect x="20" y="19" width="8" height="11" rx="3" fill="#a8802a"/></svg></td><td><b>Boutique bow / hairpiece</b></td><td class="c rd">&mdash;</td><td class="c gr">&#10003;</td><td class="c gr">&#10003;</td><td>Colour of her choice. Comes with <i>Royal Braid</i>, or swaps for the tiara on <i>Enchanted</i>. No upcharge.</td></tr>
+    <tr><td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><rect x="21" y="4" width="6" height="26" fill="#8ff0ff"/><rect x="14" y="30" width="20" height="4.5" rx="2" fill="#a8802a"/><rect x="21.5" y="34" width="5" height="9" rx="2.5" fill="#a8802a"/><path d="M24,4 L27,10 21,10 Z" fill="#fff"/></svg></td><td><b>Sword &amp; shield</b></td><td class="c gr">&#10003;</td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td>Adventure (knight) package only.</td></tr>
+    <tr class="sep">
+      <td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M6,32 C14,30 20,26 27,20 C33,15 42,17 43,25 C44,32 38,34 30,34 Z" fill="#8ff0ff" opacity=".9"/><path d="M6,32 L6,37 L43,37 L43,29" stroke="#a8802a" stroke-width="2.6" fill="none" stroke-linejoin="round"/></svg></td><td><b>Costume shoes</b></td>
+      <td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td>
+      <td><b class="rd">Sold separately &mdash; not in any package.</b>
+        Sizing starts at <b>7&ndash;8</b> and runs to youth 2&ndash;3, so
+        <b>a 3&ndash;4 year-old may not fit the smallest pair sold.</b>
+        Check Annelise&rsquo;s size before you count on buying these in the chair.</td>
+    </tr>
+    <tr>
+      <td class="ic"><svg viewBox="0 0 48 48" class="ico" aria-hidden="true"><path d="M24,6 C21,6 20,9 22,11" stroke="#a8802a" stroke-width="2.4" fill="none"/><path d="M24,11 L38,18 36,44 12,44 10,18 Z" fill="#e0b352" opacity=".85"/><path d="M24,13 L24,44" stroke="#a8802a" stroke-width="1.6"/></svg></td><td><b>Crystal tiara, garment bag, satin hanger</b></td>
+      <td class="c rd">&mdash;</td><td class="c rd">&mdash;</td><td class="c rd">&mdash;</td>
+      <td>Bundled only with the <b>$350 Signature Collection</b> gown, not with any package.</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <p><b>Standalone accessory prices are not published, and I could not verify them.</b> Disney
+    lists what each package contains but does not publish an a-la-carte price list, and both
+    disneyworld.disney.go.com and disneystore.com refuse automated reads. Rather than put estimated
+    numbers into a budget you are going to rely on, this section states only what is confirmed.</p>
+    <p><b>What that means practically:</b> at the Kingdom tier, budget <b>$0 extra</b> for accessories
+    &mdash; the ones that matter are included. If you want shoes or an extra wand on top, carry a
+    <b>$40&ndash;60 contingency</b> and settle it at the register. That is a planning allowance, not
+    a quoted price.</p>
+  </div>
+
+  <div class="callout">
+    <p><b>The trap to avoid:</b> the Fairy Tale package includes <i>no</i> crown, wand or necklace.
+    If you take Fairy Tale to save $110 and then buy those three separately in the park, you will
+    likely spend more than the $110 you saved <b>and</b> carry them around all evening. Fairy Tale
+    only wins if you genuinely skip them or already own them.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">05</span>Hairstyles &mdash; all four included, no upcharge</h2>
+  <p class="lead">Style is chosen in the chair and costs nothing extra at either princess tier.
+  Worth deciding <b>before</b> you sit down, because a four-year-old asked cold will freeze.</p>
+  <div class="grid g3">
+    <div class="tile"><i>Most requested</i><div class="v" style="font-size:19px">Enchanted</div>
+      <div class="d">High bun with a tiara and Mickey clip. Swap the tiara for a large boutique bow
+      if you prefer. This is the classic look in every photo you have seen.</div></div>
+    <div class="tile pick"><i>Best for a 4-year-old</i><div class="v" style="font-size:19px">Pixie Magic</div>
+      <div class="d">High ponytail with a coloured hairpiece and a flower crown. <b>The least tight
+      of the four</b> and the one kids ask for first &mdash; the safe pick if she dislikes having her
+      hair pulled.</div></div>
+    <div class="tile"><i>Most dramatic</i><div class="v" style="font-size:19px">Fantasy</div>
+      <div class="d">High curly updo built on a coloured hairpiece, finished with a flower crown.</div></div>
+    <div class="tile"><i>Most detailed</i><div class="v" style="font-size:19px">Royal Braid</div>
+      <div class="d">High bun with a coloured braid wrapped around the front and a large boutique
+      bow pinned at the back. Takes the longest of the four.</div></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">06</span>Budget scenarios</h2>
+  <p class="lead">All figures include <b>6.5% Orange County sales tax</b> and the <b>$24 AddMoreMagic
+  finder fee already committed</b>. Gratuity is discretionary and shown separately.</p>
+  <div class="scroll">
+  <table>
+    <tr><th>Scenario</th><th class="n">Package</th><th class="n">Dress</th><th class="n">Tax</th><th class="n">AMM</th><th class="n">Total</th></tr>
+    <tr>
+      <td><b class="gr">A · Fairy Tale + dress from home</b><br><span class="mut">Recommended</span></td>
+      <td class="n">119.99</td><td class="n gr">0.00</td><td class="n">7.80</td><td class="n">24.00</td>
+      <td class="n gr">$151.79</td>
+    </tr>
+    <tr>
+      <td><b>B · Kingdom</b><br><span class="mut">Gown, crown, wand, necklace included</span></td>
+      <td class="n">229.99</td><td class="n mut">incl.</td><td class="n">14.95</td><td class="n">24.00</td>
+      <td class="n g">$268.94</td>
+    </tr>
+    <tr>
+      <td><b>C · Fairy Tale + $65 park gown</b></td>
+      <td class="n">119.99</td><td class="n">65.00</td><td class="n">12.02</td><td class="n">24.00</td>
+      <td class="n">$221.01</td>
+    </tr>
+    <tr>
+      <td><b>D · Kingdom + Encanto add-on</b><br><span class="mut">Mirabel or Isabela</span></td>
+      <td class="n">229.99</td><td class="n">69.99</td><td class="n">19.50</td><td class="n">24.00</td>
+      <td class="n">$343.48</td>
+    </tr>
+    <tr>
+      <td><b>E · Fairy Tale + Signature gown</b><br><span class="mut">Heirloom, keepsake</span></td>
+      <td class="n">119.99</td><td class="n">350.00</td><td class="n">30.55</td><td class="n">24.00</td>
+      <td class="n rd">$524.54</td>
+    </tr>
+    <tr>
+      <td class="mut">Gratuity (customary, any scenario)</td>
+      <td class="n mut" colspan="4">15&ndash;20% of the package, or a flat $15&ndash;25</td>
+      <td class="n mut">+$18&ndash;46</td>
+    </tr>
+  </table>
+  </div>
+  <div class="callout">
+    <p><b>Scenario B is the honest default</b> if you want zero friction: everything is handed to
+    her in the chair, nothing to pack, nothing to forget, and the crown and wand are the props she
+    will actually hold in the 6:15 golden-hour photos.</p>
+    <p><b>Scenario A saves $117</b> and buys exactly the same service. The gap is only worth paying
+    if you want the gown itself as a keepsake &mdash; the hair, makeup, nails and photographs are
+    identical either way. If she already owns a dress she loves, A is the better value and the
+    photos will not know the difference.</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2><span class="num">07</span>Policies that cost money if you get them wrong</h2>
+  <div class="grid g3">
+    <div class="tile"><i>Cancellation</i><div class="v" style="font-size:20px">$10</div>
+      <div class="d">Charged for a no-show <b>or any cancellation inside 24 hours</b>. The card is
+      not charged before the visit. Your deadline is <b>4:40 PM Tue Oct 13</b>.</div></div>
+    <div class="tile"><i>Age limit</i><div class="v" style="font-size:20px">3&ndash;12</div>
+      <div class="d">Strictly enforced. Annelise is 4 &mdash; fine. <b>Adults cannot participate.</b>
+      Only two adults may accompany each child into the boutique.</div></div>
+    <div class="tile"><i>Appointment length</i><div class="v" style="font-size:20px">45&ndash;90m</div>
+      <div class="d">Varies by package and hairstyle. Disney advises budgeting <b>two hours all-in</b>
+      with check-in and browsing, plus 30&ndash;45 min for photos after.</div></div>
+  </div>
+  <div class="callout">
+    <p><b>Arrive with clean, dry hair.</b> Stylists cannot work with product already in it, and this
+    is the single most common reason an appointment runs long.</p>
+    <p><b>She must sit still for up to an hour.</b> The 4:40 slot lands after the 1:15 resort break,
+    which is exactly why it survives a nap and a full lunch better than a morning slot would have.</p>
+  </div>
+</section>
+
+<footer>
+  Compiled 14 Aug 2026 from 2026-dated sources only.
+  <a href="https://disneyworld.disney.go.com/shops/magic-kingdom/bibbidi-bobbidi-boutique-park/" target="_blank" rel="noopener">Disney official</a> ·
+  <a href="https://www.adventuresofadisneydad.com/blog/bibbidi-bobbidi-boutique-packages-and-dresses" target="_blank" rel="noopener">Packages &amp; dresses</a> ·
+  <a href="https://wdwnt.com/2026/02/bibbidi-bobbidi-boutique-introduces-adaptive-extended-sizing-encanto-dress-add-on/" target="_blank" rel="noopener">WDWNT Feb 2026</a><br>
+  Prices are pre-tax as published and are not contractually frozen. Confirm at check-in.
+</footer>
+
+</div>
+</body>
+</html>

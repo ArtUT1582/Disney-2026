@@ -180,25 +180,21 @@ section{ max-width:1280px; margin: var(--stack-gap, 22px) auto; padding: 0 22px;
 .rope{ display:inline-block; background:#fbbf24; color:#06070d; padding:3px 10px; border-radius:6px; font-size:13px; font-weight:700; letter-spacing:.06em; }
 
 .alarm-panel{ background: linear-gradient(135deg, rgba(239,68,68,.12), rgba(251,191,36,.12)); border: 1px solid rgba(251,191,36,.4); border-radius: 24px; padding: 24px; margin-top:18px; backdrop-filter: blur(20px); }
-.alarm-panel.bbb{ background: linear-gradient(135deg, rgba(199,67,178,.18), rgba(255,192,220,.14)); border-color:#ff8fd1; }
 .alarm-panel h3{ font-size:22px; font-weight:300; margin-bottom:6px; }
 .alarm-panel p{ font-size:13.5px; color:#cbd5e1; line-height:1.55; }
 .alarm-btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
 .alarm-btn{ background:#fff; color:#000; border:none; padding:10px 18px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; transition:transform .15s; }
 .alarm-btn:hover{ transform: translateY(-2px); }
-.alarm-btn.bbb{ background:#ff8fd1; color:#fff; }
 .alarm-btn.ghost{ background:transparent; color:#fff; border:1px solid var(--line); }
-#alarmStatus, #bbbStatus, #crtStatus{ font-size:12px; color:#fbbf24; margin-top:10px; }
+#alarmStatus, #crtStatus, #bbbStatus{ font-size:12px; color:#fbbf24; margin-top:10px; }
 .alarm-panel.crt{ background: linear-gradient(135deg, rgba(96,165,250,.16), rgba(251,191,36,.12)); border-color:#93c5fd; }
-#bbbStatus{ color:#ff8fd1; }
+#crtStatus, #bbbStatus{ color:#86efac; }
 .mw-card{ margin-top:14px; padding:14px; background:rgba(0,0,0,.3); border-radius:14px; border:1px dashed #ff8fd1; }
 .mw-card a{ display:inline-block; background:#ff8fd1; color:#fff; padding:8px 14px; border-radius:999px; font-size:12px; text-decoration:none; margin-top:8px; font-weight:600; }
 
 .alarm-overlay{ display:none; position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; }
 .alarm-overlay.active{ display:flex; animation: alarmFlash .6s ease-in-out infinite alternate; }
-.alarm-overlay.bbb-mode.active{ animation: bbbFlash .6s ease-in-out infinite alternate; }
 @keyframes alarmFlash { 0%{background:rgba(239,68,68,.96);} 100%{background:rgba(251,191,36,.96);} }
-@keyframes bbbFlash { 0%{background:rgba(199,67,178,.96);} 100%{background:rgba(255,192,220,.96);} }
 .alarm-content{ text-align:center; padding:40px 20px; }
 .alarm-content h2{ font-size:clamp(40px, 9vw, 96px); margin:16px 0; color:#fff; font-weight:900; text-shadow:4px 4px 0 #000; letter-spacing:2px; animation: shake .2s infinite; }
 .alarm-content p{ font-size:clamp(16px,3vw,22px); color:#fff; font-weight:700; margin:12px 0 28px; }
@@ -1425,7 +1421,9 @@ function charFallback(img){
     { glyph:'✈', html:'<b>UA 468</b> · MCO 7:00a → IAH 8:38a · Oct 17 · all 12 booked' },
     { glyph:'◎', html:'Verify park hours before locking the final itinerary' },
     { glyph:'⚡', html:'<b>Lightning Lane Multi-Pass</b> · book all 7 days <b>Sun Oct 4</b> · <em>6:00 AM CT</em>' },
-    { glyph:'👑', html:'<b>BBB</b> bookings open <b>Wed Aug 12</b> · <em>5:00 AM CT</em> — same moment as castle dining' },
+    { glyph:'👑', html:'<b>Cinderella&rsquo;s Royal Table</b> · Wed Oct 14 · <b>11:15 AM</b> — booked &amp; prepaid' },
+    { glyph:'✨', html:'<b>Bibbidi Bobbidi Boutique</b> · Wed Oct 14 · <b>4:40 PM</b> — caught on a coordinated drop' },
+    { glyph:'◎', html:'<b>Magic Kingdom Oct 14</b> · park <b>9:00 AM–10:00 PM</b> · <em>Early Entry 8:30</em> — bus at 7:15' },
     { glyph:'🎟', html:'HHN tickets on sale now · <b>$91–$130</b> per adult' },
     { glyph:'🏰', html:'<b>Magic Kingdom</b> · Be Our Guest lunch reservation locked' },
     { glyph:'🍽', html:'<b>Storybook Dining</b> · Tuesday · 6:30 PM · party of 12' },
@@ -1500,6 +1498,22 @@ function charFallback(img){
   </div>
   
 </section>
+<section class="weather-banner" id="weather" aria-label="Orlando 7-day weather forecast">
+  <div class="wb-head">
+    <div class="wb-eyebrow"><span class="liv"></span>⛅ Orlando Weather</div>
+    <div class="wb-title">7-day <b>forecast</b></div>
+    <p class="wb-note">10-yr Orlando October averages. Recheck 7 days out via Apple Weather for live updates.</p>
+  </div>
+  <div class="wb-tiles">
+    <div class="wb-tile"><div class="wb-day">Sun 11</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly sunny · breezy</div><div class="wb-temp">85°/68°</div></div>
+    <div class="wb-tile"><div class="wb-day">Mon 12</div><div class="wb-icon">⛈️</div><div class="wb-cond"><b>AM clear · PM showers</b></div><div class="wb-temp">86°/70°</div></div>
+    <div class="wb-tile"><div class="wb-day">Tue 13</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · low humidity</div><div class="wb-temp">87°/69°</div></div>
+    <div class="wb-tile"><div class="wb-day">Wed 14</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · light wind</div><div class="wb-temp">88°/71°</div></div>
+    <div class="wb-tile"><div class="wb-day">Thu 15</div><div class="wb-icon">🌤️</div><div class="wb-cond"><b>Cool front overnight</b></div><div class="wb-temp">82°/64°</div></div>
+    <div class="wb-tile"><div class="wb-day">Fri 16</div><div class="wb-icon">☀️</div><div class="wb-cond">Cool, dry, perfect</div><div class="wb-temp">80°/63°</div></div>
+    <div class="wb-tile"><div class="wb-day">Sat 17</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly cloudy</div><div class="wb-temp">83°/66°</div></div>
+  </div>
+</section>
 
 <!-- Pop Century has no park chapter to live in, so the resort sheet sits with the
      arrival logistics instead - flights in, then where you are sleeping all week. -->
@@ -1547,22 +1561,7 @@ function charFallback(img){
   </div>
 </section>
 
-<section class="weather-banner" id="weather" aria-label="Orlando 7-day weather forecast">
-  <div class="wb-head">
-    <div class="wb-eyebrow"><span class="liv"></span>⛅ Orlando Weather</div>
-    <div class="wb-title">7-day <b>forecast</b></div>
-    <p class="wb-note">10-yr Orlando October averages. Recheck 7 days out via Apple Weather for live updates.</p>
-  </div>
-  <div class="wb-tiles">
-    <div class="wb-tile"><div class="wb-day">Sun 11</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly sunny · breezy</div><div class="wb-temp">85°/68°</div></div>
-    <div class="wb-tile"><div class="wb-day">Mon 12</div><div class="wb-icon">⛈️</div><div class="wb-cond"><b>AM clear · PM showers</b></div><div class="wb-temp">86°/70°</div></div>
-    <div class="wb-tile"><div class="wb-day">Tue 13</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · low humidity</div><div class="wb-temp">87°/69°</div></div>
-    <div class="wb-tile"><div class="wb-day">Wed 14</div><div class="wb-icon">☀️</div><div class="wb-cond">Sunny · light wind</div><div class="wb-temp">88°/71°</div></div>
-    <div class="wb-tile"><div class="wb-day">Thu 15</div><div class="wb-icon">🌤️</div><div class="wb-cond"><b>Cool front overnight</b></div><div class="wb-temp">82°/64°</div></div>
-    <div class="wb-tile"><div class="wb-day">Fri 16</div><div class="wb-icon">☀️</div><div class="wb-cond">Cool, dry, perfect</div><div class="wb-temp">80°/63°</div></div>
-    <div class="wb-tile"><div class="wb-day">Sat 17</div><div class="wb-icon">⛅</div><div class="wb-cond">Partly cloudy</div><div class="wb-temp">83°/66°</div></div>
-  </div>
-</section>
+
 
 <!-- Countdown clock — moved to the top of the page -->
 
@@ -1865,9 +1864,10 @@ button.expd-day:focus-visible{
    cards at the top of the page. */
 .ed-map{margin:0 0 26px}
 
-/* ── Contingency panel ──────────────────────────────────────────────────────
-   Bibbidi Bobbidi Boutique was missed at the 60-day drop, so the castle day
-   needs a Plan B that does not depend on a reservation nobody holds yet.
+/* ── Castle-day panel ───────────────────────────────────────────────────────
+   Bibbidi Bobbidi Boutique is off the plan for good; Cinderella's Royal Table
+   is booked and prepaid for 11:15 AM. This panel now carries the confirmed
+   version: she gets ready at the resort, and lunch is the day's anchor.
    Styled to the cream editorial spread it sits inside. */
 .ed-plan-b{margin:0 0 26px;padding:20px;border-radius:16px;background:#fff8f0;
   border:1px solid #e4c9a8;border-left:5px solid #b1521a;box-shadow:0 8px 24px rgba(0,0,0,.07)}
@@ -2046,7 +2046,7 @@ body.pmv-lock{overflow:hidden}
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Mon · Oct 12</span>
-        <span><i>Stops planned</i>9</span></p>
+        <span><i>Stops planned</i>15</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -2063,112 +2063,146 @@ body.pmv-lock{overflow:hidden}
         </a>
         <figcaption><b>Animal Kingdom guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
       </figure>
-      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
+      <ol class="ed-list"><h3 class="ed-sec">MORNING &middot; AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
           <span class="ed-t">6:30AM</span>
-          <span class="ed-h">On bus to AK</span>
-          <span class="ed-n">Bus + bag check ~45–60 min. AK closes early (~7–8 PM) — front-load the morning.</span>
+          <span class="ed-h">On bus to AK &mdash; Early Entry 7:30<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n">Bus + bag check runs 45&ndash;60 min, so 6:30 puts you at the tapstiles for the <b>7:30 Early Theme Park Entry</b>. <b>Correction to the old plan:</b> Animal Kingdom does not close at 7&ndash;8 PM on Oct 12 &mdash; it closes at <b>6:00 PM</b>. That is the earliest close of the week and it is why this day is front-loaded.</span>
         </span>
-        
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span>
-          <span class="ed-h">Lightning Lane — first Multi Pass tap</span>
-          <span class="ed-n">Flight of Passage is Single Pass, already bought Oct 4 — it is NOT a Multi Pass pick. Spend the morning Multi Pass tap on Kilimanjaro Safari or Na’vi River Journey, then rebook after each tap-in.</span>
+          <span class="ed-h">Lightning Lane &mdash; first Multi Pass tap<span class="ed-land" data-land="app">In the app</span></span>
+          <span class="ed-n">Flight of Passage is Single Pass, already bought Oct 4 &mdash; it is NOT a Multi Pass pick. Spend the morning tap on Kilimanjaro Safaris or Na&rsquo;vi River Journey.</span>
         </span>
         <span class="ed-media">
-        
         <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
           title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
-          <span class="ed-h">ROPE DROP — Kilimanjaro Safari</span>
-          <span class="ed-n">Animals most active in the morning. Go LEFT at the entrance.</span>
+          <span class="ed-h">EARLY ENTRY &mdash; Kilimanjaro Safaris<span class="ed-land" data-land="frontier">Africa</span></span>
+          <span class="ed-n"><b>The single best reason to be here at 7:30.</b> Animals are genuinely most active in the first ninety minutes and go quiet by midday. Go <b>LEFT</b> at the entrance. No height minimum &mdash; the whole party rides.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/kilimanjaro-safari.jpg?v=2026081003" alt="ROPE DROP — Kilimanjaro Safari"
+        <img class="ed-shot" src="sections/assets/ak/kilimanjaro-safari.jpg?v=2026081003" alt="EARLY ENTRY &mdash; Kilimanjaro Safaris"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
-          <span class="ed-h">Na'vi River Journey</span>
-          <span class="ed-n">Gentle boat · no height min.</span>
+          <span class="ed-h">Na&rsquo;vi River Journey<span class="ed-land" data-land="fantasy">Pandora</span></span>
+          <span class="ed-n">Gentle indoor boat ride through the bioluminescent forest &middot; <b>no height minimum</b>. Do it now: the line triples after 10 and the Shaman animatronic is the best thing in Pandora.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/navi-river-journey.jpg?v=2026081003" alt="Na'vi River Journey"
+        <img class="ed-shot" src="sections/assets/ak/navi-river-journey.jpg?v=2026081003" alt="Na&rsquo;vi River Journey"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
-          <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Wildlife Express → Rafiki's</span>
-          <span class="ed-n">NEW Bluey-themed train.</span>
+          <span class="ed-t">9:15AM</span>
+          <span class="ed-h">Gorilla Falls Exploration Trail<span class="ed-land" data-land="frontier">Africa</span></span>
+          <span class="ed-n"><b>New to the plan.</b> Self-paced walking trail &mdash; gorillas, hippos, meerkats, an aviary. No queue, no height minimum, shaded, and she sets the pace. This is the kind of stop that makes a ten-hour park day survivable for a four-year-old.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/wildlife-express.jpg?v=2026081003" alt="Wildlife Express → Rafiki's"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev has-shot">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
-          <span class="ed-t">1:30PM</span>
-          <span class="ed-h">Lightning Lane Single Pass — Avatar Flight of Passage</span>
-          <span class="ed-n">Bought Oct 4, ~$25pp. Adults rotate — 44&quot; min, Annelise sits this one out with the grandparents.</span>
+          <span class="ed-t">10:00AM</span>
+          <span class="ed-h">Wildlife Express &rarr; Conservation Station &middot; Bluey&rsquo;s Wild World<span class="ed-land" data-land="frontier">Africa</span></span>
+          <span class="ed-n"><b>Renamed &mdash; this is no longer Rafiki&rsquo;s Planet Watch.</b> That name was retired when the area closed on 23 Feb 2026; it reopened 26 May as <b>Conservation Station</b>, with <b>Bluey&rsquo;s Wild World</b> inside &mdash; an indoor interactive play experience where <b>Bluey and Bingo meet</b>. Australian animals now at Affection Section. Take the train from Harambe; it is the only way in and back.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/avatar-flight-of-passage.jpg?v=2026081003" alt="Lightning Lane Single Pass — Avatar Flight of Passage"
+        <img class="ed-shot" src="sections/assets/ak/wildlife-express.jpg?v=2026081003" alt="Wildlife Express &rarr; Conservation Station &middot; Bluey&rsquo;s Wild World"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
-          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
+          <span class="ed-t">11:30AM</span>
+          <span class="ed-h">Adventurers Outpost &mdash; Mickey &amp; Minnie<span class="ed-land" data-land="main">Discovery Island</span></span>
+          <span class="ed-n"><b>New to the plan, and the highest-value stop of the day for the book.</b> Mickey and Minnie together in safari gear, <b>indoors and air-conditioned</b>, with a proper queue rather than a scrum. Two autograph pages and the photo, in one stop, out of the sun.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-body">
+          <span class="ed-t">12:00PM</span>
+          <span class="ed-h">Zootopia: Better Zoogether!<span class="ed-land" data-land="main">Discovery Island</span></span>
+          <span class="ed-n"><b>New to the plan &mdash; and new to the park.</b> This 3D show replaced <i>It&rsquo;s Tough to be a Bug!</i> in the Tree of Life theatre in Nov 2025. Far gentler than the show it replaced, which used to terrify small children. Air conditioning, seats, ~10 min.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-body">
+          <span class="ed-t">12:45PM</span>
+          <span class="ed-h">Lunch &mdash; Satu&rsquo;li Canteen<span class="ed-land" data-land="fantasy">Pandora</span></span>
+          <span class="ed-n"><b>The plan had no lunch in it at all.</b> Satu&rsquo;li is the best quick service at Animal Kingdom and not a close contest &mdash; build-your-own bowls, real vegetables, indoor seating. <b>Mobile-order at 11:45</b> from the Zootopia queue and walk straight in.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON &middot; PM</h3><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-body">
+          <span class="ed-t">1:30PM</span>
+          <span class="ed-h">Avatar Flight of Passage (Lightning Lane Single Pass)<span class="ed-land" data-land="fantasy">Pandora</span></span>
+          <span class="ed-n">Bought Oct 4, ~$25pp. <b>44&quot; minimum and Annelise is 42&quot; &mdash; she cannot ride.</b> Adults rotate through while she stays with the grandparents; Pandora&rsquo;s walkways are the best place in the park to wait. Do not let this stop eat more than an hour.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/ak/avatar-flight-of-passage.jpg?v=2026081003" alt="Avatar Flight of Passage (Lightning Lane Single Pass)"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-body">
           <span class="ed-t">2:30PM</span>
-          <span class="ed-h">Festival of the Lion King</span>
-          <span class="ed-n">Air conditioning · seats fill 30 min before show.</span>
+          <span class="ed-h">Festival of the Lion King<span class="ed-land" data-land="frontier">Africa</span></span>
+          <span class="ed-n">Air conditioning, real seats, and the best live show at Walt Disney World. <b>Seats fill 30 minutes before showtime</b> &mdash; arrive at 2:30 for a 3:00 show, not at 2:55.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/ak/festival-of-the-lion-king.jpg?v=2026081003" alt="Festival of the Lion King"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">12</span>
+        <span class="ed-body">
+          <span class="ed-t">3:30PM</span>
+          <span class="ed-h">Asia &mdash; Maharajah Jungle Trek + Everest rider switch<span class="ed-land" data-land="adventure">Asia</span></span>
+          <span class="ed-n"><b>New to the plan.</b> The trek is another self-paced walking trail &mdash; tigers, bats, an aviary &mdash; no height minimum and mostly shaded. <b>Expedition Everest is 44&quot;</b>, so it is the same rider-switch arrangement as Flight of Passage. If anyone wants <b>Kali River Rapids</b> (38&quot;, she can ride) do it here &mdash; but it soaks you, and the park closes at 6:00 with a bus ride after.</span>
+        </span>
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-body">
+          <span class="ed-t">4:15PM</span>
+          <span class="ed-h">Pandora &mdash; Valley of Mo&rsquo;ara in daylight<span class="ed-land" data-land="fantasy">Pandora</span></span>
+          <span class="ed-n">The floating mountains and the plant life, walked slowly. <b>The bioluminescent Pandora everyone photographs does not happen on this trip</b> &mdash; it needs full dark and Oct 12 closes at 6:00, before sunset at about 7:05. Daylight Pandora is still the best-built land Disney has made.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/ak/pandora-at-dusk.jpg?v=2026081003" alt="Pandora &mdash; Valley of Mo&rsquo;ara in daylight"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
           <span class="ed-t">5:00PM</span>
-          <span class="ed-h">Tree of Life Awakenings</span>
-          <span class="ed-n">First projection cycle at dusk. Catch it on the bridge.</span>
+          <span class="ed-h">Discovery Island trails &mdash; Dug, Russell &amp; Kevin<span class="ed-land" data-land="main">Discovery Island</span></span>
+          <span class="ed-n">The carved animal trails at the base of the Tree of Life, plus <b>three more autograph pages on the way</b>: <b>Dug and Russell</b> meet on the West Discovery Island Trail behind the tree, and <b>Kevin</b> roams Discovery Island. <b>Tree of Life Awakenings will not run</b> &mdash; it is a projection show and the park shuts before dark.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/tree-of-life-awakenings.jpg?v=2026081003" alt="Tree of Life Awakenings"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">9</span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-body">
-          <span class="ed-t">7:45PM</span>
-          <span class="ed-h">Park close — Pandora at dusk</span>
-          <span class="ed-n">Bioluminescent forest · last lap before bus home.</span>
+          <span class="ed-t">5:30PM</span>
+          <span class="ed-h">The Oasis on the way out &mdash; last autographs<span class="ed-land" data-land="liberty">The Oasis</span></span>
+          <span class="ed-n"><b>New to the plan.</b> The Oasis is the exit corridor, so this costs you no extra walking: <b>Donald and Daisy</b> in safari attire near Garden Gate Gifts, <b>Pocahontas</b> on the Oasis East Trail, and <b>Chip &rsquo;n&rsquo; Dale</b> just outside the gates in Palm Courtyard. <b>Characters often pack up before park close</b> &mdash; if they are gone, catch them on the way IN tomorrow instead. Be moving to the bus by <b>5:50</b>.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/ak/pandora-at-dusk.jpg?v=2026081003" alt="Park close — Pandora at dusk"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
       </li></ol>
       
     </div>
@@ -2182,7 +2216,7 @@ body.pmv-lock{overflow:hidden}
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Tue · Oct 13</span>
-        <span><i>Stops planned</i>13</span></p>
+        <span><i>Stops planned</i>17</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -2199,165 +2233,180 @@ body.pmv-lock{overflow:hidden}
         </a>
         <figcaption><b>Hollywood Studios guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
       </figure>
-      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev has-shot">
+      <ol class="ed-list"><h3 class="ed-sec">MORNING &middot; AM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
           <span class="ed-t">6:59AM</span>
-          <span class="ed-h">Lightning Lane Multi Pass DROP — Falcon → ToT → Rock 'n' Roller</span>
-          <span class="ed-n">Tap at 7:00 AM. Rebook after each tap-in. Buy Lightning Lane Single Pass for Rise of the Resistance.</span>
+          <span class="ed-h">Lightning Lane Multi Pass DROP &mdash; Falcon &rarr; ToT &rarr; Rock &rsquo;n&rsquo; Roller<span class="ed-land" data-land="app">In the app</span></span>
+          <span class="ed-n">Tap at 7:00 AM sharp. Rebook after each tap-in. <b>Buy Lightning Lane Single Pass for Rise of the Resistance</b> in the same session &mdash; it is not a Multi Pass pick.</span>
         </span>
         <span class="ed-media">
-        
         <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
           title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
-          <span class="ed-t">7:30AM</span>
-          <span class="ed-h">Skyliner from Pop Century</span>
-          <span class="ed-n">Roll right to the gate. Glide over Caribbean Beach into Hollywood Studios.</span>
+          <span class="ed-t">7:45AM</span>
+          <span class="ed-h">Skyliner from Pop Century &mdash; Early Entry 8:30<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n">Roll right to the gate and glide over Caribbean Beach into Hollywood Studios. <b>Park hours are 9:00 AM to 9:00 PM with Early Theme Park Entry at 8:30</b>, and Pop Century qualifies. The Skyliner is the fastest way in &mdash; about 15 minutes door to tapstile.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/skyliner.jpg?v=2026081003" alt="Skyliner from Pop Century"
+        <img class="ed-shot" src="sections/assets/hs/skyliner.jpg?v=2026081003" alt="Skyliner from Pop Century &mdash; Early Entry 8:30"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
-          <span class="ed-h">ROPE DROP — Slinky Dog Dash</span>
-          <span class="ed-n">Slinky's Lightning Lane Multi Pass sells out FASTEST. Standby hits 90+ min by 10. Annelise rides ✅ (38&quot;).</span>
+          <span class="ed-h">EARLY ENTRY &mdash; Slinky Dog Dash<span class="ed-land" data-land="fantasy">Toy Story Land</span></span>
+          <span class="ed-n"><b>This is the whole reason to be here at 8:30.</b> Slinky is the hardest Lightning Lane in the park and a 90-minute standby by mid-morning. Annelise rides &#10003; (38&quot; min). Go straight here, do not stop.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/slinky-dog-dash.webp?v=2026081003" alt="ROPE DROP — Slinky Dog Dash"
+        <img class="ed-shot" src="sections/assets/hs/slinky-dog-dash.webp?v=2026081003" alt="EARLY ENTRY &mdash; Slinky Dog Dash"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
           <span class="ed-t">9:15AM</span>
-          <span class="ed-h">Alien Swirling Saucers + Toy Story Mania</span>
-          <span class="ed-n">You're in Toy Story Land — knock both out before crowds build.</span>
+          <span class="ed-h">Alien Swirling Saucers + Toy Story Mania<span class="ed-land" data-land="fantasy">Toy Story Land</span></span>
+          <span class="ed-n">Both in the same land, both gentle. Saucers is 32&quot;, Mania has no minimum &mdash; she rides both. Mania is a shooting game, so expect to play it twice.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/alien-swirling-saucers.jpg?v=2026081003" alt="Alien Swirling Saucers + Toy Story Mania"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
-          <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Smugglers Run — NEW Mandalorian mission</span>
-          <span class="ed-n">Ask to be Pilot. Bespin / Endor / Coruscant. Annelise rides ✅ (38&quot;).</span>
+          <span class="ed-t">10:15AM</span>
+          <span class="ed-h">Meet Woody, Buzz &amp; Jessie &mdash; Toy Story Land<span class="ed-land" data-land="fantasy">Toy Story Land</span></span>
+          <span class="ed-n"><b>New to the plan, and three autograph pages in a single stop.</b> All three meet together in Toy Story Land, and they were <b>refreshed into their Toy Story 5 looks in July 2026</b> &mdash; Woody in a bandana poncho, Jessie with a sheriff badge, Buzz with a star sticker. This is the entire Pixar section of the book in one queue.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/smugglers-run.jpg?v=2026081003" alt="Smugglers Run — NEW Mandalorian mission"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><h3 class="ed-sec">AFTERNOON · PM</h3><li class="ed-ev has-shot">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
-          <span class="ed-t">12:30PM</span>
-          <span class="ed-h">Lightning Lane Single Pass — Rise of the Resistance</span>
-          <span class="ed-n">The best ride at Walt Disney World. 18 min, multi-vehicle, story-driven. Annelise rides ✅ (40&quot;).</span>
+          <span class="ed-t">11:00AM</span>
+          <span class="ed-h">Millennium Falcon: Smugglers Run<span class="ed-land" data-land="tomorrow">Galaxy&rsquo;s Edge</span></span>
+          <span class="ed-n">NEW Mandalorian mission. Annelise rides &#10003; (38&quot; min) &mdash; put her in a <b>gunner</b> seat, not a pilot seat, so nothing depends on her.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/rise-of-the-resistance.jpg?v=2026081003" alt="Lightning Lane Single Pass — Rise of the Resistance"
+        <img class="ed-shot" src="sections/assets/hs/smugglers-run.jpg?v=2026081003" alt="Millennium Falcon: Smugglers Run"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
-          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
-          <span class="ed-t">1:30PM</span>
-          <span class="ed-h">Mickey &amp; Minnie's Runaway Railway</span>
-          <span class="ed-n">Lightning Lane Multi Pass refresh. Cartoon physics, no height min. She'll love it.</span>
+          <span class="ed-t">12:00PM</span>
+          <span class="ed-h">Lunch &mdash; Docking Bay 7 or Woody&rsquo;s Lunch Box<span class="ed-land" data-land="tomorrow">Galaxy&rsquo;s Edge</span></span>
+          <span class="ed-n"><b>The plan had no lunch in it at all.</b> <b>Docking Bay 7</b> is the better food and you are standing in Galaxy&rsquo;s Edge already; <b>Woody&rsquo;s Lunch Box</b> is the kid-safe option (grilled cheese, tots) back in Toy Story Land. <b>Mobile-order at 11:15</b> from the Falcon queue either way.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/runaway-railway.jpg?v=2026081003" alt="Mickey &amp; Minnie's Runaway Railway"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
+      </li><h3 class="ed-sec">AFTERNOON &middot; PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
-          <span class="ed-t">2:30PM</span>
-          <span class="ed-h">Tower of Terror (Lightning Lane Multi Pass #2)</span>
-          <span class="ed-n">Drop sequence randomizes — never the same twice. Rider Switch if Annelise is nervous.</span>
+          <span class="ed-t">12:45PM</span>
+          <span class="ed-h">Rise of the Resistance (Lightning Lane Single Pass)<span class="ed-land" data-land="tomorrow">Galaxy&rsquo;s Edge</span></span>
+          <span class="ed-n">Bought Oct 4. <b>The best attraction Disney has ever built</b> and worth every dollar. Annelise rides &#10003; (40&quot; min). It runs about 18 minutes door to door &mdash; there is one short drop at the end and a lot of noise, so warn her.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/tower-of-terror.jpg?v=2026081003" alt="Tower of Terror (Lightning Lane Multi Pass #2)"
+        <img class="ed-shot" src="sections/assets/hs/rise-of-the-resistance.jpg?v=2026081003" alt="Rise of the Resistance (Lightning Lane Single Pass)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
-          title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-body">
-          <span class="ed-t">3:30PM</span>
-          <span class="ed-h">Star Tours</span>
-          <span class="ed-n">Randomized destinations. Short waits typically. Annelise rides ✅ (40&quot;).</span>
+          <span class="ed-t">1:45PM</span>
+          <span class="ed-h">Mickey &amp; Minnie&rsquo;s Runaway Railway<span class="ed-land" data-land="liberty">Hollywood Blvd</span></span>
+          <span class="ed-n">No height minimum, trackless, and genuinely funny. A soft landing after Rise.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/star-tours.jpg?v=2026081003" alt="Star Tours"
+        <img class="ed-shot" src="sections/assets/hs/runaway-railway.jpg?v=2026081003" alt="Mickey &amp; Minnie&rsquo;s Runaway Railway"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-body">
-          <span class="ed-t">4:00PM</span>
-          <span class="ed-h">Rock 'n' Roller — NEW Muppets</span>
-          <span class="ed-n">Reopened May 2026 w/ Electric Mayhem. Rider Switch — Annelise is 42&quot; / req 48&quot;.</span>
+          <span class="ed-t">2:30PM</span>
+          <span class="ed-h">Disney Jr. Mickey Mouse Clubhouse Live!<span class="ed-land" data-land="main">Animation Courtyard</span></span>
+          <span class="ed-n"><b>New to the plan and new to the park &mdash; opened 26 May 2026.</b> The old Disney Junior show ended in Oct 2025 when Animation Courtyard closed, and this replaced it. Air conditioning, seats, and pitched squarely at exactly her age. Non-negotiable on a day this long.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/rock-n-roller.jpg?v=2026081003" alt="Rock 'n' Roller — NEW Muppets"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">11</span>
         <span class="ed-body">
-          <span class="ed-t">7:00PM</span>
-          <span class="ed-h">Beauty &amp; the Beast + Villains Stage Show</span>
-          <span class="ed-n">AC, sit-down, 30 min off feet. Maleficent · Cruella · Hook + rotating surprises.</span>
+          <span class="ed-t">3:15PM</span>
+          <span class="ed-h">For the First Time in Forever &mdash; Frozen Sing-Along<span class="ed-land" data-land="adventure">Echo Lake</span></span>
+          <span class="ed-n"><b>New to the plan.</b> 30 minutes, indoors, live performers with film clips, and Anna and Elsa on stage. She will sing all of it. This is also the last big sit-down before the Sunset Boulevard block.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/beauty-and-the-beast.jpg?v=2026081003" alt="Beauty &amp; the Beast + Villains Stage Show"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
-          <span class="ed-t">8:30PM</span>
-          <span class="ed-h">Galaxy's Edge after dark</span>
-          <span class="ed-n">Walk Black Spire — neon, smoke, lightsaber duels in the streets. Unreal.</span>
+          <span class="ed-t">4:00PM</span>
+          <span class="ed-h">Sunset Blvd &mdash; Tower of Terror + Rock &rsquo;n&rsquo; Roller Coaster<span class="ed-land" data-land="frontier">Sunset Blvd</span></span>
+          <span class="ed-n">Both on the same street, so do them back to back. <b>Tower of Terror</b> is 40&quot; and she clears it, but the drop sequence randomises and it frightens plenty of adults &mdash; Rider Switch if she is nervous. <b>Rock &rsquo;n&rsquo; Roller Coaster Starring the Muppets</b> reopened 26 May 2026 with the Electric Mayhem; at <b>48&quot; she cannot ride it</b>, so that one is a straight rider switch. <b>Beauty and the Beast Live on Stage</b> is on this same street if you want a third thing &mdash; check the showtime in the app.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/galaxys-edge.webp?v=2026081003" alt="Galaxy's Edge after dark"
+        <img class="ed-shot" src="sections/assets/hs/tower-of-terror.jpg?v=2026081003" alt="Sunset Blvd &mdash; Tower of Terror + Rock &rsquo;n&rsquo; Roller Coaster"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-body">
-          <span class="ed-t">9:00PM</span>
-          <span class="ed-h">Fantasmic!</span>
-          <span class="ed-n">Be at amphitheater by 8:15 for a decent seat. Skip if Annelise is wrecked — it's loud.</span>
+          <span class="ed-t">5:00PM</span>
+          <span class="ed-h">Skyliner back to Pop Century &mdash; break<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n"><b>New to the plan, and the reason the evening works.</b> Fifteen minutes each way on the Skyliner buys you a real rest. She has been up since six on day two of seven, and <b>Fantasmic does not start until 8:00</b>. Pool, feet up, dry clothes. Skip this and she is finished before the fireworks.</span>
+        </span>
+      </li><h3 class="ed-sec">EVENING &middot; PM</h3><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">14</span>
+        <span class="ed-body">
+          <span class="ed-t">6:45PM</span>
+          <span class="ed-h">Back to the park &mdash; Star Tours<span class="ed-land" data-land="adventure">Echo Lake</span></span>
+          <span class="ed-n">Straight off the Skyliner and into Echo Lake. 40&quot; minimum, she rides &#10003;. The randomised destinations mean it is different every time.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hs/fantasmic.jpg?v=2026081003" alt="Fantasmic!"
+        <img class="ed-shot" src="sections/assets/hs/star-tours.jpg?v=2026081003" alt="Back to the park &mdash; Star Tours"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-body">
+          <span class="ed-t">7:30PM</span>
+          <span class="ed-h">Galaxy&rsquo;s Edge after dark<span class="ed-land" data-land="tomorrow">Galaxy&rsquo;s Edge</span></span>
+          <span class="ed-n">Walk Black Spire &mdash; neon, smoke, and lightsaber duels in the streets. <b>Sunset on Oct 13 is about 7:04</b>, so this is the first moment the land looks the way it is supposed to.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/hs/galaxys-edge.webp?v=2026081003" alt="Galaxy&rsquo;s Edge after dark"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-body">
+          <span class="ed-t">8:00PM</span>
+          <span class="ed-h">Fantasmic! &mdash; VERIFY THE SHOWTIME<span class="ed-land" data-land="frontier">Sunset Blvd</span></span>
+          <span class="ed-n"><b>Hollywood Studios closes at 9:00 PM on Oct 13</b>, so the old 9:00 PM slot was the moment the park shut. Fantasmic on a 9:00 close normally runs around 8:00. <b>Check the real time in the app that morning and move this stop to match</b> &mdash; it is the one time on this page that is inferred rather than published. Be at the amphitheatre 45 min early for a seat.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/hs/fantasmic.jpg?v=2026081003" alt="Fantasmic! &mdash; VERIFY THE SHOWTIME"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">17</span>
+        <span class="ed-body">
+          <span class="ed-t">8:40PM</span>
+          <span class="ed-h">Straight out after the finale<span class="ed-land" data-land="liberty">Hollywood Blvd</span></span>
+          <span class="ed-n">Do not linger. Fantasmic empties 6,900 people onto one street at once and the Skyliner queue builds fast. Walk out during the final number if she is asleep on someone&rsquo;s shoulder &mdash; which, on day two, she will be.</span>
+        </span>
       </li></ol>
       
     </div>
@@ -2371,14 +2420,14 @@ body.pmv-lock{overflow:hidden}
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Wed · Oct 14</span>
-        <span><i>Stops planned</i>25</span></p>
+        <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
   <div class="ed-spread">
     <div class="ed-spread-in">
       <blockquote class="ed-quote">
-        <span class="ed-qm">&ldquo;</span>THE CASTLE REVEAL
-        <cite>10:00AM &middot; the moment the day turns on</cite>
+        <span class="ed-qm">&ldquo;</span>CASTLE LUNCH, THEN THE TRANSFORMATION
+        <cite>11:15AM and 4:40PM &middot; both booked &middot; the two moments the day turns on</cite>
       </blockquote>
       <figure class="ed-map">
         <a class="ed-map-link" href="sections/assets/maps/mk.jpg?v=2026081105" style="--pos:left center"
@@ -2388,308 +2437,254 @@ body.pmv-lock{overflow:hidden}
         </a>
         <figcaption><b>Magic Kingdom guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. Tiana’s is drawn as &ldquo;coming 2024&rdquo; and Rivers of America still appears &mdash; every stop on this day is on the sheet.</figcaption>
       </figure>
-      <section class="ed-plan-b" aria-label="Contingency if Bibbidi Bobbidi Boutique is not secured">
-        <div class="lbl">Contingency &middot; if BBB never comes through</div>
-        <h4>The castle day works without the boutique</h4>
-        <p>The 60-day drop on Aug 12 came and went without a slot. A daily cancellation check is
-          running, and the real window is <b>Sept 4&ndash;14</b>, when Disney final payments fall due at
-          31 days and cancelled trips dump their appointments back. <b>Assume it happens; plan as if it
-          will not.</b></p>
+      <section class="ed-plan-b" aria-label="Confirmed castle day plan">
+        <div class="lbl">Confirmed &middot; both reservations are locked</div>
+        <h4>Lunch in the castle at 11:15. The boutique at 4:40.</h4>
+        <p><b>Bibbidi Bobbidi Boutique came back.</b> The 60-day window came and went with nothing, and
+          the plan was rebuilt around getting her ready at Pop Century. Then a <b>coordinated drop</b>
+          landed a <b>4:40 PM appointment &middot; conf on file</b>. Cinderella&rsquo;s Royal Table
+          is unchanged at <b>11:15 AM &middot; conf on file</b>, prepaid.</p>
+        <p><b>Two things moved as a result, and both matter.</b></p>
         <ul>
-          <li><b>Get her ready at Pop Century that morning.</b> Dress, hair and a little sparkle in the
-            room before the 6:15 AM bus. She arrives already transformed and nobody in the park knows
-            the difference.</li>
-          <li><b>Pack the dress either way.</b> If a cancellation lands late, she wears it out of the
-            boutique. If not, she wears it from the bus. Same photographs.</li>
-          <li><b>Crown and wand in the park</b> if you want them &mdash; the shops in Fantasyland carry
-            them, no appointment required.</li>
-          <li><b>Keep the 10:30 AM slot free</b> on the plan. If BBB is booked it becomes the
-            appointment; if not, it is unhurried time at Princess Fairytale Hall.</li>
-          <li><b>Disney Springs is not an alternative.</b> That boutique location shows as unavailable
-            &mdash; Magic Kingdom is the only one. Do not drive across property expecting a second option.</li>
+          <li><b>The whole morning shifted an hour later.</b> Magic Kingdom opens at <b>9:00 AM</b>, not
+            7:30 &mdash; with <b>Early Theme Park Entry at 8:30</b> for resort guests. The old rope-drop
+            plan started ninety minutes before the park was open. Bus is now <b>7:15</b>.</li>
+          <li><b>Tiana&rsquo;s Bayou Adventure moved from 6:00 PM to 3:00 PM.</b> It ends in a 52-ft
+            soaking. Twenty minutes after a boutique makeover, that is a $230 mistake. At 3:00 she has
+            100 minutes to dry before the chair.</li>
+          <li><b>Do not do her hair at the resort break.</b> That is what the 4:40 appointment is for.
+            She goes in dry, fed and rested off a nap.</li>
+          <li><b>Two portrait sets, not one.</b> 10:45 in the dress before lunch, and <b>5:45 in golden
+            hour</b> in full boutique hair and makeup. The second one is the shot.</li>
+          <li><b>Haunted Mansion now belongs to the other nine at noon.</b> The castle three traded
+            their 6:45 slot for the boutique &mdash; if the nine skip it, nobody rides it.</li>
         </ul>
-        <div class="still"><b>What is already booked and does not depend on this:</b> Princess Fairytale
-          Hall at 10:30 for Cinderella and Tiana, the castle reveal at 10:00, and Happily Ever After at
-          9:00 PM with her in arms. The three moments the day is actually pointed at are all still there.</div>
+        <div class="still"><b>The three moments the day is pointed at:</b> lunch inside the castle at
+          11:15, the golden-hour portraits at 5:45 in full transformation, and Happily Ever After at
+          9:00 PM with her in arms &mdash; a little over three hours out of the boutique and still
+          perfect. That last one is why the appointment sits at 4:40 instead of the morning.</div>
       </section>
-      <ol class="ed-list"><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev">
+      <ol class="ed-list"><h3 class="ed-sec">MORNING &middot; AM</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
-          <span class="ed-t">6:15AM</span>
+          <span class="ed-t">7:15AM</span>
           <span class="ed-h">Bus to Magic Kingdom<span class="ed-land" data-land="transit">Transit</span></span>
-          <span class="ed-n">Only Disney transport from Pop Century — no Skyliner or monorail on this route. Bus + security + the walk to the tapstiles runs ~60–75 min, so this is what makes the 7:30 rope drop. Tap Lightning Lane at 6:59 from the bus.</span>
+          <span class="ed-n">Pushed an hour later than the old plan, because the old plan was wrong. <b>Magic Kingdom does not open at 7:30.</b> Park hours are 9:00 AM to 10:00 PM, with <b>Early Theme Park Entry 8:30&ndash;9:00</b> for resort guests &mdash; Pop Century qualifies. Bus + security + the walk to the tapstiles runs 60&ndash;75 min, so 7:15 puts you there for 8:30. No Skyliner or monorail on this route.</span>
         </span>
-        
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
-          <span class="ed-t">6:59AM</span>
-          <span class="ed-h">Lightning Lane — first Multi Pass tap<span class="ed-land" data-land="app">In the app</span></span>
-          <span class="ed-n">Seven Dwarfs and TRON are Single Pass, already bought Oct 4 — neither is a Multi Pass pick. Spend this tap on Peter Pan, then Buzz / Haunted Mansion. Rebook after each tap-in.</span>
+          <span class="ed-t">8:20AM</span>
+          <span class="ed-h">Lightning Lane &mdash; first Multi Pass tap<span class="ed-land" data-land="app">In the app</span></span>
+          <span class="ed-n">Seven Dwarfs is Single Pass, bought Oct 4 &mdash; not a Multi Pass pick. <b>TRON is off the plan</b>, so do not buy that one. Spend this tap on Peter Pan, then Pirates / Jungle Cruise. Rebook after each tap-in.</span>
         </span>
         <span class="ed-media">
-        
         <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
           title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
-          <span class="ed-t">7:30AM</span>
-          <span class="ed-h">ROPE DROP — Peter Pan's Flight<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Line builds FAST, no virtual queue. 15 min now → 70+ min by 9:30. Annelise rides ✅ (no min).</span>
+          <span class="ed-t">8:30AM</span>
+          <span class="ed-h">EARLY ENTRY &mdash; Peter Pan&rsquo;s Flight<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n"><b>This is your rope drop.</b> Thirty minutes inside Fantasyland before the general public walks in at 9:00 &mdash; the single biggest thing you get for staying on property. Peter Pan is 15 min now and 70+ by 10:30. Annelise rides &#10003; (no min).</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/peter-pans-flight.jpg?v=2026081003" alt="ROPE DROP — Peter Pan's Flight"
+        <img class="ed-shot" src="sections/assets/mk/peter-pans-flight.jpg?v=2026081003" alt="EARLY ENTRY &mdash; Peter Pan&rsquo;s Flight"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
-          <span class="ed-t tbd">TBD · not booked</span>
-          <span class="ed-h">Bibbidi Bobbidi Boutique<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Book Wed Aug 12, 5:00 AM CT (6:00 AM Orlando time). Annelise transforms before the castle lunch — update this time once the appointment is confirmed.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/bibbidi-bobbidi-boutique.jpg?v=2026081003" alt="Bibbidi Bobbidi Boutique"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">5</span>
-        <span class="ed-body">
-          <span class="ed-t">8:30AM</span>
-          <span class="ed-h">SPLIT — Speedway + Buzz + PhilharMagic<span class="ed-land" data-land="tomorrow">Tomorrowland</span><span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Other parent + Annelise hit Tomorrowland. Buzz reopened Apr 2026 with new vehicles.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/speedway.jpg?v=2026081003" alt="SPLIT — Speedway + Buzz + PhilharMagic"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">6</span>
-        <span class="ed-body">
-          <span class="ed-t">10:00AM</span>
-          <span class="ed-h">THE CASTLE REVEAL<span class="ed-land" data-land="main">Main Street · Hub</span></span>
-          <span class="ed-n">Daughter walks out as a princess. Photos in front of the castle. Once-in-a-childhood. Get the shot.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/castle-reveal.jpg?v=2026081003" alt="THE CASTLE REVEAL"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">7</span>
-        <span class="ed-body">
-          <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Princess Fairytale Hall<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Cinderella + Tiana meet &amp; greets. Bibbidi Bobbidi Boutique outfit = pure magic.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/princess-fairytale-hall.jpg?v=2026081003" alt="Princess Fairytale Hall"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">8</span>
-        <span class="ed-body">
-          <span class="ed-t tbd">TBD · not booked</span>
-          <span class="ed-h">Cinderella's Royal Table — lunch<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Inside the castle · 2 adults + Annelise · book Wed Aug 12, 5:00 AM CT. Prepaid in full at booking — update this time once confirmed.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/cinderellas-royal-table.jpg?v=2026081003" alt="Cinderella's Royal Table — lunch"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-body">
-          <span class="ed-t">11:00AM</span>
-          <span class="ed-h">Dumbo + The Barnstormer (Goofy's coaster)<span class="ed-land" data-land="fantasy">Fantasyland · Storybook Circus</span></span>
-          <span class="ed-n">Storybook Circus, side by side. The Barnstormer is 35&quot; — Annelise rides both.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/dumbo.jpg?v=2026081003" alt="Dumbo + The Barnstormer (Goofy's coaster)"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">10</span>
-        <span class="ed-body">
-          <span class="ed-t">11:30AM</span>
+          <span class="ed-t">9:00AM</span>
           <span class="ed-h">Seven Dwarfs Mine Train (Lightning Lane Single Pass)<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Bought Oct 4, ~$25pp for all three. Annelise rides — 38&quot; min.</span>
+          <span class="ed-n">Bought Oct 4, ~$25pp for all three. <b>Pick a 9:00&ndash;9:30 return window when you buy it</b>, or this stop does not exist. Annelise rides &mdash; 38&quot; min.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/seven-dwarfs-mine-train.jpg?v=2026081003" alt="Seven Dwarfs Mine Train (Lightning Lane Single Pass)"
           loading="lazy" decoding="async" width="150" height="100">
         <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
           title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
-          <span class="ed-t">12:00PM</span>
-          <span class="ed-h">Mickey's PhilharMagic + Small World<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">4D show, AC, classic songs. Small World walk-on if time allows.</span>
+          <span class="ed-t">9:35AM</span>
+          <span class="ed-h">Dumbo + The Barnstormer (Goofy&rsquo;s coaster)<span class="ed-land" data-land="fantasy">Fantasyland &middot; Storybook Circus</span></span>
+          <span class="ed-n">Storybook Circus, side by side. The Barnstormer is 35&quot; &mdash; Annelise rides both. Two rides, one walk.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/small-world.jpg?v=2026081003" alt="Mickey's PhilharMagic + Small World"
+        <img class="ed-shot" src="sections/assets/mk/dumbo.jpg?v=2026081003" alt="Dumbo + The Barnstormer (Goofy&rsquo;s coaster)"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev">
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">6</span>
+        <span class="ed-body">
+          <span class="ed-t">10:10AM</span>
+          <span class="ed-h">Princess Fairytale Hall<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n">Cinderella + Tiana meet &amp; greets, in the dress she put on at Pop Century. <b>Tiana is the reason to do this</b> &mdash; Cinderella also comes to the table at lunch, Tiana does not. If the posted wait is over 25 min, walk away and keep the 11:15.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/mk/princess-fairytale-hall.jpg?v=2026081003" alt="Princess Fairytale Hall"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">7</span>
+        <span class="ed-body">
+          <span class="ed-t">10:45AM</span>
+          <span class="ed-h">Castle portraits &mdash; morning set<span class="ed-land" data-land="main">Main Street &middot; Hub</span></span>
+          <span class="ed-n">Thirty minutes of photos in front of the castle, then straight to the check-in podium at the base of it. Find the PhotoPass photographer in the hub &mdash; free with Memory Maker. <b>This is the dress-only set.</b> The full boutique version happens at 5:45 in golden hour.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/mk/castle-reveal.jpg?v=2026081003" alt="Castle portraits &mdash; morning set"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">8</span>
+        <span class="ed-body">
+          <span class="ed-t">11:15AM</span>
+          <span class="ed-h">CINDERELLA&rsquo;S ROYAL TABLE &mdash; lunch<span class="ed-land" data-land="fantasy">Inside the castle</span></span>
+          <span class="ed-n"><b>Booked and prepaid &middot; conf on file.</b> 2 adults + Annelise &middot; Wed Oct 14. <b>Check in at the podium by 11:00</b> &mdash; outside, at the base of the castle, not through the archway. Cinderella greets in the downstairs lobby; three or four more princesses work the tables. About 90 minutes, out around <b>12:45</b>. The card is already charged: if the morning slips, drop rides, never this.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/mk/cinderellas-royal-table.jpg?v=2026081003" alt="CINDERELLA&rsquo;S ROYAL TABLE &mdash; lunch"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-body">
+          <span class="ed-t">11:15AM</span>
+          <span class="ed-h">The other nine &mdash; lunch outside the castle<span class="ed-land" data-land="liberty">Liberty Square</span><span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n">Only three seats exist at the Royal Table, so the other nine need a plan for 90 minutes. <b>11:15 &mdash; Columbia Harbour House</b> in Liberty Square: two floors, quiet upstairs, four minutes from the castle. <b>Mobile-order at 10:45</b> while the castle three are taking photos. <b>12:00 &mdash; Haunted Mansion</b>, ninety seconds away and <b>the group&rsquo;s only shot at it</b> &mdash; the castle three gave up their evening slot for the boutique. <b>Regroup 1:15 at the bus stop</b>, not at the castle.</span>
+        </span>
+      </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT &middot; PM</h3><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">10</span>
+        <span class="ed-body">
+          <span class="ed-t">12:45PM</span>
+          <span class="ed-h">Enchanted Tales with Belle<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n">Straight out of the castle and four minutes up the path &mdash; Maurice&rsquo;s cottage &middot; ~20 min, no height minimum, and she is sitting down the whole time on a full stomach. Volunteer Annelise for a part. Lightning Lane Multi Pass, so refill onto it after the morning tap.</span>
+        </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-body">
+          <span class="ed-t">1:15PM</span>
+          <span class="ed-h">RESORT BREAK &mdash; non-negotiable<span class="ed-land" data-land="transit">Pop Century</span></span>
+          <span class="ed-n">Back to Pop Century. Pool, naps, hydrate. This is also the Magic Kingdom crowd peak &mdash; let it thin and walk back into a different park at 3. <b>Do not do her hair.</b> The boutique handles that at 4:40.</span>
+        </span>
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
-          <span class="ed-t">12:30PM</span>
-          <span class="ed-h">Enchanted Tales with Belle<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
-          <span class="ed-n">Maurice's cottage in Fantasyland · ~20 min, no height minimum. Volunteer Annelise for a part — kids get cast as the wardrobe, a napkin, a knight. Lightning Lane Multi Pass, so refill onto it after the morning tap.</span>
+          <span class="ed-t">3:00PM</span>
+          <span class="ed-h">Tiana&rsquo;s Bayou Adventure &mdash; GET SOAKED NOW<span class="ed-land" data-land="frontier">Frontierland</span></span>
+          <span class="ed-n"><b>Moved from 6:00 PM, and this is the most important change on the page.</b> It ends in a <b>52-ft drop and you will get wet</b> &mdash; which twenty minutes after a boutique makeover would have been a $230 mistake. Riding it at 3:00 gives her <b>100 minutes to dry</b> before the 4:40 appointment. Ponchos on, phones bagged, camera away. Annelise rides &#10003; (40&quot; min, she&rsquo;s 42&quot;). Newest headliner in the park.</span>
         </span>
-        
-      </li><li class="ed-ev">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-body">
-          <span class="ed-t">1:00PM</span>
-          <span class="ed-h">RESORT BREAK — non-negotiable<span class="ed-land" data-land="transit">Pop Century</span></span>
-          <span class="ed-n">Back to Pop Century. Pool, naps, hydrate, hair touch-up. This is also the Magic Kingdom crowd peak — let it thin out and walk back into a different park around 3. Skip it and you get meltdowns by 5 PM.</span>
+          <span class="ed-t">3:45PM</span>
+          <span class="ed-h">Big Thunder Mountain<span class="ed-land" data-land="frontier">Frontierland</span></span>
+          <span class="ed-n">Two-minute walk from Tiana&rsquo;s, same land &mdash; and the wind on this one is the fastest way to dry a four-year-old. REOPENED May 2026 with refreshed scenery. Annelise&rsquo;s first &lsquo;real&rsquo; coaster &#10003; (40&quot;). <b>Leave by 4:25</b> to walk to Fantasyland.</span>
         </span>
-        
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/mk/big-thunder-mountain.jpg?v=2026081003" alt="Big Thunder Mountain"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
-          <span class="ed-t">3:00PM</span>
-          <span class="ed-h">Festival of Fantasy Parade · optional<span class="ed-land" data-land="main">Main Street · Frontierland</span></span>
-          <span class="ed-n">Only if kids rebound fast. Frontierland is less crowded than Main Street.</span>
+          <span class="ed-t">4:40PM</span>
+          <span class="ed-h">BIBBIDI BOBBIDI BOUTIQUE &mdash; the transformation<span class="ed-land" data-land="fantasy">Fantasyland</span></span>
+          <span class="ed-n"><b>Booked and prepaid &middot; conf on file &middot; Miss Annelise Garcia, age 4.</b> Arrive <b>4:40</b>. <b>Appointments run 45&ndash;90 minutes depending on package</b>, and Disney advises budgeting about two hours all-in with check-in and browsing &mdash; so <b>plan on being out by 6:10</b> and treat anything earlier as a bonus. Hair, makeup, nails and the full fairy-tale treatment. <b>Caught on a coordinated drop</b> after the 60-day window came and went &mdash; this appointment did not exist this morning. She arrives dry, fed and rested off a nap, which is exactly the state you want her in for the chair.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/festival-of-fantasy-parade.jpg?v=2026081003" alt="Festival of Fantasy Parade · optional"
+        <img class="ed-shot" src="sections/assets/mk/bibbidi-bobbidi-boutique.jpg?v=2026081003" alt="BIBBIDI BOBBIDI BOUTIQUE &mdash; the transformation"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-body">
-          <span class="ed-t">4:00PM</span>
+          <span class="ed-t">6:15PM</span>
+          <span class="ed-h">Castle portraits &mdash; golden hour, full princess<span class="ed-land" data-land="main">Main Street &middot; Hub</span></span>
+          <span class="ed-n"><b>The shot the whole day is built around.</b> Five minutes from the boutique to the hub. <b>Orlando sunset on Oct 14 is just after 7:00 PM</b>, so 6:15 puts you in the middle of golden hour rather than ahead of it &mdash; the longer boutique appointment actually improved this shot. If she is out early, start early and shoot longer. Full boutique hair and makeup, castle behind her, nothing smudged and nothing wet. Find the PhotoPass photographer again &mdash; different angle, different light, same free Memory Maker.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/mk/castle-reveal.jpg?v=2026081003" alt="Castle portraits &mdash; golden hour, full princess"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">16</span>
+        <span class="ed-body">
+          <span class="ed-t">7:00PM</span>
           <span class="ed-h">Pirates of the Caribbean (Lightning Lane Multi Pass refill)<span class="ed-land" data-land="adventure">Adventureland</span></span>
-          <span class="ed-n">Annelise rides ✅ (no min). Dark but more silly than scary.</span>
+          <span class="ed-n">Indoor, dry, dark, and more silly than scary. Annelise rides &#10003; (no min). Nothing on this ride threatens the makeover.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/pirates-of-the-caribbean.jpg?v=2026081003" alt="Pirates of the Caribbean (Lightning Lane Multi Pass refill)"
           loading="lazy" decoding="async" width="150" height="100">
         <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
           title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">16</span>
-        <span class="ed-body">
-          <span class="ed-t">4:45PM</span>
-          <span class="ed-h">Jungle Cruise + Country Bears<span class="ed-land" data-land="adventure">Adventureland</span><span class="ed-land" data-land="frontier">Frontierland</span></span>
-          <span class="ed-n">Corny skipper jokes, animatronics, AC. Quick easy wins.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/jungle-cruise.jpg?v=2026081003" alt="Jungle Cruise + Country Bears"
-          loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-body">
-          <span class="ed-t">5:30PM</span>
-          <span class="ed-h">Big Thunder Mountain<span class="ed-land" data-land="frontier">Frontierland</span></span>
-          <span class="ed-n">REOPENED May 2026 — refreshed scenery. Annelise's first 'real' coaster ✅ (40&quot;).</span>
+          <span class="ed-t">7:40PM</span>
+          <span class="ed-h">Jungle Cruise + Country Bears<span class="ed-land" data-land="adventure">Adventureland</span><span class="ed-land" data-land="frontier">Frontierland</span></span>
+          <span class="ed-n">Corny skipper jokes, animatronics, AC, and both are dry. <b>Kept over TRON deliberately</b> &mdash; this is a ride all three of you do together, where TRON is adults-only with Annelise parked on the PeopleMover during the swap. It also sits in Adventureland right next to Pirates, so the evening loses a land crossing.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/big-thunder-mountain.jpg?v=2026081003" alt="Big Thunder Mountain"
+        <img class="ed-shot" src="sections/assets/mk/jungle-cruise.jpg?v=2026081003" alt="Jungle Cruise + Country Bears"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev">
+      </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-body">
-          <span class="ed-t">6:00PM</span>
-          <span class="ed-h">Tiana’s Bayou Adventure<span class="ed-land" data-land="frontier">Frontierland</span></span>
-          <span class="ed-n"><b>Non-negotiable.</b> Newest headliner in the park and a two-minute walk from Big Thunder — same land, no crossing. Annelise rides ✅ (40&quot; min, she’s 42&quot; — same bar as Big Thunder). Ends in a <b>52-ft drop and you will get wet</b>: ponchos on, phones bagged, and put the camera away for this one. Lightning Lane Multi Pass refill target. If standby is over 45 min, drop the 3:00 PM parade rather than this.</span>
-        </span>
-        
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">19</span>
-        <span class="ed-body">
-          <span class="ed-t">6:45PM</span>
-          <span class="ed-h">Haunted Mansion (Lightning Lane Multi Pass)<span class="ed-land" data-land="liberty">Liberty Square</span></span>
-          <span class="ed-n">Watch Annelise's face in the stretching room. She'll love it.</span>
+          <span class="ed-t">8:15PM</span>
+          <span class="ed-h">Tomorrowland Speedway + Buzz<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
+          <span class="ed-n">Buzz reopened Apr 2026 with new blasters. Speedway: Annelise &lsquo;drives&rsquo; with an adult &mdash; non-negotiable for her. <b>Watch the dress on the Speedway</b>, those cars run on gas and the wheel is greasy. <b>If you want the PeopleMover</b>, it is a two-minute walk from here and near walk-on &mdash; a seated ten-minute rest right before you stand for fireworks.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/haunted-mansion.jpg?v=2026081003" alt="Haunted Mansion (Lightning Lane Multi Pass)"
+        <img class="ed-shot" src="sections/assets/mk/buzz.webp?v=2026081003" alt="Tomorrowland Speedway + Buzz"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/lightning-lane.jpg?v=2026081003" alt="Lightning Lane Multi Pass"
-          title="Lightning Lane Multi Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
+      </li><li class="ed-ev">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-body">
+          <span class="ed-t">8:45PM</span>
+          <span class="ed-h">Stake your fireworks spot<span class="ed-land" data-land="main">Main Street &middot; Hub</span></span>
+          <span class="ed-n">Right of the castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds. <b>Verify the 9:00 start in the app that morning</b> &mdash; park closes at 10:00 PM and showtimes move.</span>
+        </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-body">
-          <span class="ed-t">7:15PM</span>
-          <span class="ed-h">Buzz + Speedway<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
-          <span class="ed-n">New blasters &amp; 'Buddy' character. Speedway: Annelise 'drives' with an adult — non-negotiable for her.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/buzz.webp?v=2026081003" alt="Buzz + Speedway"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">21</span>
-        <span class="ed-body">
-          <span class="ed-t">7:45PM</span>
-          <span class="ed-h">TRON (Single Pass) / Space Mountain — Rider Switch<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
-          <span class="ed-n">TRON is Single Pass, bought Oct 4 for the two adults. Annelise cannot ride either (48&quot; / 44&quot;) — one parent waits, the other rides, then swap.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/mk/tron.jpg?v=2026081003" alt="TRON (Single Pass) / Space Mountain — Rider Switch"
-          loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/lightning-lane-single.png?v=2026081103" alt="Lightning Lane Single Pass"
-          title="Lightning Lane Single Pass" loading="lazy" decoding="async" width="62" height="62">
-        
-      </span>
-      </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">22</span>
-        <span class="ed-body">
-          <span class="ed-t">8:00PM</span>
-          <span class="ed-h">PeopleMover — during the TRON swap<span class="ed-land" data-land="tomorrow">Tomorrowland</span></span>
-          <span class="ed-n">This is what the waiting parent and Annelise do while the other adult rides TRON — she cannot ride either coaster (48&quot; / 44&quot;, she’s 42&quot;), so this fills the swap instead of standing around. <b>No height minimum</b>, usually close to a walk-on, about 10 minutes and <b>seated the whole way</b>. It glides through the inside of Space Mountain in the dark. On a 6:15 AM to 9:30 PM day this is a rest that happens to be a ride — and it lands right before you stand for fireworks.</span>
-        </span>
-        
-      </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">23</span>
-        <span class="ed-body">
-          <span class="ed-t">8:30PM</span>
-          <span class="ed-h">Stake your fireworks spot<span class="ed-land" data-land="main">Main Street · Hub</span></span>
-          <span class="ed-n">Right of castle on Main Street, OR by Tomorrowland Terrace = great views, fewer crowds.</span>
-        </span>
-        
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">24</span>
-        <span class="ed-body">
           <span class="ed-t">9:00PM</span>
-          <span class="ed-h">Happily Ever After (9:00 PM)<span class="ed-land" data-land="main">Main Street · Hub</span></span>
-          <span class="ed-n">18 min projection mapping + fireworks. Annelise in arms in her Bibbidi Bobbidi Boutique dress. THE photo of the trip.</span>
+          <span class="ed-h">Happily Ever After (9:00 PM)<span class="ed-land" data-land="main">Main Street &middot; Hub</span></span>
+          <span class="ed-n">18 min projection mapping + fireworks. Annelise in arms, <b>a little over three hours out of the boutique and still perfect</b> &mdash; which is the whole reason the appointment sits at 4:40 instead of the morning. THE photo of the trip.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/mk/happily-ever-after.jpg?v=2026081003" alt="Happily Ever After (9:00 PM)"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">25</span>
+        <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-body">
           <span class="ed-t">9:30PM</span>
-          <span class="ed-h">Exit — beat the exodus<span class="ed-land" data-land="main">Main Street</span></span>
-          <span class="ed-n">Either ride one more thing while crowds clear OR straight to monorail. Bedtime by 11 PM.</span>
+          <span class="ed-h">Exit &mdash; beat the exodus<span class="ed-land" data-land="main">Main Street &middot; Hub</span></span>
+          <span class="ed-n">Park closes at 10:00. Either ride one more thing while the crowds clear OR straight to the bus. Bedtime by 11 PM.</span>
         </span>
-        
       </li></ol>
       
     </div>
@@ -2703,243 +2698,218 @@ body.pmv-lock{overflow:hidden}
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Thu · Oct 15</span>
-        <span><i>Stops planned</i>22</span></p>
+        <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
   <div class="ed-spread">
     <div class="ed-spread-in">
       <blockquote class="ed-quote">
-        <span class="ed-qm">&ldquo;</span>House 1 — Stranger Things 5
-        <cite>2:00PM &middot; the moment the day turns on</cite>
+        <span class="ed-qm">&ldquo;</span>GATES OPEN — STRANGER THINGS 5
+        <cite>6:30PM &middot; the moment the day turns on</cite>
       </blockquote>
-      <figure class="ed-map">
-        <a class="ed-map-link" href="sections/assets/maps/usf.jpg?v=2026081105" style="--pos:left center"
-          title="Open the Universal Studios Florida guidemap">
-          <img loading="lazy" decoding="async" width="3000" height="1942"
-            src="sections/assets/maps/usf.jpg?v=2026081105" alt="Universal Studios Florida guidemap — illustrated park map with numbered attractions, dining and legend">
-        </a>
-        <figcaption><b>Universal Studios Florida guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. Base park sheet. The HHN house and scare-zone layout changes yearly and only lives in the app.</figcaption>
-      </figure>
+      
       <ol class="ed-list"><h3 class="ed-sec">DAYTIME · GETTING THERE</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
           <span class="ed-t">9:30AM</span>
-          <span class="ed-h">Chef Mickey's — Contemporary Resort</span>
-          <span class="ed-n">Character breakfast, the one sit-down meal of the trip. Back to Pop Century after to change and rest before a very long night.</span>
+          <span class="ed-h">Chef Mickey&rsquo;s — Contemporary Resort<span class="ed-land" data-land="main">Contemporary</span></span>
+          <span class="ed-n">Character breakfast, the one sit-down meal of the trip that is not in a castle. Mickey, Minnie, Donald, Goofy and Pluto work the room. Annelise gets her whole crew in one sitting — and every one of them signs the book.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/hhn/chef-mickeys.jpg?v=2026081003" alt="Chef Mickey's — Contemporary Resort"
+        <img class="ed-shot" src="sections/assets/hhn/chef-mickeys.jpg?v=2026081003" alt="Chef Mickey&rsquo;s — Contemporary Resort"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
-          <span class="ed-t">12:15PM</span>
-          <span class="ed-h">Drop Annelise with the grandparents</span>
-          <span class="ed-n">Childcare handover before you leave. Universal states HHN may be too intense for young children and is not recommended for guests under 13 — this is a parents’ night out.</span>
+          <span class="ed-t">12:00PM</span>
+          <span class="ed-h">Back to Pop Century — the nap that makes tonight possible<span class="ed-land" data-land="transit">Pop Century</span></span>
+          <span class="ed-n"><b>This is not optional and it is not padding.</b> The old plan had you at Universal by 1:15 PM chasing houses that were not open. Tonight now runs to <b>roughly 1:30 AM</b>. Sleep in the afternoon or you will be done by eleven and the back half of the event — the good half — will be wasted.</span>
         </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
-          <span class="ed-t">12:30PM</span>
-          <span class="ed-h">Drive to Universal Orlando</span>
-          <span class="ed-n">~25 min from Pop Century plus parking. Leaving now is what makes the 2:00 PM early-access houses.</span>
+          <span class="ed-t">4:45PM</span>
+          <span class="ed-h">Drop Annelise with the grandparents<span class="ed-land" data-land="transit">Pop Century</span></span>
+          <span class="ed-n">Childcare handover before you leave. <b>Universal states HHN is not intended for children under 13</b> and there is no toned-down version of it. Abui and Abui Temo have her for the night. Bag check, phone chargers, and cash for parking before you walk out.</span>
         </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
-          <span class="ed-t">1:15PM</span>
-          <span class="ed-h">ARRIVE — parking, security, CityWalk</span>
-          <span class="ed-n">Clear the garage, security and the CityWalk walk. Have HHN admission, Scream Early / day admission and HHN Express already loaded in the Universal Orlando app before you get out of the car.</span>
+          <span class="ed-t">5:00PM</span>
+          <span class="ed-h">Drive to Universal Orlando<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n">~25 min from Pop Century plus parking. Leaving at 5:00 puts you in the garage around 5:30, which is the last comfortable window before the pre-gate crowd stacks up at CityWalk.</span>
         </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
-          <span class="ed-t">1:45PM</span>
-          <span class="ed-h">Enter and get HHN wristbands</span>
-          <span class="ed-n">Wristband verification has to be done before the early houses open. No costumes or costume masks on standard HHN nights, and the event runs rain or shine — bring a compact poncho. Take the main entrance photo while the light is still good.</span>
+          <span class="ed-t">5:35PM</span>
+          <span class="ed-h">ARRIVE — parking, security, CityWalk<span class="ed-land" data-land="usf">CityWalk</span></span>
+          <span class="ed-n">Clear the garage, security and the CityWalk walk. It is a genuinely long way from the top of the garage to the gates — budget the full 30 minutes and do not sprint it.</span>
         </span>
-        
-      </li><h3 class="ed-sec">EARLY ACCESS · STANDBY WHILE IT IS QUIET</h3><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
-          <span class="ed-t">2:00PM</span>
-          <span class="ed-h">House 1 — Stranger Things 5</span>
-          <span class="ed-n">Standby while waits are low. Save the one-time Express entry for a night repeat. Marquee photo before you go in.</span>
+          <span class="ed-t">6:05PM</span>
+          <span class="ed-h">Wristbands, then hold a gate position<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n"><b>Get wristband verification done before 6:30, not after.</b> The line for it is short now and twenty minutes deep once gates open. Then stand at the front of the holding area <b>Stranger Things is the first house everyone runs to</b> and the first fifteen minutes of the night are the shortest wait you will see.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/04-stranger-things-5.jpg?v=2026081003" alt="House 1 — Stranger Things 5"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
+      </li><h3 class="ed-sec">THE EVENT · 6:30PM ONWARD</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
-          <span class="ed-t">2:35PM</span>
-          <span class="ed-h">House 2 — Hellraiser</span>
-          <span class="ed-n">Standby if the wait is still reasonable. Photograph the Pinhead entrance artwork.</span>
+          <span class="ed-t">6:30PM</span>
+          <span class="ed-h">GATES OPEN — House 1: Stranger Things 5<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n"><b>The moment the night turns on.</b> Sprint here, not to the closest house <b>this is the headliner and it holds the longest line of the event all night.</b> Doing it first at walk-on is worth more than any Express use later. Marquee photo before you go in.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/03-hellraiser.jpg?v=2026081003" alt="House 2 — Hellraiser"
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/04-stranger-things-5.jpg?v=2026081003" alt="GATES OPEN — House 1: Stranger Things 5"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
-          <span class="ed-t">3:10PM</span>
-          <span class="ed-h">House 3 — Jack &amp; Oddfellow: Chaos &amp; Control</span>
-          <span class="ed-n">Standby. Marquee photo. More Jack and Oddfellow photo setups may appear in the Infernal Carnival area.</span>
+          <span class="ed-t">7:00PM</span>
+          <span class="ed-h">House 2 — Hellraiser<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">Standby while the crowd is still bunched at Stranger Things. Photograph the marquee — the facade art is half of what you are paying for.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/03-hellraiser.jpg?v=2026081003" alt="House 2 — Hellraiser"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">9</span>
+        <span class="ed-body">
+          <span class="ed-t">7:30PM</span>
+          <span class="ed-h">House 3 — Jack &amp; Oddfellow: Chaos &amp; Control<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">Standby. Jack is the HHN icon — if you only get one facade photo of the night, make it this one.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/06-jack-oddfellow-chaos-control.jpg?v=2026081003" alt="House 3 — Jack &amp; Oddfellow: Chaos &amp; Control"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">9</span>
-        <span class="ed-body">
-          <span class="ed-t">3:45PM</span>
-          <span class="ed-h">Water and restroom break</span>
-          <span class="ed-n">Check the app for the next early-opening house. Drink water. Do not eat anything heavy — you have nine hours left.</span>
-        </span>
-        
-      </li><li class="ed-flexnote">Recommended order shown. Reorder these three based on which queues open first and the live waits in the Universal app.</li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-body">
-          <span class="ed-t">4:00PM</span>
-          <span class="ed-h">House 4 — Sinners</span>
-          <span class="ed-n">Standby if under ~30 min, otherwise use the app to pick whichever of these three has the lowest posted wait.</span>
+          <span class="ed-t">8:00PM</span>
+          <span class="ed-h">Dinner + blue-hour photos<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">An HHN food booth or quick service, not a table-service sit-down — you do not have the time and the kitchens are slammed. <b>Blue hour is roughly 7:15 to 7:45</b>, so the sky is already dark by now and the park lighting is at its best. Eat standing, shoot the streets.</span>
+        </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">11</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">House 4 — Sinners<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">Standby if under ~30 min. <b>Start using HHN Express from here on</b> if waits have climbed past that — you have limited entries and this is where they start paying.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/05-sinners.jpg?v=2026081003" alt="House 4 — Sinners"
           loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">11</span>
-        <span class="ed-body">
-          <span class="ed-t">4:45PM</span>
-          <span class="ed-h">House 5 — Ozzy Osbourne: Prince of Darkness</span>
-          <span class="ed-n">Take whichever of the three opened first. Keep this slot flexible.</span>
-        </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/01-ozzy-osbourne-prince-of-darkness.jpg?v=2026081003" alt="House 5 — Ozzy Osbourne: Prince of Darkness"
-          loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
-          <span class="ed-t">5:30PM</span>
-          <span class="ed-h">House 6 — Evil Dead Burn</span>
-          <span class="ed-n">Start using HHN Express here if standby has climbed past ~30–40 min.</span>
+          <span class="ed-t">9:00PM</span>
+          <span class="ed-h">House 5 — Ozzy Osbourne: Prince of Darkness<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">HHN Express. Photograph the marquee art.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/01-ozzy-osbourne-prince-of-darkness.jpg?v=2026081003" alt="House 5 — Ozzy Osbourne: Prince of Darkness"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">13</span>
+        <span class="ed-body">
+          <span class="ed-t">9:30PM</span>
+          <span class="ed-h">House 6 — Evil Dead Burn<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">HHN Express.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/02-evil-dead-burn.jpg?v=2026081003" alt="House 6 — Evil Dead Burn"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><h3 class="ed-sec">EVENT NIGHT · EXPRESS FROM HERE</h3><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">13</span>
-        <span class="ed-body">
-          <span class="ed-t">6:15PM</span>
-          <span class="ed-h">Quick dinner + golden-hour photos</span>
-          <span class="ed-n">An HHN food booth or quick service — not a table-service meal. Shoot the scare-zone scenery as it switches to night lighting.</span>
-        </span>
-        
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
-          <span class="ed-t">6:45PM</span>
-          <span class="ed-h">House 7 — H.R. Bloodengutz Presents</span>
-          <span class="ed-n">HHN Express. Photograph the WKNB television-style artwork.</span>
+          <span class="ed-t">10:00PM</span>
+          <span class="ed-h">Stranger Things: Return to Hawkins — lagoon<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n"><b>Showtime is provisional — pick an actual performance in the app that afternoon and move this stop to match.</b> Lagoon shows are the one thing you cannot Express your way into, so arrive 15 min early for a rail spot.</span>
+        </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-body">
+          <span class="ed-t">10:30PM</span>
+          <span class="ed-h">House 7 — H.R. Bloodengutz Presents<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">HHN Express. Photograph the WKNB television-style archway.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/10-hr-bloodengutz-fright-tacular.jpg?v=2026081003" alt="House 7 — H.R. Bloodengutz Presents"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
-        <span class="ed-num" aria-hidden="true">15</span>
+        <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-body">
-          <span class="ed-t">7:30PM</span>
-          <span class="ed-h">House 8 — Cybergoria</span>
+          <span class="ed-t">11:00PM</span>
+          <span class="ed-h">House 8 — Cybergoria<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
           <span class="ed-n">HHN Express. Photograph the metallic cybernetic artwork.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/07-cybergoria.jpg?v=2026081003" alt="House 8 — Cybergoria"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">16</span>
-        <span class="ed-body">
-          <span class="ed-t">8:15PM</span>
-          <span class="ed-h">All four scare zones + night photos</span>
-          <span class="ed-n">Infernal Carnival of Nightmares, Sideshow of Decay, FORTNITEMARES, Downtown Clowntown. The zones are where your own photos come from — cameras are not allowed inside the houses.</span>
-        </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-body">
-          <span class="ed-t prov">9:00PM</span>
-          <span class="ed-h">Stranger Things: Return to Hawkins — lagoon show</span>
-          <span class="ed-n">Time is provisional. Pick an actual performance in the Universal Orlando app on Oct 15 — Universal has not published the Oct 15 showtimes.</span>
+          <span class="ed-t">11:30PM</span>
+          <span class="ed-h">All four scare zones + night photos<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">Infernal Carnival of Nightmares, Sideshow of Decay and the rest. <b>Late night is when scare zones are actually best</b> — thinner crowds, the actors are warmed up, and the fog and lighting read properly on camera.</span>
         </span>
-        
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-body">
-          <span class="ed-t">9:30PM</span>
-          <span class="ed-h">House 9 — MADLANDS: Caged Cannibals</span>
-          <span class="ed-n">HHN Express. Photograph the graffiti / abandoned-zoo artwork.</span>
+          <span class="ed-t">12:00AM</span>
+          <span class="ed-h">House 9 — MADLANDS: Caged Cannibals<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">HHN Express. Photograph the graffiti / abandoned-zoo artwork. <b>Waits collapse after midnight</b> as the day-ticket crowd leaves.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/09-madlands-caged-cannibals.jpg?v=2026081003" alt="House 9 — MADLANDS: Caged Cannibals"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">19</span>
         <span class="ed-body">
-          <span class="ed-t">10:15PM</span>
-          <span class="ed-h">House 10 — INVASION: Alien Abduction</span>
-          <span class="ed-n">HHN Express. Photograph the alien-abduction / UFO artwork. That is all ten.</span>
+          <span class="ed-t">12:30AM</span>
+          <span class="ed-h">House 10 — INVASION: Alien Abduction<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">HHN Express. That is all ten houses. Photograph the alien-abduction artwork.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/08-invasion-alien-abduction.jpg?v=2026081003" alt="House 10 — INVASION: Alien Abduction"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><h3 class="ed-sec">LATE NIGHT · REPEATS AND OUT</h3><li class="ed-ev">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-body">
-          <span class="ed-t prov">11:15PM</span>
-          <span class="ed-h">Nightmare Fuel: Blood Noir</span>
-          <span class="ed-n">Time is provisional — confirm in the app. Arrive 20–30 min before the performance you pick.</span>
+          <span class="ed-t">1:00AM</span>
+          <span class="ed-h">Nightmare Fuel: Blood Noir — or repeat your favourite<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n"><b>Confirm the closing time in the app that afternoon</b> — Thursdays usually run to 1:00 AM and peak nights extend to 2:00. If Nightmare Fuel has a late performance, take it. If not, re-ride in this order: Stranger Things 5, Jack &amp; Oddfellow, Sinners.</span>
         </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-body">
-          <span class="ed-t">12:00AM</span>
-          <span class="ed-h">Favourites and repeats</span>
-          <span class="ed-n">In order: Stranger Things 5, Jack &amp; Oddfellow, Sinners, then whatever the group liked most. Spend the Express entries you saved on the three early-access houses.</span>
+          <span class="ed-t">1:30AM</span>
+          <span class="ed-h">Final photo and exit<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
+          <span class="ed-n">One last HHN entrance / icon photo. <b>Do not save an unfinished house for &lsquo;next time&rsquo;</b> — you have one night. Then the walk back through CityWalk and the drive home. Nobody sets an alarm Friday morning; Epic Universe does not open until 9:00.</span>
         </span>
-        
-      </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">22</span>
-        <span class="ed-body">
-          <span class="ed-t">1:45AM</span>
-          <span class="ed-h">Final photo and exit</span>
-          <span class="ed-n">One last HHN entrance / icon photo. Do not save an unvisited house for this slot — everything should already be done.</span>
-        </span>
-        
       </li></ol>
       
     </div>
@@ -2947,13 +2917,13 @@ body.pmv-lock{overflow:hidden}
 </article>
 
 <article class="ed-day" id="day-eu" style="--acc:#5b3a9e;--cover-pos:50% 50%">
-  <header class="ed-cover" style="background-image:url('sections/assets/eu-bg.jpg?v=2026081003')">
+  <header class="ed-cover" style="background-image:url('sections/assets/eu-bg-snw.jpg?v=2026081405')">
     <div class="ed-cover-in">
       <h2 class="ed-park">Epic Universe</h2>
       <!-- The old issue line (Garcia Expedition / Day 02 / Mon Oct 12) is gone; its date
            now sits in the deck beside the park day. Facts strip stays omitted. -->
       <p class="ed-dek"><span><i>Date</i>Fri · Oct 16</span>
-        <span><i>Stops planned</i>18</span></p>
+        <span><i>Stops planned</i>21</span></p>
     </div>
   </header>
   <div class="ed-spread">
@@ -2970,214 +2940,223 @@ body.pmv-lock{overflow:hidden}
         </a>
         <figcaption><b>Epic Universe guidemap.</b> Numbered attractions by land, dining, height minimums and the full legend. </figcaption>
       </figure>
-      <ol class="ed-list"><h3 class="ed-sec">PREP &amp; MORNING · AM</h3><li class="ed-ev">
+      <ol class="ed-list"><h3 class="ed-sec">BEFORE YOU GO</h3><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">1</span>
         <span class="ed-body">
           <span class="ed-t">Thu PM</span>
-          <span class="ed-h">NIGHT BEFORE — secure Virtual Queue + Express</span>
-          <span class="ed-n">Open Universal app the moment Super Nintendo virtual queue drops. Buy single-use Express + 1–2 Power-Up Bands ($45 each). Link tickets, Express, bands to all family profiles.</span>
+          <span class="ed-h">NIGHT BEFORE &mdash; secure Virtual Queue + Express<span class="ed-land" data-land="app">In the app</span></span>
+          <span class="ed-n">Open the Universal app the moment the Super Nintendo virtual queue drops. Buy single-use Express + <b>1&ndash;2 Power-Up Bands ($45 each)</b>. Do this before HHN, not after &mdash; you will be walking out of Halloween Horror Nights at <b>1:30 AM</b> and nobody is booking anything at that hour.</span>
         </span>
-        
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">2</span>
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
-          <span class="ed-h">Uber from Pop Century</span>
-          <span class="ed-n">15–20 min · ~$20 each way. Disney transport doesn't reach Universal. Skip rope drop — you got wrecked at HHN last night and Express covers you.</span>
+          <span class="ed-h">Uber from Pop Century<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n">15&ndash;20 min &middot; ~$20 each way. Disney transport does not reach Universal. <b>Skip rope drop deliberately</b> &mdash; you got wrecked at HHN the night before and got roughly six hours of sleep. A 10:00 first ride is the right trade. <b>Verify the park hours in the app that week</b> &mdash; Universal publishes them later than Disney does.</span>
         </span>
-        
-      </li><li class="ed-ev has-shot">
+      </li><h3 class="ed-sec">MORNING &middot; AM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
         <span class="ed-body">
           <span class="ed-t">10:00AM</span>
-          <span class="ed-h">Mario Kart: Bowser's Challenge (Express)</span>
-          <span class="ed-n">Longest queue in the park — hit it first. Annelise rides ✅ (40&quot; min, sshe's 42&quot;). Touch her hand to the M on the wheel to link her band; she'll collect coins as she rides.</span>
+          <span class="ed-h">Mario Kart: Bowser&rsquo;s Challenge (Express)<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">Longest queue in the park &mdash; hit it first. Annelise rides &#10003; (40&quot; min, she&rsquo;s 42&quot;). Touch her hand to the <b>M</b> on the steering wheel so the AR visor registers her shots.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/mario-kart.jpg?v=2026081003" alt="Mario Kart: Bowser's Challenge (Express)"
+        <img class="ed-shot" src="sections/assets/eu/mario-kart.jpg?v=2026081003" alt="Mario Kart: Bowser&rsquo;s Challenge (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">4</span>
         <span class="ed-body">
           <span class="ed-t">10:30AM</span>
-          <span class="ed-h">Yoshi's Adventure (Express)</span>
-          <span class="ed-n">No height req. Slow family ride with great views of the land. Probably Annelise's favorite of the day.</span>
+          <span class="ed-h">Yoshi&rsquo;s Adventure (Express)<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">No height requirement. Slow family ride with the best views of the land. Probably her favourite thing all day.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/yoshis-adventure.jpg?v=2026081003" alt="Yoshi's Adventure (Express)"
+        <img class="ed-shot" src="sections/assets/eu/yoshis-adventure.jpg?v=2026081003" alt="Yoshi&rsquo;s Adventure (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">5</span>
         <span class="ed-body">
           <span class="ed-t">11:00AM</span>
-          <span class="ed-h">Mine-Cart Madness (Express)</span>
-          <span class="ed-n">Donkey Kong Country. Annelise rides ✅ (40&quot;). Innovative track design — feels like the cart is jumping rails.</span>
+          <span class="ed-h">Mine-Cart Madness (Express)<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">Donkey Kong Country. <b>36&quot; minimum</b> &mdash; she clears it comfortably. The track design makes the cart look like it is jumping the rails; it is the most impressive thing Universal has built mechanically.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/mine-cart-madness.jpg?v=2026081003" alt="Mine-Cart Madness (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">6</span>
         <span class="ed-body">
           <span class="ed-t">11:30AM</span>
-          <span class="ed-h">Power-Up Band activities</span>
-          <span class="ed-n">Punch blocks. Hit key challenges. 3 keys unlocks Bowser Jr. Shadow Showdown — the secret level. Annelise will lose her mind.</span>
+          <span class="ed-h">Power-Up Band activities<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">Punch blocks, hit the key challenges. <b>Three keys unlocks Bowser Jr. Shadow Showdown</b>, the hidden level. She will lose her mind. Budget the full hour &mdash; this is the thing she will actually remember.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/power-up-bands.jpg?v=2026081003" alt="Power-Up Band activities"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">7</span>
         <span class="ed-body">
           <span class="ed-t">12:30PM</span>
-          <span class="ed-h">Lunch · Toadstool Cafe</span>
-          <span class="ed-n">Mario mushroom soup · Princess Peach cake. Photo-worthy food Annelise will actually eat.</span>
+          <span class="ed-h">Lunch &middot; Toadstool Cafe<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">Mario mushroom soup and Princess Peach cake. Photo-worthy food she will actually eat.</span>
         </span>
-        
-      </li><h3 class="ed-sec">AFTERNOON &amp; NIGHT · PM</h3><li class="ed-ev has-shot">
+      </li><h3 class="ed-sec">AFTERNOON &middot; PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">8</span>
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
-          <span class="ed-h">Curse of the Werewolf (Express)</span>
-          <span class="ed-n">Family coaster but dark theming may be too much for Annelise. Rider Switch; adults swap rides while one stays with him.</span>
+          <span class="ed-h">Curse of the Werewolf (Express)<span class="ed-land" data-land="liberty">Dark Universe</span></span>
+          <span class="ed-n">Family coaster, but <b>Dark Universe is horror-themed and the queue alone may be too much for a four-year-old</b>. Rider Switch &mdash; adults swap while one stays with her.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/curse-of-the-werewolf.jpg?v=2026081003" alt="Curse of the Werewolf (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">9</span>
         <span class="ed-body">
           <span class="ed-t">2:15PM</span>
-          <span class="ed-h">Monsters Unchained (Express)</span>
-          <span class="ed-n">Trackless dark ride through Universal Monsters lore. Not for Annelise. Rider Switch. Stroller parking outside both rides.</span>
+          <span class="ed-h">Monsters Unchained (Express)<span class="ed-land" data-land="liberty">Dark Universe</span></span>
+          <span class="ed-n">Trackless dark ride through Universal Monsters lore. <b>Not for Annelise</b> &mdash; 48&quot; and genuinely frightening. Rider Switch. Stroller parking outside both Dark Universe rides.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/monsters-unchained.jpg?v=2026081003" alt="Monsters Unchained (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">10</span>
         <span class="ed-body">
           <span class="ed-t">3:00PM</span>
-          <span class="ed-h">Hiccup's Wing Gliders (Express)</span>
-          <span class="ed-n">Family coaster on Isle of Berk. Annelise rides ✅ (40&quot;). Smooth, scenic, perfect for her.</span>
+          <span class="ed-h">Hiccup&rsquo;s Wing Gliders (Express)<span class="ed-land" data-land="frontier">Isle of Berk</span></span>
+          <span class="ed-n">Family coaster on Isle of Berk. Annelise rides &#10003; (40&quot; min). Smooth, scenic, and pitched exactly at her.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/hiccups-wing-gliders.jpg?v=2026081003" alt="Hiccup's Wing Gliders (Express)"
+        <img class="ed-shot" src="sections/assets/eu/hiccups-wing-gliders.jpg?v=2026081003" alt="Hiccup&rsquo;s Wing Gliders (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">11</span>
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
-          <span class="ed-h">Dragon Racer's Rally · only if line &lt; 30 min</span>
-          <span class="ed-n">Only ride NOT on Express in the park. Hop in if it's short, otherwise skip — you've got bigger fish.</span>
+          <span class="ed-h">Dragon Racer&rsquo;s Rally &middot; only if the line is under 30 min<span class="ed-land" data-land="frontier">Isle of Berk</span></span>
+          <span class="ed-n"><b>The only ride in the park not on Express.</b> 48&quot; so she cannot ride it anyway. Hop on if it is short, otherwise skip it without a second thought.</span>
         </span>
         <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/dragon-racers-rally.jpg?v=2026081003" alt="Dragon Racer's Rally · only if line &lt; 30 min"
+        <img class="ed-shot" src="sections/assets/eu/dragon-racers-rally.jpg?v=2026081003" alt="Dragon Racer&rsquo;s Rally &middot; only if the line is under 30 min"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">12</span>
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
-          <span class="ed-h">Meet Toothless</span>
-          <span class="ed-n">Lines build fast. Either grab now or end of night when they die down.</span>
+          <span class="ed-h">Meet Toothless<span class="ed-land" data-land="frontier">Isle of Berk</span></span>
+          <span class="ed-n">Lines build fast. Grab it now or at the end of the night when they die down. <b>One more page for the book.</b></span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/toothless.jpg?v=2026081003" alt="Meet Toothless"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
         <span class="ed-body">
           <span class="ed-t">4:30PM</span>
-          <span class="ed-h">Battle at the Ministry (Express)</span>
-          <span class="ed-n">The biggest headliner in the park. Annelise rides ✅ (40&quot;). Innovative ride system — moves through multiple show buildings.</span>
+          <span class="ed-h">Battle at the Ministry (Express)<span class="ed-land" data-land="fantasy">Ministry of Magic</span></span>
+          <span class="ed-n">The biggest headliner in the park. Annelise rides &#10003; (40&quot; min). The ride system moves guests through multiple show buildings &mdash; nothing else works like it.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/battle-at-the-ministry.jpg?v=2026081003" alt="Battle at the Ministry (Express)"
           loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><h3 class="ed-sec">EVENING &middot; PM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">14</span>
         <span class="ed-body">
           <span class="ed-t">5:30PM</span>
-          <span class="ed-h">Butterbeer + Butterbeer ice cream</span>
-          <span class="ed-n">Mandatory. Get the frozen version. Annelise's allowed — non-alcoholic. Skip the wand purchase; you've already spent on bands.</span>
+          <span class="ed-h">Butterbeer + Butterbeer ice cream<span class="ed-land" data-land="fantasy">Ministry of Magic</span></span>
+          <span class="ed-n">Mandatory. Get the frozen version. Annelise can have it &mdash; it is non-alcoholic. <b>Skip the wand purchase</b>; you have already spent on Power-Up Bands and she cannot use both.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/butterbeer.jpg?v=2026081003" alt="Butterbeer + Butterbeer ice cream"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">15</span>
         <span class="ed-body">
-          <span class="ed-t">8:00PM</span>
-          <span class="ed-h">Stardust Racers (Express) · Rider Switch</span>
-          <span class="ed-n">Dueling coaster. Annelise can't ride (48&quot;; sshe's 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
+          <span class="ed-t">6:00PM</span>
+          <span class="ed-h">Ministry of Magic &mdash; walk the land as it lights up<span class="ed-land" data-land="fantasy">Ministry of Magic</span></span>
+          <span class="ed-n"><b>New to the plan.</b> The land is 1920s wizarding Paris and it is the best-built thing at Epic Universe &mdash; most people ride Battle at the Ministry and walk straight back out without seeing it. Shop windows, street performers, and the light change at dusk. <b>No queue, no height minimum, and she can set the pace.</b></span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/stardust-racers.jpg?v=2026081003" alt="Stardust Racers (Express) · Rider Switch"
-          loading="lazy" decoding="async" width="150" height="100">
-        <img class="ed-badge" src="sections/assets/badges/express.jpg?v=2026081003" alt="Universal Express Pass"
-          title="Universal Express Pass" loading="lazy" decoding="async" width="113" height="62">
-      </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-body">
-          <span class="ed-t">8:30PM</span>
-          <span class="ed-h">Stardust Show — Celestial Park</span>
-          <span class="ed-n">Nighttime show. Check showtimes in app. Good wind-down before exit.</span>
+          <span class="ed-t">6:45PM</span>
+          <span class="ed-h">Dinner &mdash; Celestial Park<span class="ed-land" data-land="main">Celestial Park</span></span>
+          <span class="ed-n"><b>New to the plan &mdash; there was no dinner in a day that runs to 9:00 PM.</b> Celestial Park is the hub, so you eat between the lands rather than backtracking. Sit down properly: this is the last real rest before the night stretch.</span>
         </span>
-        <span class="ed-media">
-        <img class="ed-shot" src="sections/assets/eu/stardust-show.jpg?v=2026081003" alt="Stardust Show — Celestial Park"
-          loading="lazy" decoding="async" width="150" height="100">
-        
-      </span>
-      </li><li class="ed-ev has-shot">
+      </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-body">
-          <span class="ed-t">8:45PM</span>
-          <span class="ed-h">One last walk through Nintendo World</span>
-          <span class="ed-n">All five lands light up differently at night. Pipes glow. Characters move. Music plays. Pure magic for Annelise.</span>
+          <span class="ed-t">7:30PM</span>
+          <span class="ed-h">Constellation Carousel &mdash; Celestial Park<span class="ed-land" data-land="main">Celestial Park</span></span>
+          <span class="ed-n"><b>New to the plan.</b> <b>No height minimum</b>, so this is one of the very few things all twelve of you can do together. The constellation animals light up after dark and it is the prettiest thing in the park at night. Do it before the crowd drifts back to the hub for the show.</span>
+        </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-body">
+          <span class="ed-t">8:00PM</span>
+          <span class="ed-h">Stardust Racers (Express) &middot; Rider Switch<span class="ed-land" data-land="main">Celestial Park</span></span>
+          <span class="ed-n">Duelling coaster. <b>Annelise cannot ride</b> (48&quot; min, she&rsquo;s 42&quot;). Both adults ride both sides via swap. Reopened Mar 2026.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/eu/stardust-racers.jpg?v=2026081003" alt="Stardust Racers (Express) &middot; Rider Switch"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">19</span>
+        <span class="ed-body">
+          <span class="ed-t">8:30PM</span>
+          <span class="ed-h">Stardust Show &mdash; Celestial Park<span class="ed-land" data-land="main">Celestial Park</span></span>
+          <span class="ed-n">Nighttime show over the hub. <b>Check the showtime in the app that morning</b> &mdash; it moves with park hours. Good wind-down before the exit.</span>
+        </span>
+        <span class="ed-media">
+        <img class="ed-shot" src="sections/assets/eu/stardust-show.jpg?v=2026081003" alt="Stardust Show &mdash; Celestial Park"
+          loading="lazy" decoding="async" width="150" height="100">
+
+      </span>
+      </li><li class="ed-ev has-shot">
+        <span class="ed-num" aria-hidden="true">20</span>
+        <span class="ed-body">
+          <span class="ed-t">8:50PM</span>
+          <span class="ed-h">One last walk through Nintendo World<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
+          <span class="ed-n">All five lands light differently at night. Pipes glow, characters move, the music changes. Pure magic for her, and the best photographs of the day.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/nintendo-world.jpg?v=2026081003" alt="One last walk through Nintendo World"
           loading="lazy" decoding="async" width="150" height="100">
-        
+
       </span>
       </li><li class="ed-ev">
-        <span class="ed-num" aria-hidden="true">18</span>
+        <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-body">
-          <span class="ed-t">9:00PM</span>
-          <span class="ed-h">Uber back to Pop Century</span>
-          <span class="ed-n">Don't push to close — you have a flight or drive home tomorrow. Pack tonight, sleep early.</span>
+          <span class="ed-t">9:15PM</span>
+          <span class="ed-h">Uber back to Pop Century<span class="ed-land" data-land="transit">Transit</span></span>
+          <span class="ed-n"><b>Do not push to close.</b> You fly home Saturday morning on UA 468 at 7:00 AM out of MCO, which means a 4:30 AM alarm. Pack tonight, sleep early.</span>
         </span>
-        
       </li></ol>
       
       <aside class="ed-aside">
@@ -3246,43 +3225,24 @@ body.pmv-lock{overflow:hidden}
 
 <section id="alarms">
   <div class="section-h">
-    <div class="section-eyebrow">① For Staying Organized · The Three Critical Alarms</div>
-    <h2 class="section-title">Three <b>alarms.</b></h2>
-    <p class="section-deck">Three moments the whole trip pivots on. All fire from this page so any of the twelve can keep watch — test them, schedule them, leave the tab open.</p>
-  </div>
-
-  <div class="alarm-panel">
-    <h3>📋 Booking Night Playbook — read before Aug 11</h3>
-    <p>Minute-by-minute for the two castle reservations: what to do today, the decision sheet to fill in beforehand, the exact click path for each booking, and what to do if it fails. Open it on a second screen while you book.</p>
-    <div class="alarm-btns">
-      <a class="alarm-btn" href="BOOKING-NIGHT-PLAYBOOK.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none">📖 Open the Playbook →</a>
-    </div>
-  </div>
-
-  <div class="alarm-panel bbb">
-    <h3>👑 Bibbidi Bobbidi Boutique — TOP PRIORITY</h3>
-    <p>Opens <b style="color:#ff8fd1">Wed Aug 12, 5:00 AM CT</b> — 6:00 AM Orlando time, confirmed by a Disney Cast Member on live chat. <b style="color:#ff8fd1">This is the same moment castle dining opens</b>, so split the two across two people on two devices. Just Annelise. <b>Pop Century makes you a Disney resort guest</b>, so book the whole Oct 11–17 stay in that one session. Be logged in by <b style="color:#ff8fd1">4:45 AM</b> — slots go in minutes.</p>
-    <div class="alarm-btns">
-      <button class="alarm-btn bbb" id="testBbbBtn">🔔 Test BBB</button>
-      <button class="alarm-btn bbb" id="scheduleBbbBtn">⏰ Schedule Aug 12 · 5:00 AM CT</button>
-      <button class="alarm-btn ghost" id="cancelBbbBtn">Cancel</button><a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FBooking%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Abbb-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260810T120000Z%0D%0ADTSTART%3A20260812T100000Z%0D%0ADURATION%3APT30M%0D%0ASUMMARY%3ABOOK%20-%20Bibbidi%20Bobbidi%20Boutique%0D%0ADESCRIPTION%3AOpens%206%3A00%20AM%20Eastern%20%286%3A00%20AM%20Orlando%20time%29%20on%20the%2060-day%20mark%5C%2C%20confirmed%20by%20a%20Disney%20Cast%20Member.%20That%20is%205%3A00%20AM%20Central.%20Magic%20Kingdom%20location%5C%2C%20not%20Disney%20Springs.%20Castle%20dining%20opens%20the%20same%20moment%20-%20split%20across%20two%20people.%20Be%20signed%20in%20by%204%3A45%20AM%20CT.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT15M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3ABooking%20window%20opens%20in%2015%20minutes%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="bbb-booking.ics" title="Downloads a calendar reminder that fires even with this page closed">📅 Calendar</a>
-    </div>
-    <div id="bbbStatus">No alarm scheduled.</div>
-    <div class="mw-card">
-      <p style="font-size:13px; color:#cbd5e1; line-height:1.5;"><b style="color:#ff8fd1;">🐭 Backup:</b> If you miss the window or all slots are taken, MouseWatcher will text/email you when a cancellation hits.</p>
-      <a href="https://mousewatcher.com/restaurants/magic-kingdom-bibbidi-bobbidi-boutique-park" target="_blank" rel="noopener">🔗 Set Up MouseWatcher Alert →</a>
-    </div>
+    <div class="section-eyebrow">① For Staying Organized · One Alarm Left</div>
+    <h2 class="section-title">One <b>alarm.</b></h2>
+    <p class="section-deck">Both castle bookings landed — the 11:15 lunch and the 4:40 boutique. What is left is Lightning Lane on Oct 4. It fires from this page so any of the twelve can keep watch — test it, schedule it, leave the tab open.</p>
   </div>
 
   <div class="alarm-panel crt">
-    <h3>🏰 Princess Castle Dining — Cinderella's Royal Table</h3>
-    <p>Lunch inside the castle · <b style="color:#93c5fd">2 adults + Annelise (4)</b> · Wed Oct 14. Opens <b style="color:#93c5fd">Wed Aug 12, 5:00 AM</b> — <b>the same moment the BBB window opens</b>, so one of you takes this and the other takes BBB. Resort guests get 60+10, so book every ADR for the whole stay in this session. Be logged in by <b style="color:#93c5fd">4:45 AM</b>. Full prepayment required.</p>
+    <h3>🏰 Cinderella's Royal Table — BOOKED</h3>
+    <p><b style="color:#93c5fd">Wed Oct 14 · 11:15 AM · lunch inside the castle</b> · 2 adults + Annelise (4). Prepaid in full at booking, so the seat is paid for whether you show or not. <b>Check in at the podium by 11:00 AM</b> — it sits outside at the base of the castle on the Main Street side, not through the archway. The whole Magic Kingdom morning is now sequenced backwards from this time.</p>
     <div class="alarm-btns">
-      <button class="alarm-btn" id="testCrtBtn">🔔 Test Castle</button>
-      <button class="alarm-btn" id="scheduleCrtBtn">⏰ Schedule Aug 12 · 5:00 AM CT</button>
-      <button class="alarm-btn ghost" id="cancelCrtBtn">Cancel</button><a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FBooking%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Acrt-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260810T120000Z%0D%0ADTSTART%3A20260812T100000Z%0D%0ADURATION%3APT30M%0D%0ASUMMARY%3ABOOK%20-%20Cinderella's%20Royal%20Table%0D%0ADESCRIPTION%3ADisney%20dining%20opens%206%3A00%20AM%20Eastern.%20Party%20of%203%5C%2C%20Oct%2014%20lunch.%20Card%20charged%20in%20full.%20Be%20signed%20in%20by%204%3A45%20AM%20CT.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT15M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3ABooking%20window%20opens%20in%2015%20minutes%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="crt-booking.ics" title="Downloads a calendar reminder that fires even with this page closed">📅 Calendar</a>
+      <a class="alarm-btn ghost" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FGarcia%20Expedition%2F%2FDining%2F%2FEN%0D%0ACALSCALE%3AGREGORIAN%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Acrt-seating-garcia-2026%40artut1582.github.io%0D%0ADTSTAMP%3A20260812T120000Z%0D%0ADTSTART%3ATZID%3DAmerica%2FNew_York%3A20261014T111500%0D%0ADURATION%3APT1H30M%0D%0ASUMMARY%3ACinderella's%20Royal%20Table%20-%20lunch%0D%0ADESCRIPTION%3ALunch%20inside%20Cinderella%20Castle.%202%20adults%20%2B%20Annelise.%20Prepaid.%20Check%20in%20at%20the%20podium%20at%20the%20base%20of%20the%20castle%20by%2011%3A00%20AM%20-%20outside%5C%2C%20not%20through%20the%20archway.%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-PT45M%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AHead%20to%20the%20castle%20check-in%20podium%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="cinderellas-royal-table.ics" title="Adds the 11:15 AM seating to your calendar with a 45-minute warning">📅 Add the 11:15 seating</a>
     </div>
-    <div id="crtStatus">No alarm scheduled.</div>
+    <div id="crtStatus">✅ Confirmed · no alarm needed.</div>
+  </div>
+
+  <div class="alarm-panel crt">
+    <h3>👑 Bibbidi Bobbidi Boutique &mdash; BOOKED</h3>
+    <p><b style="color:#93c5fd">Wed Oct 14 &middot; arrive 4:40 PM &middot; conf on file</b> &middot; Miss Annelise Garcia, age 4. Missed at the 60-day drop, then caught on a <b>coordinated cancellation</b> through AddMoreMagic. Out around <b>5:40 PM</b>, straight into golden-hour castle portraits at 5:45. <b>Tiana&rsquo;s Bayou Adventure moved to 3:00 PM</b> so the 52-ft soaking happens <i>before</i> the makeover, not twenty minutes after it.</p>
+    <div id="bbbStatus">✅ Confirmed &middot; no alarm needed.</div>
   </div>
   <div class="alarm-panel">
     <h3>📢 Lightning Lane Multi Pass Alarm</h3>
@@ -3300,7 +3260,7 @@ body.pmv-lock{overflow:hidden}
     <li><b>Seven Dwarfs Mine Train</b> — Magic Kingdom · all three · Annelise rides (38")</li>
     <li><b>Rise of the Resistance</b> — Hollywood Studios · all three · Annelise rides (40")</li>
     <li><b>Avatar Flight of Passage</b> — Animal Kingdom · 2 adults · 44" min</li>
-    <li><b>TRON Lightcycle / Run</b> — Magic Kingdom · 2 adults · 48" min</li>
+    <li><s>TRON Lightcycle / Run</s> &mdash; <b>DO NOT BUY.</b> Cut from the Oct 14 plan in favour of Jungle Cruise, which the whole party rides together.</li>
   </ul>
   <p style="font-size:11.5px;color:#9aa3b8;line-height:1.55;margin:0">
     Roughly $10–25 per person per ride, priced by date — check the real figure in the app before buying.
@@ -3340,43 +3300,44 @@ body.pmv-lock{overflow:hidden}
 const TRIP_START = window.TRIP.startMs;
 function tick(){
   let d = window.TRIP.msLeft();
-  if(d<=0){ ['cd-d','cd-h','cd-m','cd-s'].forEach(function(k){ var e=document.getElementById(k); if(e) e.textContent = k==='cd-d' ? '0' : '00'; }); var n0=document.getElementById('nav-cd'); if(n0) n0.textContent='0'; return; }
+  if(d<=0){ ['cd-d','cd-h','cd-m','cd-s'].forEach(function(k){ flapSet(k, k==='cd-d' ? '0' : '00'); }); var n0=document.getElementById('nav-cd'); if(n0) n0.textContent='0'; return; }
   const days=window.TRIP.daysLeft(), h=Math.floor((d%86400000)/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
-  document.getElementById('cd-d').textContent=days;
+  flapSet('cd-d',days);
   var nc=document.getElementById('nav-cd'); if(nc) nc.textContent=days;
-  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+  flapSet('cd-h',String(h).padStart(2,'0'));
+  flapSet('cd-m',String(m).padStart(2,'0'));
+  flapSet('cd-s',String(s).padStart(2,'0'));
+}
+function flapSet(id,val){
+  var e=document.getElementById(id); if(!e) return;
+  var v=String(val);
+  if(e.dataset.flap===v) return;          /* only rebuild when the digits change */
+  e.dataset.flap=v;
+  e.textContent='';
+  for(var i=0;i<v.length;i++){ var b=document.createElement('b'); b.textContent=v[i]; e.appendChild(b); }
 }
 tick(); setInterval(tick,1000);
 
 document.querySelectorAll('.nav-links a').forEach(a=>{ a.addEventListener('click',e=>{ const h=a.getAttribute('href'); if(h&&h.startsWith('#')){ e.preventDefault(); document.querySelector(h).scrollIntoView({behavior:'smooth'}); } }); });
 
-let aI=null,llT=null,bbbT=null,crtT=null;
+let aI=null,llT=null;
 function spk(p){if(!('speechSynthesis' in window))return; const u=new SpeechSynthesisUtterance(p); u.rate=1.05; u.pitch=1.3; window.speechSynthesis.speak(u);}
 function prime(){if(!('speechSynthesis' in window))return; const p=new SpeechSynthesisUtterance(' '); p.volume=0; window.speechSynthesis.speak(p);}
 function startAlarm(t){
   const o=document.getElementById('alarmOverlay'); let ph;
-  if(t==='bbb'){ document.getElementById('alarmIcon').textContent='👑✨'; document.getElementById('alarmTitle').textContent='BOOK BIBBIDI BOBBIDI BOUTIQUE!'; document.getElementById('alarmMsg').textContent='Reserve Annelise\'s appointment NOW'; o.classList.add('bbb-mode'); ph='Book Bibbidi Bobbidi Boutique!'; }
-  else if(t==='crt'){ document.getElementById('alarmIcon').textContent='🏰👑'; document.getElementById('alarmTitle').textContent='BOOK CINDERELLA\'S ROYAL TABLE!'; document.getElementById('alarmMsg').textContent='Princess Castle lunch · 2 adults + Annelise · Oct 14'; o.classList.remove('bbb-mode'); ph='Book Cinderella\'s Royal Table!'; }
-  else { document.getElementById('alarmIcon').textContent='🚨'; document.getElementById('alarmTitle').textContent='BOOK LIGHTNING LANE!'; document.getElementById('alarmMsg').textContent='Open My Disney Experience NOW'; o.classList.remove('bbb-mode'); ph='Book Lightning Lane!'; }
+  document.getElementById('alarmIcon').textContent='🚨'; document.getElementById('alarmTitle').textContent='BOOK LIGHTNING LANE!'; document.getElementById('alarmMsg').textContent='Open My Disney Experience NOW'; ph='Book Lightning Lane!';
   o.classList.add('active'); spk(ph); aI=setInterval(()=>spk(ph),2400);
 }
-window.stopAlarm=function(){ document.getElementById('alarmOverlay').classList.remove('active','bbb-mode'); if(aI){clearInterval(aI);aI=null;} if('speechSynthesis' in window)window.speechSynthesis.cancel(); };
+window.stopAlarm=function(){ document.getElementById('alarmOverlay').classList.remove('active'); if(aI){clearInterval(aI);aI=null;} if('speechSynthesis' in window)window.speechSynthesis.cancel(); };
 /* All three written in Central offsets — Artemio's clock. The explicit -05:00 keeps them firing at
    the right instant from any device, instead of drifting with whatever timezone the browser is in. */
 const LL=new Date('2026-10-04T05:59:00-05:00');  /* Sun Oct 4 · 5:59 AM Central (window opens 6:00) */
 document.getElementById('testAlarmBtn').onclick=()=>startAlarm('ll');
 document.getElementById('scheduleAlarmBtn').onclick=()=>{ if(llT)clearTimeout(llT); const d=LL-new Date(); if(d<=0){document.getElementById('alarmStatus').innerHTML='⚠️ Window already opened';return;} llT=setTimeout(()=>startAlarm('ll'),d); document.getElementById('alarmStatus').innerHTML=`✅ Armed for <b>${LL.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
 document.getElementById('cancelAlarmBtn').onclick=()=>{ if(llT){clearTimeout(llT);llT=null;} document.getElementById('alarmStatus').textContent='No alarm scheduled.'; };
-const BBB=new Date('2026-08-12T05:00:00-05:00'); /* Wed Aug 12 · 5:00 AM Central = 6:00 AM Orlando */
-document.getElementById('testBbbBtn').onclick=()=>startAlarm('bbb');
-document.getElementById('scheduleBbbBtn').onclick=()=>{ if(bbbT)clearTimeout(bbbT); const d=BBB-new Date(); if(d<=0){document.getElementById('bbbStatus').innerHTML='⚠️ Window already opened';return;} bbbT=setTimeout(()=>startAlarm('bbb'),d); document.getElementById('bbbStatus').innerHTML=`✅ Armed for <b>${BBB.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
-document.getElementById('cancelBbbBtn').onclick=()=>{ if(bbbT){clearTimeout(bbbT);bbbT=null;} document.getElementById('bbbStatus').textContent='No alarm scheduled.'; };
-const CRT=new Date('2026-08-12T05:00:00-05:00'); /* Wed Aug 12 · 5:00 AM Central */
-document.getElementById('testCrtBtn').onclick=()=>startAlarm('crt');
-document.getElementById('scheduleCrtBtn').onclick=()=>{ if(crtT)clearTimeout(crtT); const d=CRT-new Date(); if(d<=0){document.getElementById('crtStatus').innerHTML='⚠️ Window already opened';return;} crtT=setTimeout(()=>startAlarm('crt'),d); document.getElementById('crtStatus').innerHTML=`✅ Armed for <b>${CRT.toLocaleString([],{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}</b>`; prime(); };
-document.getElementById('cancelCrtBtn').onclick=()=>{ if(crtT){clearTimeout(crtT);crtT=null;} document.getElementById('crtStatus').textContent='No alarm scheduled.'; };
+/* The BBB and Cinderella's Royal Table booking alarms are gone: the table is booked and
+   prepaid for 11:15 AM Oct 14, and the boutique is off the plan. Their buttons and timers
+   were removed with the panels — Lightning Lane on Oct 4 is the only window left to catch. */
 
 /* ===== PHOTO LOADER — tries multiple filename variations, falls back to emoji ===== */
 function loadCastPhotos(){
@@ -3459,5 +3420,312 @@ function loadCastPhotos(){
 })();
 </script>
 
+
+<script>
+/* Missing-artwork guard. The HHN house thumbs under assets/hhn-2026/ were
+   referenced before they were ever added to the folder, so ten stops rendered a
+   broken-image icon. Rather than hard-code around those ten, drop any ed-shot
+   that fails to load and collapse its media column so the row reads as a plain
+   text stop. Covers every future missing asset for free. */
+(function(){
+  function kill(img){
+    var li = img.closest('.ed-ev'), m = img.closest('.ed-media');
+    img.remove();
+    if (m && !m.querySelector('img')) { m.remove(); if (li) li.classList.remove('has-shot'); }
+  }
+  document.querySelectorAll('.ed-shot, .ed-badge').forEach(function(img){
+    if (img.complete && img.naturalWidth === 0) kill(img);
+    else img.addEventListener('error', function(){ kill(img); });
+  });
+})();
+</script>
+
+<style id="neon-day-header">
+/* == Park day header - option 14 "Neon Sign" ==============================
+   Chosen 2026-08-14. This is a pure restyle of the existing .ed-park / .ed-dek
+   markup, so no HTML changed and nothing downstream can break.
+
+   Each park gets its own tube colour. One hot pink across all five reads as a
+   Hollywood Studios joke pasted onto Animal Kingdom; the constant cyan
+   underline is what keeps the five days looking like one system. Hues are
+   brighter than each day's --acc because a muted accent does not glow. */
+.ed-day  { --neon:#ff2e8b; --neon-soft:rgba(255,46,139,.70); --tube:#59e5ff; }
+#day-ak  { --neon:#39ff9e; --neon-soft:rgba(57,255,158,.70); }
+#day-hs  { --neon:#ff2e8b; --neon-soft:rgba(255,46,139,.70); }
+#day-mk  { --neon:#ff7ad9; --neon-soft:rgba(255,122,217,.70); }
+#day-hhn { --neon:#ff3b30; --neon-soft:rgba(255,59,48,.70); }
+#day-eu  { --neon:#a56bff; --neon-soft:rgba(165,107,255,.70); }
+
+.ed-park{
+  font-weight:700; line-height:1.04; letter-spacing:-.012em; color:#fff7ef;
+  text-shadow:0 0 5px #fff, 0 0 14px var(--neon), 0 0 34px var(--neon),
+              0 0 62px var(--neon-soft);
+  animation:neonFlick 5.5s infinite;
+}
+.ed-park::after{
+  content:""; display:block; margin:clamp(13px,1.9vw,19px) 0 0;
+  height:2px; width:min(340px,62%); border-radius:2px; background:var(--tube);
+  box-shadow:0 0 7px var(--tube), 0 0 20px #22c7e6;
+}
+@keyframes neonFlick{ 0%,96%,100%{opacity:1} 97%{opacity:.62} 98%{opacity:1} 99%{opacity:.75} }
+@media (prefers-reduced-motion:reduce){ .ed-park{animation:none} }
+
+/* meta row: label and value on one line now, in the tube's cyan */
+.ed-dek{ margin-top:clamp(12px,1.8vw,16px); gap:clamp(18px,3vw,34px); align-items:baseline; }
+.ed-dek span{
+  font:700 clamp(10.5px,1.25vw,12.5px)/1 'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:.2em; text-transform:uppercase; color:#fff;
+  text-shadow:0 0 8px rgba(89,229,255,.85);
+}
+.ed-dek i{
+  display:inline; margin:0 9px 0 0; font-style:normal;
+  font:700 clamp(10.5px,1.25vw,12.5px)/1 'JetBrains Mono',ui-monospace,monospace;
+  letter-spacing:.2em; text-transform:uppercase; color:#8ff0ff;
+  text-shadow:0 0 8px rgba(89,229,255,.6);
+}
+</style>
+
+<style id="board-hero-css">
+/* == Hero block - option 01 "Departure Board" =============================
+   Chosen 2026-08-14. Ticker, countdown and both flight cards restyled as one
+   airport board. Pure CSS over existing markup except the countdown, which
+   needed flapSet() to emit one tile per digit. */
+#board-hero-css{display:none}
+
+/* -- live ticker becomes the board header strip -- */
+.ticker{
+  background:#14161d !important; border:1px solid rgba(255,255,255,.14) !important;
+  border-radius:5px !important;
+}
+.ticker-label, .ticker-stamp{
+  font:700 10px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.22em !important; text-transform:uppercase !important;
+}
+.ticker-label{ color:#e0b352 !important; }
+.ticker-stamp{ color:#7f8ba5 !important; }
+.ticker-msg{
+  font:600 11.5px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.1em !important; color:#dfe5f0 !important;
+}
+.ticker-msg b{ color:#e0b352 !important; font-weight:700 !important; }
+
+/* -- countdown as split-flap tiles -- */
+.cd-wrap{ background:#0b0d11 !important; border:1px solid rgba(255,255,255,.14) !important; }
+.cdh-eyebrow{
+  font:700 10px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.3em !important; text-transform:uppercase !important;
+  color:#e0b352 !important;
+}
+.cdh-row{ gap:clamp(8px,1.6vw,16px) !important; }
+.cdh-u{ border:0 !important; background:none !important; }
+
+/* each .cdh-v now holds <b> digit tiles emitted by flapSet() */
+.cdh-v{
+  display:flex !important; gap:2px !important; justify-content:center !important;
+  font-size:0 !important;            /* kills whitespace between tiles */
+  background:none !important; color:inherit !important; text-shadow:none !important;
+}
+.cdh-v b{
+  position:relative; min-width:clamp(24px,4.4vw,38px); padding:clamp(8px,1.4vw,13px) 4px;
+  background:linear-gradient(180deg,#262a34 0 50%,#171a22 50% 100%);
+  border-radius:3px; color:#fff;
+  font:800 clamp(20px,3.8vw,30px)/1 'JetBrains Mono',ui-monospace,monospace;
+  box-shadow:0 2px 6px rgba(0,0,0,.5);
+}
+.cdh-v b:after{ content:""; position:absolute; left:0; right:0; top:50%; height:1px;
+  background:rgba(0,0,0,.6); }
+.cdh-k{
+  font:700 8.5px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.24em !important; text-transform:uppercase !important;
+  color:#7f8ba5 !important; margin-top:8px !important;
+}
+.cdh-foot span{
+  font:700 9.5px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.22em !important; text-transform:uppercase !important;
+  color:#8f98ad !important;
+}
+
+/* -- flights become board rows inside one panel -- */
+#flights .center-grid{
+  display:block !important; gap:0 !important;
+  background:#14161d; border:1px solid rgba(255,255,255,.14); border-radius:6px; overflow:hidden;
+}
+#flights .center-card{
+  display:grid !important; align-items:baseline;
+  grid-template-columns:minmax(130px,150px) 1fr;
+  grid-template-areas:"num route" "when meta";
+  gap:6px clamp(12px,2.4vw,26px);
+  background:none !important; border:0 !important; border-radius:0 !important;
+  border-bottom:1px solid rgba(255,255,255,.08) !important;
+  padding:14px clamp(12px,2vw,18px) !important; box-shadow:none !important;
+}
+#flights .center-card:last-child{ border-bottom:0 !important; }
+#flights .ce{
+  grid-area:when;
+  font:700 9px/1.5 'JetBrains Mono',ui-monospace,monospace !important;
+  letter-spacing:.2em !important; text-transform:uppercase !important;
+  color:#7f8ba5 !important; margin:0 !important;
+}
+#flights .ch{
+  grid-area:num;
+  font:700 15px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  color:#e0b352 !important; margin:0 !important;
+}
+#flights .ch b{ color:#e0b352 !important; }
+#flights .fl-route{
+  grid-area:route; display:flex !important; align-items:baseline; flex-wrap:wrap;
+  gap:clamp(8px,1.6vw,18px) !important; margin:0 !important;
+}
+#flights .fl-ap{ display:flex; align-items:baseline; gap:8px; }
+#flights .fl-ap .t{
+  font:700 17px/1 'JetBrains Mono',ui-monospace,monospace !important; color:#fff !important;
+}
+#flights .fl-ap .c{
+  font:700 13px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  color:#e0b352 !important; letter-spacing:.08em;
+}
+#flights .fl-ap .n{
+  font:600 9.5px/1 'JetBrains Mono',ui-monospace,monospace !important;
+  color:#6f7a91 !important; letter-spacing:.12em; text-transform:uppercase;
+}
+#flights .fl-arrow{ color:#7f8ba5 !important; font-size:14px !important; }
+#flights .fl-meta{
+  grid-area:meta;
+  font:500 11px/1.6 'JetBrains Mono',ui-monospace,monospace !important;
+  color:#8f98ad !important; margin:0 !important;
+}
+@media (max-width:640px){
+  #flights .center-card{ grid-template-columns:1fr; grid-template-areas:"num" "route" "when" "meta"; }
+}
+</style>
+
+<style id="board-compact-css">
+/* == Departure board - fixes + 60% height reduction ======================
+   1. The digits were invisible. .cdh-v paints its numerals with a clipped
+      gradient (-webkit-text-fill-color:transparent). The <b> tiles inherited
+      that, so setting color:#fff did nothing - the fill colour has to be reset
+      explicitly on the tiles.
+   2. Hero block was 541px (ticker 42 + countdown 189 + flights 310). Target is
+      ~216px, so: smaller tiles, tighter panels, and each flight collapses from
+      a two-row grid to one line plus a compact note. */
+
+/* -- 1. make the digits visible -------------------------------------------- */
+.cdh-v b{
+  -webkit-text-fill-color:#fff !important; color:#fff !important;
+  -webkit-background-clip:border-box !important; background-clip:border-box !important;
+}
+.cdh-v{ padding:0 !important; letter-spacing:0 !important; }
+
+/* -- 2. countdown: 189px -> ~84px ------------------------------------------ */
+.cd-wrap{ margin-top:8px !important; }
+.cdh{ padding:9px clamp(12px,2vw,20px) 8px !important; border-radius:10px !important; }
+.cdh-eyebrow{ font-size:8px !important; letter-spacing:.26em !important; margin:0 !important; }
+.cdh-row{ gap:4px !important; margin-top:7px !important; }
+.cdh-v b{
+  min-width:clamp(16px,2.5vw,23px) !important; padding:4px 3px !important;
+  font-size:clamp(13px,2.1vw,18px) !important; border-radius:2px !important;
+  box-shadow:0 1px 3px rgba(0,0,0,.5) !important;
+}
+.cdh-k{ font-size:6.5px !important; letter-spacing:.2em !important; margin-top:4px !important; }
+.cdh-foot{ margin:6px 0 0 !important; gap:8px !important; }
+.cdh-foot span{ font-size:7.5px !important; letter-spacing:.18em !important; }
+.cdh-foot i{ display:none !important; }
+
+/* -- 3. flights: 310px -> ~100px, one line per flight ---------------------- */
+#flights{ margin-top:10px !important; }
+#flights .center-card{
+  /* col 1 was 138px holding "United UA 2245 . Economy (Q)" at nowrap, ~210px
+     wide - so it ran straight through the departure time. Sized to the content. */
+  grid-template-columns:minmax(205px,230px) minmax(0,1fr) auto !important;
+  grid-template-areas:"num route when" "meta meta meta" !important;
+  gap:1px clamp(10px,1.8vw,18px) !important;
+  padding:8px clamp(10px,1.6vw,15px) !important;
+  align-items:baseline !important;
+}
+#flights .ch{ font-size:12.5px !important; white-space:nowrap; }
+#flights .fl-route{ gap:8px !important; flex-wrap:nowrap !important; overflow:hidden; }
+#flights .fl-ap{ gap:6px; }
+#flights .fl-ap .t{ font-size:14px !important; }
+#flights .fl-ap .c{ font-size:11.5px !important; }
+/* the airport code is unambiguous; a real board does not print the city twice */
+#flights .fl-ap .n{ display:none !important; }
+#flights .ce{ font-size:8px !important; white-space:nowrap; text-align:right; }
+#flights .fl-meta{ font-size:10px !important; line-height:1.45 !important;
+  grid-column:1/-1 !important; text-align:left !important; }
+#flights .ch{ overflow:hidden; text-overflow:ellipsis; }
+#flights .fl-route{ min-width:0 !important; }
+/* the real reason the rows would not shrink: a pre-existing rule pins every
+   flight card to clamp(118px,13.8vw,180px). Nothing above it mattered while
+   that stood. */
+#flights .center-card{ min-height:0 !important; height:auto !important; }
+.ticker-label{ height:auto !important; }
+.ticker{ min-height:0 !important; }
+@media (max-width:760px){
+  #flights .center-card{
+    grid-template-columns:1fr auto !important;
+    grid-template-areas:"num when" "route route" "meta meta" !important;
+  }
+  #flights .fl-route{ flex-wrap:wrap !important; }
+}
+
+/* -- 4. ticker strip a little shorter to match ----------------------------- */
+.ticker{ margin-top:8px !important; }
+.ticker-label{ padding:0 12px !important; font-size:9px !important; letter-spacing:.24em !important; }
+.ticker-stamp{ font-size:9px !important; letter-spacing:.18em !important; }
+.ticker-msg{ font-size:10.5px !important; }
+
+/* final trim to land the 60% target: the ticker had actually grown 42->46 */
+.ticker{ height:36px !important; }
+.ticker-viewport, .ticker-track{ height:36px !important; }
+
+/* TICKER FIX (real bug, pre-existing).
+   The keyframe ends at translateX(-50%). A percentage translate resolves against
+   the element's OWN layout width - and .ticker-track is a flex child pinned to
+   the viewport width (~818px), even though its content runs to ~16800px. So the
+   loop travelled ~409px and shuffled in place instead of cycling the messages.
+   width:max-content lets the track size to its content, so -50% is half the real
+   strip - which is exactly one copy, since the messages are rendered twice. */
+.ticker-track{ width:max-content !important; flex:0 0 auto !important;
+  animation-duration:90s !important; }
+.cdh{ padding:7px clamp(12px,2vw,20px) 6px !important; }
+.cdh-row{ margin-top:5px !important; }
+.cdh-foot{ margin-top:4px !important; }
+</style>
+
+
+
+<style id="hero-cards-css">
+/* == Match the ticker, countdown and flights to the 7-day forecast card ====
+   The forecast banner is the reference: 24px radius, the same double-layer
+   glass fill, one hairline border and the same lift shadow. These three were
+   each doing their own thing (5px, 10px and 6px radii on flat panels). */
+.ticker,
+.cdh,
+#flights .center-grid{
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),
+             rgba(8,10,18,.55) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:24px !important;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 22px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10) !important;
+}
+/* .cd-wrap is only a width wrapper - the panel treatment belongs on .cdh */
+.cd-wrap{ background:none !important; border:0 !important; box-shadow:none !important; }
+
+/* the rule between the two flights was reading as a table divider */
+#flights .center-card{ border-bottom:0 !important; }
+
+/* height-match the flights panel to the forecast banner (measured 172px at
+   desktop). Only above 900px, where both are a single row - below that the
+   forecast stacks and grows, and locking a height would clip it. */
+@media (min-width:901px){
+  #flights .center-grid{
+    min-height:172px; display:flex !important; flex-direction:column;
+    justify-content:center; padding:14px 26px !important;
+  }
+  #flights .center-card{ flex:1; align-content:center; padding:10px 0 !important; }
+}
+</style>
 </body>
 </html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pharmacies near the resorts · Orlando Oct 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06070d; --card:rgba(8,10,18,.55); --line:rgba(255,255,255,.10);
+  --text:#f4f5f9; --muted:#9aa3b8; --dim:#6f7a91;
+  --gold:#e0b352; --green:#34d399; --red:#fb7185; --cyan:#59e5ff;
+  --pad:clamp(15px,3vw,24px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--text);
+  font:400 15px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(800px 460px at 15% -5%,rgba(52,211,153,.13),transparent 62%),
+    radial-gradient(760px 430px at 88% 3%,rgba(59,130,246,.13),transparent 62%);
+  background-attachment:fixed}
+.wrap{max-width:940px;margin:0 auto;padding:clamp(16px,3.5vw,36px) clamp(12px,3vw,22px) 90px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),var(--card);
+  border:1px solid var(--line);border-radius:22px;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 20px 44px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.10);
+  padding:var(--pad);margin-top:14px}
+
+header.hero{text-align:center}
+.eyebrow{font:700 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+h1{margin-top:12px;font:800 clamp(25px,5vw,42px)/1.05 'Playfair Display',serif;letter-spacing:-.03em;
+  color:#fff7ef;text-shadow:0 0 5px #fff,0 0 15px var(--cyan),0 0 38px rgba(89,229,255,.55)}
+.sub{margin-top:11px;font:600 10.5px/1.7 'JetBrains Mono',monospace;letter-spacing:.18em;
+  text-transform:uppercase;color:#8ff0ff}
+
+.alert{margin-top:14px;padding:15px 17px;border-radius:18px;
+  background:rgba(251,113,133,.09);border:1px solid rgba(251,113,133,.36)}
+.alert h2{font:800 17px/1.3 Inter,sans-serif;color:#fda4af;letter-spacing:-.01em}
+.alert p{margin-top:8px;font-size:13.5px;line-height:1.6;color:#e8dcdc}
+.alert b{color:#fff}
+
+h2.sec{margin-top:26px;font:800 19px/1.2 'Playfair Display',serif;color:#fff}
+.note{margin-top:8px;color:var(--muted);font-size:13.5px}
+.note b{color:var(--text)}
+
+.store{margin-top:11px;padding:15px;border-radius:18px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09)}
+.store.pick{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.07);
+  box-shadow:0 0 0 1px rgba(52,211,153,.2)}
+.store.near{border-color:rgba(89,229,255,.42);background:rgba(89,229,255,.055)}
+.store.late{border-color:rgba(224,179,82,.42);background:rgba(224,179,82,.055)}
+.store.store-only{opacity:.72}
+.head{display:flex;gap:13px;align-items:flex-start}
+.dist{flex:none;width:56px;text-align:center;font:800 22px/1 'JetBrains Mono',monospace;color:var(--gold)}
+.dist span{display:block;font-size:8.5px;letter-spacing:.2em;color:var(--dim);margin-top:4px}
+.who{min-width:0;flex:1}
+.who h3{font:700 15.5px/1.25 Inter,sans-serif;letter-spacing:-.01em;color:#fff}
+.cty{margin-top:3px;font:600 11.5px/1 'JetBrains Mono',monospace;color:var(--dim);letter-spacing:.05em}
+.pills{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.pill{display:inline-block;padding:4px 9px;border-radius:999px;
+  font:700 8.5px/1.5 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.pill.yes{background:rgba(52,211,153,.16);color:#6ee7b7;border:1px solid rgba(52,211,153,.4)}
+.pill.no{background:rgba(251,113,133,.15);color:#fda4af;border:1px solid rgba(251,113,133,.4)}
+.pill.best{background:var(--green);color:#04120c;border:1px solid transparent}
+.pill.near{background:var(--cyan);color:#04141a;border:1px solid transparent}
+.pill.late{background:var(--gold);color:#150f02;border:1px solid transparent}
+
+.rows{margin-top:12px;display:grid;gap:1px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.09);border-radius:11px;overflow:hidden}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  background:#0b0e15;padding:9px 12px}
+.row i{font:700 8.5px/1.6 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dim);font-style:normal;flex:none}
+.row b{font:600 12.5px/1.4 Inter,sans-serif;color:#fff;text-align:right}
+.row.bad b{color:#fda4af}
+
+.acts{margin-top:11px;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;
+  border-radius:12px;text-decoration:none;font:700 13px/1 Inter,sans-serif;letter-spacing:.01em;
+  transition:transform .15s,filter .15s}
+.btn:active{transform:scale(.97)}
+.btn.call{background:var(--green);color:#04120c}
+.btn.map{background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.btn:hover{filter:brightness(1.08)}
+
+.kit{margin-top:12px;display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.kit div{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;padding:12px 13px}
+.kit i{font:700 8.5px/1 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);font-style:normal}
+.kit p{margin-top:7px;font-size:12.5px;line-height:1.5;color:var(--muted)}
+
+footer{margin-top:28px;text-align:center;color:var(--dim);font-size:11px;line-height:1.8}
+footer a{color:var(--gold);text-decoration:none}
+@media (max-width:420px){ .acts{grid-template-columns:1fr} }
+@media print{body{background:#fff;color:#000}.panel,.store{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="panel hero">
+  <div class="eyebrow">Orlando &middot; Oct 11&ndash;17 2026</div>
+  <h1>Pharmacies near the resorts</h1>
+  <div class="sub">From Pop Century &amp; Art of Animation &middot; 10 nearest Walgreens</div>
+</header>
+
+<div class="alert">
+  <h2>&#9888;&nbsp; There is no 24-hour pharmacy near you</h2>
+  <p>Several of these stores are <b>open 24 hours</b> &mdash; but that is the <b>store</b>, not the
+  pharmacy counter. <b>Three of the ten nearest have no pharmacy at all</b>, including the closest
+  one at 1.4&nbsp;mi. The latest any counter is open is <b>9:00 PM</b>, and that one is 5.3&nbsp;mi away.</p>
+  <p>After 9 PM you can still buy anything over the counter at a 24-hour store &mdash; fever reducer,
+  Pedialyte, bandages. <b>Only actual prescriptions are unavailable.</b></p>
+</div>
+
+<section class="panel">
+  <h2 class="sec">Start here</h2>
+  <p class="note">Three that are worth saving to your phone. Everything else is listed below by distance.</p>
+  <article class="store  near">
+    <div class="head">
+      <div class="dist">1.8<span>mi</span></div>
+      <div class="who">
+        <h3>12100 S Apopka Vineland Rd</h3>
+        <div class="cty">Orlando, FL 32836</div>
+        <div class="pills"><span class="pill near">Closest pharmacy</span><span class="pill yes">Pharmacy &middot; to 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 7:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14072380600">&#9742;&nbsp; 407-238-0600</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=12100%20S%20Apopka%20Vineland%20Rd%2C%20Orlando%2C%20FL%2032836" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store  pick">
+    <div class="head">
+      <div class="dist">2.6<span>mi</span></div>
+      <div class="who">
+        <h3>6230 W Irlo Bronson Memorial Hwy</h3>
+        <div class="cty">Kissimmee, FL 34747</div>
+        <div class="pills"><span class="pill best">Best overall</span><span class="pill yes">Pharmacy &middot; to 8:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 8:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14079643535">&#9742;&nbsp; 407-964-3535</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=6230%20W%20Irlo%20Bronson%20Memorial%20Hwy%2C%20Kissimmee%2C%20FL%2034747" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store  late">
+    <div class="head">
+      <div class="dist">5.3<span>mi</span></div>
+      <div class="who">
+        <h3>1501 Future Way</h3>
+        <div class="cty">Kissimmee, FL 34747</div>
+        <div class="pills"><span class="pill late">Latest counter</span><span class="pill yes">Pharmacy &middot; to 9:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>until 11:00 PM</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 9:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14079643062">&#9742;&nbsp; 407-964-3062</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=1501%20Future%20Way%2C%20Kissimmee%2C%20FL%2034747" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+</section>
+
+<section class="panel">
+  <h2 class="sec">All 10, nearest first</h2>
+  <p class="note">Distances are measured from the <b>Lake Buena Vista</b> centre, not from the resort
+  door &mdash; treat them as relative, not exact. Directions buttons route from <b>Pop Century</b>.</p>
+  <article class="store store-only">
+    <div class="head">
+      <div class="dist">1.4<span>mi</span></div>
+      <div class="who">
+        <h3>13502 State Road 535</h3>
+        <div class="cty">Orlando, FL 32821</div>
+        <div class="pills"><span class="pill no">No pharmacy</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row bad"><i>Pharmacy</i><b>None at this location &mdash; OTC and sundries only</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14078271004">&#9742;&nbsp; 407-827-1004</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=13502%20State%20Road%20535%2C%20Orlando%2C%20FL%2032821" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store  near">
+    <div class="head">
+      <div class="dist">1.8<span>mi</span></div>
+      <div class="who">
+        <h3>12100 S Apopka Vineland Rd</h3>
+        <div class="cty">Orlando, FL 32836</div>
+        <div class="pills"><span class="pill near">Closest pharmacy</span><span class="pill yes">Pharmacy &middot; to 7:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 7:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14072380600">&#9742;&nbsp; 407-238-0600</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=12100%20S%20Apopka%20Vineland%20Rd%2C%20Orlando%2C%20FL%2032836" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store store-only">
+    <div class="head">
+      <div class="dist">2.5<span>mi</span></div>
+      <div class="who">
+        <h3>5935 W Irlo Bronson Memorial Hwy</h3>
+        <div class="cty">Kissimmee, FL 34746</div>
+        <div class="pills"><span class="pill no">No pharmacy</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row bad"><i>Pharmacy</i><b>None at this location &mdash; OTC and sundries only</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14073961006">&#9742;&nbsp; 407-396-1006</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=5935%20W%20Irlo%20Bronson%20Memorial%20Hwy%2C%20Kissimmee%2C%20FL%2034746" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store  pick">
+    <div class="head">
+      <div class="dist">2.6<span>mi</span></div>
+      <div class="who">
+        <h3>6230 W Irlo Bronson Memorial Hwy</h3>
+        <div class="cty">Kissimmee, FL 34747</div>
+        <div class="pills"><span class="pill best">Best overall</span><span class="pill yes">Pharmacy &middot; to 8:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 8:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14079643535">&#9742;&nbsp; 407-964-3535</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=6230%20W%20Irlo%20Bronson%20Memorial%20Hwy%2C%20Kissimmee%2C%20FL%2034747" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store ">
+    <div class="head">
+      <div class="dist">2.7<span>mi</span></div>
+      <div class="who">
+        <h3>12650 International Dr S</h3>
+        <div class="cty">Orlando, FL 32821</div>
+        <div class="pills"><span class="pill yes">Pharmacy &middot; to 6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 6:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14072384677">&#9742;&nbsp; 407-238-4677</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=12650%20International%20Dr%20S%2C%20Orlando%2C%20FL%2032821" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store ">
+    <div class="head">
+      <div class="dist">3.4<span>mi</span></div>
+      <div class="who">
+        <h3>5180 W Irlo Bronson Memorial Hwy</h3>
+        <div class="cty">Kissimmee, FL 34746</div>
+        <div class="pills"><span class="pill yes">Pharmacy &middot; to 8:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>until 12:00 AM</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 8:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14075892120">&#9742;&nbsp; 407-589-2120</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=5180%20W%20Irlo%20Bronson%20Memorial%20Hwy%2C%20Kissimmee%2C%20FL%2034746" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store ">
+    <div class="head">
+      <div class="dist">4.7<span>mi</span></div>
+      <div class="who">
+        <h3>7767 W Irlo Bronson Memorial Hwy</h3>
+        <div class="cty">Kissimmee, FL 34747</div>
+        <div class="pills"><span class="pill yes">Pharmacy &middot; to 6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 6:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14073901701">&#9742;&nbsp; 407-390-1701</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=7767%20W%20Irlo%20Bronson%20Memorial%20Hwy%2C%20Kissimmee%2C%20FL%2034747" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store ">
+    <div class="head">
+      <div class="dist">4.9<span>mi</span></div>
+      <div class="who">
+        <h3>11018 International Dr</h3>
+        <div class="cty">Orlando, FL 32821</div>
+        <div class="pills"><span class="pill yes">Pharmacy &middot; to 6:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 6:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14075975053">&#9742;&nbsp; 407-597-5053</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=11018%20International%20Dr%2C%20Orlando%2C%20FL%2032821" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store  late">
+    <div class="head">
+      <div class="dist">5.3<span>mi</span></div>
+      <div class="who">
+        <h3>1501 Future Way</h3>
+        <div class="cty">Kissimmee, FL 34747</div>
+        <div class="pills"><span class="pill late">Latest counter</span><span class="pill yes">Pharmacy &middot; to 9:00 PM</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>until 11:00 PM</b></div>
+      <div class="row"><i>Pharmacy</i><b>Open until 9:00 PM</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14079643062">&#9742;&nbsp; 407-964-3062</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=1501%20Future%20Way%2C%20Kissimmee%2C%20FL%2034747" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+  <article class="store store-only">
+    <div class="head">
+      <div class="dist">5.4<span>mi</span></div>
+      <div class="who">
+        <h3>9858 International Dr</h3>
+        <div class="cty">Orlando, FL 32819</div>
+        <div class="pills"><span class="pill no">No pharmacy</span></div>
+      </div>
+    </div>
+    <div class="rows">
+      <div class="row"><i>Store</i><b>Open 24 hours</b></div>
+      <div class="row bad"><i>Pharmacy</i><b>None at this location &mdash; OTC and sundries only</b></div>
+    </div>
+    <div class="acts">
+      <a class="btn call" href="tel:+14073851697">&#9742;&nbsp; 407-385-1697</a>
+      <a class="btn map" href="https://www.google.com/maps/dir/?api=1&origin=Disney%27s%20Pop%20Century%20Resort%2C%201050%20Century%20Dr%2C%20Lake%20Buena%20Vista%2C%20FL%2032830&destination=9858%20International%20Dr%2C%20Orlando%2C%20FL%2032819" target="_blank" rel="noopener">&#9906;&nbsp; Directions</a>
+    </div>
+  </article>
+</section>
+
+<section class="panel">
+  <h2 class="sec">Two things that will catch you out</h2>
+  <div class="kit">
+    <div><i>Daily meal break</i><p>Every pharmacy counter closes <b>1:30&ndash;2:00 PM</b>, seven days a
+      week. It is not posted on the door. Do not drive over at 1:40.</p></div>
+    <div><i>October hours may differ</i><p>These were captured <b>14 Aug 2026</b>. Re-check the week
+      you fly &mdash; call the number on the card, it is a live line.</p></div>
+  </div>
+  <div class="kit" style="margin-top:9px">
+    <div><i>Worth packing instead</i><p>Children&rsquo;s acetaminophen and ibuprofen, Pedialyte packets,
+      blister plasters, hydrocortisone, saline drops. Cheaper at home and it removes the drive
+      entirely.</p></div>
+    <div><i>On property</i><p>Every Disney resort gift shop carries basic OTC &mdash; pain relief,
+      antacids, bandages, sunscreen &mdash; at a markup, but at 11 PM the markup is worth it.</p></div>
+  </div>
+</section>
+
+<footer>
+  Pulled live from the Walgreens store locator, 14 Aug 2026 &middot;
+  <a href="https://www.walgreens.com/storelocator/pharmacy/lake-buena-vista-fl" target="_blank" rel="noopener">source</a><br>
+  Origin: Pop Century, 1050 Century Dr &middot; Art of Animation, 1850 Animation Way
+</footer>
+
+</div>
+</body>
+</html>
