@@ -109,7 +109,7 @@ def main():
         return
 
     subprocess.run(["git", "-C", REPO, "add", "-A"], check=True)
-    msg = "Update itinerary: real park hours, BBB 4:40 booked, thickened AK/HS/EU days"
+    msg = "Transport: replace rental-car/Uber assumptions with FS Premier legs; Express already purchased; EPA not available; fix Sat alarm to 2:45 AM"
     subprocess.run(["git", "-C", REPO, "commit", "-m", msg], check=True)
     subprocess.run(["git", "-C", REPO, "push", "origin", "main"], check=True)
     print("\npushed. GitHub Pages usually redeploys within a minute or two.")
