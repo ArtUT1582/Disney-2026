@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Garcia Family//Orlando 2026//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:bbb-garcia-2026@artut1582.github.io
+DTSTAMP:20260920T010000Z
+DTSTART:20261014T204000Z
+DURATION:PT90M
+SUMMARY:Bibbidi Bobbidi Boutique - 4:40 PM Eastern
+DESCRIPTION:Family-reported appointment\; verify the confirmation. Check 
+ in no earlier than 4:35 PM if 4:40 is confirmed. Transformation may take
+  up to 90 minutes plus delays. Current policy: $10 for no-show or cancel
+ lation within 24 hours. Portraits flexible at 6:15 PM or later.
+BEGIN:VALARM
+TRIGGER:-PT30M
+ACTION:DISPLAY
+DESCRIPTION:Bibbidi Bobbidi Boutique - 4:40 PM Eastern
+END:VALARM
+END:VEVENT
+END:VCALENDAR

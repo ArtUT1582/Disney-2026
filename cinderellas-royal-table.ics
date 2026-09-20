@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Garcia Family//Orlando 2026//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:crt-seating-garcia-2026@artut1582.github.io
+DTSTAMP:20260920T010000Z
+DTSTART:20261014T151500Z
+DURATION:PT90M
+SUMMARY:Cinderella's Royal Table - 11:15 AM Eastern
+DESCRIPTION:Family-reported booking for 2 adults and Annelise. Verify the
+  confirmation and payment. Aim for 11 AM check-in. Current policy: cance
+ l at least 2 hours ahead or the full per-person price is charged/forfeit
+ ed.
+BEGIN:VALARM
+TRIGGER:-PT45M
+ACTION:DISPLAY
+DESCRIPTION:Cinderella's Royal Table - 11:15 AM Eastern
+END:VALARM
+END:VEVENT
+END:VCALENDAR
