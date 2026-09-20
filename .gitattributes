@@ -1,0 +1,2 @@
+# iCalendar uses CRLF line endings; preserve the authored calendar bytes.
+*.ics -text
