@@ -23,3 +23,13 @@ Additional family animations added September 20, 2026. These are unchanged GIF v
 | `daisy-pose.gif` | Daisy Duck, 6 frames | [Tenor page](https://tenor.com/view/daisy-duck-gif-10284534050434717370) · [original GIF](https://media.tenor.com/jroBOqSSFroAAAAM/daisy-duck.gif) |
 | `anna-smile.gif` | Anna, 23 frames | [Tenor page](https://tenor.com/view/princess-anna-frozen-excited-love-you-too-gif-12764357) · [original GIF](https://media.tenor.com/nafctYj82DgAAAAM/princess-anna-frozen.gif) |
 | `pooh-wave.gif` | Winnie the Pooh, 15 frames | [Tenor page](https://tenor.com/view/hi-pooh-pooh-bear-winnie-the-pooh-wave-gif-17530537) · [original GIF](https://media.tenor.com/VnwHjbYoiOkAAAAM/hi-pooh.gif) |
+
+Family gallery selections applied from the latest confirmed list. Art C (Game-day cheer) supersedes the earlier Round 2 choice. The seven "Keep current" selections, page design, and information corrections are preserved.
+
+| Site asset | Family selection | Source |
+| --- | --- | --- |
+| `luigi-game-day-cheer.gif` | Art: C - Game-day cheer; 27 frames | [Tenor page](https://tenor.com/view/mario-kart-world-mario-kart-luigi-dancing-mario-dancing-mario-kart-dance-gif-5430660915314651760) · [original GIF](https://media.tenor.com/S12VVGDtcnAAAAAM/mario-kart-world-mario-kart.gif) |
+| `mario-ready-to-play.gif` | Annelise: E - Ready to play; 8 frames | [Tenor page](https://tenor.com/view/mario-dance-mario-kart-world-mario-kart-lets-goo-gif-18368023095416747059) · [original GIF](https://media.tenor.com/_uhTr_R8dDMAAAAM/mario-dance.gif) |
+| `donkey-kong-movie-closeup.gif` | Danny: H - Movie close-up; 22 frames | [Tenor page](https://tenor.com/view/donkey-kong-donkey-kong-angry-donkey-kong-pouting-donke-kong-bananza-gif-8160578415899567131) · [original GIF](https://media.tenor.com/cUAy1Slp5BsAAAAM/donkey-kong-donkey-kong-angry.gif) |
+| `belle-village-stroll.gif` | Isabella: D - Village stroll; 29 frames | [Tenor page](https://tenor.com/view/beauty-and-the-beast-belle-disney-singing-gif-14785680) · [original GIF](https://media.tenor.com/HgcMuElpeAkAAAAM/beauty-and-the-beast-belle.gif) |
+| `pooh-heart.gif` | Valentina: J - A heart from Pooh; 8 frames | [Tenor page](https://tenor.com/view/winnie-the-pooh-hearts-gif-27568116) · [original GIF](https://media.tenor.com/ElJtvb8x19IAAAAM/winnie-the-pooh-hearts.gif) |
