@@ -28,10 +28,10 @@
 
   /* ---- 1. per-stop chips ------------------------------------------------ */
   function chips(day) {
-    var arts = document.getElementById(day);
-    if (!arts) return;
+    var art = document.getElementById(day);
+    if (!art) return;
     var data = M[day];
-    arts.querySelectorAll('li.ed-ev').forEach(function (li) {
+    art.querySelectorAll('li.ed-ev').forEach(function (li) {
       var numEl = li.querySelector('.ed-num');
       if (!numEl) return;
       var s = data.stops[numEl.textContent.trim()];
@@ -41,8 +41,8 @@
       row.className = 'ed-mx' + (s.alt ? ' is-alt' : '');
       var html = '';
       if (s.w > 0) {
-        html += '<b class="mx-w"><i aria-hidden="true">⏳</i>' + hm(s.w) +
-                ' <em>in line</em></b>';
+        html += '<b class="mx-w" title="Planning estimate, not a live wait">' +
+                '<i aria-hidden="true">⏳</i>~' + hm(s.w) + ' <em>in line</em></b>';
       } else {
         html += '<b class="mx-w mx-none"><i aria-hidden="true">✓</i>no queue</b>';
       }
@@ -82,74 +82,129 @@
   }
 
   /* ---- 3. route tracer --------------------------------------------------- */
+
+  // Coordinates arrive as integers in 1e-5 degrees, the first pair absolute
+  // and the rest deltas. See _encode() in build-day-metrics.py.
+  function decode(flat, scale) {
+    var out = [], la = 0, lo = 0;
+    for (var i = 0; i < flat.length; i += 2) {
+      if (i === 0) { la = flat[0]; lo = flat[1]; }
+      else { la += flat[i]; lo += flat[i + 1]; }
+      out.push([la / scale, lo / scale]);
+    }
+    return out;
+  }
+
   function tracer(day) {
     var art = document.getElementById(day);
     if (!art) return;
-    var d = M[day], route = d.route;
+    var d = M[day], route = d.route, mp = d.map;
     if (!route || route.length < 2) return;
+    var SCALE = mp ? mp.scale : 100000;
 
-    // Stop headings, so the readout can name where you are.
     var names = {};
     art.querySelectorAll('li.ed-ev').forEach(function (li) {
       var n = li.querySelector('.ed-num'), h = li.querySelector('.ed-h');
       if (n && h) {
         names[n.textContent.trim()] =
           h.textContent.replace(/\s+/g, ' ').trim()
-           .replace(/(Transit|In the app|Pandora|Africa|Asia|Discovery Island|The Oasis)$/, '').trim();
+           .replace(/(Transit|In the app|Pandora|Africa|Asia|Discovery Island|The Oasis)$/, '')
+           .trim();
       }
     });
 
-    // Equirectangular projection: at 28°N one degree of longitude is
-    // cos(28°) ≈ 0.883 as long as one degree of latitude.
+    // Equirectangular. At 28°N a degree of longitude is cos(28°) of a degree
+    // of latitude. Frame on the basemap so the park shows around the route.
     var LON_SCALE = Math.cos(28.4 * Math.PI / 180);
-    var xs = route.map(function (p) { return p.lon * LON_SCALE; });
-    var ys = route.map(function (p) { return -p.lat; });
-    var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
-    var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
-    var spanX = (maxX - minX) || 1e-6, spanY = (maxY - minY) || 1e-6;
-    var PAD = 34, W = 1000, H = Math.max(420, Math.min(760,
-      Math.round((spanY / spanX) * (W - PAD * 2)) + PAD * 2));
+    var s0, w0, n0, e0;
+    if (mp && mp.box) {
+      s0 = mp.box[0]; w0 = mp.box[1]; n0 = mp.box[2]; e0 = mp.box[3];
+    } else {
+      s0 = Math.min.apply(null, route.map(function (p) { return p.lat; }));
+      n0 = Math.max.apply(null, route.map(function (p) { return p.lat; }));
+      w0 = Math.min.apply(null, route.map(function (p) { return p.lon; }));
+      e0 = Math.max.apply(null, route.map(function (p) { return p.lon; }));
+    }
+    var spanX = ((e0 - w0) * LON_SCALE) || 1e-6, spanY = (n0 - s0) || 1e-6;
 
-    var pts = route.map(function (p, i) {
-      return {
-        n: p.n, cum: p.cum, leg: p.leg,
-        x: PAD + ((xs[i] - minX) / spanX) * (W - PAD * 2),
-        y: PAD + ((ys[i] - minY) / spanY) * (H - PAD * 2)
-      };
+    // Keep the map to scale. Rather than squashing a tall park to fit a fixed
+    // frame, widen the view until the aspect is reasonable - that adds real
+    // surrounding park instead of distorting what is already there.
+    // A phone is a tall device, so a tall map is fine; this only stops a
+    // narrow route being stretched into an unreadable ribbon.
+    var MAX_ASPECT = 1.8;                       // height : width
+    if (spanY / spanX > MAX_ASPECT) {
+      var wantX = spanY / MAX_ASPECT;
+      var growDeg = (wantX - spanX) / LON_SCALE / 2;
+      w0 -= growDeg; e0 += growDeg;
+      spanX = (e0 - w0) * LON_SCALE;
+    } else if (spanX / spanY > 2.2) {
+      var wantY = spanX / 2.2;
+      var growY = (wantY - spanY) / 2;
+      s0 -= growY; n0 += growY;
+      spanY = n0 - s0;
+    }
+
+    var PAD = 10, W = 1000;
+    var H = Math.round((spanY / spanX) * (W - PAD * 2)) + PAD * 2;
+
+    function X(lon) { return PAD + ((lon - w0) * LON_SCALE / spanX) * (W - PAD * 2); }
+    function Y(lat) { return PAD + ((n0 - lat) / spanY) * (H - PAD * 2); }
+
+    function toPath(pts, close) {
+      var out = '';
+      for (var i = 0; i < pts.length; i++) {
+        out += (i ? 'L' : 'M') + X(pts[i][1]).toFixed(1) + ' ' + Y(pts[i][0]).toFixed(1);
+      }
+      return out + (close ? 'Z' : '');
+    }
+    function layer(list, cls, close) {
+      if (!list || !list.length) return '';
+      var dstr = list.map(function (f) { return toPath(decode(f, SCALE), close); }).join(' ');
+      return '<path class="' + cls + '" d="' + dstr + '"/>';
+    }
+
+    var base = '';
+    if (mp) {
+      base += layer(mp.green, 'mp-green', true);
+      base += layer(mp.water, 'mp-water', true);
+      base += layer(mp.build, 'mp-build', true);
+      base += layer(mp.paths, 'mp-path', false);
+    }
+
+    // The walked route, one sub-path per leg, in order.
+    var legPts = (d.legs || []).map(function (f) { return decode(f, SCALE); });
+    var routeD = legPts.map(function (p) { return toPath(p, false); }).join(' ');
+
+    var pts = route.map(function (p) {
+      return { n: p.n, cum: p.cum, leg: p.leg, x: X(p.lon), y: Y(p.lat) };
     });
-
-    var path = pts.map(function (p, i) {
-      return (i ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
-    }).join(' ');
-
     var dots = pts.map(function (p, i) {
       return '<g class="tr-stop" data-i="' + i + '">' +
-        // Transparent hit circle: the dots render ~12 CSS px across on a phone,
-        // which is not a tappable target. This gives each stop a ~44px one.
         '<circle class="tr-hit" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) +
-        '" r="50"/>' +
+        '" r="40"/>' +
         '<circle class="tr-dot" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) +
-        '" r="18"/>' +
-        '<text class="tr-lab" x="' + p.x.toFixed(1) + '" y="' + (p.y + 6.5).toFixed(1) +
+        '" r="17"/>' +
+        '<text class="tr-lab" x="' + p.x.toFixed(1) + '" y="' + (p.y + 6).toFixed(1) +
         '">' + p.n + '</text></g>';
     }).join('');
 
+    var estN = d.estimatedLegs || 0, legN = (d.legs || []).length;
     var fig = document.createElement('figure');
     fig.className = 'ed-trace';
     fig.innerHTML =
       '<figcaption class="tr-head">' +
         '<b>Route tracer</b>' +
         '<span>' + d.label + ' · ' + d.date + ' · ' + route.length +
-        ' mapped stops · ' + miles(d.metres) + ' mi · ' +
-        commas(d.steps) + ' steps</span>' +
+        ' stops · ' + miles(d.metres) + ' mi · ' + commas(d.steps) + ' steps</span>' +
       '</figcaption>' +
       '<div class="tr-wrap">' +
         '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
-             'aria-label="Walking route for ' + d.label + ', stop 1 to stop ' +
-             route[route.length - 1].n + '">' +
-          '<path class="tr-base" d="' + path + '"/>' +
-          '<path class="tr-done" d="' + path + '"/>' +
-          '<circle class="tr-you" r="26" cx="' + pts[0].x.toFixed(1) +
+             'aria-label="Walking route through ' + d.label + ' drawn on the park map">' +
+          '<g class="mp-base">' + base + '</g>' +
+          '<path class="tr-base" d="' + routeD + '"/>' +
+          '<path class="tr-done" d="' + routeD + '"/>' +
+          '<circle class="tr-you" r="27" cx="' + pts[0].x.toFixed(1) +
           '" cy="' + pts[0].y.toFixed(1) + '"/>' +
           dots +
         '</svg>' +
@@ -164,11 +219,14 @@
           '<div><i>Time on the clock</i><b class="tr-t"></b></div>' +
         '</div>' +
       '</div>' +
-      '<p class="tr-foot">Straight-line distance between real attraction ' +
-        'coordinates × ' + META.pathFactor + ' for winding walkways, at a ' +
-        META.strideM + ' m stride. Stop to stop only — queue switchbacks, ' +
-        'wrong turns and wandering all add more. Bus, Skyliner and car legs are ' +
-        'not counted as walking.</p>';
+      '<p class="tr-foot"><b>Real map, real paths.</b> Greenery, water, buildings and ' +
+        'walkways come from OpenStreetMap, and the line follows the actual footpaths' +
+        (estN ? ' — except ' + estN + ' of ' + legN + ' legs where the path data runs ' +
+                'out and the line is drawn straight' : '') +
+        '. Distance is measured along that route at a ' + META.strideM +
+        ' m stride, stop to stop; queue switchbacks and wandering add more, and bus, ' +
+        'Skyliner and car legs are not counted as walking. ' +
+        '© OpenStreetMap contributors.</p>';
 
     var map = art.querySelector('.ed-map');
     if (map && map.parentNode) map.parentNode.insertBefore(fig, map.nextSibling);
@@ -189,23 +247,24 @@
     var done = fig.querySelector('.tr-done');
     var you = fig.querySelector('.tr-you');
     var range = fig.querySelector('.tr-range');
+
+    // Progress is painted by drawn length, so the line fills at the rate the
+    // route is actually walked rather than one equal step per stop.
+    var legLen = legPts.map(function (p) {
+      var acc = 0;
+      for (var i = 1; i < p.length; i++) {
+        acc += Math.hypot(X(p[i][1]) - X(p[i - 1][1]), Y(p[i][0]) - Y(p[i - 1][0]));
+      }
+      return acc;
+    });
+    var total = legLen.reduce(function (a, b) { return a + b; }, 0) || 1;
     var len = done.getTotalLength();
     done.style.strokeDasharray = len;
 
-    function lengthAt(i) {
-      // Path length up to point i, measured on the rendered path.
-      if (i <= 0) return 0;
-      var acc = 0;
-      for (var k = 1; k <= i; k++) {
-        acc += Math.hypot(pts[k].x - pts[k - 1].x, pts[k].y - pts[k - 1].y);
-      }
-      return acc;
-    }
-    var fullPx = lengthAt(pts.length - 1) || 1;
-
     function draw(i) {
-      var p = pts[i];
-      done.style.strokeDashoffset = len - (lengthAt(i) / fullPx) * len;
+      var p = pts[i], upto = 0;
+      for (var k = 0; k < i && k < legLen.length; k++) upto += legLen[k];
+      done.style.strokeDashoffset = len - (upto / total) * len;
       you.setAttribute('cx', p.x.toFixed(1));
       you.setAttribute('cy', p.y.toFixed(1));
       svg.querySelectorAll('.tr-stop').forEach(function (g, k) {

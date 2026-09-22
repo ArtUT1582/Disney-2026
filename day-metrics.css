@@ -60,30 +60,39 @@
 }
 .tr-wrap{
   border-radius:12px; border:1px solid var(--mx-line); overflow:hidden;
-  background:
-    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,.9), rgba(255,255,255,0)),
-    #EDE8DC;
+  background:#EFEADD;                 /* the park's unbuilt ground */
+}
+
+/* ---- OpenStreetMap basemap layers, drawn under the route ---- */
+.mp-green{ fill:#D6E3C6; stroke:none; }
+.mp-water{ fill:#BDD6E6; stroke:#A8C6DA; stroke-width:1; }
+.mp-build{ fill:#E2D9C8; stroke:#CFC3AE; stroke-width:1; }
+.mp-path{
+  fill:none; stroke:#FFFFFF; stroke-width:4;
+  stroke-linecap:round; stroke-linejoin:round;
 }
 .ed-trace svg{ display:block; width:100%; height:auto; }
 .tr-base{
-  fill:none; stroke:rgba(23,19,16,.22); stroke-width:3;
-  stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:3 11;
+  fill:none; stroke:rgba(23,19,16,.30); stroke-width:3;
+  stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:2 9;
 }
 .tr-done{
-  fill:none; stroke:var(--acc,#2f7d4f); stroke-width:6;
+  fill:none; stroke:var(--acc,#2f7d4f); stroke-width:7;
   stroke-linecap:round; stroke-linejoin:round;
   transition:stroke-dashoffset .35s ease;
+  paint-order:stroke;
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.95));
 }
 .tr-stop{ cursor:pointer; }
 .tr-hit{ fill:transparent; }
 .tr-dot{
-  fill:#fff; stroke:rgba(23,19,16,.38); stroke-width:2.5;
+  fill:#fff; stroke:rgba(23,19,16,.55); stroke-width:2.5;
   transition:fill .2s ease, stroke .2s ease;
 }
 .tr-stop.is-done .tr-dot{ fill:var(--acc,#2f7d4f); stroke:rgba(23,19,16,.30); }
 .tr-stop.is-now .tr-dot{ stroke:var(--mx-ink); stroke-width:5; }
 .tr-lab{
-  font:700 19px/1 'JetBrains Mono', ui-monospace, monospace;
+  font:800 18px/1 'JetBrains Mono', ui-monospace, monospace;
   fill:var(--mx-ink); text-anchor:middle; pointer-events:none;
 }
 .tr-stop.is-done .tr-lab{ fill:#fff; }
@@ -144,7 +153,8 @@
   .ed-mx{ font-size:11px; gap:5px; margin-top:9px; }
   .ed-mx b{ padding:5px 9px; }
   .ed-mx .mx-t{ display:none; }          /* the two parts already add up */
-  .tr-lab{ font-size:26px; }             /* the viewBox scales down hard here */
+  .tr-lab{ font-size:24px; }             /* the viewBox scales down hard here */
+  .mp-path{ stroke-width:5; }
   .tr-read{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .tr-head span{ font-size:11.5px; }
   .ed-trace{ padding:13px; }
