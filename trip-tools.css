@@ -203,3 +203,26 @@ body.tt-show-signs .tt-sign{
   .logi-v, .logi-p, .logi-list li{ color:#000; }
   .logi-k, .logi-n, .logi-list li b{ color:#444; }
 }
+
+/* ---------- share buttons ---------- */
+.logi-btns{ display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
+.logi-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:11px 15px; border-radius:11px; cursor:pointer;
+  border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06);
+  color:#EDE7DA; text-decoration:none;
+  font:700 12px/1 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  transition:background .18s ease, border-color .18s ease;
+}
+.logi-btn:hover, .logi-btn:focus-visible{
+  background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.3); outline:none;
+}
+.logi-btn-wa{
+  background:#25D366; border-color:#25D366; color:#06301A; font-weight:800;
+}
+.logi-btn-wa:hover, .logi-btn-wa:focus-visible{
+  background:#1FBE5A; border-color:#1FBE5A;
+}
+.logi-btn.is-done{ background:rgba(57,179,106,.2); border-color:#39B36A; color:#8FE3AE; }
+.logi .logi-btns + .logi-n{ border-top:0; padding-top:6px; }
+@media print{ .logi-btns{ display:none; } }
