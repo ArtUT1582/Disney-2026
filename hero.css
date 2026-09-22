@@ -1,3 +1,46 @@
+/* ---------- standalone countdown ----------
+   It sits above the title card on the page's own dark ground, deliberately
+   off the castle photograph, and is sized to be the first thing you read. */
+.cd-standalone{
+  width:calc(100% - 28px); max-width:1280px;
+  margin:clamp(12px,2vw,20px) auto clamp(12px,2vw,18px);
+  border-radius:22px;
+  background:linear-gradient(180deg,#141822,#0E121A);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 18px 44px rgba(0,0,0,.45);
+  padding:clamp(10px,1.8vw,18px) clamp(10px,2vw,22px);
+}
+.cd-standalone .cd-wrap{
+  width:100% !important; max-width:none !important; margin:0 !important;
+}
+.cd-standalone .cdh{ background:none !important; border:0 !important;
+  box-shadow:none !important; padding:0 !important; }
+
+/* Bigger. The digit tiles were capped at 30px; these run to 58px. */
+.cd-standalone .cdh-v{ gap:4px !important; }
+.cd-standalone .cdh-v b{
+  min-width:clamp(38px,7.4vw,74px) !important;
+  padding:clamp(12px,2.2vw,22px) 6px !important;
+  font-size:clamp(30px,6.2vw,58px) !important;
+  border-radius:5px !important;
+}
+.cd-standalone .cdh-eyebrow{
+  font-size:clamp(9px,1.1vw,12px) !important;
+  letter-spacing:.26em !important;
+  margin-bottom:clamp(10px,1.6vw,16px) !important;
+}
+.cd-standalone .cdh-k{
+  font-size:clamp(8.5px,.95vw,10.5px) !important;
+  margin-top:clamp(9px,1.3vw,13px) !important;
+  color:#96A1B8 !important;
+}
+.cd-standalone .cdh-foot{ margin-top:clamp(10px,1.6vw,16px) !important; }
+.cd-standalone .cdh-foot span{ font-size:clamp(9px,1.05vw,11.5px) !important; }
+@media (max-width:760px){
+  .cd-standalone{ width:calc(100% - 16px); border-radius:18px; }
+  .cd-standalone .cdh-v b{ min-width:clamp(34px,9vw,52px) !important; }
+}
+
 /* Title-card hero (.tcard — namespaced: index.html already
    defines a .hero rule that would centre this text) + five-park index — the top of the page.
    Options 1 and 3 from designs/intro-options.html, merged: the hero names the
@@ -12,6 +55,9 @@
        0.36     3.3:1    2.9:1   2.6:1      2.4:1     <- the unreadable version
        0.50     4.9:1    4.4:1   3.9:1      3.7:1
        0.64     7.6:1    7.0:1   6.3:1      6.1:1     <- shipped
+
+   Re-measured after the countdown moved out of the card and the copy rose in
+   the frame: eyebrow 5.2:1, title 7.2:1, dates 5.7:1.
 
    The copy block sits between 16% and 65% of the hero's height, so the ramp
    below holds .64–.66 across exactly that range and only lightens above it,
@@ -40,8 +86,8 @@
   background:
     linear-gradient(180deg,
       rgba(6,9,13,.32)  0%,
-      rgba(6,9,13,.46) 11%,
-      rgba(6,9,13,.64) 18%,
+      rgba(6,9,13,.52)  8%,
+      rgba(6,9,13,.65) 13%,
       rgba(6,9,13,.66) 30%,
       rgba(6,9,13,.66) 60%,
       rgba(6,9,13,.74) 74%,
@@ -50,9 +96,9 @@
 
 .tc-in{
   position:relative; z-index:2;
-  /* The countdown now leads, so the old 150px of top padding that used to
-     push the headline down the frame is no longer needed. */
-  padding:clamp(18px,2.8vw,30px) clamp(20px,4vw,52px) clamp(22px,3vw,34px);
+  /* The countdown is its own block above the card now, so the headline gets
+     the top of the frame back. */
+  padding:clamp(54px,9vw,110px) clamp(20px,4vw,52px) clamp(22px,3vw,34px);
 }
 .tc-eyebrow{
   margin:0 0 14px;
@@ -82,22 +128,6 @@
   max-width:34ch;
 }
 
-/* The countdown leads the hero, above the family name. */
-.tc-bar{
-  margin:0 0 clamp(24px,3.6vw,40px);
-  border-radius:18px;
-  background:rgba(8,12,17,.62);
-  border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(14px) saturate(140%);
-  -webkit-backdrop-filter:blur(14px) saturate(140%);
-  padding:clamp(6px,1.2vw,12px) clamp(8px,1.6vw,16px);
-}
-/* Neutralise the standalone countdown's own page-level spacing now that it
-   lives inside the hero bar. */
-.tc-bar .cd-wrap{
-  width:100% !important; max-width:none !important;
-  margin:0 !important;
-}
 
 /* ---------- five-park index: the hero's bottom edge ---------- */
 .tc-index{

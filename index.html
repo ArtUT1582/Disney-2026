@@ -1404,29 +1404,33 @@ function charFallback(img){
 
 
 
+
+<!-- Countdown: its own block above the title card, deliberately not
+     sitting on the castle photograph. -->
+<div class="cd-standalone">
+  <div class="cd-wrap" id="countdown">
+    <div class="cdh">
+      <p class="cdh-eyebrow">The Garcia Family departs for Orlando</p>
+      <div class="cdh-row">
+        <div class="cdh-u"><div class="cdh-v" id="cd-d">--</div><div class="cdh-k">Days</div></div>
+        <div class="cdh-u"><div class="cdh-v" id="cd-h">--</div><div class="cdh-k">Hours</div></div>
+        <div class="cdh-u"><div class="cdh-v" id="cd-m">--</div><div class="cdh-k">Minutes</div></div>
+        <div class="cdh-u"><div class="cdh-v" id="cd-s">--</div><div class="cdh-k">Seconds</div></div>
+      </div>
+      <p class="cdh-foot"><i></i><span>Sunday · October 11 · 2026 · 7:25 AM CT</span><i></i></p>
+    </div>
+  </div>
+</div>
+
 <!-- ================= TITLE CARD HERO + PARK INDEX =================
-     Options 1 and 3 from designs/intro-options.html. The countdown that used
-     to float above the flights panel now lives in the glass bar below; its
-     markup and ids are unchanged, so the existing script still drives it. -->
+     Options 1 and 3 from designs/intro-options.html. The countdown is its own
+     block above this card, deliberately off the photograph; its markup and ids
+     are unchanged, so the existing script still drives it. -->
 <header class="tcard" id="tcard">
   <img class="tc-bg" src="sections/assets/mk-bg.jpg"
        alt="Cinderella Castle at Magic Kingdom in the evening" fetchpriority="high" decoding="async">
   <div class="tc-scrim" aria-hidden="true"></div>
   <div class="tc-in">
-    <div class="tc-bar">
-      <div class="cd-wrap" id="countdown">
-        <div class="cdh">
-          <p class="cdh-eyebrow">The Garcia Family departs for Orlando</p>
-          <div class="cdh-row">
-            <div class="cdh-u"><div class="cdh-v" id="cd-d">--</div><div class="cdh-k">Days</div></div>
-            <div class="cdh-u"><div class="cdh-v" id="cd-h">--</div><div class="cdh-k">Hours</div></div>
-            <div class="cdh-u"><div class="cdh-v" id="cd-m">--</div><div class="cdh-k">Minutes</div></div>
-            <div class="cdh-u"><div class="cdh-v" id="cd-s">--</div><div class="cdh-k">Seconds</div></div>
-          </div>
-          <p class="cdh-foot"><i></i><span>Sunday · October 11 · 2026 · 7:25 AM CT</span><i></i></p>
-        </div>
-      </div>
-    </div>
     <p class="tc-eyebrow">Twelve of us · Seven days · One October</p>
     <h1 class="tc-title">The Garcia Family</h1>
     <span class="tc-rule" aria-hidden="true"></span>
@@ -3578,7 +3582,7 @@ function loadCastPhotos(){
 </style>
 
 
-<link rel="stylesheet" href="hero.css?v=2ae513a846">
+<link rel="stylesheet" href="hero.css?v=0c7a0a2b63">
 <link rel="stylesheet" href="day-metrics.css?v=4552b2330d">
 <script src="booking-reminder.js?v=421d719d87"></script>
 <script src="day-metrics.js?v=c40afaeb76"></script>
