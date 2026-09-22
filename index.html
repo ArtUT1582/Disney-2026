@@ -1400,94 +1400,6 @@ function charFallback(img){
 
 
 
-<!-- TICKER BAR START -->
-<div class="ticker" id="ticker" role="region" aria-label="Trip status ticker">
-  <div class="ticker-label"><span class="pulse"></span><span>Family · Trip Status</span></div>
-  <div class="ticker-viewport">
-    <div class="ticker-track" id="ticker-track"></div>
-  </div>
-  <div class="ticker-stamp">Checked · <span id="ticker-stamp">—</span></div>
-</div>
-
-<script>
-/* ============================================================
-   TICKER · scrolling status messages
-   ============================================================ */
-(function(){
-  const TICKER_MESSAGES = [
-  {
-    "glyph": "⌖",
-    "html": "Countdown active · Disney World &amp; Epic Universe 2026 · <b>T-{{countdown}} days</b>"
-  },
-  {
-    "glyph": "✈",
-    "html": "Family flight plan · <b>UA 2245</b> · IAH 7:25a → MCO 10:54a · Oct 11 · verify with United"
-  },
-  {
-    "glyph": "✈",
-    "html": "Family flight plan · <b>UA 468</b> · MCO 7:00a → IAH 8:38a · Oct 17 · times local to each airport"
-  },
-  {
-    "glyph": "◎",
-    "html": "<b>Park hours &amp; public rules checked Sep 19, 2026</b> · recheck before the visit"
-  },
-  {
-    "glyph": "⚡",
-    "html": "<b>Lightning Lane</b> · planned purchase <b>Sun Oct 4 · 6 AM Central / 7 AM Eastern</b> · eligible Disney park days"
-  },
-  {
-    "glyph": "👑",
-    "html": "Family booking · <b>Cinderella’s Royal Table</b> · Wed Oct 14 · <b>11:15 AM</b> · check in around 11"
-  },
-  {
-    "glyph": "✨",
-    "html": "Family booking · <b>Bibbidi Bobbidi Boutique</b> · Wed Oct 14 · <b>4:40 PM</b> · verify appointment · portraits 6:15 or later"
-  },
-  {
-    "glyph": "◎",
-    "html": "<b>Magic Kingdom Oct 14</b> · <b>9 AM–10 PM</b> · Early Entry 8:30 · fireworks 9 PM · subject to change"
-  },
-  {
-    "glyph": "🎟",
-    "html": "<b>HHN Oct 15</b> · public opening 6:30 PM · early-access guests may already be inside · verify closing time"
-  },
-  {
-    "glyph": "🏰",
-    "html": "<b>Be Our Guest lunch:</b> older plan claim · date, time and diners still need confirmation"
-  },
-  {
-    "glyph": "🍽",
-    "html": "<b>Storybook Dining:</b> Tue 6:30 PM for 12 in the older plan · confirm before choosing the Studios evening"
-  },
-  {
-    "glyph": "⌖",
-    "html": "<b>Pop Century + Art of Animation</b> · shared Skyliner station · confirm FS Premier Friday/Saturday pickup times"
-  },
-  {
-    "glyph": "☼",
-    "html": "<b>Weather:</b> daily forecasts still pending · check before travel · pack ponchos and sun protection"
-  },
-  {
-    "glyph": "❤",
-    "html": "For <em>Abui &amp; Abui Temo</em> — the heart of every day"
-  }
-];
-
-  function days(){ return window.TRIP.daysLeft(); }
-  function build(){
-    const cd = days();
-    const one = TICKER_MESSAGES.map(m =>
-      `<span class="ticker-msg"><span class="glyph">${m.glyph}</span>${m.html.replace('{{countdown}}', cd)}</span>`
-    ).join('<span class="ticker-msg"><span class="sep">·</span></span>');
-    document.getElementById('ticker-track').innerHTML = one + '<span class="ticker-msg"><span class="sep">·</span></span>' + one;
-  }
-  function stamp(){ document.getElementById('ticker-stamp').textContent = 'SEP 19, 2026'; }
-  build(); stamp();
-  setInterval(build, 60_000);
-
-})();
-</script>
-<!-- TICKER BAR END -->
 
 
 
@@ -2084,7 +1996,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">6:30AM</span>
           <span class="ed-h">On bus to AK — Early Entry 7:30<span class="ed-land" data-land="transit">Transit</span></span>
-          <span class="ed-n"><b>Planned bus target: 6:30 AM</b> from your own resort. Allow roughly 45–60 minutes for waiting, travel, security and walking; this is an estimate. Check the first bus service. Published hours are <b>8 AM–6 PM</b>, with eligible-resort Early Entry at 7:30 AM.</span>
+          <span class="ed-n"><b>Planned bus target: 6:30 AM</b> from your own resort. Allow roughly 45–60 minutes for waiting, travel, security and walking; this is an estimate. Check the first bus service. Verified 22 Sep 2026: Animal Kingdom runs <b>8 AM–6 PM</b> on Mon 12 Oct with eligible-resort Early Entry at 7:30 AM. That 6 PM close is the earliest of the week — it is why this day is front-loaded.</span>
         </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
@@ -2163,7 +2075,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">1:30PM</span>
           <span class="ed-h">Avatar Flight of Passage (Lightning Lane Single Pass)<span class="ed-land" data-land="fantasy">Pandora</span></span>
-          <span class="ed-n"><b>Planned Single Pass purchase Oct 4</b>; price and return time will be set in the app. <b>44-inch minimum</b>, so Annelise cannot ride at the height listed in the family plan. Keep a supervising adult with her and ask attraction staff about Rider Switch.</span>
+          <span class="ed-n"><b>Planned Single Pass purchase Oct 4</b>; price and return time will be set in the app. <b>44-inch minimum.</b> Annelise measures <b>43"</b> — one inch short, so she <b>cannot ride</b>. Adults rotate through on Rider Switch; keep a supervising adult with her in Pandora.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/ak/avatar-flight-of-passage.jpg?v=2026081003" alt="Avatar Flight of Passage (Lightning Lane Single Pass)" loading="lazy" decoding="async" width="150" height="100">
@@ -2185,7 +2097,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Asia — Maharajah Jungle Trek + Everest rider switch<span class="ed-land" data-land="adventure">Asia</span></span>
-          <span class="ed-n"><b>New to the plan.</b> The trek is another self-paced walking trail — tigers, bats, an aviary — no height minimum and mostly shaded. <b>Expedition Everest is 44"</b>, so it is the same rider-switch arrangement as Flight of Passage. If anyone wants <b>Kali River Rapids</b> (38", she can ride) do it here — but it soaks you, and the park closes at 6:00 with a bus ride after.</span>
+          <span class="ed-n"><b>New to the plan.</b> The trek is another self-paced walking trail — tigers, bats, an aviary — no height minimum and mostly shaded. <b>Expedition Everest is 44"</b> — Annelise (43") misses it by an inch, so it is the same rider-switch arrangement as Flight of Passage. If anyone wants <b>Kali River Rapids</b> (38", she can ride) do it here — but it soaks you, and the park closes at 6:00 with a bus ride after.</span>
         </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">13</span>
@@ -2253,7 +2165,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">7:30AM</span>
           <span class="ed-h">Shared Skyliner station — Pop Century + Art of Animation<span class="ed-land" data-land="transit">Transit</span></span>
-          <span class="ed-n">Aim for the shared station at 7:30 AM, checking service first. Allow approximately <b>30–60 minutes</b> for queues, the Caribbean Beach transfer, security and walking; the estimate is not a guarantee. Both resorts qualify for 8:30 AM Early Entry. Weather may interrupt Skyliner service.</span>
+          <span class="ed-n">Aim for the shared station at 7:30 AM, checking service first. Allow approximately <b>30–60 minutes</b> for queues, the Caribbean Beach transfer, security and walking; the estimate is not a guarantee. Verified 22 Sep 2026: Hollywood Studios runs <b>9 AM–9 PM</b> on Tue 13 Oct, and both resorts qualify for <b>8:30 AM Early Entry</b>. Weather may interrupt Skyliner service.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/skyliner.jpg?v=2026081003" alt="Shared Skyliner station — Pop Century + Art of Animation" loading="lazy" decoding="async" width="150" height="100">
@@ -2347,7 +2259,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">4:00PM</span>
           <span class="ed-h">Sunset Blvd — Tower of Terror + Rock ’n’ Roller Coaster<span class="ed-land" data-land="frontier">Sunset Blvd</span></span>
-          <span class="ed-n">Both on the same street, so do them back to back. <b>Tower of Terror</b> is 40" and she clears it, but the drop sequence randomises and it frightens plenty of adults — Rider Switch if she is nervous. <b>Rock ’n’ Roller Coaster Starring the Muppets</b> reopened 26 May 2026 with the Electric Mayhem; at <b>48" she cannot ride it</b>, so that one is a straight rider switch. <b>Beauty and the Beast Live on Stage</b> is on this same street if you want a third thing — check the showtime in the app.</span>
+          <span class="ed-n">Both on the same street, so do them back to back. <b>Tower of Terror</b> is 40" and she clears it, but the drop sequence randomises and it frightens plenty of adults — Rider Switch if she is nervous. <b>Rock ’n’ Roller Coaster Starring the Muppets</b> reopened 26 May 2026 with the Electric Mayhem; at <b>48" she cannot ride it</b> (she measures 43"), so that one is a straight rider switch. <b>Beauty and the Beast Live on Stage</b> is on this same street if you want a third thing — check the showtime in the app.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/hs/tower-of-terror.jpg?v=2026081003" alt="Sunset Blvd — Tower of Terror + Rock ’n’ Roller Coaster" loading="lazy" decoding="async" width="150" height="100">
@@ -2431,7 +2343,7 @@ body.pmv-lock{overflow:hidden}
         <p>The family plan reports <b>Cinderella’s Royal Table at 11:15 AM</b> for two adults + Annelise, booked/prepaid, and <b>Bibbidi Bobbidi Boutique at 4:40 PM</b>. Verify the reservation and payment records in My Disney Experience; keep personal confirmation codes in the family records.</p>
         <p><b>The appointments anchor the day; the extra rides stay flexible.</b></p>
         <ul>
-          <li><b>Published hours: 9 AM–10 PM; Early Entry 8:30–9 AM.</b> Aim for the resort bus at 7:15 and allow waiting, security and walking.</li>
+          <li><b>Verified 22 Sep 2026: Magic Kingdom runs 9 AM–10 PM on Wed 14 Oct; Early Entry 8:30–9 AM.</b> There is no Halloween party that night, which is why you get the 10 PM close and the 9 PM fireworks. Aim for the resort bus at 7:15 and allow waiting, security and walking.</li>
           <li><b>Tiana stays before the makeover.</b> The 3 PM target depends on the actual return window. Pack dry clothes and skip the ride if delays threaten the appointment.</li>
           <li><b>Use an in-park rest after lunch.</b> A full resort nap requires a longer bus round trip and skipping afternoon rides. Regroup around 1:15 outside Columbia Harbour House.</li>
           <li><b>Morning photos: 10:45–10:55.</b> Then head to 11 AM lunch check-in. Post-boutique portraits are flexible around <b>6:15 PM or later</b>, allowing up to 90 minutes for the transformation plus delays.</li>
@@ -2444,7 +2356,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">7:15AM</span>
           <span class="ed-h">Bus to Magic Kingdom<span class="ed-land" data-land="transit">Transit</span></span>
-          <span class="ed-n">Aim for your own resort’s Magic Kingdom bus at <b>7:15 AM</b>. Allow roughly 60–75 minutes for waiting, travel, security and walking; check service that morning. Published hours: <b>9 AM–10 PM</b>, with eligible-resort Early Entry <b>8:30–9 AM</b>.</span>
+          <span class="ed-n">Aim for your own resort’s Magic Kingdom bus at <b>7:15 AM</b>. Allow roughly 60–75 minutes for waiting, travel, security and walking; check service that morning. Verified 22 Sep 2026: <b>9 AM–10 PM</b> on Wed 14 Oct, with eligible-resort Early Entry <b>8:30–9 AM</b>.</span>
         </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">2</span>
@@ -2715,7 +2627,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">6:30PM</span>
           <span class="ed-h">Public opening — Stranger Things 5 priority<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
-          <span class="ed-n">Public opening is <b>6:30 PM</b>. Early-access guests may already be queuing. Walk safely, check live waits and use HHN Express when helpful; a walk-on is not promised.</span>
+          <span class="ed-n">Public opening is <b>6:30 PM</b> — verified 22 Sep 2026: Universal Studios Florida runs 8 AM–5 PM as a day park on Thu 15 Oct, clears, then reopens at 6:30 PM for the event. Early-access guests may already be queuing. Walk safely, check live waits and use HHN Express when helpful; a walk-on is not promised.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="assets/hhn-2026/houses/thumbs/04-stranger-things-5.jpg?v=2026081003" alt="Public opening — Stranger Things 5 priority" loading="lazy" decoding="async" width="150" height="100">
@@ -2846,7 +2758,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">Check showtime</span>
           <span class="ed-h">Nightmare Fuel: Blood Noir — optional performance<span class="ed-land" data-land="usf">Universal Studios Florida</span></span>
-          <span class="ed-n">Choose a listed performance that fits the route. October 15 closing time has not been confirmed in this guide. Do not assume a 1 AM performance or that repeat houses are included with a single-use Express pass.</span>
+          <span class="ed-n">Choose a listed performance that fits the route. Thu 15 Oct is a weeknight, and HHN weeknights run <b>6:30 PM to about 1 AM</b> (only peak weekends stretch to 2 AM) — confirm the exact close in the Universal app that morning. Do not assume a 1 AM performance, and do not assume repeat houses are included with a single-use Express pass.</span>
         </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">21</span>
@@ -2892,7 +2804,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">8:30AM</span>
           <span class="ed-h">Car service to Epic Universe<span class="ed-land" data-land="transit">Transit</span></span>
-          <span class="ed-n"><b>FS Premier</b> plan: pickup at <b>Pop Century and Art of Animation</b> for <b>8 guests</b> (everyone except John, Martha, Victoria and Valentina). <b>8:30 AM is proposed here; confirm the actual time and pickup order with the driver</b>, especially after HHN. Use the official Epic Universe pickup pin, separate from the main Universal garage. October 16 opening/closing times remain to be checked. The family plan has no Early Park Admission; a Disney hotel alone does not qualify. Only rely on it if the actual ticket/package confirms eligibility.</span>
+          <span class="ed-n"><b>FS Premier</b> plan: pickup at <b>Pop Century and Art of Animation</b> for <b>8 guests</b> (everyone except John, Martha, Victoria and Valentina). <b>8:30 AM is proposed here; confirm the actual time and pickup order with the driver</b>, especially after HHN. Use the official Epic Universe pickup pin, separate from the main Universal garage. <b>Verified 22 Sep 2026: Epic Universe runs 10 AM – 8 PM on Fri 16 Oct</b>, with Early Park Admission at 9 AM. The family plan has <b>no</b> Early Park Admission — a Disney hotel does not qualify — so 10 AM is your open. An 8:30 pickup puts you at the gate around 9:30, which is right: you want to be at the tapstiles when the rope drops, not walking up at 10. <b>The 8 PM close is the hard edge of this day</b> — everything below is built backwards from it.</span>
         </span>
       </li><h3 class="ed-sec">MORNING · AM</h3><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">3</span>
@@ -2961,7 +2873,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">2:15PM</span>
           <span class="ed-h">Monsters Unchained (Express)<span class="ed-land" data-land="liberty">Dark Universe</span></span>
-          <span class="ed-n">A dark ride using a <b>robotic-arm ride system</b>. <b>48-inch minimum</b>; Annelise cannot ride at the height in the family plan. Ask staff how child swap works and keep her with a supervising adult.</span>
+          <span class="ed-n">A dark ride using a <b>robotic-arm ride system</b>. <b>48-inch minimum</b> — Annelise (43") <b>cannot ride</b>. Ask staff how child swap works and keep her with a supervising adult.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/monsters-unchained.jpg?v=2026081003" alt="Monsters Unchained (Express)" loading="lazy" decoding="async" width="150" height="100">
@@ -2983,7 +2895,7 @@ body.pmv-lock{overflow:hidden}
         <span class="ed-body">
           <span class="ed-t">3:30PM</span>
           <span class="ed-h">Dragon Racer’s Rally · only if the line is under 30 min<span class="ed-land" data-land="frontier">Isle of Berk</span></span>
-          <span class="ed-n"><b>48-inch minimum</b>; Annelise cannot ride at the height listed. This ride is not on the current Epic Express attraction list. Only fit it in if the standby wait and child supervision work.</span>
+          <span class="ed-n"><b>48-inch minimum</b> — Annelise (43") <b>cannot ride</b>. This ride is not on the current Epic Express attraction list, so it is standby only. Fit it in only if the posted wait and child supervision work.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/dragon-racers-rally.jpg?v=2026081003" alt="Dragon Racer’s Rally · only if the line is under 30 min" loading="lazy" decoding="async" width="150" height="100">
@@ -3032,23 +2944,23 @@ body.pmv-lock{overflow:hidden}
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">16</span>
         <span class="ed-body">
-          <span class="ed-t">6:45PM</span>
+          <span class="ed-t">6:15PM</span>
           <span class="ed-h">Dinner — Celestial Park<span class="ed-land" data-land="main">Celestial Park</span></span>
-          <span class="ed-n">Plan a proper dinner and seated break in the central area. Check available quick service or an actual dining reservation; a table is not assumed. This is also a good point to decide whether to head home earlier.</span>
+          <span class="ed-n">Moved earlier (was 6:45) because the park closes at 8 PM. Plan a proper dinner and seated break in the central area. Check available quick service or an actual dining reservation; a table is not assumed. This is also a good point to decide whether to head home earlier.</span>
         </span>
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">17</span>
         <span class="ed-body">
-          <span class="ed-t">7:30PM</span>
+          <span class="ed-t">7:05PM</span>
           <span class="ed-h">Constellation Carousel — Celestial Park<span class="ed-land" data-land="main">Celestial Park</span></span>
-          <span class="ed-n"><b>No height minimum</b>; guests below 48 inches need a supervising companion, and hand-held infants are not permitted. This is an option for the <b>eight guests visiting Epic</b>, if hours and energy allow.</span>
+          <span class="ed-n"><b>No height minimum</b>; guests below 48 inches need a supervising companion, and hand-held infants are not permitted. This is the last ride of the trip that Annelise can do with everyone, so protect it. Park closes at 8 PM.</span>
         </span>
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">18</span>
         <span class="ed-body">
-          <span class="ed-t">8:00PM</span>
+          <span class="ed-t">7:30PM</span>
           <span class="ed-h">Stardust Racers (Express) · Rider Switch<span class="ed-land" data-land="main">Celestial Park</span></span>
-          <span class="ed-n"><b>48-inch minimum</b>; Annelise cannot ride at her listed height. Ask staff about child swap and keep her supervised. Plan one experience per eligible rider: swap does not guarantee both tracks or extra Express uses.</span>
+          <span class="ed-n"><b>48-inch minimum</b> — Annelise (43") <b>cannot ride</b>. Ask staff about child swap and keep her supervised. Plan one experience per eligible rider: swap does not guarantee both tracks or extra Express uses. <b>Moved up from 8:00 PM</b> — that was the closing minute. Be in the queue by 7:50; a queue joined before close still rides.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/stardust-racers.jpg?v=2026081003" alt="Stardust Racers (Express) · Rider Switch" loading="lazy" decoding="async" width="150" height="100">
@@ -3057,9 +2969,9 @@ body.pmv-lock{overflow:hidden}
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">19</span>
         <span class="ed-body">
-          <span class="ed-t">Optional evening</span>
+          <span class="ed-t">7:50PM</span>
           <span class="ed-h">Celestial Park fountains &amp; lights<span class="ed-land" data-land="main">Celestial Park</span></span>
-          <span class="ed-n">A nighttime walk if the park is open and the lighting or fountains are operating. No performance called “Stardust Show” or fixed 8:30 showtime is confirmed in this guide. Check the official entertainment listings.</span>
+          <span class="ed-n">Sunset on 16 Oct is about 7:05 PM, so Celestial Park is genuinely lit for the last hour — this is your night-photo window, walked on the way to the gate. There is <b>no</b> confirmed “Stardust Show” and no 8:30 showtime: the park is closed by then. Check the official entertainment listing that morning.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/stardust-show.jpg?v=2026081003" alt="Celestial Park fountains &amp; lights" loading="lazy" decoding="async" width="150" height="100">
@@ -3068,9 +2980,9 @@ body.pmv-lock{overflow:hidden}
       </li><li class="ed-ev has-shot">
         <span class="ed-num" aria-hidden="true">20</span>
         <span class="ed-body">
-          <span class="ed-t">Optional evening</span>
+          <span class="ed-t">Before 7PM only</span>
           <span class="ed-h">One last walk through Nintendo World<span class="ed-land" data-land="tomorrow">Super Nintendo World</span></span>
-          <span class="ed-n">A final Nintendo photo walk only if the park is open and it fits the agreed car-service departure. Skip this first if anyone is tired or the group needs to pack for the early flight.</span>
+          <span class="ed-n"><b>This is a swap, not a bonus.</b> With an 8 PM close there is no after-hours walk — if she wants one more Nintendo lap, trade it for dinner sitting down or for Stardust Racers, and do it before 7 PM. Skip it first if anyone is tired or the group needs to pack for the 7 AM Saturday flight.</span>
         </span>
         <span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/nintendo-world.jpg?v=2026081003" alt="One last walk through Nintendo World" loading="lazy" decoding="async" width="150" height="100">
@@ -3079,7 +2991,7 @@ body.pmv-lock{overflow:hidden}
       </li><li class="ed-ev">
         <span class="ed-num" aria-hidden="true">21</span>
         <span class="ed-body">
-          <span class="ed-t">Confirm pickup</span>
+          <span class="ed-t">8:15PM</span>
           <span class="ed-h">Car service back to the resorts<span class="ed-land" data-land="transit">Transit</span></span>
           <span class="ed-n">Confirm the <b>FS Premier return time and official pickup pin</b> for both resorts; the previous 9:15 PM time was a planning target. Saturday’s MCO pickup also needs written confirmation. A <b>4 AM pickup plus a 25–30 minute drive</b> reaches MCO around 4:25–4:30, about <b>2½ hours</b> before the 7 AM flight. If targeting 4 AM terminal arrival, work backwards with the driver and both-resort pickup sequence. Pack before Friday’s outing and set alarms from the confirmed time.</span>
         </span>
@@ -3109,7 +3021,7 @@ body.pmv-lock{overflow:hidden}
   <div class="cast" data-id="abui"><div class="av-pair"><div class="av side has-photo" data-em="🎀" style="background-image:url('photos/Abui.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/minnie-wink.gif" alt="Minnie Mouse" loading="lazy" referrerpolicy="no-referrer" data-local="characters/minnie.jpg" onerror="charFallback(this)"></div><div class="role">Grandma · The Heart</div><div class="name">Abui</div><span class="ch">★ Minnie Mouse</span><div class="line">Bows, kindness, and quiet magic. The reason this works.</div></div>
   <div class="cast" data-id="art"><div class="av-pair"><div class="av side has-photo" data-em="👷" style="background-image:url('photos/art.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/luigi-game-day-cheer.gif" alt="Luigi" loading="lazy" referrerpolicy="no-referrer" data-local="characters/luigi.jpg" onerror="charFallback(this)"></div><div class="role">Dad · Player 2</div><div class="name">Art</div><span class="ch">★ Luigi</span><div class="line">Player 2. Always game for one more ride.</div></div>
   <div class="cast" data-id="sandra"><div class="av-pair"><div class="av side has-photo" data-em="👑" style="background-image:url('photos/Sandra.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/peach-wave.gif" alt="Princess Peach" loading="lazy" referrerpolicy="no-referrer" data-local="characters/peach.jpg" onerror="charFallback(this)"></div><div class="role">Mom · The Composure</div><div class="name">Sandra</div><span class="ch">★ Princess Peach</span><div class="line">Composed. Royal. Runs the kingdom.</div></div>
-  <div class="cast" data-id="annelise"><div class="av-pair"><div class="av side has-photo" data-em="🍄" style="background-image:url('photos/annelise.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/mario-ready-to-play.gif" alt="Mario" loading="lazy" referrerpolicy="no-referrer" data-local="characters/mario.jpg" onerror="charFallback(this)"></div><div class="role">The Star · 4 yrs · 42"</div><div class="name">Annelise</div><span class="ch">★ Mario</span><div class="line">It's-a-me! Lead jumper. Lead Mario fan.</div></div>
+  <div class="cast" data-id="annelise"><div class="av-pair"><div class="av side has-photo" data-em="🍄" style="background-image:url('photos/annelise.jpg');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/mario-ready-to-play.gif" alt="Mario" loading="lazy" referrerpolicy="no-referrer" data-local="characters/mario.jpg" onerror="charFallback(this)"></div><div class="role">The Star · 4 yrs · 43"</div><div class="name">Annelise</div><span class="ch">★ Mario</span><div class="line">It's-a-me! Lead jumper. Lead Mario fan.</div></div>
   <div class="cast" data-id="danny"><div class="av-pair"><div class="av side has-photo" data-em="🦍" style="background-image:url('photos/Danny.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/donkey-kong-movie-closeup.gif" alt="Donkey Kong" loading="lazy" referrerpolicy="no-referrer" data-local="characters/dk.jpg" onerror="charFallback(this)"></div><div class="role">Dad · Big Energy</div><div class="name">Danny</div><span class="ch">★ Donkey Kong</span><div class="line">Big energy, bigger laughs.</div></div>
   <div class="cast" data-id="valeria"><div class="av-pair"><div class="av side has-photo" data-em="🐶" style="background-image:url('photos/Valeria.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/goofy-smile.gif" alt="Goofy" loading="lazy" referrerpolicy="no-referrer" data-local="characters/goofy.jpg" onerror="charFallback(this)"></div><div class="role">Mom · Pulga Queen</div><div class="name">Valeria</div><span class="ch">★ Goofy</span><div class="line">Softball arm, sharper jokes.</div></div>
   <div class="cast" data-id="isabella"><div class="av-pair"><div class="av side has-photo" data-em="🌹" style="background-image:url('photos/Isabella.png');"></div><span class="av-link">as</span><img class="char-orb-img" src="characters/belle-village-stroll.gif" alt="Belle" loading="lazy" referrerpolicy="no-referrer" data-local="characters/belle.jpg" onerror="charFallback(this)"></div><div class="role">Cousin · The Reader</div><div class="name">Isabella</div><span class="ch">★ Belle</span><div class="line">Books in one hand, churro in the other.</div></div>
@@ -3623,4 +3535,8 @@ function loadCastPhotos(){
 </style>
 
 
-<script src="booking-reminder.js?v=20260920-restore"></script></body></html>
+<link rel="stylesheet" href="day-metrics.css?v=20260922">
+<script src="booking-reminder.js?v=20260920-restore"></script>
+<script src="day-metrics.js?v=20260922"></script>
+<script src="day-metrics-ui.js?v=20260922"></script>
+</body></html>
