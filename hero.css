@@ -1,0 +1,175 @@
+/* Title-card hero (.tcard — namespaced: index.html already
+   defines a .hero rule that would centre this text) + five-park index — the top of the page.
+   Options 1 and 3 from designs/intro-options.html, merged: the hero names the
+   trip, the park index is its bottom edge and doubles as the navigation the
+   page otherwise has none of.
+
+   CONTRAST, measured rather than guessed. Against the actual pixels of
+   mk-bg.jpg behind each text band, taking the brightest 1% as the worst case
+   and #FFFBF2 as the ink:
+
+       scrim   eyebrow   title   dates   countdown bar
+       0.36     3.3:1    2.9:1   2.6:1      2.4:1     <- the unreadable version
+       0.50     4.9:1    4.4:1   3.9:1      3.7:1
+       0.64     7.6:1    7.0:1   6.3:1      6.1:1     <- shipped
+
+   The copy block sits between 16% and 65% of the hero's height, so the ramp
+   below holds .64–.66 across exactly that range and only lightens above it,
+   where the castle is and no text goes. Every text colour here is opaque; no
+   translucent white on a photograph. */
+
+.tcard{
+  position:relative;
+  margin:0 auto;
+  width:calc(100% - 28px);
+  max-width:1280px;
+  border-radius:24px;
+  overflow:hidden;
+  isolation:isolate;
+  background:#080B0F;
+}
+.tc-bg{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:50% 34%;
+  z-index:0;
+}
+/* Two stacked scrims: an overall knock-down so nothing blows out, then a
+   bottom-weighted ramp that carries the type. */
+.tc-scrim{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(6,9,13,.32)  0%,
+      rgba(6,9,13,.46) 11%,
+      rgba(6,9,13,.64) 18%,
+      rgba(6,9,13,.66) 30%,
+      rgba(6,9,13,.66) 60%,
+      rgba(6,9,13,.74) 74%,
+      rgba(6,9,13,.90) 100%);
+}
+
+.tc-in{
+  position:relative; z-index:2;
+  padding:clamp(80px,13vw,150px) clamp(20px,4vw,52px) clamp(22px,3vw,34px);
+}
+.tc-eyebrow{
+  margin:0 0 14px;
+  font:800 clamp(9px,1.5vw,11px)/1.5 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing:.32em; text-transform:uppercase;
+  color:#8FE3AE;                       /* opaque, not white-at-82% */
+  text-shadow:0 1px 10px rgba(0,0,0,.85);
+}
+.tc-title{
+  margin:0;
+  font:900 clamp(38px,8.6vw,84px)/.95 'Playfair Display', Georgia, serif;
+  letter-spacing:-.02em;
+  color:#FFFBF2;
+  text-wrap:balance;
+  text-shadow:0 2px 4px rgba(0,0,0,.72), 0 10px 38px rgba(0,0,0,.6);
+}
+.tc-rule{
+  display:block; width:clamp(48px,7vw,74px); height:3px; border-radius:2px;
+  background:#39B36A; margin:clamp(16px,2.4vw,24px) 0 0;
+  box-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.tc-dates{
+  margin:clamp(14px,2vw,20px) 0 0;
+  font:600 clamp(13px,1.9vw,17px)/1.55 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  color:#EDE7DA;                       /* opaque */
+  text-shadow:0 1px 3px rgba(0,0,0,.8), 0 4px 18px rgba(0,0,0,.6);
+  max-width:34ch;
+}
+
+/* The countdown is moved inside this bar, so it stops floating on its own. */
+.tc-bar{
+  margin-top:clamp(20px,3.2vw,32px);
+  border-radius:18px;
+  background:rgba(8,12,17,.62);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  padding:clamp(6px,1.2vw,12px) clamp(8px,1.6vw,16px);
+}
+/* Neutralise the standalone countdown's own page-level spacing now that it
+   lives inside the hero bar. */
+.tc-bar .cd-wrap{
+  width:100% !important; max-width:none !important;
+  margin:0 !important;
+}
+
+/* ---------- five-park index: the hero's bottom edge ---------- */
+.tc-index{
+  position:relative; z-index:2;
+  padding:0 clamp(12px,2.4vw,20px) clamp(14px,2.4vw,20px);
+}
+.tc-index-hd{
+  display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline;
+  padding:0 6px clamp(9px,1.4vw,12px);
+}
+.tc-index-hd b{
+  font:800 9.5px/1 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing:.26em; text-transform:uppercase; color:#8FE3AE;
+}
+.tc-index-hd span{
+  font:600 11px/1 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing:.1em; color:#C6BFB2;
+}
+.pk-row{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(7px,1.3vw,12px);
+}
+.pk-card{
+  position:relative; display:block; border-radius:14px; overflow:hidden;
+  aspect-ratio:4/5; text-decoration:none;
+  border:1px solid rgba(255,255,255,.18);
+  background:#0d1219;
+  transition:transform .22s ease, border-color .22s ease;
+}
+.pk-card:hover, .pk-card:focus-visible{
+  transform:translateY(-3px); border-color:#39B36A; outline:none;
+}
+.pk-card img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+}
+/* Same contrast rule as the hero: these captions sit on photos too. */
+.pk-card::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    rgba(4,7,10,.20) 0%, rgba(4,7,10,.52) 46%, rgba(4,7,10,.92) 100%);
+}
+.pk-txt{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:10px 9px; }
+.pk-day, .pk-name, .pk-meta{ display:block; }
+.pk-day{
+  font:800 8.5px/1.2 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing:.2em; color:#8FE3AE;
+}
+.pk-name{
+  margin:6px 0 0; color:#FFFBF2;
+  font:800 clamp(10.5px,1.55vw,14px)/1.2 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  text-shadow:0 1px 3px rgba(0,0,0,.8);
+}
+.pk-meta{
+  margin:5px 0 0; color:#CFC8BA;
+  font:600 8.5px/1.3 'JetBrains Mono', ui-monospace, monospace;
+}
+
+@media (max-width:760px){
+  .tcard{ width:calc(100% - 16px); border-radius:18px; }
+  .tc-in{ padding-top:clamp(64px,22vw,110px); }
+  .tc-dates br{ display:none; }
+  /* Five tiles do not fit a phone; swipe them instead of shrinking to stamps. */
+  .pk-row{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-bottom:8px; scrollbar-width:none;
+  }
+  .pk-row::-webkit-scrollbar{ display:none; }
+  .pk-card{ flex:0 0 40vw; max-width:170px; scroll-snap-align:start; }
+}
+@media (prefers-reduced-motion: reduce){
+  .pk-card{ transition:none; }
+}
+@media print{
+  .tc-bg, .tc-scrim{ display:none; }
+  .tcard{ border:1px solid #999; }
+  .tc-title, .tc-dates{ color:#000; text-shadow:none; }
+  .tc-eyebrow, .tc-index-hd b{ color:#333; }
+}
