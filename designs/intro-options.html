@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intro Options · Disney 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Playfair+Display:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E12; --panel:#12161C; --line:rgba(255,255,255,.12);
+  --ink:#F2EFE8; --mute:#8D8779; --acc:#39B36A;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter',ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-text-size-adjust:100%}
+body{padding-bottom:70px}
+img{display:block;max-width:100%}
+
+.hd{padding:26px 16px 18px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(57,179,106,.10),transparent)}
+.hd-in{max-width:1180px;margin:0 auto}
+.eyebrow{font:800 10px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;
+  color:var(--acc);margin:0 0 10px}
+h1{font:800 clamp(24px,5vw,38px)/1.1 var(--serif);margin:0 0 10px}
+.sub{margin:0;color:var(--mute);font-size:14px;line-height:1.65;max-width:72ch}
+.sub b{color:var(--ink);font-weight:600}
+
+.toc{display:flex;gap:8px;overflow-x:auto;padding:14px 16px;position:sticky;top:0;z-index:40;
+  background:rgba(11,14,18,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);scrollbar-width:none}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:0 0 auto;padding:9px 14px;border-radius:999px;border:1px solid var(--line);
+  color:var(--mute);text-decoration:none;font:700 11.5px/1 var(--mono);white-space:nowrap;
+  min-height:38px;display:inline-flex;align-items:center}
+.toc a:hover{color:var(--ink);border-color:var(--acc)}
+
+section.opt{max-width:1180px;margin:0 auto;padding:36px 16px 8px;scroll-margin-top:72px}
+.opt-hd{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;margin-bottom:6px}
+.opt-no{font:800 11px/1 var(--mono);letter-spacing:.26em;color:var(--acc)}
+.opt-hd h2{font:800 clamp(18px,3.4vw,25px)/1.2 var(--sans);margin:0}
+.pick{font:800 9px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  padding:5px 9px;border-radius:999px;background:var(--acc);color:#07120b}
+.opt-why{margin:0 0 6px;color:var(--mute);font-size:13.5px;line-height:1.65;max-width:74ch}
+.opt-why b{color:#cfc9bc;font-weight:600}
+.tradeoff{margin:0 0 18px;font:500 12.5px/1.6 var(--sans);color:#C9A227;max-width:74ch}
+.tradeoff::before{content:'Trade-off: ';font-weight:800}
+
+.frame{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#000;
+  position:relative}
+.frame::after{content:'MOCK-UP';position:absolute;top:10px;right:12px;z-index:9;
+  font:800 8.5px/1 var(--mono);letter-spacing:.2em;padding:5px 8px;border-radius:999px;
+  background:rgba(0,0,0,.55);color:rgba(255,255,255,.75);
+  border:1px solid rgba(255,255,255,.22)}
+
+/* ---------- shared bits the real page already has ---------- */
+.cd{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.cd-u{text-align:center;min-width:56px}
+.cd-v{font:800 clamp(22px,4.6vw,34px)/1 var(--mono);letter-spacing:.04em}
+.cd-k{font:700 8.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);margin-top:7px}
+
+/* ============ 1. TITLE CARD HERO ============ */
+.h1x{position:relative;min-height:clamp(420px,72vh,620px);display:grid;
+  align-content:end;padding:clamp(20px,4vw,44px)}
+.h1x .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 42%}
+.h1x::before{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(6,9,13,.34) 0%,rgba(6,9,13,.10) 34%,rgba(6,9,13,.86) 100%)}
+.h1x > *{position:relative;z-index:2}
+.h1-eyebrow{font:800 10px/1 var(--mono);letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 14px}
+.h1-title{font:900 clamp(38px,9vw,86px)/.96 var(--serif);margin:0;letter-spacing:-.02em;
+  text-shadow:0 3px 26px rgba(0,0,0,.6)}
+.h1-dates{font:600 clamp(13px,2.4vw,17px)/1.5 var(--sans);color:rgba(255,255,255,.88);
+  margin:14px 0 0;letter-spacing:.02em}
+.h1-line{width:64px;height:3px;background:var(--acc);margin:20px 0 0;border-radius:2px}
+.h1-bar{margin-top:clamp(20px,3.4vw,30px);padding:16px clamp(14px,2.4vw,22px);
+  border-radius:16px;background:rgba(10,14,20,.52);border:1px solid rgba(255,255,255,.17);
+  backdrop-filter:blur(12px)}
+
+/* ============ 2. ROLL CALL ============ */
+.h2x{padding:clamp(22px,4vw,40px);background:
+  radial-gradient(120% 90% at 50% 0%,rgba(57,179,106,.16),transparent 62%),#0C1117}
+.h2-top{text-align:center;margin-bottom:clamp(20px,3vw,30px)}
+.h2-title{font:900 clamp(28px,6.4vw,54px)/1 var(--serif);margin:0}
+.h2-sub{font:600 12px/1.6 var(--sans);color:var(--mute);margin:12px 0 0;letter-spacing:.02em}
+.roll{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.6vw,16px)}
+.rp{text-align:center}
+.rp-img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,.2);background:#1a2028}
+.rp-n{font:700 clamp(9px,1.5vw,12px)/1.2 var(--sans);margin:8px 0 0}
+.rp-c{font:600 8px/1.2 var(--mono);color:var(--mute);margin:4px 0 0;letter-spacing:.06em}
+@media(max-width:640px){ .roll{grid-template-columns:repeat(4,1fr)} }
+
+/* ============ 3. FIVE-PARK INDEX ============ */
+.h3x{padding:clamp(18px,3vw,26px);background:#0C1117}
+.h3-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline;
+  margin-bottom:clamp(14px,2.4vw,20px)}
+.h3-title{font:900 clamp(22px,4.6vw,34px)/1 var(--serif);margin:0}
+.h3-meta{font:600 11.5px/1 var(--mono);color:var(--mute);letter-spacing:.08em}
+.pk{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(7px,1.4vw,13px)}
+.pk-c{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;
+  border:1px solid rgba(255,255,255,.14)}
+.pk-c img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pk-c::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.88) 100%)}
+.pk-t{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:11px 10px}
+.pk-d{font:800 8.5px/1 var(--mono);letter-spacing:.18em;color:var(--acc)}
+.pk-n{font:800 clamp(11px,1.8vw,15px)/1.2 var(--sans);margin:6px 0 0}
+.pk-s{font:600 8.5px/1 var(--mono);color:rgba(255,255,255,.62);margin:6px 0 0}
+@media(max-width:640px){
+  .pk{grid-template-columns:repeat(5,minmax(104px,1fr));overflow-x:auto;
+      padding-bottom:10px;scroll-snap-type:x mandatory}
+  .pk-c{scroll-snap-align:start}
+}
+
+/* ============ 4. DEPARTURE BOARD ============ */
+.h4x{padding:clamp(24px,4vw,46px);background:#07090C;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 4px)}
+.flap{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.flap span{width:clamp(28px,5.4vw,46px);height:clamp(40px,7.6vw,64px);border-radius:5px;
+  background:linear-gradient(180deg,#22272E 0 49%,#171B21 51% 100%);
+  border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;
+  font:800 clamp(18px,3.6vw,30px)/1 var(--mono);color:#F7E7A1;
+  box-shadow:inset 0 -1px 0 rgba(0,0,0,.6)}
+.flap span.gap{background:none;border:none;box-shadow:none;width:clamp(10px,2vw,20px)}
+.h4-rows{max-width:620px;margin:0 auto;border-top:1px solid rgba(255,255,255,.1)}
+.h4-r{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:13px 4px;
+  border-bottom:1px solid rgba(255,255,255,.08);align-items:center;
+  font:700 12px/1 var(--mono);letter-spacing:.06em}
+.h4-r i{font-style:normal;color:#F7E7A1}
+.h4-r b{color:var(--mute);font-weight:600;font-size:10.5px;letter-spacing:.14em}
+
+/* ============ 5. LIVE TRIP STATE ============ */
+.h5x{padding:clamp(20px,3.4vw,34px);background:
+  linear-gradient(140deg,rgba(57,179,106,.14),transparent 60%),#0C1117}
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.st{border:1px solid var(--line);border-radius:15px;padding:15px;
+  background:rgba(255,255,255,.04)}
+.st-k{font:800 8.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mute)}
+.st-v{font:800 clamp(15px,2.6vw,21px)/1.25 var(--sans);margin:9px 0 0}
+.st-s{font:600 11px/1.4 var(--mono);color:var(--acc);margin:7px 0 0}
+.st-live{display:inline-flex;align-items:center;gap:7px;font:800 9px/1 var(--mono);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--acc);
+  padding:6px 11px;border-radius:999px;border:1px solid rgba(57,179,106,.42);
+  background:rgba(57,179,106,.1)}
+.st-live i{width:7px;height:7px;border-radius:50%;background:var(--acc);
+  animation:pulse 1.9s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.tog{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.tog button{padding:9px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--mute);
+  font:700 10.5px/1 var(--mono);letter-spacing:.1em;min-height:38px}
+.tog button[aria-pressed="true"]{background:var(--acc);color:#07120b;border-color:var(--acc)}
+@media(max-width:640px){ .st-grid{grid-template-columns:1fr} }
+
+.foot{max-width:1180px;margin:40px auto 0;padding:22px 16px 0;
+  border-top:1px solid var(--line);color:var(--mute);font-size:12.5px;line-height:1.75}
+.foot b{color:var(--ink)}
+@media (prefers-reduced-motion: reduce){ .st-live i{animation:none} }
+</style>
+</head>
+<body>
+
+<header class="hd"><div class="hd-in">
+  <p class="eyebrow">Disney 2026 · Top-of-page options</p>
+  <h1>Five ways to open the page</h1>
+  <p class="sub">Right now the itinerary opens cold on a countdown widget — nothing says whose
+  trip it is. Each mock-up below is the <b>real</b> thing: your photos, your twelve names, the
+  real dates and the real step counts. <b>None of this is live yet</b>; the itinerary is
+  untouched. Pick a number, or a combination.</p>
+</div></header>
+
+<nav class="toc" aria-label="Jump to an option">
+  <a href="#o1">01 Title card</a><a href="#o2">02 Roll call</a><a href="#o3">03 Park index</a>
+  <a href="#o4">04 Departure board</a><a href="#o5">05 Live trip state</a>
+</nav>
+
+<section class="opt" id="o1">
+  <div class="opt-hd"><span class="opt-no">01</span><h2>Title card hero</h2>
+    <span class="pick">My pick — with 03</span></div>
+  <p class="opt-why">Full-bleed park photo, the family name at full size, the countdown demoted
+  to a glass bar across the bottom of the image instead of floating on its own. <b>Biggest
+  visual payoff and no new art needed</b> — this uses a cover photo already in the repo.</p>
+  <p class="tradeoff">it is pure atmosphere. It adds a moment, not a function — you still
+  can't jump to Wednesday from it.</p>
+  <div class="frame">
+    <div class="h1x">
+      <img class="bgimg" src="../sections/assets/mk-bg.jpg" alt="Magic Kingdom at night">
+      <p class="h1-eyebrow">Twelve of us · Seven days · One October</p>
+      <h2 class="h1-title">The Garcia<br>Family</h2>
+      <span class="h1-line"></span>
+      <p class="h1-dates">Walt Disney World &amp; Epic Universe · Orlando, Florida<br>
+        October 11–17, 2026</p>
+      <div class="h1-bar">
+        <div class="cd">
+          <div class="cd-u"><div class="cd-v" id="d1">18</div><div class="cd-k">Days</div></div>
+          <div class="cd-u"><div class="cd-v" id="h1n">16</div><div class="cd-k">Hours</div></div>
+          <div class="cd-u"><div class="cd-v" id="m1">24</div><div class="cd-k">Minutes</div></div>
+          <div class="cd-u"><div class="cd-v" id="s1">48</div><div class="cd-k">Seconds</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="opt" id="o2">
+  <div class="opt-hd"><span class="opt-no">02</span><h2>The roll call</h2></div>
+  <p class="opt-why">Open with all twelve faces. The portraits already exist in
+  <code>photos/</code> — this just promotes what is currently buried 31,900 pixels down the
+  page, where nobody will ever scroll to it. <b>Makes it a family document rather than a
+  logistics document.</b></p>
+  <p class="tradeoff">twelve circles is a lot of vertical space before anyone reaches a single
+  piece of trip information.</p>
+  <div class="frame">
+    <div class="h2x">
+      <div class="h2-top">
+        <h2 class="h2-title">All twelve of us</h2>
+        <p class="h2-sub">ORLANDO · OCTOBER 11–17, 2026 · DEPARTING IAH 7:25 AM</p>
+      </div>
+      <div class="roll" id="roll"></div>
+    </div>
+  </div>
+</section>
+
+<section class="opt" id="o3">
+  <div class="opt-hd"><span class="opt-no">03</span><h2>Five-park index</h2>
+    <span class="pick">My pick — with 01</span></div>
+  <p class="opt-why">One tile per park day, using the cover photos already on each day section,
+  each one a jump link. <b>This is the fix for the real problem:</b> the page is about 34,000
+  pixels tall with no navigation, so reaching Wednesday from the top is a long thumb-scroll in
+  a queue.</p>
+  <p class="tradeoff">on its own it is useful but unglamorous — it is a menu, not a moment.
+  Pair it with 01.</p>
+  <div class="frame">
+    <div class="h3x">
+      <div class="h3-top">
+        <h2 class="h3-title">Five days, five parks</h2>
+        <span class="h3-meta">TAP A DAY ·  OCT 12–16</span>
+      </div>
+      <div class="pk" id="parks"></div>
+    </div>
+  </div>
+</section>
+
+<section class="opt" id="o4">
+  <div class="opt-hd"><span class="opt-no">04</span><h2>Departure board</h2></div>
+  <p class="opt-why">An airport split-flap that lands on your actual first event, sitting
+  directly above the flight panel that is already there. Thematic and fun.</p>
+  <p class="tradeoff">it only ever says one thing, and the panel underneath already says it.
+  <b>I would skip this one.</b></p>
+  <div class="frame">
+    <div class="h4x">
+      <div class="flap" id="flap"></div>
+      <div class="h4-rows">
+        <div class="h4-r"><b>OUT</b><i>UA 2245 · IAH → MCO</i><span>7:25 AM</span></div>
+        <div class="h4-r"><b>PARTY</b><i>12 travelling</i><span>OCT 11</span></div>
+        <div class="h4-r"><b>BACK</b><i>UA 468 · MCO → IAH</i><span>OCT 17</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="opt" id="o5">
+  <div class="opt-hd"><span class="opt-no">05</span><h2>Live trip state</h2>
+    <span class="pick">Build this too</span></div>
+  <p class="opt-why">Not a grand gesture — a fix. On 11 October the countdown hits zero and the
+  top of the page becomes dead space for the whole week you are actually using it. This flips
+  it into trip mode. <b>Use the buttons to see both states.</b></p>
+  <p class="tradeoff">none worth naming. It is the least pretty option and the most useful one.</p>
+  <div class="frame">
+    <div class="h5x">
+      <div class="tog">
+        <button id="bBefore" aria-pressed="true">Before the trip</button>
+        <button id="bDuring" aria-pressed="false">During the trip</button>
+      </div>
+      <div id="stateBefore">
+        <span class="st-live"><i></i>Counting down</span>
+        <div style="margin-top:16px"><div class="cd">
+          <div class="cd-u"><div class="cd-v" id="d5">18</div><div class="cd-k">Days</div></div>
+          <div class="cd-u"><div class="cd-v" id="h5n">16</div><div class="cd-k">Hours</div></div>
+          <div class="cd-u"><div class="cd-v" id="m5">24</div><div class="cd-k">Minutes</div></div>
+          <div class="cd-u"><div class="cd-v" id="s5">48</div><div class="cd-k">Seconds</div></div>
+        </div></div>
+        <div class="st-grid">
+          <div class="st"><div class="st-k">Departs</div>
+            <div class="st-v">Sun 11 Oct · 7:25 AM</div>
+            <div class="st-s">UA 2245 · IAH → MCO</div></div>
+          <div class="st"><div class="st-k">First park</div>
+            <div class="st-v">Animal Kingdom</div>
+            <div class="st-s">Mon 12 Oct · gates 8:00 AM</div></div>
+        </div>
+      </div>
+      <div id="stateDuring" hidden>
+        <span class="st-live"><i></i>Day 3 of 7 · live</span>
+        <div class="st-grid" style="margin-top:16px">
+          <div class="st"><div class="st-k">Today</div>
+            <div class="st-v">Magic Kingdom</div>
+            <div class="st-s">Wed 14 Oct · 9 AM – 10 PM</div></div>
+          <div class="st"><div class="st-k">Next up</div>
+            <div class="st-v">Tiana's Bayou Adventure</div>
+            <div class="st-s">3:00 PM · in 40 minutes</div></div>
+          <div class="st"><div class="st-k">Don't miss</div>
+            <div class="st-v">Boutique 4:40 PM</div>
+            <div class="st-s">Check in no earlier than 4:35</div></div>
+          <div class="st"><div class="st-k">So far today</div>
+            <div class="st-v">6 of 21 stops</div>
+            <div class="st-s">2,140 steps · 1h 20m in line</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="foot" id="foot"></p>
+
+<script>
+var CAST = [
+  ['abui_temo.png','Abui Temo','Mickey'], ['Abui.png','Abui','Minnie'],
+  ['art.png','Art','Luigi'],              ['Sandra.png','Sandra','Peach'],
+  ['annelise.jpg','Annelise','Mario'],    ['Danny.png','Danny','Donkey Kong'],
+  ['Valeria.png','Valeria','Goofy'],      ['Isabella.png','Isabella','Belle'],
+  ['John.jpg','John','Vader'],            ['Martha.png','Martha','Daisy'],
+  ['Victoria.png','Victoria','Anna'],     ['Valentina.png','Valentina','Pooh']
+];
+document.getElementById('roll').innerHTML = CAST.map(function (p) {
+  return '<div class="rp"><img class="rp-img" src="../photos/' + p[0] + '" alt="' + p[1] +
+         '" loading="lazy"><div class="rp-n">' + p[1] + '</div>' +
+         '<div class="rp-c">' + p[2] + '</div></div>';
+}).join('');
+
+// Real days, real step counts from the published itinerary.
+var PARKS = [
+  ['ak-bg.jpg','MON 12','Animal Kingdom','15 stops · 7,831 steps','../index.html#day-ak'],
+  ['hs-bg.jpg','TUE 13','Hollywood Studios','17 stops · 5,470 steps','../index.html#day-hs'],
+  ['mk-bg.jpg','WED 14','Magic Kingdom','21 stops · 4,638 steps','../index.html#day-mk'],
+  ['hhn-bg.jpg','THU 15','HHN 35','21 stops · 9,982 steps','../index.html#day-hhn'],
+  ['eu-bg.jpg','FRI 16','Epic Universe','21 stops · 4,957 steps','../index.html#day-eu']
+];
+document.getElementById('parks').innerHTML = PARKS.map(function (p) {
+  return '<a class="pk-c" href="' + p[4] + '"><img src="../sections/assets/' + p[0] +
+         '" alt="' + p[2] + '" loading="lazy"><div class="pk-t"><div class="pk-d">' + p[1] +
+         '</div><div class="pk-n">' + p[2] + '</div><div class="pk-s">' + p[3] +
+         '</div></div></a>';
+}).join('');
+
+document.getElementById('flap').innerHTML =
+  'IAH'.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('') +
+  '<span class="gap"></span>' +
+  '→'.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('') +
+  '<span class="gap"></span>' +
+  'MCO'.split('').map(function (c) { return '<span>' + c + '</span>'; }).join('');
+
+// Countdown to the real departure: 11 Oct 2026, 7:25 AM Central (UTC-5).
+var DEPART = new Date('2026-10-11T07:25:00-05:00');
+function tick() {
+  var ms = DEPART - new Date();
+  if (ms < 0) ms = 0;
+  var s = Math.floor(ms / 1000);
+  var v = [Math.floor(s / 86400), Math.floor(s / 3600) % 24,
+           Math.floor(s / 60) % 60, s % 60];
+  [['d1','h1n','m1','s1'], ['d5','h5n','m5','s5']].forEach(function (ids) {
+    ids.forEach(function (id, i) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = i ? String(v[i]).padStart(2, '0') : v[i];
+    });
+  });
+}
+tick(); setInterval(tick, 1000);
+
+var bB = document.getElementById('bBefore'), bD = document.getElementById('bDuring');
+function mode(during) {
+  document.getElementById('stateBefore').hidden = during;
+  document.getElementById('stateDuring').hidden = !during;
+  bB.setAttribute('aria-pressed', String(!during));
+  bD.setAttribute('aria-pressed', String(during));
+}
+bB.onclick = function () { mode(false); };
+bD.onclick = function () { mode(true); };
+
+document.getElementById('foot').innerHTML =
+  '<b>These are mock-ups.</b> The live itinerary at ' +
+  '<a href="https://artut1582.github.io/Disney-2026/" style="color:#39B36A">' +
+  'artut1582.github.io/Disney-2026</a> is unchanged. Photos, names, dates, flight numbers ' +
+  'and step counts are all the real ones, so what you see is what it would look like. ' +
+  'Say a number — or "1 and 3", or "1, 3 and 5" — and I will build it into the page.';
+</script>
+</body>
+</html>
