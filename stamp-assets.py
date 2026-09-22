@@ -21,7 +21,7 @@ PAGE = os.path.join(HERE, "index.html")
 
 # Local assets whose links carry a ?v= stamp.
 ASSETS = ("day-metrics.js", "day-metrics-ui.js", "day-metrics.css",
-          "hero.css", "booking-reminder.js")
+          "hero.css", "trip-state.js", "booking-reminder.js")
 
 
 def digest(path):
