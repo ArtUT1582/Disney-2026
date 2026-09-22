@@ -10,7 +10,7 @@
 
    Bump CACHE when the precache list changes; old caches are deleted on
    activate. */
-const CACHE = 'disney2026-v6';
+const CACHE = 'disney2026-v7';
 
 // The shell: without these the page does not render.
 const PRECACHE = [

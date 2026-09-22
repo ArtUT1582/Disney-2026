@@ -216,9 +216,10 @@
 (function () {
   'use strict';
   var URL_ = 'https://artut1582.github.io/Disney-2026/';
-  var TEXT = 'Our Disney 2026 itinerary — all five park days, maps, times and the ' +
-             'autograph list. Open it, then Share → Add to Home Screen so it ' +
-             'works in the parks with no signal.';
+  var TEXT = 'Our Disney 2026 itinerary — all five park days, park maps, '+
+             'times, what Annelise can ride, and the autograph list. Open it and '+
+             'tap Install (iPhone: Share → Add to Home Screen) so it works '+
+             'in the parks with no signal.';
 
   function flash(btn, msg) {
     var was = btn.textContent;
