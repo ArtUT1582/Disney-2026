@@ -1437,32 +1437,35 @@ function charFallback(img){
     <p class="tc-dates">Walt Disney World &amp; Epic Universe · Orlando, Florida<br>
       October 11–17, 2026</p>
   </div>
-  <nav class="tc-index" aria-label="Jump to a park day">
-    <div class="tc-index-hd"><b>Five days, five parks</b><span>TAP A DAY</span></div>
-    <div class="pk-row">
-      <a class="pk-card" href="#day-ak">
-        <img src="sections/assets/ak-bg.jpg" alt="Animal Kingdom" loading="lazy" decoding="async">
-        <span class="pk-txt"><span class="pk-day">MON 12 OCT</span><span class="pk-name">Animal Kingdom</span><span class="pk-meta">15 stops · 7,831 steps</span></span>
-      </a>
-      <a class="pk-card" href="#day-hs">
-        <img src="sections/assets/hs-bg.jpg" alt="Hollywood Studios" loading="lazy" decoding="async">
-        <span class="pk-txt"><span class="pk-day">TUE 13 OCT</span><span class="pk-name">Hollywood Studios</span><span class="pk-meta">17 stops · 5,470 steps</span></span>
-      </a>
-      <a class="pk-card" href="#day-mk">
-        <img src="sections/assets/mk-bg.jpg" alt="Magic Kingdom" loading="lazy" decoding="async">
-        <span class="pk-txt"><span class="pk-day">WED 14 OCT</span><span class="pk-name">Magic Kingdom</span><span class="pk-meta">21 stops · 4,638 steps</span></span>
-      </a>
-      <a class="pk-card" href="#day-hhn">
-        <img src="sections/assets/hhn-bg.jpg" alt="HHN 35" loading="lazy" decoding="async">
-        <span class="pk-txt"><span class="pk-day">THU 15 OCT</span><span class="pk-name">HHN 35</span><span class="pk-meta">21 stops · 9,982 steps</span></span>
-      </a>
-      <a class="pk-card" href="#day-eu">
-        <img src="sections/assets/eu-bg.jpg" alt="Epic Universe" loading="lazy" decoding="async">
-        <span class="pk-txt"><span class="pk-day">FRI 16 OCT</span><span class="pk-name">Epic Universe</span><span class="pk-meta">21 stops · 4,957 steps</span></span>
-      </a>
-    </div>
-  </nav>
 </header>
+
+<!-- Five-park index: its own section under the title card. -->
+<nav class="parks" aria-label="Jump to a park day">
+  <div class="parks-hd"><b>Five days, five parks</b><span>TAP A DAY</span></div>
+  <div class="pk-row">
+    <a class="pk-card" href="#day-ak">
+      <img src="sections/assets/ak-bg.jpg" alt="Animal Kingdom" loading="lazy" decoding="async">
+      <span class="pk-txt"><span class="pk-day">MON 12 OCT</span><span class="pk-name">Animal Kingdom</span><span class="pk-meta">15 stops · 7,831 steps</span></span>
+    </a>
+    <a class="pk-card" href="#day-hs">
+      <img src="sections/assets/hs-bg.jpg" alt="Hollywood Studios" loading="lazy" decoding="async">
+      <span class="pk-txt"><span class="pk-day">TUE 13 OCT</span><span class="pk-name">Hollywood Studios</span><span class="pk-meta">17 stops · 5,470 steps</span></span>
+    </a>
+    <a class="pk-card" href="#day-mk">
+      <img src="sections/assets/mk-bg.jpg" alt="Magic Kingdom" loading="lazy" decoding="async">
+      <span class="pk-txt"><span class="pk-day">WED 14 OCT</span><span class="pk-name">Magic Kingdom</span><span class="pk-meta">21 stops · 4,638 steps</span></span>
+    </a>
+    <a class="pk-card" href="#day-hhn">
+      <img src="sections/assets/hhn-bg.jpg" alt="HHN 35" loading="lazy" decoding="async">
+      <span class="pk-txt"><span class="pk-day">THU 15 OCT</span><span class="pk-name">HHN 35</span><span class="pk-meta">21 stops · 9,982 steps</span></span>
+    </a>
+    <a class="pk-card" href="#day-eu">
+      <img src="sections/assets/eu-bg.jpg" alt="Epic Universe" loading="lazy" decoding="async">
+      <span class="pk-txt"><span class="pk-day">FRI 16 OCT</span><span class="pk-name">Epic Universe</span><span class="pk-meta">21 stops · 4,957 steps</span></span>
+    </a>
+  </div>
+</nav>
+
 
 <section id="flights">
 
@@ -3582,7 +3585,7 @@ function loadCastPhotos(){
 </style>
 
 
-<link rel="stylesheet" href="hero.css?v=0c7a0a2b63">
+<link rel="stylesheet" href="hero.css?v=2e7207c37b">
 <link rel="stylesheet" href="day-metrics.css?v=4552b2330d">
 <script src="booking-reminder.js?v=421d719d87"></script>
 <script src="day-metrics.js?v=c40afaeb76"></script>
