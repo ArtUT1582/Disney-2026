@@ -279,3 +279,7 @@ body.tt-show-signs .tt-sign{
   .inst-btn{ flex:1; }
 }
 @media print{ .inst{ display:none; } }
+
+/* A tile that has a real forecast in it, rather than the pending placeholder. */
+.wb-tile.wb-live .wb-cond{ color:#8FE3AE; }
+.wb-tile.wb-live .wb-temp{ color:#FFFBF2; font-weight:700; }
