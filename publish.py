@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Sync the Disney working folder into this repo, redact, commit and push.
 
+Keep the working folder on personal storage, not a work-managed drive.
+
 Why this exists: the working folder
     .../Desktop/Claude/Disney
 is NOT a git repo, and for a while the only clone of this repository lived in a
@@ -24,22 +26,22 @@ import subprocess
 import sys
 
 REPO = os.path.dirname(os.path.abspath(__file__))
-WORK = r"C:\Users\ArtemioGarcia\OneDrive - Ambassador Services\Desktop\Claude\Disney"
+# set DISNEY_WORK to point somewhere else; the default keeps it off any work drive
+WORK = os.environ.get("DISNEY_WORK", os.path.join(os.path.expanduser("~"), "Documents", "Disney"))
 
 # files carried from the working folder to the site
 FILES = [
     "index.html",
-    "BBB-BUDGET.html",
     "PHARMACY.html",
     "sections/assets/eu-bg-snw.jpg",
 ]
 
-# (pattern, replacement) applied to every .html before it is written to the repo
+# (pattern, replacement) applied to every .html before it is written to the repo.
+# Matched by shape, never by value - listing the real numbers here would publish
+# them in this file, which is the exact leak the redaction exists to prevent.
 REDACTIONS = [
-    (re.compile(r"conf\s*#\s*356226800617", re.I), "conf on file"),
-    (re.compile(r"conf\s*#\s*356224683345", re.I), "conf on file"),
-    (re.compile(r"\b356226800617\b"), "\u00b7\u00b7\u00b7\u00b7 0617"),
-    (re.compile(r"\b356224683345\b"), "\u00b7\u00b7\u00b7\u00b7 3345"),
+    (re.compile(r"conf\s*#\s*\d{8,}", re.I), "conf on file"),
+    (re.compile(r"\b\d{8}(\d{4})\b"), "\u00b7\u00b7\u00b7\u00b7 \\1"),
 ]
 
 
