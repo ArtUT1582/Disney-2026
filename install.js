@@ -91,6 +91,7 @@
           '<p class="inst-p">' + b.copy + '</p>' +
         '</div>' +
         '<div class="inst-act">' + b.action +
+          '<a class="inst-x" href="install-guide.html">Show me how</a>' +
           '<button class="inst-x" type="button" data-dismiss>Not now</button>' +
         '</div>' +
       '</div>';
