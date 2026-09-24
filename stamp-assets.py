@@ -21,7 +21,7 @@ PAGE = os.path.join(HERE, "index.html")
 
 # Local assets whose links carry a ?v= stamp.
 ASSETS = ("day-metrics.js", "day-metrics-ui.js", "day-metrics.css",
-          "hero.css", "trip-tools.css", "trip-tools.js", "install.js", "weather.js",
+          "hero.css", "trip-tools.css", "trip-tools.js", "install.js", "weather.js", "day-switch.js",
           "booking-reminder.js")
 
 

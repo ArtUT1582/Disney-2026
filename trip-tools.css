@@ -283,3 +283,52 @@ body.tt-show-signs .tt-sign{
 /* A tile that has a real forecast in it, rather than the pending placeholder. */
 .wb-tile.wb-live .wb-cond{ color:#8FE3AE; }
 .wb-tile.wb-live .wb-temp{ color:#FFFBF2; font-weight:700; }
+
+/* ---- One park day at a time + the bottom day bar (day-switch.js) ---------
+   Without JS every day stays visible, which is the old behaviour, so the page
+   never ends up blank if the script fails to load. */
+.ed-day{ display:none; }
+.ed-day.is-on{ display:block; }
+
+.daybar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  display:flex; gap:4px; padding:6px 6px calc(6px + env(safe-area-inset-bottom));
+  background:rgba(12,14,28,.86); backdrop-filter:blur(22px) saturate(170%);
+  border-top:1px solid rgba(255,255,255,.10);
+  box-shadow:0 -10px 34px rgba(0,0,0,.45);
+}
+.daybar-tab{
+  flex:1 1 0; min-width:0; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:1px;
+  padding:8px 2px; border:0; border-radius:12px;
+  background:transparent; color:rgba(255,255,255,.58);
+  font-family:inherit; line-height:1.15;
+  transition:background .18s ease, color .18s ease;
+}
+.daybar-tab .db-wd{ font-size:11px; font-weight:700; letter-spacing:.09em; }
+.daybar-tab .db-pk{
+  font-size:9px; letter-spacing:.05em; opacity:.75;
+  max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.daybar-tab.is-on{
+  background:linear-gradient(135deg,rgba(168,85,247,.34),rgba(236,72,153,.24));
+  color:#fff;
+}
+.daybar-tab.is-on .db-pk{ opacity:1; }
+.daybar-tab:focus-visible{ outline:2px solid #a855f7; outline-offset:-2px; }
+
+/* Keep the last rows of a day clear of the bar. */
+body.has-daybar{ padding-bottom:64px; }
+
+@media (min-width:900px){
+  .daybar{ left:50%; right:auto; transform:translateX(-50%); bottom:18px;
+           gap:6px; padding:6px; border-radius:999px; border:1px solid rgba(255,255,255,.10); }
+  .daybar-tab{ flex:0 0 auto; padding:8px 18px; border-radius:999px; }
+}
+
+/* Paper has no tabs - print the whole week. */
+@media print{
+  .ed-day{ display:block !important; }
+  .daybar{ display:none !important; }
+  body.has-daybar{ padding-bottom:0; }
+}
