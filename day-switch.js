@@ -115,8 +115,24 @@
     document.body.classList.add('has-daybar');   // pads the page above the bar
   }
 
+  /* A shared or bookmarked link like .../#cast should land on an open section,
+     not on a collapsed row. The <details> may be above the target or below it
+     (#cast is the section; its <details> is inside), so handle both. */
+  function openContaining() {
+    var id = (location.hash || '').slice(1);
+    var el = id && document.getElementById(id);
+    if (!el) return;
+    var inner = el.querySelector('details');
+    if (inner) inner.open = true;
+    for (var p = el; p; p = p.parentElement) {
+      if (p.tagName === 'DETAILS') p.open = true;
+    }
+  }
+
   function init() {
     buildBar();
+    openContaining();
+    window.addEventListener('hashchange', openContaining);
     show(firstChoice(), false);
     // Anchors elsewhere on the page (#day-mk, or a stop inside a day) still work.
     window.addEventListener('hashchange', function () {

@@ -332,3 +332,40 @@ body.has-daybar{ padding-bottom:64px; }
   .daybar{ display:none !important; }
   body.has-daybar{ padding-bottom:0; }
 }
+
+/* ---- Collapsed reference sections ---------------------------------------
+   Cast, alarms, logistics, home base and wifi are reference, not in-the-moment,
+   but they sat under every park day - about ten screens you scrolled past each
+   time. Native <details>, so the collapse needs no JS and survives printing. */
+.refsec{ border-top:1px solid rgba(255,255,255,.08); }
+.refsec[open]{ padding-bottom:8px; }
+
+.refsum{
+  display:flex; align-items:center; gap:10px;
+  padding:17px 20px; cursor:pointer; list-style:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.refsum::-webkit-details-marker{ display:none; }   /* our own chevron instead */
+.refsum:hover{ background:rgba(255,255,255,.03); }
+.refsum:focus-visible{ outline:2px solid #a855f7; outline-offset:-2px; }
+
+.rs-t{ font-size:15px; font-weight:600; color:#fff; white-space:nowrap; }
+.rs-h{
+  flex:1 1 auto; min-width:0; font-size:12px; color:var(--muted,rgba(255,255,255,.55));
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.rs-x{
+  flex:0 0 auto; width:9px; height:9px; margin-right:2px;
+  border-right:2px solid rgba(255,255,255,.5); border-bottom:2px solid rgba(255,255,255,.5);
+  transform:rotate(45deg) translate(-2px,-2px); transition:transform .2s ease;
+}
+.refsec[open] > .refsum .rs-x{ transform:rotate(-135deg) translate(-2px,-2px); }
+.refsec[open] > .refsum .rs-h{ opacity:.55; }
+
+@media (prefers-reduced-motion:reduce){ .rs-x{ transition:none; } }
+
+/* On paper you cannot tap a summary open. */
+@media print{
+  .refsec > *{ display:revert !important; }
+  .refsum{ display:none !important; }
+}
