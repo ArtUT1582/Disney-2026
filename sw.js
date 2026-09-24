@@ -10,7 +10,7 @@
 
    Bump CACHE when the precache list changes; old caches are deleted on
    activate. */
-const CACHE = 'disney2026-v10';
+const CACHE = 'disney2026-v11';
 
 // The shell: without these the page does not render.
 const PRECACHE = [
@@ -25,6 +25,7 @@ const PRECACHE = [
   './install.js',
   './weather.js',
   './day-switch.js',
+  './stops.js',
   './install-guide.html',
   './booking-reminder.js',
   './manifest.json',

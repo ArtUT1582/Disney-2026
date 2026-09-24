@@ -369,3 +369,37 @@ body.has-daybar{ padding-bottom:64px; }
   .refsec > *{ display:revert !important; }
   .refsum{ display:none !important; }
 }
+
+/* ---- Collapsed stops (stops.js) -----------------------------------------
+   Hidden with :not(), so an open stop matches no rule here and keeps the
+   original grid layout and display values exactly as they were. */
+.ed-ev:not(.is-open) .ed-n,
+.ed-ev:not(.is-open) .ed-media{ display:none; }
+
+.ed-ev[role="button"]{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.ed-ev[role="button"]:focus-visible{
+  outline:2px solid #a855f7; outline-offset:3px; border-radius:8px;
+}
+/* A closed stop is a row you thumb past; give it room to be tapped. */
+.ed-ev:not(.is-open){ padding-block:2px; }
+.ed-ev:not(.is-open) .ed-h::after{
+  content:"›"; margin-left:8px; opacity:.4; font-weight:400;
+}
+.ed-ev.is-open .ed-h{ color:#fff; }
+
+.ed-expand{
+  display:block; margin:0 0 14px; padding:9px 16px;
+  font:inherit; font-size:12px; font-weight:600; letter-spacing:.04em;
+  color:rgba(255,255,255,.82); cursor:pointer;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+}
+.ed-expand:hover{ background:rgba(255,255,255,.11); color:#fff; }
+.ed-expand:focus-visible{ outline:2px solid #a855f7; outline-offset:2px; }
+
+/* Paper cannot be tapped: print every stop in full. */
+@media print{
+  .ed-ev .ed-n, .ed-ev .ed-media{ display:revert !important; }
+  .ed-ev:not(.is-open) .ed-h::after{ content:none; }
+  .ed-expand{ display:none !important; }
+}
