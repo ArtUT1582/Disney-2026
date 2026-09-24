@@ -10,7 +10,7 @@
 
    Bump CACHE when the precache list changes; old caches are deleted on
    activate. */
-const CACHE = 'disney2026-v11';
+const CACHE = 'disney2026-v12';
 
 // The shell: without these the page does not render.
 const PRECACHE = [
@@ -32,6 +32,8 @@ const PRECACHE = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
+  './icons/maskable-192.png',
+  './icons/maskable-512.png',
   './sections/assets/mk-bg.jpg',
   './sections/assets/ak-bg.jpg',
   './sections/assets/hs-bg.jpg',
