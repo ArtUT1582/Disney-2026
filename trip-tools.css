@@ -148,7 +148,7 @@ body.tt-show-signs .tt-sign{
   font:500 12.5px/1.5 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
 }
 .logi-grid{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-auto-flow:row dense;
   gap:clamp(9px,1.4vw,13px);
 }
 .logi-card{
@@ -373,8 +373,22 @@ body.has-daybar{ padding-bottom:64px; }
 /* ---- Collapsed stops (stops.js) -----------------------------------------
    Hidden with :not(), so an open stop matches no rule here and keeps the
    original grid layout and display values exactly as they were. */
-.ed-ev:not(.is-open) .ed-n,
-.ed-ev:not(.is-open) .ed-media{ display:none; }
+.ed-ev:not(.is-open) .ed-n{ display:none; }
+
+/* A closed stop still shows its picture, as a thumbnail in the row's right-hand
+   column, so the day can be scanned by eye without opening every stop. */
+.ed-ev:not(.is-open) .ed-shot{ width:112px; height:74px; }
+.ed-ev:not(.is-open) .ed-badge{ height:44px; }
+@media (max-width:760px){
+  /* Phones stack an open stop's photo full width under the text; a closed stop
+     keeps it beside the title instead, so the list stays a list. */
+  .ed-ev.has-shot:not(.is-open){
+    grid-template-columns:26px 1fr auto; grid-template-areas:"num body shot";
+  }
+  .ed-ev.has-shot:not(.is-open) .ed-media{ width:auto; margin-top:0; gap:6px; }
+  .ed-ev:not(.is-open) .ed-shot{ flex:none; width:76px; height:54px; border-radius:8px; }
+  .ed-ev:not(.is-open) .ed-badge{ height:32px; }
+}
 
 .ed-ev[role="button"]{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
 .ed-ev[role="button"]:focus-visible{
