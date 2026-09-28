@@ -404,11 +404,13 @@ body.has-daybar{ padding-bottom:64px; }
 .ed-expand{
   display:block; margin:0 0 14px; padding:9px 16px;
   font:inherit; font-size:12px; font-weight:600; letter-spacing:.04em;
-  color:rgba(255,255,255,.82); cursor:pointer;
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  /* The day cards are cream, so the button takes the day's accent ink
+     (the same --acc as its MORNING · AM pill) rather than white. */
+  color:var(--acc,#2a2520); cursor:pointer;
+  background:transparent; border:1.5px solid var(--acc,#2a2520);
   border-radius:999px;
 }
-.ed-expand:hover{ background:rgba(255,255,255,.11); color:#fff; }
+.ed-expand:hover{ background:var(--acc,#2a2520); color:#fff; }
 .ed-expand:focus-visible{ outline:2px solid #a855f7; outline-offset:2px; }
 
 /* Paper cannot be tapped: print every stop in full. */
