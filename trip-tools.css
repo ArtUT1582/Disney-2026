@@ -173,8 +173,8 @@ body.tt-show-signs .tt-sign{
   margin:10px 0 0; padding-top:10px; border-top:1px solid rgba(255,255,255,.1);
   color:#8A93A6; font:600 11px/1.55 'JetBrains Mono', ui-monospace, monospace;
 }
-.logi a{ color:#8FE3AE; text-decoration:none; border-bottom:1px solid rgba(143,227,174,.4); }
-.logi a:hover{ color:#fff; }
+.logi a:not(.logi-btn){ color:#8FE3AE; text-decoration:none; border-bottom:1px solid rgba(143,227,174,.4); }
+.logi a:not(.logi-btn):hover{ color:#fff; }
 .logi-list{ margin:10px 0 0; padding:0; list-style:none; }
 .logi-list li{
   padding:7px 0; border-top:1px solid rgba(255,255,255,.08);

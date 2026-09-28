@@ -3239,6 +3239,22 @@ body.pmv-lock{overflow:hidden}
       <p class="logi-n"><a href="install-guide.html">How to install it &mdash; iPhone &amp; Android &rarr;</a></p>
     </div>
 
+    <!-- ponytail: a Google Photos shared album does the uploading; this card only links to it.
+         Stays hidden until the album link replaces ALBUM_URL. -->
+    <div class="logi-card" id="photos" hidden>
+      <span class="logi-k">Trip photos &amp; videos</span>
+      <b class="logi-v">Everyone adds to one album</b>
+      <p class="logi-p">Every photo and video from the week goes here for the family
+        video after the trip. Open the album, tap <b>Add photos</b>, and pick from
+        your camera roll &mdash; best done each night at the hotel on wifi.</p>
+      <div class="logi-btns">
+        <a class="logi-btn logi-btn-wa" href="ALBUM_URL" target="_blank" rel="noopener noreferrer">Upload photos &amp; videos</a>
+      </div>
+      <p class="logi-n">Keep them full quality: Google Photos &rarr; your picture &rarr;
+        Photos settings &rarr; Backup &rarr; Backup quality &rarr; <b>Original</b>.
+        Do not text or WhatsApp videos &mdash; that shrinks them.</p>
+    </div>
+
   </div>
 
 </details>
@@ -3679,7 +3695,7 @@ function loadCastPhotos(){
 
 
 <link rel="stylesheet" href="hero.css?v=2e7207c37b">
-<link rel="stylesheet" href="trip-tools.css?v=d34906f8f9">
+<link rel="stylesheet" href="trip-tools.css?v=d7222428e6">
 <link rel="stylesheet" href="day-metrics.css?v=4552b2330d">
 <script src="booking-reminder.js?v=421d719d87"></script>
 <script src="day-metrics.js?v=c40afaeb76"></script>
