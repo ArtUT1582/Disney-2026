@@ -33,3 +33,9 @@ Family gallery selections applied from the latest confirmed list. Art C (Game-da
 | `donkey-kong-movie-closeup.gif` | Danny: H - Movie close-up; 22 frames | [Tenor page](https://tenor.com/view/donkey-kong-donkey-kong-angry-donkey-kong-pouting-donke-kong-bananza-gif-8160578415899567131) · [original GIF](https://media.tenor.com/cUAy1Slp5BsAAAAM/donkey-kong-donkey-kong-angry.gif) |
 | `belle-village-stroll.gif` | Isabella: D - Village stroll; 29 frames | [Tenor page](https://tenor.com/view/beauty-and-the-beast-belle-disney-singing-gif-14785680) · [original GIF](https://media.tenor.com/HgcMuElpeAkAAAAM/beauty-and-the-beast-belle.gif) |
 | `pooh-heart.gif` | Valentina: J - A heart from Pooh; 8 frames | [Tenor page](https://tenor.com/view/winnie-the-pooh-hearts-gif-27568116) · [original GIF](https://media.tenor.com/ElJtvb8x19IAAAAM/winnie-the-pooh-hearts.gif) |
+
+Added October 6, 2026. Cropped to the face (150 × 150) for the circular portrait; frames otherwise unchanged.
+
+| Site asset | Character | Source |
+| --- | --- | --- |
+| `maleficent-smirk.gif` | Anette: Maleficent, 21 frames | [Tenor page](https://tenor.com/view/maleficent-evil-smug-smile-laugh-gif-4675110761205531362) · [original GIF](https://media.tenor.com/QOFUd69DAuIAAAAM/maleficent-evil.gif) |
