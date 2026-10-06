@@ -3713,7 +3713,7 @@ function loadCastPhotos(){
 .ed-vids{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .ed-vid{font:600 13px/1 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;color:#171310;
   background:#fff;border:1px solid #171310;border-radius:999px;padding:8px 14px;cursor:pointer}
-.ed-vid:hover,.ed-vid:focus-visible{background:#171310;color:#fff}
+.ed-vid.is-playing,.ed-vid:hover,.ed-vid:focus-visible{background:#171310;color:#fff}
 .ed-vid-frame{display:block;width:100%;max-width:560px;aspect-ratio:16/9;border:0;border-radius:10px;margin-top:10px;background:#000}
 @media print{.ed-vids,.ed-vid-frame{display:none!important}}
 </style>
@@ -3721,19 +3721,37 @@ function loadCastPhotos(){
 /* Tap-to-load ride videos. No iframe exists until tapped, so the page stays
    light on park Wi-Fi; the service worker ignores cross-origin, so offline the
    button just fails to load - nothing breaks. */
+/* One video at a time. Tap the button again (it reads "Close video") to
+   hide it; opening another video, or collapsing its stop, also closes it. */
+function closeVideo() {
+  var f = document.querySelector('.ed-vid-frame');
+  if (f) f.remove();
+  var on = document.querySelector('.ed-vid.is-playing');
+  if (on) { on.classList.remove('is-playing'); on.textContent = on.dataset.label; }
+}
 document.addEventListener('click', function (e) {
   var b = e.target.closest('.ed-vid');
-  if (!b) return;
+  if (!b) {
+    // stops.js toggles the stop on this same click; check after it runs
+    setTimeout(function () {
+      var f = document.querySelector('.ed-vid-frame');
+      if (f && !f.closest('.ed-ev').classList.contains('is-open')) closeVideo();
+    }, 0);
+    return;
+  }
+  var wasPlaying = b.classList.contains('is-playing');
+  closeVideo();
+  if (wasPlaying) return;
   var f = document.createElement('iframe');
   f.className = 'ed-vid-frame';
   f.src = 'https://www.youtube-nocookie.com/embed/' + b.dataset.yt + '?autoplay=1&playsinline=1&rel=0';
   f.title = b.textContent.replace('▶', '').trim() + ' video';
   f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
   f.allowFullscreen = true;
-  var row = b.parentNode;
-  var old = row.parentNode.querySelector('.ed-vid-frame');
-  if (old) old.remove();
-  row.insertAdjacentElement('afterend', f);
+  b.dataset.label = b.textContent;
+  b.textContent = '✕ Close video';
+  b.classList.add('is-playing');
+  b.parentNode.insertAdjacentElement('afterend', f);
 });
 </script>
 <script src="day-metrics.js?v=c40afaeb76"></script>
