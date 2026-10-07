@@ -22,7 +22,7 @@
   function row(label, li, extra) {
     var h = li.querySelector('.ed-h');
     return '<p><span class="ed-now-k">' + label + '</span> <a href="#' + li.id + '">' +
-      clock(+li.dataset.start) + ' · ' + (h ? h.textContent.trim() : '') + '</a>' + (extra || '') + '</p>';
+      clock(+li.dataset.start) + ' · <span>' + (h ? h.textContent.trim() : '') + '</span></a>' + (extra || '') + '</p>';
   }
 
   function render() {
@@ -37,7 +37,7 @@
     var now = null, next = null;
     stops.forEach(function (li) { if (+li.dataset.start <= t.min) now = li; else if (!next) next = li; });
     var gap = next ? +next.dataset.start - t.min : 0;
-    var html = '<b>Right now · ' + clock(t.min) + ' Eastern</b>' +
+    var html = '<b><span>Right now</span> · ' + clock(t.min) + ' <span>Eastern</span></b>' +
       (now ? row('Now', now) : '') +
       (next ? row(now ? 'Next' : 'First up', next, ' <span class="ed-now-in">in ' +
         (gap >= 60 ? Math.floor(gap / 60) + 'h ' : '') + gap % 60 + 'm</span>') : '<p>Day done. Rest up.</p>');

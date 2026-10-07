@@ -324,3 +324,9 @@ body.has-daybar{ padding-bottom:64px; }
 .ed-more summary{ cursor:pointer; font-weight:700; }
 .ed-more ul{ margin:6px 0 0; padding-left:20px; }
 .ed-more li{ margin:3px 0; }
+
+/* EN | ES switch, top-right of the title card */
+.lang-sw{position:absolute;top:12px;right:12px;z-index:5;display:flex;border-radius:999px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+.lang-sw button{font:600 13px/1 inherit;letter-spacing:.06em;color:#fff;background:none;border:0;padding:9px 13px;min-width:44px;min-height:36px;cursor:pointer}
+.lang-sw button[aria-pressed="true"]{background:#fff;color:#111}
