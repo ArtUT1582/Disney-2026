@@ -336,8 +336,8 @@ def update_park_cards(data):
         text = source.read()
     for day, metrics in data.items():
         core = sum(not stop["alt"] for stop in metrics["stops"].values())
-        rounded = int(math.floor(metrics["steps"] / 500 + 0.5)) * 500
-        summary = "%d core stops · ~%s route steps" % (core, format(rounded, ","))
+        # ponytail: stop-to-stop distance undercounts a real park day ~5x, so cards show no step figure
+        summary = "%d core stops" % core
         pattern = r'(<a class="pk-card" href="#%s">.*?<span class="pk-meta">).*?(</span>)' % re.escape(day)
         text, matches = re.subn(pattern, lambda m: m.group(1) + summary + m.group(2), text, flags=re.S)
         if matches != 1:

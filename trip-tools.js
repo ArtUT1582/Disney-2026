@@ -6,8 +6,8 @@
   var URL_ = 'https://artut1582.github.io/Disney-2026/';
   var TEXT = 'Our Disney 2026 itinerary — all five park days, park maps, '+
              'times, and what Annelise can ride. Open it and '+
-             'tap Install (iPhone: Share → Add to Home Screen) so it works '+
-             'in the parks with no signal.';
+             'tap Install (iPhone: Share → Add to Home Screen), then check '+
+             'the offline status before you lose signal.';
 
   function flash(btn, msg) {
     var was = btn.textContent;

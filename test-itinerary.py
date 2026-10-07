@@ -6,7 +6,6 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 import importlib.util
 import json
-import math
 import re
 import unittest
 
@@ -105,8 +104,7 @@ class ItineraryTests(unittest.TestCase):
         text = (ROOT/'index.html').read_text(encoding='utf8')
         for day, metrics in self.metrics.items():
             core = sum(not stop['alt'] for stop in metrics['stops'].values())
-            steps = int(math.floor(metrics['steps']/500+0.5))*500
-            self.assertIn('%d core stops · ~%s route steps' % (core,format(steps,',')),text)
+            self.assertIn('<span class="pk-meta">%d core stops</span>' % core,text)
             for ident, stop in metrics['stops'].items():
                 pattern = r'<li\b[^>]*data-stop-id="%s"[^>]*>\s*<span class="ed-num"[^>]*>(\d+)</span>' % re.escape(ident)
                 self.assertEqual(int(re.search(pattern,text).group(1)),stop['n'])

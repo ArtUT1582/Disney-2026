@@ -70,7 +70,7 @@
       ['In line', hm(d.waitMin)],
       ['Rides, shows &amp; meets', hm(d.rideShowMin)],
       ['Meals, rest &amp; other time', hm(d.otherMin)],
-      ['On foot', '~' + commas(Math.round(d.steps / 500) * 500) + ' route steps'],
+      ['Stop-to-stop walk', '~' + commas(Math.round(d.steps / 500) * 500) + ' steps · real day 15–20k'],
       ['Totals', 'Core plan only']
     ];
     add.forEach(function (p) {
