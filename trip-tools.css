@@ -272,7 +272,28 @@ body.has-daybar{ padding-bottom:64px; }
 .ed-ev:not(.is-open) .ed-h::after{
   content:"›"; margin-left:8px; opacity:.4; font-weight:400;
 }
-.ed-ev.is-open .ed-h{ color:#fff; }
+#expedition .ed-ev .ed-h{ color:#171310 !important; -webkit-text-fill-color:#171310 !important; }
+.ed-stop-toggle{ display:block; width:100%; min-height:44px; padding:0; border:0;
+  background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+.ed-stop-toggle:focus-visible{ outline:3px solid #713c93; outline-offset:4px; border-radius:4px; }
+.ed-plan{ margin:20px 0; padding:18px; border:1px solid #cabda9; border-radius:12px;
+  color:#171310; background:#fffaf1; font:15px/1.6 system-ui,sans-serif; }
+.ed-plan > b{ display:block; font-size:18px; }
+.ed-plan p{ margin:9px 0 0; }
+.ed-plan .ed-plan-note{ font-size:13px; color:#544735; }
+.offline-status{ margin-top:16px; color:#eee9df; font:14px/1.6 system-ui,sans-serif; }
+.skip-plan{ position:fixed; left:12px; top:-100px; z-index:10000; padding:14px;
+  background:#fff; color:#171310; border:3px solid #713c93; border-radius:8px; }
+.skip-plan:focus{ top:12px; }
+#travel-days .logi-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media(max-width:640px){
+  #travel-days .logi-grid{ grid-template-columns:1fr; }
+  #flights .fl-meta{ font-size:13px !important; line-height:1.6 !important; }
+  #flights .ch{ font-size:13px !important; white-space:normal !important; overflow:visible !important; }
+  #flights .ce{ font-size:12px !important; white-space:normal !important; }
+  .daybar-tab .db-pk{ font-size:11px; }
+  .daybar-tab{ min-height:48px; }
+}
 
 .ed-expand{
   display:block; margin:0 0 14px; padding:9px 16px;

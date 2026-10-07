@@ -3,19 +3,19 @@
 """Build day-metrics.js: per-stop wait/experience minutes and a GPS route trace.
 
 Coordinates come from the public themeparks.wiki entity API (cached in
-cache/*.json). Distances are straight-line haversine multiplied by a walkway
-factor, because park paths are not straight lines.
+cache/*.json). Distances use cached OpenStreetMap paths where connected, with a flagged
+straight-line fallback where path coverage is incomplete.
 
     python build-day-metrics.py            # rebuild day-metrics.js
     python build-day-metrics.py --selftest # check the maths
 
-ponytail: one script, one generated file. The stop tables below are hand-kept
-on purpose -- there is no machine-readable source for "which stop is which
-attraction", and a wrong guess is worse than a hand-written line.
+Activity identities, estimates and map anchors come directly from index.html;
+reordering a stop cannot attach another activity’s data to it.
 """
 import json
 import math
 import os
+import re
 import sys
 import urllib.request
 
@@ -55,140 +55,65 @@ GATES = {
     "hs": (28.35570, -81.55957),    # Hollywood Blvd entrance
     "mk": (28.41571, -81.58109),    # Main Street train station
     "usf": (28.47470, -81.46760),   # USF front gates / CityWalk
-    "eu": (28.41060, -81.44380),    # Epic Universe entry portal
+    "eu": (28.43915, -81.44612),    # Chronos Portal; cached OSM way 1369684711
 }
 
-# stop number -> (wait minutes, experience minutes, kind, map anchor)
-# kind: ride show meet meal walk transit app rest
-# anchor: entity name in that park's API, or None (no map point).
-# Transit legs (bus, Skyliner, car service) carry no anchor on purpose: the
-# step count measures feet on park pavement, not miles covered in a vehicle.
-# A leading "~" on the anchor means the stop is an alternative and is excluded
-# from the day totals so nothing is double counted.
-DAYS = {
-    "day-ak": {
-        "park": "ak", "label": "Animal Kingdom", "date": "Mon 12 Oct",
-        "stops": {
-            1:  (0, 55, "transit", None),
-            2:  (0, 5,  "app", None),
-            3:  (10, 5, "ride", "Na'vi River Journey"),
-            4:  (20, 18, "ride", "Kilimanjaro Safaris"),
-            5:  (0, 25, "walk", "Gorilla Falls Exploration Trail"),
-            6:  (20, 45, "ride", "Bluey's Wild World at Conservation Station"),
-            7:  (20, 8,  "meet", "Meet Favorite Disney Pals at Adventurers Outpost"),
-            8:  (15, 13, "show", "Zootopia: Better Zoogether!"),
-            9:  (10, 45, "meal", "Satu'li Canteen"),
-            10: (20, 5,  "ride", "Avatar Flight of Passage"),
-            11: (25, 30, "show", "Festival of the Lion King"),
-            12: (25, 28, "walk", "Maharajah Jungle Trek"),
-            13: (0, 30,  "walk", "Na'vi River Journey"),
-            14: (0, 25,  "walk", "Discovery Island Trails"),
-            15: (0, 20,  "walk", "The Oasis Exhibits"),
-        },
-    },
-    "day-hs": {
-        "park": "hs", "label": "Hollywood Studios", "date": "Tue 13 Oct",
-        "stops": {
-            1:  (0, 5,  "app", None),
-            2:  (0, 45, "transit", None),
-            3:  (20, 2, "ride", "Slinky Dog Dash"),
-            4:  (40, 8, "ride", "Alien Swirling Saucers"),
-            5:  (25, 10, "meet", "Meet the Toys in Toy Story Land"),
-            6:  (15, 5, "ride", "Millennium Falcon: Smugglers Run"),
-            7:  (10, 45, "meal", "Docking Bay 7 Food and Cargo"),
-            8:  (20, 18, "ride", "Star Wars: Rise of the Resistance"),
-            9:  (15, 5, "ride", "Mickey & Minnie's Runaway Railway"),
-            10: (20, 22, "show", "Disney Jr. Mickey Mouse Clubhouse Live!"),
-            11: (25, 30, "show", "For the First Time in Forever: A Frozen Sing-Along Celebration"),
-            12: (45, 7, "ride", "The Twilight Zone™ Tower of Terror"),
-            13: (0, 60, "rest", None),
-            14: (15, 45, "meal", "Woody's Lunch Box"),
-            15: (0, 40, "walk", "Oga's Cantina"),
-            16: (45, 26, "show", "Fantasmic!"),
-            17: (0, 35, "transit", None),
-        },
-    },
-    "day-mk": {
-        "park": "mk", "label": "Magic Kingdom", "date": "Wed 14 Oct",
-        "stops": {
-            1:  (0, 70, "transit", None),
-            2:  (0, 5,  "app", None),
-            3:  (20, 3, "ride", "Peter Pan's Flight"),
-            4:  (20, 3, "ride", "Seven Dwarfs Mine Train"),
-            5:  (20, 3, "ride", "Dumbo the Flying Elephant"),
-            6:  (30, 12, "meet", "Meet Princess Tiana and a Visiting Princess at Princess Fairytale Hall"),
-            7:  (10, 10, "walk", "Cinderella Castle"),
-            8:  (15, 90, "meal", "Cinderella's Royal Table"),
-            9:  (15, 60, "meal", "~Columbia Harbour House"),
-            10: (20, 20, "show", "Enchanted Tales with Belle"),
-            11: (0, 45, "rest", "Columbia Harbour House"),
-            12: (20, 11, "ride", "Tiana's Bayou Adventure"),
-            13: (15, 4, "ride", "Big Thunder Mountain Railroad"),
-            14: (10, 90, "meet", "Prince Charming Regal Carrousel"),
-            15: (10, 20, "walk", "Cinderella Castle"),
-            16: (15, 45, "meal", "Pinocchio Village Haus"),
-            17: (25, 10, "ride", "Jungle Cruise"),
-            18: (20, 12, "ride", "~Tomorrowland Transit Authority PeopleMover"),
-            19: (30, 0, "walk", "Casey's Corner"),
-            20: (0, 18, "show", "Happily Ever After"),
-            21: (0, 40, "transit", None),
-        },
-    },
-    "day-hhn": {
-        "park": "usf", "label": "HHN 35", "date": "Thu 15 Oct",
-        "stops": {
-            1:  (15, 75, "meal", None),
-            2:  (0, 150, "rest", None),
-            3:  (0, 15, "rest", None),
-            4:  (0, 35, "transit", None),
-            5:  (25, 5, "transit", None),
-            6:  (25, 0, "walk", "Infernal Carnival of Nightmares"),
-            7:  (20, 6, "show", "Stranger Things 5"),
-            8:  (39, 5, "show", "Hellraiser"),
-            9:  (39, 5, "show", "Jack & Oddfellow: Chaos & Control"),
-            10: (15, 40, "meal", "Louie's Italian Restaurant™"),
-            11: (15, 25, "show", "Nightmare Fuel: Blood Noir"),
-            12: (15, 4, "ride", "Revenge of the Mummy"),
-            13: (20, 5, "ride", "Harry Potter and the Escape from Gringotts™"),
-            14: (20, 12, "show", "Stranger Things: Return to Hawkins"),
-            15: (45, 5, "show", "INVASION: Alien Abduction"),
-            16: (45, 5, "show", "Evil Dead Burn"),
-            17: (0, 45, "walk", "Infernal Carnival of Nightmares"),
-            18: (0, 5, "show", "MADLANDS: Caged Cannibals"),
-            19: (0, 5, "show", "H.R. Bloodengutz Presents: A Halloween Fright-Tacular!"),
-            20: (0, 5, "show", "Cybergoria"),
-            21: (0, 5, "show", "Sinners"),
-            22: (0, 5, "show", "Ozzy Osbourne: Prince of Darkness"),
-            23: (0, 45, "transit", None),
-        },
-    },
-    "day-eu": {
-        "park": "eu", "label": "Epic Universe", "date": "Fri 16 Oct",
-        "stops": {
-            1:  (0, 10, "app", None),
-            2:  (0, 60, "transit", None),
-            3:  (20, 5, "ride", "Mario Kart™: Bowser's Challenge"),
-            4:  (15, 5, "ride", "Yoshi's Adventure™"),
-            5:  (25, 3, "ride", "Mine-Cart Madness™"),
-            6:  (0, 45, "walk", "Bowser Jr. Challenge"),
-            7:  (25, 45, "meal", "Toadstool Cafe™"),
-            8:  (15, 2, "ride", "Curse of the Werewolf"),
-            9:  (15, 6, "ride", "Monsters Unchained: The Frankenstein Experiment"),
-            10: (15, 2, "ride", "Hiccup's Wing Gliders"),
-            11: (30, 2, "ride", "Dragon Racer's Rally"),
-            12: (35, 6, "meet", "Meet Toothless and Friends"),
-            13: (25, 6, "ride", "Harry Potter and the Battle at the Ministry™"),
-            14: (15, 25, "meal", "Le Gobelet Noir™"),
-            15: (0, 30, "walk", "Le Cirque Arcanus™"),
-            16: (15, 45, "meal", "The Oak & Star Tavern"),
-            17: (15, 3, "ride", "Constellation Carousel"),
-            18: (20, 2, "ride", "Stardust Racers"),
-            19: (0, 20, "walk", "The Cosmos Fountain"),
-            20: (0, 25, "walk", "~Meet Mario and Luigi"),
-            21: (0, 55, "transit", None),
-        },
-    },
+# The HTML is the single source for activity identity, estimates and anchors.
+from html.parser import HTMLParser
+
+DAY_INFO = {
+    "day-ak": ("ak", "Animal Kingdom", "Mon 12 Oct"),
+    "day-hs": ("hs", "Hollywood Studios", "Tue 13 Oct"),
+    "day-mk": ("mk", "Magic Kingdom", "Wed 14 Oct"),
+    "day-hhn": ("usf", "HHN 35", "Thu 15 Oct"),
+    "day-eu": ("eu", "Epic Universe", "Fri 16 Oct"),
 }
+
+class ItineraryParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.day = None
+        self.days = {}
+        self.ids = set()
+
+    def handle_starttag(self, tag, attributes):
+        attrs = dict(attributes)
+        if tag == "article" and attrs.get("id") in DAY_INFO:
+            self.day = attrs["id"]
+            park, label, date = DAY_INFO[self.day]
+            self.days[self.day] = dict(park=park, label=label, date=date, stops={})
+        if tag != "li" or "ed-ev" not in attrs.get("class", "").split():
+            return
+        if not self.day:
+            raise ValueError("Activity outside a known day")
+        ident = attrs["data-stop-id"]
+        if ident in self.ids:
+            raise ValueError("Duplicate activity: " + ident)
+        self.ids.add(ident)
+        wait, exp = int(attrs["data-wait"]), int(attrs["data-experience"])
+        kind = attrs["data-kind"]
+        if min(wait, exp) < 0 or kind not in ("ride", "show", "meet", "appointment", "meal", "walk", "transit", "app", "rest"):
+            raise ValueError("Invalid estimate: " + ident)
+        if attrs["data-optional"] not in ("true", "false"):
+            raise ValueError("Invalid optional status: " + ident)
+        stops = self.days[self.day]["stops"]
+        stops[ident] = dict(n=len(stops)+1, w=wait, e=exp, k=kind,
+                            alt=attrs["data-optional"] == "true",
+                            anchor=attrs.get("data-anchor"))
+
+    def handle_endtag(self, tag):
+        if tag == "article":
+            self.day = None
+
+def read_days():
+    parser = ItineraryParser()
+    with open(os.path.join(HERE, "index.html"), encoding="utf-8") as source:
+        parser.feed(source.read())
+    if set(parser.days) != set(DAY_INFO) or any(not d["stops"] for d in parser.days.values()):
+        raise ValueError("Missing park day or activities")
+    return parser.days
+
+DAYS = read_days()
 
 
 def haversine_m(a, b):
@@ -312,10 +237,11 @@ def build():
         coords = load_park(day["park"])
         gate = GATES[day["park"]]
         stops = []
-        for n in sorted(day["stops"]):
-            wait, exp, kind, anchor = day["stops"][n]
-            alt = bool(anchor and anchor.startswith("~"))
-            name = anchor[1:] if alt else anchor
+        for ident, activity in day["stops"].items():
+            n = activity["n"]
+            wait, exp, kind = activity["w"], activity["e"], activity["k"]
+            alt = activity["alt"]
+            name = activity["anchor"]
             if name == "GATE":
                 pt = gate
             elif name:
@@ -324,7 +250,7 @@ def build():
                     missing.append("%s #%d: %s" % (day_id, n, name))
             else:
                 pt = None
-            stops.append({"n": n, "w": wait, "e": exp, "k": kind,
+            stops.append({"id": ident, "n": n, "w": wait, "e": exp, "k": kind,
                           "alt": alt, "pt": pt})
 
         # Route: the mappable stops in order. Each leg is walked along the real
@@ -350,7 +276,7 @@ def build():
                     line, leg_m = [prev, s["pt"]], walk_m(prev, s["pt"])
                     estimated += 1
             total_m += leg_m
-            route.append({"n": s["n"], "lat": round(s["pt"][0], 6),
+            route.append({"id": s["id"], "n": s["n"], "lat": round(s["pt"][0], 6),
                           "lon": round(s["pt"][1], 6),
                           "leg": int(round(leg_m)), "cum": int(round(total_m))})
             if line:
@@ -371,7 +297,7 @@ def build():
             "metres": int(round(total_m)),
             "steps": steps_for(total_m),
             "estimatedLegs": estimated,
-            "stops": {str(s["n"]): {"w": s["w"], "e": s["e"], "k": s["k"],
+            "stops": {s["id"]: {"n": s["n"], "w": s["w"], "e": s["e"], "k": s["k"],
                                     "alt": s["alt"]} for s in stops},
             "route": route,
             "legs": legs,
@@ -379,7 +305,7 @@ def build():
         }
 
     if missing:
-        print("UNMATCHED ANCHORS (fix the name in DAYS):", file=sys.stderr)
+        print("UNMATCHED ANCHORS (fix data-anchor in index.html):", file=sys.stderr)
         for m in missing:
             print("  " + m, file=sys.stderr)
         return None
@@ -403,6 +329,33 @@ def selftest():
     print("selftest OK")
 
 
+def update_park_cards(data):
+    """Keep the static jump cards accurate even before JavaScript loads."""
+    page = os.path.join(HERE, "index.html")
+    with open(page, encoding="utf-8") as source:
+        text = source.read()
+    for day, metrics in data.items():
+        core = sum(not stop["alt"] for stop in metrics["stops"].values())
+        rounded = int(math.floor(metrics["steps"] / 500 + 0.5)) * 500
+        summary = "%d core stops · ~%s route steps" % (core, format(rounded, ","))
+        pattern = r'(<a class="pk-card" href="#%s">.*?<span class="pk-meta">).*?(</span>)' % re.escape(day)
+        text, matches = re.subn(pattern, lambda m: m.group(1) + summary + m.group(2), text, flags=re.S)
+        if matches != 1:
+            raise ValueError("Missing or duplicate park card: " + day)
+        optional = len(metrics["stops"]) - core
+        pattern = r'(<article\b[^>]*id="%s".*?<span><i>Core / optional</i>).*?(</span>)' % re.escape(day)
+        text, matches = re.subn(pattern, lambda m: m.group(1) + "%d / %d" % (core, optional) + m.group(2), text, flags=re.S)
+        if matches != 1:
+            raise ValueError("Missing or duplicate day totals: " + day)
+        for ident, stop in metrics["stops"].items():
+            pattern = r'(<li\b[^>]*data-stop-id="%s"[^>]*>\s*<span class="ed-num"[^>]*>).*?(</span>)' % re.escape(ident)
+            text, matches = re.subn(pattern, lambda m: m.group(1) + str(stop["n"]) + m.group(2), text, flags=re.S)
+            if matches != 1:
+                raise ValueError("Missing or duplicate numbered activity: " + ident)
+    with open(page, "w", encoding="utf-8", newline="\n") as target:
+        target.write(text)
+
+
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         selftest()
@@ -410,6 +363,7 @@ if __name__ == "__main__":
     data = build()
     if data is None:
         raise SystemExit(1)
+    update_park_cards(data)
     body = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     open(OUT, "w", encoding="utf-8", newline="\n").write(
         "/* generated by build-day-metrics.py - do not hand-edit */\n"

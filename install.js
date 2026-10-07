@@ -45,7 +45,7 @@
       return {
         head: 'Install it on your phone',
         copy: 'One tap. It gets its own icon, opens without a browser bar, ' +
-              'and keeps working in the parks with no signal.',
+              'and can open the saved itinerary after the offline readiness check.',
         action: '<button class="inst-btn" type="button" data-install>Install</button>'
       };
     }
@@ -55,7 +55,7 @@
         copy: 'iPhone does this manually. Tap the <b>Share</b> button ' +
               '<span class="inst-glyph" aria-hidden="true">↑</span> at the ' +
               'bottom of Safari, scroll down, then tap <b>Add to Home Screen</b>. ' +
-              'It gets an icon and works with no signal.' +
+              'It gets an icon; check the offline status before relying on the saved guide.' +
               (isSafari ? '' : ' <b>This only works in Safari</b> — open ' +
                                'this page there first.'),
         action: ''
@@ -64,8 +64,7 @@
     return {
       head: 'Add it to your home screen',
       copy: 'In your browser menu, look for <b>Install app</b> or ' +
-            '<b>Add to Home screen</b>. It gets an icon and keeps working ' +
-            'with no signal.',
+            '<b>Add to Home screen</b>. Check the offline status before relying on the saved guide.',
       action: ''
     };
   }
@@ -86,7 +85,7 @@
     card.innerHTML =
       '<div class="inst-in">' +
         '<div class="inst-txt">' +
-          '<span class="inst-k">Works without signal</span>' +
+          '<span class="inst-k">Save the itinerary on your phone</span>' +
           '<b class="inst-h">' + b.head + '</b>' +
           '<p class="inst-p">' + b.copy + '</p>' +
         '</div>' +

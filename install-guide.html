@@ -104,13 +104,13 @@ h1{margin:0;font:900 clamp(28px,6.4vw,50px)/1.05 var(--serif);letter-spacing:-.0
   <h1>Put the itinerary<br>on your phone</h1>
   <p class="lede">It takes about twenty seconds and there is <b>no app store, no
     account and nothing to pay</b>. Once it is on your home screen it opens like
-    any other app — and it keeps working <b>inside the parks with no signal</b>,
+    any other app — and it keeps working <b>after the offline readiness check succeeds</b>,
     which is the whole point.</p>
 
   <div class="why">
     <div><b>Do it on wifi</b><span>At the hotel or at home, before we fly. It
       saves everything to your phone while you have a good connection.</span></div>
-    <div><b>No signal needed after</b><span>Cell service at rope drop is hopeless.
+    <div><b>Check the saved copy first</b><span>Cell service at rope drop is hopeless.
       Installed, it still opens instantly.</span></div>
     <div><b>Takes no space</b><span>A few megabytes. Less than one photo of the
       castle.</span></div>
@@ -337,7 +337,7 @@ h1{margin:0;font:900 clamp(28px,6.4vw,50px)/1.05 var(--serif);letter-spacing:-.0
     <div>
       <b>That is it — look for this on your home screen</b>
       <span>Open it once more while you still have wifi so it can save the park
-        maps and photos. After that it works anywhere, signal or not.</span>
+        maps and photos. Check the itinerary’s offline status says ready before leaving. Videos, live waits, weather updates and booking apps need internet.</span>
     </div>
   </div>
 
@@ -359,7 +359,7 @@ h1{margin:0;font:900 clamp(28px,6.4vw,50px)/1.05 var(--serif);letter-spacing:-.0
   var GUIDE = location.href.split('#')[0].split('?')[0];
   var MSG = 'How to put our Disney 2026 itinerary on your phone — takes about ' +
             'twenty seconds, no app store, no account. Do it on wifi before we fly ' +
-            'so it works in the parks with no signal: ' + GUIDE;
+            'then check its offline readiness status: ' + GUIDE;
 
   document.getElementById('waBtn').href =
     'https://wa.me/?text=' + encodeURIComponent(MSG);

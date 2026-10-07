@@ -11,6 +11,7 @@
     ride:    { icon: '\u{1F3A2}', noun: 'ride' },
     show:    { icon: '\u{1F3AD}', noun: 'show' },
     meet:    { icon: '\u{1F58A}', noun: 'meet' },
+    appointment: { icon: '\u{1F451}', noun: 'appointment' },
     meal:    { icon: '\u{1F374}', noun: 'table' },
     walk:    { icon: '\u{1F6B6}', noun: 'on foot' },
     transit: { icon: '\u{1F68C}', noun: 'travel' },
@@ -34,7 +35,7 @@
     art.querySelectorAll('li.ed-ev').forEach(function (li) {
       var numEl = li.querySelector('.ed-num');
       if (!numEl) return;
-      var s = data.stops[numEl.textContent.trim()];
+      var s = data.stops[li.dataset.stopId];
       if (!s) return;
       var k = KIND[s.k] || KIND.walk;
       var row = document.createElement('span');
@@ -44,14 +45,14 @@
         html += '<b class="mx-w" title="Planning estimate, not a live wait">' +
                 '<i aria-hidden="true">⏳</i>~' + hm(s.w) + ' <em>in line</em></b>';
       } else {
-        html += '<b class="mx-w mx-none"><i aria-hidden="true">✓</i>no queue</b>';
+        html += '<b class="mx-w mx-none"><i aria-hidden="true">✓</i>no queue allowance</b>';
       }
       if (s.e > 0) {
         html += '<b class="mx-e"><i aria-hidden="true">' + k.icon + '</i>' +
                 hm(s.e) + ' <em>' + k.noun + '</em></b>';
       }
       html += '<b class="mx-t">' + hm(s.w + s.e) + ' <em>total</em></b>';
-      if (s.alt) html += '<b class="mx-alt">either/or — not added to the day</b>';
+      if (s.alt) html += '<b class="mx-alt">Optional / branch — excluded from core totals</b>';
       row.innerHTML = html;
       var body = li.querySelector('.ed-body');
       (body || li).appendChild(row);
@@ -65,13 +66,12 @@
     var dek = art.querySelector('.ed-dek');
     if (!dek) return;
     var d = M[day];
-    var ratio = d.rideShowMin ? (d.waitMin / d.rideShowMin) : 0;
     var add = [
       ['In line', hm(d.waitMin)],
-      ['On rides &amp; shows', hm(d.rideShowMin)],
-      ['Meals, rest &amp; travel', hm(d.otherMin)],
-      ['On foot', commas(d.steps) + ' steps'],
-      ['Queued per ride minute', ratio ? ratio.toFixed(1) + '×' : '—']
+      ['Rides, shows &amp; meets', hm(d.rideShowMin)],
+      ['Meals, rest &amp; other time', hm(d.otherMin)],
+      ['On foot', '~' + commas(Math.round(d.steps / 500) * 500) + ' route steps'],
+      ['Totals', 'Core plan only']
     ];
     add.forEach(function (p) {
       var sp = document.createElement('span');
@@ -104,9 +104,9 @@
 
     var names = {};
     art.querySelectorAll('li.ed-ev').forEach(function (li) {
-      var n = li.querySelector('.ed-num'), h = li.querySelector('.ed-h');
-      if (n && h) {
-        names[n.textContent.trim()] =
+      var h = li.querySelector('.ed-h');
+      if (li.dataset.stopId && h) {
+        names[li.dataset.stopId] =
           h.textContent.replace(/\s+/g, ' ').trim()
            .replace(/(Transit|In the app|Pandora|Africa|Asia|Discovery Island|The Oasis)$/, '')
            .trim();
@@ -177,7 +177,7 @@
     var routeD = legPts.map(function (p) { return toPath(p, false); }).join(' ');
 
     var pts = route.map(function (p) {
-      return { n: p.n, cum: p.cum, leg: p.leg, x: X(p.lon), y: Y(p.lat) };
+      return { id: p.id, n: p.n, cum: p.cum, leg: p.leg, x: X(p.lon), y: Y(p.lat) };
     });
     var dots = pts.map(function (p, i) {
       return '<g class="tr-stop" data-i="' + i + '">' +
@@ -196,7 +196,7 @@
       '<figcaption class="tr-head">' +
         '<b>Route tracer</b>' +
         '<span>' + d.label + ' · ' + d.date + ' · ' + route.length +
-        ' stops · ' + miles(d.metres) + ' mi · ' + commas(d.steps) + ' steps</span>' +
+        ' mapped locations · ' + miles(d.metres) + ' mi · ' + '~' + commas(Math.round(d.steps / 500) * 500) + ' estimated steps</span>' +
       '</figcaption>' +
       '<div class="tr-wrap">' +
         '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
@@ -216,31 +216,31 @@
           '<div class="tr-now"><i>Stop</i><b class="tr-n"></b></div>' +
           '<div><i>Walked</i><b class="tr-d"></b></div>' +
           '<div><i>Steps</i><b class="tr-s"></b></div>' +
-          '<div><i>Time on the clock</i><b class="tr-t"></b></div>' +
+          '<div><i>Activity time estimate</i><b class="tr-t"></b></div>' +
         '</div>' +
       '</div>' +
-      '<p class="tr-foot"><b>Real map, real paths.</b> Greenery, water, buildings and ' +
-        'walkways come from OpenStreetMap, and the line follows the actual footpaths' +
+      '<p class="tr-foot"><b>Estimated core-route walking.</b> Greenery, water, buildings and ' +
+        'walkways come from OpenStreetMap, and the line uses the mapped footpaths' +
         (estN ? ' — except ' + estN + ' of ' + legN + ' legs where the path data runs ' +
                 'out and the line is drawn straight' : '') +
-        '. Distance is measured along that route at a ' + META.strideM +
+        '. Distance is estimated along that route at a ' + META.strideM +
         ' m stride, stop to stop; queue switchbacks and wandering add more, and bus, ' +
         'Skyliner and car legs are not counted as walking. ' +
-        '© OpenStreetMap contributors.</p>';
+        'Activity time adds planned queue/experience allowances; it excludes gaps and walking and is not elapsed clock time. Optional branches add distance and time. © OpenStreetMap contributors.</p>';
 
     var map = art.querySelector('.ed-map');
     if (map && map.parentNode) map.parentNode.insertBefore(fig, map.nextSibling);
     else art.querySelector('.ed-spread-in').appendChild(fig);
 
-    // Cumulative elapsed minutes (wait + experience) up to each mapped stop.
+    // Cumulative activity allowances (not elapsed clock time).
     var elapsed = [], run = 0, byNum = d.stops;
-    var allNums = Object.keys(byNum).map(Number).sort(function (a, b) { return a - b; });
+    var allIds = Object.keys(byNum).sort(function (a, b) { return byNum[a].n - byNum[b].n; });
     var mapped = {};
-    pts.forEach(function (p) { mapped[p.n] = true; });
-    allNums.forEach(function (n) {
-      var s = byNum[String(n)];
+    pts.forEach(function (p) { mapped[p.id] = true; });
+    allIds.forEach(function (id) {
+      var s = byNum[id];
       if (!s.alt) run += s.w + s.e;
-      if (mapped[n]) elapsed.push(run);
+      if (mapped[id]) elapsed.push(run);
     });
 
     var svg = fig.querySelector('svg');
@@ -272,10 +272,10 @@
         g.classList.toggle('is-now', k === i);
       });
       fig.querySelector('.tr-n').textContent =
-        p.n + (names[p.n] ? ' · ' + names[p.n] : '');
+        p.n + (names[p.id] ? ' · ' + names[p.id] : '');
       fig.querySelector('.tr-d').textContent = miles(p.cum) + ' mi';
       fig.querySelector('.tr-s').textContent =
-        commas(Math.round(p.cum / META.strideM)) + ' steps';
+        '~' + commas(Math.round(p.cum / META.strideM / 500) * 500) + ' steps';
       fig.querySelector('.tr-t').textContent = hm(elapsed[i] || 0);
     }
     range.addEventListener('input', function () { draw(+range.value); });

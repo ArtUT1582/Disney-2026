@@ -5,11 +5,8 @@
    through - "what is next?" - and a tap opens the detail for the one stop
    you actually care about.
 
-   Nothing here rewrites the markup. `.ed-ev` is a CSS grid with a named
-   area for the photos, so moving the note or the media into a <details>
-   would break the layout. Instead the closed state is a class, and the
-   hiding is a :not() rule - when a stop is open no rule of ours applies at
-   all and the original CSS governs it, untouched. */
+   A native button owns the time/name row; videos and links remain separate
+   controls. A class hides the note without changing the photo grid. */
 (function () {
   'use strict';
 
@@ -21,29 +18,27 @@
 
   function setOpen(ev, open) {
     ev.classList.toggle(OPEN, open);
-    ev.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-
-  /* Only the time/name row toggles. A tap on an opened note, a photo or a
-     link should do what it normally does, not slam the stop shut. */
-  function isToggleTarget(e) {
-    return !e.target.closest('a, button, .ed-n, .ed-media');
+    var button = ev.querySelector('.ed-stop-toggle');
+    if (button) button.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   function wire(ev) {
+    var body = ev.querySelector('.ed-body');
+    var time = ev.querySelector('.ed-t'), title = ev.querySelector('.ed-h');
+    if (!body || !time || !title) return;
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'ed-stop-toggle';
+    body.insertBefore(button, time);
+    button.appendChild(time);
+    button.appendChild(title);
+    var note = ev.querySelector('.ed-n');
+    if (note) {
+      note.id = ev.dataset.stopId + '-note';
+      button.setAttribute('aria-controls', note.id);
+    }
     setOpen(ev, false);
-    ev.setAttribute('role', 'button');
-    ev.setAttribute('tabindex', '0');
-
-    ev.addEventListener('click', function (e) {
-      if (!isToggleTarget(e)) return;
-      setOpen(ev, !ev.classList.contains(OPEN));
-    });
-
-    ev.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      if (!isToggleTarget(e)) return;
-      e.preventDefault();                      // space must not scroll the page
+    button.addEventListener('click', function () {
       setOpen(ev, !ev.classList.contains(OPEN));
     });
   }

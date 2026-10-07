@@ -1,119 +1,52 @@
-/* Service worker — this page has to open in a queue with no signal.
-   Park wifi is unreliable and cellular at rope drop is worse, so everything
-   needed to render the itinerary is kept on the device.
-
-   Two strategies, on purpose:
-     page   network-first  so a published update lands as soon as there is
-                           signal, falling back to the cached copy offline.
-     assets cache-first    they are content-hashed or versioned, so a cached
-                           copy is never stale for a URL that still matters.
-
-   Bump CACHE when the precache list changes; old caches are deleted on
-   activate. */
-const CACHE = 'disney2026-v12';
-
-// The shell: without these the page does not render.
-const PRECACHE = [
-  './',
-  './index.html',
-  './hero.css',
-  './day-metrics.css',
-  './day-metrics.js',
-  './day-metrics-ui.js',
-  './trip-tools.css',
-  './trip-tools.js',
-  './install.js',
-  './weather.js',
-  './day-switch.js',
-  './stops.js',
-  './install-guide.html',
-  './booking-reminder.js',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/apple-touch-icon.png',
-  './icons/maskable-192.png',
-  './icons/maskable-512.png',
-  './sections/assets/mk-bg.jpg',
-  './sections/assets/ak-bg.jpg',
-  './sections/assets/hs-bg.jpg',
-  './sections/assets/hhn-bg.jpg',
-  './sections/assets/eu-bg.jpg'
-];
-
-self.addEventListener('install', function (e) {
-  e.waitUntil(
-    caches.open(CACHE).then(function (c) {
-      // addAll fails the whole install if one URL 404s, which would leave the
-      // page with no offline copy at all. Add them individually instead.
-      return Promise.all(PRECACHE.map(function (url) {
-        return c.add(url).catch(function () { /* skip, try again at runtime */ });
-      }));
-    }).then(function () { return self.skipWaiting(); })
-  );
+/* Offline itinerary: exact versioned URLs, per-page navigation keys and acknowledged readiness. */
+const CACHE = 'disney2026-v13';
+const PRECACHE = ['./', './index.html', './install-guide.html', './manifest.json', './boutique.ics', './cinderellas-royal-table.ics'];
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => Promise.all(PRECACHE.map(url => cache.add(url).catch(() => false)))).then(() => self.skipWaiting()));
 });
-
-self.addEventListener('activate', function (e) {
-  e.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(keys.map(function (k) {
-        return k === CACHE ? null : caches.delete(k);
-      }));
-    }).then(function () { return self.clients.claim(); })
-  );
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('disney2026-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
-function isPage(req) {
-  return req.mode === 'navigate' ||
-         (req.headers.get('accept') || '').indexOf('text/html') !== -1;
-}
-
-self.addEventListener('fetch', function (e) {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
-  if (url.origin !== self.location.origin) return;   // leave fonts/CDNs alone
-
-  if (isPage(req)) {
-    e.respondWith(
-      fetch(req).then(function (res) {
-        const copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
-        return res;
-      }).catch(function () {
-        return caches.match('./index.html').then(function (hit) {
-          return hit || caches.match('./');
-        });
-      })
-    );
-    return;
-  }
-
-  e.respondWith(
-    caches.match(req).then(function (hit) {
-      if (hit) return hit;
-      return fetch(req).then(function (res) {
-        // Only bank real responses; an opaque or error response cached here
-        // would keep serving a broken asset until the cache is bumped.
-        if (res && res.status === 200 && res.type === 'basic') {
-          const copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
-        }
-        return res;
-      }).catch(function () { return hit; });
-    })
-  );
-});
-
-// The page asks for this after it loads, to pull the maps and photos it did
-// not need immediately but will want in a park with no signal.
-self.addEventListener('message', function (e) {
-  if (!e.data || e.data.type !== 'cache-extras' || !Array.isArray(e.data.urls)) return;
-  e.waitUntil(caches.open(CACHE).then(function (c) {
-    return Promise.all(e.data.urls.map(function (u) {
-      return c.match(u).then(function (hit) {
-        return hit ? null : c.add(u).catch(function () {});
-      });
-    }));
+self.addEventListener('fetch', event => {
+  const request = event.request, url = new URL(request.url);
+  if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  const page = request.mode === 'navigate' || (request.headers.get('accept') || '').includes('text/html');
+  event.respondWith(caches.open(CACHE).then(async cache => {
+    const key = page ? new URL(url.pathname, self.location.origin).href : request;
+    if (!page) { const hit = await cache.match(key); if (hit) return hit; }
+    try {
+      const response = await fetch(request);
+      if (response.ok && response.type === 'basic') await cache.put(key, response.clone());
+      return response;
+    } catch (error) {
+      return await cache.match(key) || new Response('This file was not saved offline. Reconnect and check offline status.', {status:503, headers:{'Content-Type':'text/plain; charset=utf-8'}});
+    }
   }));
+});
+self.addEventListener('message', event => {
+  const data = event.data;
+  if (!data || data.type !== 'prepare-offline' || !Array.isArray(data.core) || !Array.isArray(data.extras) || !event.ports[0]) return;
+  const scope = new URL(self.registration.scope);
+  function allowed(value) {
+    try { const url = new URL(value); return url.origin === scope.origin && url.pathname.startsWith(scope.pathname); }
+    catch (error) { return false; }
+  }
+  if (data.core.length + data.extras.length > 500 || !data.core.concat(data.extras).every(allowed)) {
+    event.ports[0].postMessage({type:'offline-result', ready:false, failedCore:['Invalid asset list']}); return;
+  }
+  event.waitUntil(caches.open(CACHE).then(async cache => {
+    async function save(url) {
+      try {
+        if (await cache.match(url)) return true;
+        const response = await fetch(url, {cache:'reload'});
+        if (!response.ok || response.type !== 'basic') return false;
+        await cache.put(url, response); return true;
+      } catch (error) { return false; }
+    }
+    const coreResults = await Promise.all(data.core.map(save));
+    const extraResults = await Promise.all(data.extras.map(save));
+    const failedCore = data.core.filter((_,i) => !coreResults[i]);
+    event.ports[0].postMessage({type:'offline-result', ready:failedCore.length===0, failedCore,
+      failedExtras:extraResults.filter(ok => !ok).length, savedAt:new Date().toISOString(), version:CACHE});
+  }).catch(() => event.ports[0].postMessage({type:'offline-result', ready:false, failedCore:['Storage unavailable']})));
 });

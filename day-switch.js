@@ -35,10 +35,11 @@
   if (days.length < 2) return;      // nothing to switch between
 
   function todayLocalISO() {
-    var d = new Date();
-    return d.getFullYear() + '-' +
-           String(d.getMonth() + 1).padStart(2, '0') + '-' +
-           String(d.getDate()).padStart(2, '0');
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(new Date());
+    function part(type) { return parts.find(function (p) { return p.type === type; }).value; }
+    return part('year') + '-' + part('month') + '-' + part('day');
   }
 
   /* A hash can point at the day itself (#day-mk) or at something buried inside
@@ -76,6 +77,7 @@
       var on = k === id;
       tabs[k].classList.toggle('is-on', on);
       tabs[k].setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs[k].tabIndex = on ? 0 : -1;
     });
 
     try { localStorage.setItem(KEY, id); } catch (e) { /* private mode */ }
@@ -102,10 +104,26 @@
       b.type = 'button';
       b.className = 'daybar-tab';
       b.setAttribute('role', 'tab');
+      b.id = 'tab-' + day.id;
+      b.setAttribute('aria-controls', day.id);
+      day.setAttribute('role', 'tabpanel');
+      day.setAttribute('aria-labelledby', b.id);
+      day.tabIndex = 0;
       b.innerHTML = '<span class="db-wd"></span><span class="db-pk"></span>';
       b.querySelector('.db-wd').textContent = weekday;
       b.querySelector('.db-pk').textContent = SHORT[day.id] || day.id.replace('day-', '');
       b.addEventListener('click', function () { show(day.id, true); });
+      b.addEventListener('keydown', function (event) {
+        var index = days.indexOf(day), next;
+        if (event.key === 'ArrowRight') next = (index + 1) % days.length;
+        else if (event.key === 'ArrowLeft') next = (index + days.length - 1) % days.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = days.length - 1;
+        else return;
+        event.preventDefault();
+        show(days[next].id, false);
+        tabs[days[next].id].focus();
+      });
 
       tabs[day.id] = b;
       bar.appendChild(b);
