@@ -3127,7 +3127,7 @@ function loadCastPhotos(){
 
 
 <link rel="stylesheet" href="hero.css?v=2e7207c37b">
-<link rel="stylesheet" href="trip-tools.css?v=92799773f6">
+<link rel="stylesheet" href="trip-tools.css?v=2db600cf3d">
 <link rel="stylesheet" href="day-metrics.css?v=4552b2330d">
 <style id="ride-video-css">
 .ed-vids{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -3135,19 +3135,18 @@ function loadCastPhotos(){
   background:#fff;border:1px solid #171310;border-radius:999px;padding:8px 14px;cursor:pointer}
 .ed-vid.is-playing,.ed-vid:hover,.ed-vid:focus-visible{background:#171310;color:#fff}
 .ed-vid-frame{display:block;width:100%;max-width:560px;aspect-ratio:16/9;border:0;border-radius:10px;margin-top:10px;background:#000}
-/* Open stop: description, then the photo full width, then the video row. Closed stops
-   keep the right-hand thumbnail (trip-tools.css). */
+/* Every stop shows in full, with no fold (Artemio, Oct 8): description, then the
+   photo full width, then the video row. */
 .ed-ev>.ed-vids{grid-column:2;margin-top:0;max-width:560px}
-.ed-ev:not(.is-open)>.ed-vids{display:none}
-.ed-ev.has-shot.is-open{grid-template-columns:34px 1fr;grid-template-areas:"num body" ". shot" ". vid"}
-.ed-ev.has-shot.is-open .ed-num{grid-area:num}
-.ed-ev.has-shot.is-open .ed-body{grid-area:body}
-.ed-ev.has-shot.is-open .ed-media{grid-area:shot;width:100%;max-width:560px;justify-content:flex-end;align-self:start}
-.ed-ev.has-shot.is-open .ed-shot{flex:1;min-width:0;height:260px;border-radius:12px}
-.ed-ev.has-shot.is-open>.ed-vids{grid-area:vid}
+.ed-ev.has-shot{grid-template-columns:34px 1fr;grid-template-areas:"num body" ". shot" ". vid"}
+.ed-ev.has-shot .ed-num{grid-area:num}
+.ed-ev.has-shot .ed-body{grid-area:body}
+.ed-ev.has-shot .ed-media{grid-area:shot;width:100%;max-width:560px;justify-content:flex-end;align-self:start}
+.ed-ev.has-shot .ed-shot{flex:1;min-width:0;height:260px;border-radius:12px}
+.ed-ev.has-shot>.ed-vids{grid-area:vid}
 @media(max-width:760px){
-  .ed-ev.has-shot.is-open{grid-template-columns:26px 1fr;grid-template-areas:"num body" "shot shot" "vid vid"}
-  .ed-ev.has-shot.is-open .ed-shot{height:200px}
+  .ed-ev.has-shot{grid-template-columns:26px 1fr;grid-template-areas:"num body" "shot shot" "vid vid"}
+  .ed-ev.has-shot .ed-shot{height:200px}
 }
 .ed-vid-frame{flex-basis:100%}
 @media print{.ed-vids,.ed-vid-frame{display:none!important}}
@@ -3157,7 +3156,7 @@ function loadCastPhotos(){
    light on park Wi-Fi; the service worker ignores cross-origin, so offline the
    button just fails to load - nothing breaks. */
 /* One video at a time. Tap the button again (it reads "Close video") to
-   hide it; opening another video, or collapsing its stop, also closes it. */
+   hide it; opening another video also closes it. */
 function closeVideo() {
   var f = document.querySelector('.ed-vid-frame');
   if (f) f.remove();
@@ -3166,14 +3165,7 @@ function closeVideo() {
 }
 document.addEventListener('click', function (e) {
   var b = e.target.closest('.ed-vid');
-  if (!b) {
-    // stops.js toggles the stop on this same click; check after it runs
-    setTimeout(function () {
-      var f = document.querySelector('.ed-vid-frame');
-      if (f && !f.closest('.ed-ev').classList.contains('is-open')) closeVideo();
-    }, 0);
-    return;
-  }
+  if (!b) return;
   var wasPlaying = b.classList.contains('is-playing');
   closeVideo();
   if (wasPlaying) return;
@@ -3194,11 +3186,10 @@ document.addEventListener('click', function (e) {
 <script src="install.js?v=65bdab7e76"></script>
 <script src="weather.js?v=178446d0f3"></script>
 <script src="day-switch.js?v=795ece4538"></script>
-<script src="stops.js?v=55283bfc78"></script>
 <script src="now-next.js?v=b15abd2f28"></script>
 <script src="day-metrics-ui.js?v=94439673f0"></script>
 <script src="offline-ready.js?v=4ab3b4bed1"></script>
-<script src="i18n-es.js?v=46b992703c"></script>
-<script src="i18n-fr.js?v=1c66e37def"></script>
+<script src="i18n-es.js?v=5d467a9764"></script>
+<script src="i18n-fr.js?v=ac919c47da"></script>
 <script src="i18n.js?v=2b308c2351"></script>
 </body></html>
