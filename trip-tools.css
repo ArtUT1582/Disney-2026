@@ -206,42 +206,18 @@ body.has-daybar{ padding-bottom:64px; }
   body.has-daybar{ padding-bottom:0; }
 }
 
-/* ---- Collapsed reference sections ---------------------------------------
-   Cast, alarms, logistics, home base and wifi are reference, not in-the-moment,
-   but they sat under every park day - about ten screens you scrolled past each
-   time. Native <details>, so the collapse needs no JS and survives printing. */
-.refsec{ border-top:1px solid rgba(255,255,255,.08); }
-.refsec[open]{ padding-bottom:8px; }
+/* ---- Reference sections ---------------------------------------------------
+   Home base, cast, reminders, logistics and wifi always show in full under a
+   plain title row: no drill-downs anywhere on the page (Artemio, Oct 8). They
+   were tap-to-open <details> from Sep 24 to Oct 8. */
+.refsec{ border-top:1px solid rgba(255,255,255,.08); padding-bottom:8px; }
 
 .refsum{
-  display:flex; align-items:center; gap:10px;
-  padding:17px 20px; cursor:pointer; list-style:none;
-  -webkit-tap-highlight-color:transparent;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px;
+  margin:0; padding:17px 20px; font:inherit;
 }
-.refsum::-webkit-details-marker{ display:none; }   /* our own chevron instead */
-.refsum:hover{ background:rgba(255,255,255,.03); }
-.refsum:focus-visible{ outline:2px solid #a855f7; outline-offset:-2px; }
-
-.rs-t{ font-size:15px; font-weight:600; color:#fff; white-space:nowrap; }
-.rs-h{
-  flex:1 1 auto; min-width:0; font-size:12px; color:var(--muted,rgba(255,255,255,.55));
-  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-.rs-x{
-  flex:0 0 auto; width:9px; height:9px; margin-right:2px;
-  border-right:2px solid rgba(255,255,255,.5); border-bottom:2px solid rgba(255,255,255,.5);
-  transform:rotate(45deg) translate(-2px,-2px); transition:transform .2s ease;
-}
-.refsec[open] > .refsum .rs-x{ transform:rotate(-135deg) translate(-2px,-2px); }
-.refsec[open] > .refsum .rs-h{ opacity:.55; }
-
-@media (prefers-reduced-motion:reduce){ .rs-x{ transition:none; } }
-
-/* On paper you cannot tap a summary open. */
-@media print{
-  .refsec > *{ display:revert !important; }
-  .refsum{ display:none !important; }
-}
+.rs-t{ font-size:15px; font-weight:600; color:#fff; }
+.rs-h{ font-size:12px; color:var(--muted,rgba(255,255,255,.55)); }
 
 /* ---- Collapsed stops (stops.js) -----------------------------------------
    Hidden with :not(), so an open stop matches no rule here and keeps the
@@ -321,7 +297,7 @@ body.has-daybar{ padding-bottom:64px; }
 .ed-now-in{ color:#544735; }
 .ed-extras{ margin-top:12px; }
 .ed-more{ border-top:1px solid #e3d8c6; padding:8px 0 0; margin-top:8px; }
-.ed-more summary{ cursor:pointer; font-weight:700; }
+.ed-more-t{ display:block; font-weight:700; }
 .ed-more ul{ margin:6px 0 0; padding-left:20px; }
 .ed-more li{ margin:3px 0; }
 
