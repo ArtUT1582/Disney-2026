@@ -1,9 +1,8 @@
-/* Collapse each stop down to its time and name.
-
-   A park day is 15 to 21 stops, and most of each stop's height is the note
-   and the photos. Closed, a day reads as a numbered timeline you can thumb
-   through - "what is next?" - and a tap opens the detail for the one stop
-   you actually care about.
+/* Every stop opens in full - note, photo, ride videos - with no tap needed
+   (Artemio, Oct 8: the family reads the day on a phone and should not have
+   to open each stop). Tapping the time/name row folds a stop down to one
+   line, and "Collapse all" turns the day into a numbered timeline to thumb
+   through.
 
    A native button owns the time/name row; videos and links remain separate
    controls. A class hides the note without changing the photo grid. */
@@ -37,7 +36,7 @@
       note.id = ev.dataset.stopId + '-note';
       button.setAttribute('aria-controls', note.id);
     }
-    setOpen(ev, false);
+    setOpen(ev, true);
     button.addEventListener('click', function () {
       setOpen(ev, !ev.classList.contains(OPEN));
     });
