@@ -18,7 +18,7 @@ const caches = {
 };
 const self = {location:{origin:'https://example.com'}, registration:{scope:'https://example.com/trip/'},
   addEventListener(name,callback){handlers[name]=callback;}, async skipWaiting(){}, clients:{async claim(){}}};
-vm.runInNewContext(fs.readFileSync(__dirname+'/sw.js','utf8'), {self,caches,URL,Response,Date,
+vm.runInNewContext(fs.readFileSync(__dirname+'/sw.js','utf8'), {self,caches,URL,Response,Date,Request:class{constructor(u,o){this.url=new URL(u,'https://example.com/trip/').href;this.cache=o.cache;}},
   fetch: async req => {const url=key(req); if(offline || failed.has(url)) throw Error('offline'); return response(url);}});
 async function lifecycle(name){let promise;handlers[name]({waitUntil(p){promise=p;}});await promise;}
 async function navigation(path){let promise;handlers.fetch({request:{url:'https://example.com/trip/'+path,method:'GET',mode:'navigate',headers:{get(){return 'text/html';}}},respondWith(p){promise=p;}});return await promise;}

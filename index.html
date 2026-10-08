@@ -3208,6 +3208,8 @@ function loadCastPhotos(){
 @media(max-width:760px){
   .ed-ev.has-shot{grid-template-columns:26px 1fr;grid-template-areas:"num body" "shot shot" "vid vid"}
   .ed-ev.has-shot .ed-shot{height:200px}
+  /* badge-only rows have no "shot" area; drop the badge under the text (row-reverse: flex-end = left) */
+  .ed-ev:not(.has-shot) .ed-media{grid-area:auto;grid-column:2;width:auto;justify-content:flex-end}
 }
 .ed-vid-frame{flex-basis:100%}
 @media print{.ed-vids,.ed-vid-frame{display:none!important}}
@@ -3250,7 +3252,7 @@ document.addEventListener('click', function (e) {
 <script src="now-next.js?v=b15abd2f28"></script>
 <script src="day-metrics-ui.js?v=94439673f0"></script>
 <script src="offline-ready.js?v=4ab3b4bed1"></script>
-<script src="i18n-es.js?v=4f84fb8f1a"></script>
-<script src="i18n-fr.js?v=7acc743fae"></script>
+<script src="i18n-es.js?v=58338e422b"></script>
+<script src="i18n-fr.js?v=64c561831c"></script>
 <script src="i18n.js?v=2b308c2351"></script>
 </body></html>

@@ -931,7 +931,8 @@ window.I18N_FR = {
 "Thu · Chef Mickey’s, 11:05:": "Jeu · Chef Mickey’s, 11:05 :",
 "Mickey, Minnie, Donald, Goofy and Pluto in chef outfits. No Daisy. Halloween Horror Nights has no family characters.": "Mickey, Minnie, Donald, Goofy et Pluto en tenue de chef. Pas de Daisy. Halloween Horror Nights n’a pas de personnages pour enfants.",
 "Fri · Epic Universe:": "Ven · Epic Universe :",
-"Mario and Luigi together, about every hour. Princess Peach in her gazebo, last set about 6 PM. Toothless at Haddock Paddock (in the plan, 4:05): lines have averaged about 75 minutes, longer than the 45 the plan allows, and close about 7 PM. If the posted wait is over 45 minutes, go earlier. Donkey Kong, Toad and Yoshi are not meeting.": "Mario et Luigi ensemble, environ toutes les heures. Princess Peach dans son kiosque, dernière séance vers 6 PM. Toothless à Haddock Paddock (dans le plan, 4:05) : la file a été d’environ 75 minutes, plus que les 45 prévues dans le plan, et ferme vers 7 PM. Si l’attente affichée dépasse 45 minutes, allez-y plus tôt. Donkey Kong, Toad et Yoshi ne font pas de rencontres."
+"Mario and Luigi together, about every hour. Princess Peach in her gazebo, last set about 6 PM. Toothless at Haddock Paddock (in the plan, 4:05): lines have averaged about 75 minutes, longer than the 45 the plan allows, and close about 7 PM. If the posted wait is over 45 minutes, go earlier. Donkey Kong, Toad and Yoshi are not meeting.": "Mario et Luigi ensemble, environ toutes les heures. Princess Peach dans son kiosque, dernière séance vers 6 PM. Toothless à Haddock Paddock (dans le plan, 4:05) : la file a été d’environ 75 minutes, plus que les 45 prévues dans le plan, et ferme vers 7 PM. Si l’attente affichée dépasse 45 minutes, allez-y plus tôt. Donkey Kong, Toad et Yoshi ne font pas de rencontres.",
+"✕ Close video": "✕ Fermer la vidéo"
 }; // end I18N_FR
 window.I18N_FR_RX = [
   [/^in (\d+)h (\d+)m$/, "dans $1 h $2 min"],
