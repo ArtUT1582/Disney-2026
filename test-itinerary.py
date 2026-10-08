@@ -94,11 +94,6 @@ class ItineraryTests(unittest.TestCase):
             if parsed.scheme or parsed.netloc or not parsed.path: continue
             if not (ROOT / unquote(parsed.path)).exists(): missing.append(link)
         self.assertFalse(missing,missing)
-        self.assertIn('boutique.ics',self.page.links)
-
-    def test_calendar_times(self):
-        self.assertIn('DTSTART:20261014T151500Z',(ROOT/'cinderellas-royal-table.ics').read_text())
-        self.assertIn('DTSTART:20261014T204000Z',(ROOT/'boutique.ics').read_text())
 
     def test_park_cards_match_core_metrics(self):
         text = (ROOT/'index.html').read_text(encoding='utf8')

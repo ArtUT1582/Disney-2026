@@ -58,10 +58,6 @@
   font:700 9.5px/1 'JetBrains Mono', ui-monospace, monospace;
   letter-spacing:.14em; text-transform:uppercase; margin-bottom:5px;
 }
-.logi-share .qr{
-  display:block; width:100%; max-width:190px; height:auto; margin:13px 0 0;
-  border-radius:10px; border:5px solid #F5F2EA; background:#F5F2EA;
-}
 @media (max-width:960px){
   .logi-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .logi-wide{ grid-column:span 2; }
@@ -77,7 +73,7 @@
   .logi-k, .logi-n, .logi-list li b{ color:#444; }
 }
 
-/* ---------- share buttons ---------- */
+/* ---------- buttons ---------- */
 .logi-btns{ display:flex; flex-wrap:wrap; gap:8px; margin-top:13px; }
 .logi-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -90,10 +86,10 @@
 .logi-btn:hover, .logi-btn:focus-visible{
   background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.3); outline:none;
 }
-.logi-btn-wa{
+.logi-btn-go{
   background:#25D366; border-color:#25D366; color:#06301A; font-weight:800;
 }
-.logi-btn-wa:hover, .logi-btn-wa:focus-visible{
+.logi-btn-go:hover, .logi-btn-go:focus-visible{
   background:#1FBE5A; border-color:#1FBE5A;
 }
 .logi-btn.is-done{ background:rgba(57,179,106,.2); border-color:#39B36A; color:#8FE3AE; }

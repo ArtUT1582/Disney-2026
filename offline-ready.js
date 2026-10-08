@@ -10,7 +10,7 @@
     var controller = navigator.serviceWorker.controller;
     if (!controller) return;
     var base = new URL('./', document.baseURI);
-    var core = ['./', 'index.html', 'install-guide.html', 'manifest.json', 'boutique.ics', 'cinderellas-royal-table.ics'].map(function (p) { return new URL(p,base).href; });
+    var core = ['./', 'index.html', 'install-guide.html', 'manifest.json'].map(function (p) { return new URL(p,base).href; });
     document.querySelectorAll('script[src], link[rel="stylesheet"][href]').forEach(function (element) {
       var url = local(element.src || element.href); if (url) core.push(url);
     });

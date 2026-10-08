@@ -1335,9 +1335,15 @@ img, svg, video{ max-width: 100%; }
 @media(max-width:760px){ #wifi .fl-wifi{padding:12px 14px} }
 #characters ul{margin:10px 0 0 18px;display:grid;gap:8px;font-size:13.5px;color:#cbd5e1;line-height:1.55}
 #characters li b{color:#fff}
+#characters .char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:14px;margin-top:14px}
+#characters .char-grid figure{margin:0;text-align:center}
+#characters .char-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:2px solid rgba(255,214,102,.55);background:#1a1420}
+#characters .char-grid figcaption{margin-top:6px;font-size:14px;font-weight:700;color:#fff}
 #footage ul{margin:10px 0 0 18px;display:grid;gap:8px;font-size:13.5px;color:#cbd5e1;line-height:1.55}
 #footage li b{color:#fff}
-#flights,#cast,#characters,#alarms,#homebase,#wifi,#footage{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
+#footage .drive-btn{display:block;margin:18px auto 0;max-width:420px;padding:18px 22px;border-radius:16px;background:#7EE0A8;color:#06301A;font-size:19px;font-weight:800;text-align:center;text-decoration:none}
+#footage .drive-btn:hover,#footage .drive-btn:focus-visible{background:#9BEABB}
+#flights,#cast,#characters,#homebase,#wifi,#footage{width:calc(100% - 28px);max-width:1280px;margin-left:auto;
   margin-right:auto;padding-left:0;padding-right:0}
 .expd-inline{--ed-w:1280px}
 .ed-day{width:calc(100% - 28px)}
@@ -2536,21 +2542,17 @@ body.pmv-lock{overflow:hidden}
 
   <div class="alarm-panel">
     <h3>⭐ Find your character</h3>
-    <ul>
-      <li><b>Abui Temo · Mickey:</b> Adventurers Outpost (AK, Mon), Red Carpet Dreams (HS, Tue), Town Square Theater (MK, Wed), Chef Mickey’s (Thu).</li>
-      <li><b>Abui · Minnie:</b> Adventurers Outpost with Mickey (AK, Mon), Red Carpet Dreams (HS, Tue), Pete’s Silly Sideshow with Daisy (MK, Wed), Chef Mickey’s (Thu).</li>
-      <li><b>Art · Luigi:</b> with Mario in Super Nintendo World, about every hour (Epic, Fri).</li>
-      <li><b>Sandra · Princess Peach:</b> her gazebo by Peach’s Castle (Epic, Fri). Last set about 6 PM.</li>
-      <li><b>Annelise · Mario:</b> with Luigi in Super Nintendo World, about every hour until about 7:40 PM (Epic, Fri).</li>
-      <li><b>Anette · Maleficent:</b> no meet this week. See her in Disney Villains: Unfairly Ever After and as the Fantasmic! dragon (HS, Tue), and on the 2 PM Festival of Fantasy dragon float (MK, Wed).</li>
-      <li><b>Danny · Donkey Kong:</b> not meeting. He has had no sets for about a year. Check the Universal app on Friday just in case.</li>
-      <li><b>Valeria · Goofy:</b> Asia (AK, Mon), Off the Page! (HS, Tue), Pete’s Silly Sideshow with Donald (MK, Wed), Chef Mickey’s (Thu).</li>
-      <li><b>Isabella · Belle:</b> Enchanted Tales with Belle (MK, Wed). She is not at Cinderella’s Royal Table. On stage in Beauty and the Beast (HS, Tue).</li>
-      <li><b>John · Darth Vader:</b> Hollywood Studios only, by the AT-AT near Star Tours, every 30 minutes 9 AM–12:30 PM and 2–4 PM, with no sets 12:30–2 (Tue).</li>
-      <li><b>Martha · Daisy:</b> with Donald in the Oasis (AK, Mon), Off the Page! (HS, Tue), Pete’s Silly Sideshow with Minnie (MK, Wed). Not at Chef Mickey’s.</li>
-      <li><b>Victoria · Anna:</b> no meet on our park days (hers is at EPCOT). See her in the Frozen Sing-Along (HS, Tue) and in the castle show and parade (MK, Wed).</li>
-      <li><b>Valentina · Winnie the Pooh:</b> with Tigger at the Thotful Spot, at set times with a 1–3 PM break (MK, Wed).</li>
-    </ul>
+    <div class="char-grid">
+      <figure><img src="characters/mickey-wave.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/mickey.jpg" onerror="charFallback(this)"><figcaption>Mickey Mouse</figcaption></figure>
+      <figure><img src="characters/minnie-wink.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/minnie.jpg" onerror="charFallback(this)"><figcaption>Minnie Mouse</figcaption></figure>
+      <figure><img src="characters/goofy-smile.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/goofy.jpg" onerror="charFallback(this)"><figcaption>Goofy</figcaption></figure>
+      <figure><img src="characters/daisy-pose.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/daisy.jpg" onerror="charFallback(this)"><figcaption>Daisy Duck</figcaption></figure>
+      <figure><img src="characters/belle-village-stroll.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/belle.jpg" onerror="charFallback(this)"><figcaption>Belle</figcaption></figure>
+      <figure><img src="characters/anna-smile.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/anna.jpg" onerror="charFallback(this)"><figcaption>Anna</figcaption></figure>
+      <figure><img src="characters/maleficent-smirk.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/maleficent.jpg" onerror="charFallback(this)"><figcaption>Maleficent</figcaption></figure>
+      <figure><img src="characters/pooh-heart.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/pooh.jpg" onerror="charFallback(this)"><figcaption>Winnie the Pooh</figcaption></figure>
+      <figure><img src="characters/vader-thumbsup.gif" alt="" loading="lazy" referrerpolicy="no-referrer" data-local="characters/vader.jpg" onerror="charFallback(this)"><figcaption>Darth Vader</figcaption></figure>
+    </div>
   </div>
 
   <div class="alarm-panel">
@@ -2601,54 +2603,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<section id="alarms">
-<div class="refsec"><h2 class="refsum"><span class="rs-t">Calendar reminders</span><span class="rs-h">Castle lunch, boutique, Lightning Lane</span></h2>
-
-  <div class="section-h">
-    <div class="section-eyebrow">① For Staying Organized</div>
-    <h2 class="section-title">Key <b>reminders.</b></h2>
-    <p class="section-deck">The family plan has the 11:15 castle lunch and 4:40 boutique appointment. Lightning Lane Multi Passes are now <b>booked</b> — each park day shows your party’s return windows. Use the calendar reminder as the main alert; verify notification settings after importing. This page does not create a background alarm.</p>
-  </div>
-
-  <div class="alarm-panel crt">
-    <h3>🏰 Cinderella’s Royal Table — FAMILY BOOKING</h3>
-    <p><b>Wednesday Oct 14 · 11:15 AM Eastern · 2 adults + Annelise.</b> The family plan reports booked/prepaid; confirm the receipt and reservation in My Disney Experience. Aim for 11 AM check-in. Disney requires cancellation at least <b>two hours ahead</b>; late cancellation or no-show forfeits/charges the full per-person price. <a href="https://disneyworld.disney.go.com/dining/magic-kingdom/cinderella-royal-table/" target="_blank" rel="noopener noreferrer">Official policy ↗</a></p>
-    <div class="alarm-btns">
-      <a class="alarm-btn ghost" href="cinderellas-royal-table.ics" download="cinderellas-royal-table.ics" title="Import into your calendar and check notification settings">📅 Add the 11:15 seating</a>
-    </div>
-    <div id="crtStatus">Family booking · verify the confirmation and payment record.</div>
-  </div>
-
-  <div class="alarm-panel crt">
-    <h3>👑 Bibbidi Bobbidi Boutique — FAMILY BOOKING</h3>
-    <p><b>Wednesday Oct 14 · 4:40 PM Eastern</b> from the family plan. Confirm this is the appointment time; check in no earlier than five minutes before it. Allow up to 90 minutes for the transformation plus any delay. Portraits are flexible around <b>6:15 PM or later</b>. Ages 3–12; adult 18+ required, up to two observing guests. Kingdom package starts at $229.99 plus tax, payable at the visit. <b>$10</b> applies to no-show/cancellation within 24 hours. <a href="https://disneyworld.disney.go.com/shops/magic-kingdom/bibbidi-bobbidi-boutique-park/" target="_blank" rel="noopener noreferrer">Official boutique details ↗</a></p>
-    <div class="alarm-btns"><a class="alarm-btn ghost" href="boutique.ics" download title="Import and check notification settings">📅 Add the 4:40 boutique appointment</a></div>
-    <div id="bbbStatus">Family booking · verify the appointment time.</div>
-  </div>
-  <div class="alarm-panel">
-    <h3>✅ Lightning Lane Multi Pass — Booked</h3>
-    <p>Multi Passes were booked on <b>Oct 4</b> for all three Disney park days. Your party’s return windows are listed on each park day (Animal Kingdom, Hollywood Studios, Magic Kingdom). Each time you use one, you can book another; confirm exact times in My Disney Experience. Universal visits do not use Lightning Lane. <a href="https://disneyworld.disney.go.com/lightning-lane-passes/" target="_blank" rel="noopener noreferrer">Official purchase rules ↗</a></p>
-<div class="mw-card" style="border-style:solid;border-color:rgba(251,191,36,.5);margin-top:14px">
-  <p style="font-size:13px;color:#fde68a;font-weight:600;margin-bottom:8px">⚡ Single Pass — none booked for Seven Dwarfs or Rise (checked in My Disney Experience Oct 7); Flight of Passage not confirmed. Buy in the app if wanted</p>
-  <ul style="margin:0 0 8px 18px;padding:0;font-size:12.5px;color:#cbd5e1;line-height:1.7">
-    <li><b>Seven Dwarfs Mine Train</b> — Magic Kingdom · all three · Annelise rides (38")</li>
-    <li><b>Rise of the Resistance</b> — Hollywood Studios · all three · Annelise rides (40")</li>
-    <li><b>Avatar Flight of Passage</b> — Animal Kingdom · 2 adults · 44" min</li>
-    <li><s>TRON Lightcycle / Run</s> — <b>DO NOT BUY.</b> Cut from the Oct 14 plan in favour of Jungle Cruise, which the whole party rides together.</li>
-  </ul>
-  <p style="font-size:11.5px;color:#9aa3b8;line-height:1.55;margin:0">Multi Pass is booked — its windows show on each park day. No Single Pass is confirmed; buy one in the app if you want it. Confirm each return time in My Disney Experience on the day.</p>
-</div>
-  </div>
-
-
-</div>
-</section>
 
 
 <!-- ============ LOGISTICS + SHARE ============ -->
 <section class="logi" id="travel-days" aria-label="Arrival and departure"><div class="logi-hd"><b>Arrival and departure</b><span>Confirm these details with the family and driver</span></div><p class="logi-p">Driver: <b>Fabien</b> · FS Premier Transport, LLC · <a href="tel:+14072340344">(407) 234-0344</a></p><div class="logi-grid"><div class="logi-card"><span class="logi-k">Sunday · October 11</span><b class="logi-v">Arrival, check-in and an early night</b><p class="logi-p">Use each party’s flight on the departure board above. Confirm airport pickup, passenger/luggage counts and any child seat with the driver. Art and Sandra manage the Pop Century party; appoint a lead for the ten-person Art of Animation party before travel.</p><p class="logi-p">Check in or store bags; eat, buy essentials, charge phones and import the two calendar reminders. Storybook Dining at Artist Point (Wilderness Lodge) is booked tonight at 7:00 PM for 4, under Martha Martinez. Keep flight/booking confirmations privately. Recheck Monday’s bus and Lightning Lane windows before bed.</p></div><div class="logi-card"><span class="logi-k">Saturday · October 17</span><b class="logi-v">Airport departure checklist</b><p class="logi-p">Driver confirmation needed: pickup time at each resort, named flight/terminal, passenger and luggage counts, Saturday’s actual group, any child seat and planned terminal arrival. Set pickup from each airline’s current airport-arrival guidance plus loading/traffic buffer; no unconfirmed pickup is shown as booked.</p><p class="logi-p">Pack before Epic where possible. Before leaving: check flights, passports/IDs, tickets, chargers, room drawers, bags and every passenger. Art/Sandra check the Pop party; assign and confirm the other party’s travel lead.</p></div></div><p id="offlineStatus" role="status" class="offline-status">Offline copy not verified yet. Open online and wait for the readiness check. Videos, live waits, weather and booking apps need internet.</p></section>
 <section class="logi" id="logistics" aria-label="Family logistics">
-<div class="refsec"><h2 class="refsum"><span class="rs-t">Logistics</span><span class="rs-h">Hotels, meeting point, emergencies, photo album</span></h2>
+<div class="refsec"><h2 class="refsum"><span class="rs-t">Logistics</span><span class="rs-h">Hotels, meeting point, emergencies, car service</span></h2>
 
   <div class="logi-hd">
     <b>Keep on one screen</b>
@@ -2717,36 +2677,16 @@ document.addEventListener('DOMContentLoaded', () => {
         the pharmacy counter closes at 7 PM.</p>
     </div>
 
-    <div class="logi-card logi-share">
-      <span class="logi-k">Send this to the family</span>
-      <b class="logi-v">Point a camera at this</b>
-      <svg class="qr" viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="QR code linking to the itinerary"><rect width="33" height="33" fill="#F5F2EA"/><g fill="#171310" shape-rendering="crispEdges"><rect x="2" y="2" width="7" height="1"/><rect x="13" y="2" width="1" height="1"/><rect x="17" y="2" width="2" height="1"/><rect x="21" y="2" width="1" height="1"/><rect x="24" y="2" width="7" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="11" y="3" width="2" height="1"/><rect x="14" y="3" width="1" height="1"/><rect x="17" y="3" width="4" height="1"/><rect x="24" y="3" width="1" height="1"/><rect x="30" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="4" y="4" width="3" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="13" y="4" width="2" height="1"/><rect x="17" y="4" width="3" height="1"/><rect x="24" y="4" width="1" height="1"/><rect x="26" y="4" width="3" height="1"/><rect x="30" y="4" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="4" y="5" width="3" height="1"/><rect x="8" y="5" width="1" height="1"/><rect x="11" y="5" width="1" height="1"/><rect x="17" y="5" width="2" height="1"/><rect x="20" y="5" width="1" height="1"/><rect x="24" y="5" width="1" height="1"/><rect x="26" y="5" width="3" height="1"/><rect x="30" y="5" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="4" y="6" width="3" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="15" y="6" width="1" height="1"/><rect x="17" y="6" width="1" height="1"/><rect x="20" y="6" width="1" height="1"/><rect x="24" y="6" width="1" height="1"/><rect x="26" y="6" width="3" height="1"/><rect x="30" y="6" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="8" y="7" width="1" height="1"/><rect x="10" y="7" width="1" height="1"/><rect x="12" y="7" width="1" height="1"/><rect x="14" y="7" width="1" height="1"/><rect x="16" y="7" width="4" height="1"/><rect x="21" y="7" width="2" height="1"/><rect x="24" y="7" width="1" height="1"/><rect x="30" y="7" width="1" height="1"/><rect x="2" y="8" width="7" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="14" y="8" width="1" height="1"/><rect x="16" y="8" width="1" height="1"/><rect x="18" y="8" width="1" height="1"/><rect x="20" y="8" width="1" height="1"/><rect x="22" y="8" width="1" height="1"/><rect x="24" y="8" width="7" height="1"/><rect x="12" y="9" width="3" height="1"/><rect x="17" y="9" width="1" height="1"/><rect x="19" y="9" width="1" height="1"/><rect x="22" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="5" y="10" width="1" height="1"/><rect x="7" y="10" width="2" height="1"/><rect x="10" y="10" width="2" height="1"/><rect x="13" y="10" width="3" height="1"/><rect x="17" y="10" width="2" height="1"/><rect x="20" y="10" width="1" height="1"/><rect x="22" y="10" width="2" height="1"/><rect x="25" y="10" width="1" height="1"/><rect x="2" y="11" width="6" height="1"/><rect x="9" y="11" width="8" height="1"/><rect x="22" y="11" width="1" height="1"/><rect x="24" y="11" width="1" height="1"/><rect x="27" y="11" width="1" height="1"/><rect x="30" y="11" width="1" height="1"/><rect x="8" y="12" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="14" y="12" width="1" height="1"/><rect x="18" y="12" width="2" height="1"/><rect x="21" y="12" width="1" height="1"/><rect x="23" y="12" width="1" height="1"/><rect x="25" y="12" width="5" height="1"/><rect x="3" y="13" width="2" height="1"/><rect x="6" y="13" width="2" height="1"/><rect x="10" y="13" width="1" height="1"/><rect x="12" y="13" width="2" height="1"/><rect x="15" y="13" width="3" height="1"/><rect x="21" y="13" width="3" height="1"/><rect x="25" y="13" width="1" height="1"/><rect x="28" y="13" width="2" height="1"/><rect x="2" y="14" width="3" height="1"/><rect x="8" y="14" width="2" height="1"/><rect x="11" y="14" width="7" height="1"/><rect x="19" y="14" width="1" height="1"/><rect x="21" y="14" width="2" height="1"/><rect x="24" y="14" width="2" height="1"/><rect x="27" y="14" width="1" height="1"/><rect x="29" y="14" width="2" height="1"/><rect x="3" y="15" width="1" height="1"/><rect x="5" y="15" width="2" height="1"/><rect x="9" y="15" width="2" height="1"/><rect x="12" y="15" width="2" height="1"/><rect x="15" y="15" width="1" height="1"/><rect x="21" y="15" width="2" height="1"/><rect x="2" y="16" width="1" height="1"/><rect x="4" y="16" width="2" height="1"/><rect x="7" y="16" width="2" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="13" y="16" width="4" height="1"/><rect x="19" y="16" width="2" height="1"/><rect x="22" y="16" width="1" height="1"/><rect x="24" y="16" width="7" height="1"/><rect x="2" y="17" width="2" height="1"/><rect x="5" y="17" width="1" height="1"/><rect x="9" y="17" width="1" height="1"/><rect x="13" y="17" width="1" height="1"/><rect x="15" y="17" width="6" height="1"/><rect x="22" y="17" width="1" height="1"/><rect x="27" y="17" width="1" height="1"/><rect x="29" y="17" width="1" height="1"/><rect x="2" y="18" width="2" height="1"/><rect x="5" y="18" width="4" height="1"/><rect x="10" y="18" width="4" height="1"/><rect x="15" y="18" width="2" height="1"/><rect x="19" y="18" width="1" height="1"/><rect x="21" y="18" width="2" height="1"/><rect x="25" y="18" width="1" height="1"/><rect x="29" y="18" width="1" height="1"/><rect x="4" y="19" width="3" height="1"/><rect x="9" y="19" width="4" height="1"/><rect x="14" y="19" width="1" height="1"/><rect x="16" y="19" width="1" height="1"/><rect x="18" y="19" width="2" height="1"/><rect x="24" y="19" width="2" height="1"/><rect x="27" y="19" width="1" height="1"/><rect x="30" y="19" width="1" height="1"/><rect x="2" y="20" width="1" height="1"/><rect x="4" y="20" width="1" height="1"/><rect x="6" y="20" width="1" height="1"/><rect x="8" y="20" width="3" height="1"/><rect x="13" y="20" width="3" height="1"/><rect x="18" y="20" width="2" height="1"/><rect x="22" y="20" width="3" height="1"/><rect x="29" y="20" width="2" height="1"/><rect x="5" y="21" width="2" height="1"/><rect x="9" y="21" width="3" height="1"/><rect x="13" y="21" width="3" height="1"/><rect x="19" y="21" width="4" height="1"/><rect x="24" y="21" width="2" height="1"/><rect x="29" y="21" width="2" height="1"/><rect x="2" y="22" width="1" height="1"/><rect x="4" y="22" width="5" height="1"/><rect x="10" y="22" width="1" height="1"/><rect x="16" y="22" width="3" height="1"/><rect x="20" y="22" width="7" height="1"/><rect x="28" y="22" width="1" height="1"/><rect x="10" y="23" width="1" height="1"/><rect x="12" y="23" width="4" height="1"/><rect x="18" y="23" width="1" height="1"/><rect x="21" y="23" width="2" height="1"/><rect x="26" y="23" width="1" height="1"/><rect x="28" y="23" width="3" height="1"/><rect x="2" y="24" width="7" height="1"/><rect x="11" y="24" width="6" height="1"/><rect x="18" y="24" width="2" height="1"/><rect x="22" y="24" width="1" height="1"/><rect x="24" y="24" width="1" height="1"/><rect x="26" y="24" width="1" height="1"/><rect x="29" y="24" width="1" height="1"/><rect x="2" y="25" width="1" height="1"/><rect x="8" y="25" width="1" height="1"/><rect x="10" y="25" width="1" height="1"/><rect x="13" y="25" width="3" height="1"/><rect x="20" y="25" width="3" height="1"/><rect x="26" y="25" width="4" height="1"/><rect x="2" y="26" width="1" height="1"/><rect x="4" y="26" width="3" height="1"/><rect x="8" y="26" width="1" height="1"/><rect x="11" y="26" width="1" height="1"/><rect x="16" y="26" width="1" height="1"/><rect x="22" y="26" width="5" height="1"/><rect x="2" y="27" width="1" height="1"/><rect x="4" y="27" width="3" height="1"/><rect x="8" y="27" width="1" height="1"/><rect x="10" y="27" width="1" height="1"/><rect x="12" y="27" width="2" height="1"/><rect x="15" y="27" width="2" height="1"/><rect x="19" y="27" width="1" height="1"/><rect x="22" y="27" width="3" height="1"/><rect x="26" y="27" width="4" height="1"/><rect x="2" y="28" width="1" height="1"/><rect x="4" y="28" width="3" height="1"/><rect x="8" y="28" width="1" height="1"/><rect x="11" y="28" width="1" height="1"/><rect x="13" y="28" width="1" height="1"/><rect x="16" y="28" width="1" height="1"/><rect x="19" y="28" width="1" height="1"/><rect x="23" y="28" width="1" height="1"/><rect x="26" y="28" width="3" height="1"/><rect x="30" y="28" width="1" height="1"/><rect x="2" y="29" width="1" height="1"/><rect x="8" y="29" width="1" height="1"/><rect x="14" y="29" width="1" height="1"/><rect x="17" y="29" width="1" height="1"/><rect x="19" y="29" width="1" height="1"/><rect x="22" y="29" width="3" height="1"/><rect x="29" y="29" width="1" height="1"/><rect x="2" y="30" width="7" height="1"/><rect x="10" y="30" width="2" height="1"/><rect x="13" y="30" width="5" height="1"/><rect x="19" y="30" width="1" height="1"/><rect x="21" y="30" width="2" height="1"/><rect x="26" y="30" width="2" height="1"/><rect x="29" y="30" width="1" height="1"/></g></svg>
-      <p class="logi-p">The QR is for scanning off your screen in person. For the family chat use <b>Send on WhatsApp</b> below &mdash; a tappable link beats a picture of a code. Tell them to open it, then <b>Share &rarr; Add to Home Screen</b>, so it works in the parks with no signal.</p>
+    <div class="logi-card">
+      <span class="logi-k">Car service &middot; Epic Universe &amp; airport</span>
+      <b class="logi-v">FS Premier Transport</b>
+      <p class="logi-p">Driver: <b>Fabien</b><br>
+        <b>Fri Oct 16:</b> 8:30 AM pickup at Art of Animation for Epic Universe,
+        nine passengers, child seat for Annelise. Back to Art of Animation at 8:15 PM.<br>
+        <b>Sat Oct 17:</b> airport run &mdash; confirm the pickup time with Fabien.</p>
       <div class="logi-btns">
-        <a class="logi-btn logi-btn-wa" href="https://wa.me/?text=Our%20Disney%202026%20itinerary%20%E2%80%94%20all%20five%20park%20days%2C%20park%20maps%2C%20times%2C%20what%20Annelise%20can%20ride%2C%20and%20the%20autograph%20list.%0A%0Ahttps%3A%2F%2Fartut1582.github.io%2FDisney-2026%2F%0A%0APut%20it%20on%20your%20phone%20so%20it%20works%20in%20the%20parks%20with%20no%20signal%20%E2%80%94%20twenty%20seconds%2C%20no%20app%20store%2C%20no%20account.%20Step-by-step%20for%20iPhone%20and%20Android%20here%3A%0Ahttps%3A%2F%2Fartut1582.github.io%2FDisney-2026%2Finstall-guide.html%0A%0ADo%20it%20on%20wifi%20before%20we%20fly."
-           target="_blank" rel="noopener noreferrer">Send on WhatsApp</a>
-        <button class="logi-btn" type="button" data-share>Share&hellip;</button>
-        <button class="logi-btn" type="button" data-copy>Copy link</button>
+        <a class="logi-btn logi-btn-go" href="tel:+14072340344">Call Fabien &middot; (407) 234-0344</a>
       </div>
-      <p class="logi-n"><a href="install-guide.html">How to install it &mdash; iPhone &amp; Android &rarr;</a></p>
-    </div>
-
-    <!-- ponytail: a Google Photos shared album does the uploading; this card only links to it.
-         Album "Garcia Family Disney 2026": collaborate on, photo location off. -->
-    <div class="logi-card" id="photos">
-      <span class="logi-k">Trip photos &amp; videos</span>
-      <b class="logi-v">Everyone adds to one album</b>
-      <p class="logi-p">Every photo and video from the week goes here for the family
-        video after the trip. Open the album, tap <b>Add photos</b>, and pick from
-        your camera roll &mdash; best done each night at the hotel on wifi.</p>
-      <div class="logi-btns">
-        <a class="logi-btn" href="https://photos.app.goo.gl/kMhaAMRPGpz7qLQV7" target="_blank" rel="noopener noreferrer">Upload photos &amp; videos</a>
-        <a class="logi-btn logi-btn-wa" href="https://wa.me/?text=%F0%9F%93%B8%20%2ADisney%202026%20%E2%80%94%20one%20album%20for%20everything%20%2F%20un%20solo%20%C3%A1lbum%20para%20todo%2A%0A%0AI%27m%20making%20a%20family%20video%20after%20the%20trip.%20Please%20put%20all%20your%20photos%20and%20videos%20here.%0AVoy%20a%20hacer%20un%20video%20familiar%20despu%C3%A9s%20del%20viaje.%20Por%20favor%20suban%20aqu%C3%AD%20todas%20sus%20fotos%20y%20videos.%0A%0A%F0%9F%91%89%20https%3A%2F%2Fphotos.app.goo.gl%2FkMhaAMRPGpz7qLQV7%0A%0AIt%27s%20also%20on%20the%20trip%20site%20under%20%2ALogistics%2A.%0ATambi%C3%A9n%20est%C3%A1%20en%20la%20p%C3%A1gina%20del%20viaje%2C%20en%20%2ALogistics%2A.%0A%0A%2AHow%20to%20add%20%2F%20C%C3%B3mo%20subirlas%2A%0A1.%20Open%20the%20link.%20It%20needs%20the%20%2AGoogle%20Photos%2A%20app%20and%20a%20Google%20account%20%28free%29.%0A%20%20%20Abran%20el%20link.%20Necesita%20la%20app%20%2AGoogle%20Fotos%2A%20y%20una%20cuenta%20de%20Google%20%28gratis%29.%0A2.%20Tap%20%2AAdd%20photos%2A%2C%20pick%20the%20day%27s%20photos%2C%20tap%20%2ADone%2A.%0A%20%20%20Toquen%20%2AAgregar%20fotos%2A%2C%20escojan%20las%20del%20d%C3%ADa%20y%20toquen%20%2AListo%2A.%0A3.%20Easiest%20every%20night%20at%20the%20hotel%20on%20wifi.%0A%20%20%20Lo%20m%C3%A1s%20f%C3%A1cil%20es%20cada%20noche%20en%20el%20hotel%20con%20wifi.%0A%0A%2A%E2%9A%A0%EF%B8%8F%20Before%20we%20fly%3A%20full%20quality%20%2F%20Antes%20de%20volar%3A%20calidad%20completa%2A%0AGoogle%20Photos%20%E2%86%92%20your%20picture%20%28top%20right%29%20%E2%86%92%20%2APhotos%20settings%2A%20%E2%86%92%20%2ABackup%2A%20%E2%86%92%20%2ABackup%20quality%2A%20%E2%86%92%20%2AOriginal%2A%0AGoogle%20Fotos%20%E2%86%92%20su%20foto%20%28arriba%20a%20la%20derecha%29%20%E2%86%92%20%2AConfiguraci%C3%B3n%20de%20Fotos%2A%20%E2%86%92%20%2ACopia%20de%20seguridad%2A%20%E2%86%92%20%2ACalidad%20de%20la%20copia%20de%20seguridad%2A%20%E2%86%92%20%2ACalidad%20original%2A%0A%0A%2APlease%20don%27t%2A%20text%2C%20AirDrop%20or%20WhatsApp%20me%20videos.%20That%20shrinks%20them.%0A%2APor%20favor%20no%2A%20me%20manden%20videos%20por%20mensaje%2C%20AirDrop%20ni%20WhatsApp.%20Eso%20les%20baja%20la%20calidad.%0A%0AAdd%20all%20of%20it%3A%20blurry%2C%20long%2C%20random.%20I%27ll%20sort%20it%20out.%0ASuban%20todo%3A%20borrosas%2C%20largas%2C%20las%20que%20sean.%20Yo%20las%20organizo.%20%F0%9F%8F%B0"
-           target="_blank" rel="noopener noreferrer">Send album on WhatsApp</a>
-      </div>
-      <p class="logi-n">Keep them full quality: Google Photos &rarr; your picture &rarr;
-        Photos settings &rarr; Backup &rarr; Backup quality &rarr; <b>Original</b>.
-        Do not text or WhatsApp videos &mdash; that shrinks them.</p>
     </div>
 
   </div>
@@ -2778,18 +2718,20 @@ document.addEventListener('DOMContentLoaded', () => {
   <div class="section-h">
     <div class="section-eyebrow">🎬 For the Trip Video</div>
     <h2 class="section-title">Share your <b>videos.</b></h2>
-    <p class="section-deck">Art is editing one family movie from everyone’s phones. Send your clips through the shared Google Drive folder so they stay full quality. Art will text the folder link to the family group chat.</p>
+    <p class="section-deck">Art is editing one family movie from everyone’s phones. Tap the green button to open the family video folder, then add your videos. They stay full quality.</p>
+    <a class="drive-btn" href="https://drive.google.com/drive/folders/1b6UcikaSiPmcbQiYgbSaZQOKSuMmPfkl?usp=sharing" target="_blank" rel="noopener noreferrer">📂 Open the video folder</a>
   </div>
 
   <div class="alarm-panel">
     <h3>🚫 Don’t send videos by text</h3>
-    <p>Text messages, iMessage, WhatsApp, Messenger and iCloud Shared Albums all shrink video. iCloud Shared Albums drop it to 720p. Use the Drive folder instead.</p>
+    <p>Text messages, iMessage, WhatsApp, Messenger and iCloud Shared Albums all shrink video. iCloud Shared Albums drop it to 720p. Use the green button above instead.</p>
   </div>
 
   <div class="alarm-panel crt">
     <h3>📤 How to upload</h3>
     <ul>
-      <li><b>iPhone or Android:</b> open the folder link in the Google Drive app, tap +, then Upload, and pick your clips. You need to be signed in to a free Google account.</li>
+      <li><b>Step 1:</b> tap the green button. It opens the folder in the Google Drive app. If your phone asks, install the free Google Drive app and sign in with your Gmail.</li>
+      <li><b>Step 2:</b> tap the + button, then Upload, then pick your videos.</li>
       <li><b>Use Wi-Fi at home:</b> upload after the trip. Park and hotel Wi-Fi are slow, and 4K video is about 350 MB a minute.</li>
       <li><b>Free space:</b> a free Google account holds 15 GB, about 40 minutes of 4K video.</li>
       <li><b>Upload the originals:</b> don’t edit, trim or screen-record a clip first. The original file keeps its date and time, so everyone’s clips line up in order.</li>
@@ -3219,7 +3161,7 @@ function loadCastPhotos(){
 
 
 <link rel="stylesheet" href="hero.css?v=2e7207c37b">
-<link rel="stylesheet" href="trip-tools.css?v=2db600cf3d">
+<link rel="stylesheet" href="trip-tools.css?v=bfcacf6c33">
 <link rel="stylesheet" href="day-metrics.css?v=d3ef8749fe">
 <style id="ride-video-css">
 .ed-vids{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -3276,14 +3218,13 @@ document.addEventListener('click', function (e) {
 });
 </script>
 <script src="day-metrics.js?v=4b37cbd95c"></script>
-<script src="trip-tools.js?v=3c400fa486"></script>
 <script src="install.js?v=65bdab7e76"></script>
 <script src="weather.js?v=178446d0f3"></script>
 <script src="day-switch.js?v=795ece4538"></script>
 <script src="now-next.js?v=b15abd2f28"></script>
 <script src="day-metrics-ui.js?v=aa2874883c"></script>
-<script src="offline-ready.js?v=4ab3b4bed1"></script>
-<script src="i18n-es.js?v=00340fe98e"></script>
-<script src="i18n-fr.js?v=8e252ebb53"></script>
+<script src="offline-ready.js?v=f9baf3cb1c"></script>
+<script src="i18n-es.js?v=231e65593d"></script>
+<script src="i18n-fr.js?v=deff0ee752"></script>
 <script src="i18n.js?v=2b308c2351"></script>
 </body></html>

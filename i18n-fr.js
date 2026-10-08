@@ -958,7 +958,22 @@ window.I18N_FR = {
 "Deadline:": "Date limite :",
 "upload by Sunday, October 25.": "importez avant le dimanche 25 octobre.",
 "No Google account?": "Pas de compte Google ?",
-"Send Art a free WeTransfer link instead. It keeps full quality, up to 3 GB per transfer.": "Envoyez plutôt à Art un lien WeTransfer gratuit. Il garde la pleine qualité, jusqu’à 3 Go par envoi."
+"Send Art a free WeTransfer link instead. It keeps full quality, up to 3 GB per transfer.": "Envoyez plutôt à Art un lien WeTransfer gratuit. Il garde la pleine qualité, jusqu’à 3 Go par envoi.",
+"Hotels, meeting point, emergencies, car service": "Hôtels, point de rendez-vous, urgences, transport",
+"Car service · Epic Universe & airport": "Transport · Epic Universe et aéroport",
+"FS Premier Transport": "FS Premier Transport",
+"Fri Oct 16:": "Ven 16 oct :",
+"8:30 AM pickup at Art of Animation for Epic Universe, nine passengers, child seat for Annelise. Back to Art of Animation at 8:15 PM.": "Prise en charge à 8 h 30 à Art of Animation pour Epic Universe, neuf passagers, siège enfant pour Annelise. Retour à Art of Animation à 20 h 15.",
+"Sat Oct 17:": "Sam 17 oct :",
+"airport run — confirm the pickup time with Fabien.": "trajet vers l’aéroport — confirmez l’heure de prise en charge avec Fabien.",
+"Call Fabien · (407) 234-0344": "Appeler Fabien · (407) 234-0344",
+"Art is editing one family movie from everyone’s phones. Tap the green button to open the family video folder, then add your videos. They stay full quality.": "Art monte un seul film de famille avec les vidéos de tout le monde. Touchez le bouton vert pour ouvrir le dossier vidéo de la famille, puis ajoutez vos vidéos. Elles gardent toute leur qualité.",
+"📂 Open the video folder": "📂 Ouvrir le dossier vidéo",
+"Text messages, iMessage, WhatsApp, Messenger and iCloud Shared Albums all shrink video. iCloud Shared Albums drop it to 720p. Use the green button above instead.": "Les SMS, iMessage, WhatsApp, Messenger et les albums partagés iCloud réduisent tous la qualité des vidéos. Les albums iCloud les ramènent à 720p. Utilisez plutôt le bouton vert ci-dessus.",
+"Step 1:": "Étape 1 :",
+"tap the green button. It opens the folder in the Google Drive app. If your phone asks, install the free Google Drive app and sign in with your Gmail.": "touchez le bouton vert. Il ouvre le dossier dans l’app Google Drive. Si votre téléphone le demande, installez l’app gratuite Google Drive et connectez-vous avec votre Gmail.",
+"Step 2:": "Étape 2 :",
+"tap the + button, then Upload, then pick your videos.": "touchez le bouton +, puis Importer, puis choisissez vos vidéos."
 }; // end I18N_FR
 window.I18N_FR_RX = [
   [/^in (\d+)h (\d+)m$/, "dans $1 h $2 min"],
