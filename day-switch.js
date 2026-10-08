@@ -82,6 +82,12 @@
 
     try { localStorage.setItem(KEY, id); } catch (e) { /* private mode */ }
 
+    /* A tab leaves #day-mk in the address bar while showing another day, and
+       tapping the Magic card again is then no hash change at all. Point it at
+       the day on screen instead, so Back and reload still land on a real day. */
+    var hashed = dayFromHash();
+    if (hashed && hashed !== id) history.replaceState(null, '', '#' + id);
+
     if (scroll) {
       var top = document.getElementById(id).getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: Math.max(0, top - 70), behavior: 'smooth' });

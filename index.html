@@ -1869,6 +1869,11 @@ button.expd-day:focus-visible{
 .ed-plan-b li:before{content:"";position:absolute;left:0;top:2px;width:11px;height:11px;
   border:1.5px solid #b1521a;border-radius:2.5px}
 .ed-plan-b li b{color:#171310}
+/* Ticked state for these boxes and the wifi card's; the checklist script sets aria-checked. */
+.ed-plan-b li[role=checkbox],#wifi .fl-wifi li[role=checkbox]{cursor:pointer}
+.ed-plan-b li[aria-checked=true]:before,#wifi .fl-wifi li[aria-checked=true]:before{content:"✓";
+  background:#b1521a;color:#fff;font:700 10px/11px ui-sans-serif,system-ui,sans-serif;text-align:center}
+#wifi .fl-wifi li[aria-checked=true]:before{background:#60a5fa;color:#0b1020}
 .ed-plan-b .still{margin-top:13px;padding:10px 13px;border-radius:10px;background:#f2f8f3;
   border:1px solid #9ccbb0;font-size:12.4px;line-height:1.55;color:#2f5d43}
 .ed-plan-b .still b{color:#1e6b40}
@@ -2452,7 +2457,7 @@ body.pmv-lock{overflow:hidden}
         <img class="ed-shot" src="sections/assets/eu/stardust-racers.jpg?v=2026081003" alt="Stardust Racers" loading="lazy" decoding="async" width="150" height="100">
 
       </span><span class="ed-vids"><button type="button" class="ed-vid" data-yt="Ffl-WOno2yM">▶ Ride video</button></span></li>
-<li class="ed-ev has-shot" id="eu-fountains" data-stop-id="eu-fountains" data-wait="0" data-experience="10" data-kind="walk" data-optional="true" data-anchor="The Cosmos Fountain"><span class="ed-num" aria-hidden="true">20</span><span class="ed-body"><span class="ed-t">Before exit · optional</span><span class="ed-h">Celestial Park fountains and lights</span><span class="ed-n">A short photo if time and operating hours allow. Mario/Donkey Kong meets belong in Nintendo, not at this fountain. Leave time for the walk to the confirmed pickup point.</span></span><span class="ed-media">
+<li class="ed-ev has-shot" id="eu-fountains" data-stop-id="eu-fountains" data-wait="0" data-experience="10" data-kind="walk" data-optional="true" data-anchor="The Cosmos Fountain"><span class="ed-num" aria-hidden="true">20</span><span class="ed-body"><span class="ed-t">Before exit · optional</span><span class="ed-h">Celestial Park fountains and lights</span><span class="ed-n">A short photo if time and operating hours allow. Mario/Donkey Kong meets belong in Nintendo, not at this fountain. The nightly Celestial Goodnight fountain and fireworks show starts after the 7:50 exit, so do not wait for it. Leave time for the walk to the confirmed pickup point.</span></span><span class="ed-media">
         <img class="ed-shot" src="sections/assets/eu/stardust-show.jpg?v=2026081003" alt="Celestial Park fountains and lights" loading="lazy" decoding="async" width="150" height="100">
 
       </span></li>
@@ -2501,21 +2506,26 @@ body.pmv-lock{overflow:hidden}
 </section>
 
 <script>
-// Memory shotlist — persist taps across reloads
-(function(){
-  const list = document.getElementById('shotlist'); if (!list) return;
-  const KEY = 'garcia2026.shotlist';
-  let done = {}; try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
-  list.querySelectorAll('li').forEach(li => {
-    const id = li.dataset.id;
-    if (done[id]) li.classList.add('done');
-    li.addEventListener('click', () => {
-      li.classList.toggle('done');
-      done[id] = li.classList.contains('done');
-      localStorage.setItem(KEY, JSON.stringify(done));
-    });
+// Checklist boxes (bookings card, wifi card) — tap or Space/Enter ticks; kept on this phone.
+// Key = id of the nearest ancestor with one + the item's position in it, e.g. "day-mk:1".
+document.addEventListener('DOMContentLoaded', () => {
+  const SEL = '.ed-plan-b li, #wifi .fl-wifi li', KEY = 'disney2026.ticks';
+  let done = {}; try { done = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ /* storage blocked */ }
+  document.querySelectorAll(SEL).forEach(li => {
+    const card = li.closest('[id]'), id = card.id + ':' + [...card.querySelectorAll(SEL)].indexOf(li);
+    li.parentNode.setAttribute('role', 'group');
+    li.setAttribute('role', 'checkbox'); li.tabIndex = 0;
+    li.setAttribute('aria-checked', String(!!done[id]));
+    const toggle = () => {
+      const on = li.getAttribute('aria-checked') !== 'true';
+      li.setAttribute('aria-checked', String(on));
+      done = {...done, [id]: on};
+      try { localStorage.setItem(KEY, JSON.stringify(done)); } catch(e){ /* private mode: lasts this visit */ }
+    };
+    li.addEventListener('click', toggle);
+    li.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
   });
-})();
+});
 </script>
 
 
@@ -3183,13 +3193,13 @@ document.addEventListener('click', function (e) {
 <script src="trip-tools.js?v=3c400fa486"></script>
 <script src="install.js?v=65bdab7e76"></script>
 <script src="weather.js?v=178446d0f3"></script>
-<script src="day-switch.js?v=1547613812"></script>
+<script src="day-switch.js?v=7e15e34454"></script>
 <script src="stops.js?v=6dc1711501"></script>
 <script src="now-next.js?v=b15abd2f28"></script>
 <script src="day-metrics-ui.js?v=94439673f0"></script>
 <script src="offline-ready.js?v=4ab3b4bed1"></script>
-<script src="i18n-es.js?v=56dfcdc5a2"></script>
-<script src="i18n-fr.js?v=4531b80af4"></script>
-<script src="i18n-de.js?v=0f11698762"></script>
+<script src="i18n-es.js?v=46b992703c"></script>
+<script src="i18n-fr.js?v=1c66e37def"></script>
+<script src="i18n-de.js?v=257737b916"></script>
 <script src="i18n.js?v=ee81b832c6"></script>
 </body></html>

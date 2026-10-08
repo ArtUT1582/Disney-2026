@@ -1,5 +1,5 @@
 /* Offline itinerary: exact versioned URLs, per-page navigation keys and acknowledged readiness. */
-const CACHE = 'disney2026-v14';
+const CACHE = 'disney2026-v15';
 const PRECACHE = ['./', './index.html', './install-guide.html', './manifest.json', './boutique.ics', './cinderellas-royal-table.ics'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(PRECACHE.map(url => cache.add(url).catch(() => false)))).then(() => self.skipWaiting()));
