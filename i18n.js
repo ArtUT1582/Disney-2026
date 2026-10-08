@@ -1,11 +1,11 @@
-/* EN | ES | FR | DE switch. Swaps rendered English text for window.I18N_<LANG> (exact
+/* EN | ES | FR switch. Swaps rendered English text for window.I18N_<LANG> (exact
    match on whitespace-collapsed text), then I18N_<LANG>_RX patterns, then each " · " part.
    Anything untranslated stays English. A MutationObserver covers text the other
    scripts render later (Now/Next, weather, offline status). */
 (function () {
   'use strict';
   var KEY = 'disney2026.lang', ATTRS = ['aria-label', 'title', 'alt', 'placeholder'];
-  var LANGS = {en: 'en', es: 'es-MX', fr: 'fr', de: 'de'};   // button code -> html lang
+  var LANGS = {en: 'en', es: 'es-MX', fr: 'fr'};   // button code -> html lang
   var orig = new WeakMap(), attrOrig = new WeakMap(), lang = 'en', obs;
 
   function T(s) {
@@ -99,7 +99,7 @@
   var sw = document.createElement('div');
   sw.className = 'lang-sw';
   sw.setAttribute('role', 'group');
-  sw.setAttribute('aria-label', 'Language / Idioma / Langue / Sprache');
+  sw.setAttribute('aria-label', 'Language / Idioma / Langue');
   sw.innerHTML = Object.keys(LANGS).map(function (c) {
     return '<button type="button" data-lang="' + c + '" aria-pressed="' + (c === 'en') + '">' + c.toUpperCase() + '</button>';
   }).join('');
