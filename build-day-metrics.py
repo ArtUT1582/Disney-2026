@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Build day-metrics.js: per-stop wait/experience minutes and a GPS route trace.
+"""Build day-metrics.js: per-stop wait/experience minutes and walking distance.
 
 Coordinates come from the public themeparks.wiki entity API (cached in
 cache/*.json). Distances use cached OpenStreetMap paths where connected, with a flagged
@@ -151,83 +151,17 @@ def load_park(key):
 
 
 GRAPHS = {}
-BASEMAPS = {}
 
 
 def _park_assets(park):
-    """Walkway graph and drawable basemap for a park, loaded once."""
+    """Walkway graph for a park, loaded once."""
     if park not in GRAPHS:
         try:
             GRAPHS[park] = parkmap.Graph(park)
-            BASEMAPS[park] = {
-                "green": [pl["pts"] for pl in parkmap.layers(park) if pl["kind"] == "green"],
-                "water": [pl["pts"] for pl in parkmap.layers(park) if pl["kind"] == "water"],
-                "build": [pl["pts"] for pl in parkmap.layers(park) if pl["kind"] == "build"],
-                "paths": parkmap.paths(park),
-            }
         except FileNotFoundError as e:
             print("  %s" % e, file=sys.stderr)
             GRAPHS[park] = None
-            BASEMAPS[park] = None
     return GRAPHS[park]
-
-
-# Coordinates ship as integers in units of 1e-5 degrees - about 1.1 m, which
-# is finer than anything visible at the size these maps are drawn. The first
-# pair is absolute and the rest are deltas, which keeps most numbers to two or
-# three characters instead of nineteen. day-metrics-ui.js has the decoder.
-COORD_SCALE = 100000
-
-
-def _encode(pts):
-    """[(lat, lon), ...] -> [lat0, lon0, dlat, dlon, ...] as integers."""
-    out = []
-    plat = plon = 0
-    for i, (la, lo) in enumerate(pts):
-        ila, ilo = int(round(la * COORD_SCALE)), int(round(lo * COORD_SCALE))
-        if i == 0:
-            out += [ila, ilo]
-        else:
-            if ila == plat and ilo == plon:
-                continue          # duplicate point after rounding
-            out += [ila - plat, ilo - plon]
-        plat, plon = ila, ilo
-    return out
-
-
-def _clip(shapes, box, min_pts=3):
-    """Keep only the geometry near the day's route, delta-encoded."""
-    s0, w0, n0, e0 = box
-    out = []
-    for pts in shapes:
-        if not any(s0 <= la <= n0 and w0 <= lo <= e0 for la, lo in pts):
-            continue
-        enc = _encode(pts)
-        if len(enc) >= min_pts * 2:
-            out.append(enc)
-    return out
-
-
-def _basemap_for(park, route):
-    """The park drawn around this day's route: greenery, water, buildings and
-    the walkway network, clipped to the route's own bounds plus a margin."""
-    base = BASEMAPS.get(park)
-    if not base or not route:
-        return None
-    lats = [p["lat"] for p in route]
-    lons = [p["lon"] for p in route]
-    mlat, mlon = 0.0016, 0.0026          # breathing room, wider east-west
-                                         # because the view widens tall routes
-    box = (min(lats) - mlat, min(lons) - mlon,
-           max(lats) + mlat, max(lons) + mlon)
-    return {
-        "box": [round(v, 5) for v in box],
-        "scale": COORD_SCALE,
-        "green": _clip(base["green"], box),
-        "water": _clip(base["water"], box),
-        "build": _clip(base["build"], box),
-        "paths": _clip(base["paths"], box, min_pts=2),
-    }
 
 
 def build():
@@ -257,7 +191,7 @@ def build():
         # OSM footpath network, so the line on the map is the line you walk and
         # the distance is measured rather than guessed.
         graph = _park_assets(day["park"])
-        route, legs, prev, prev_node, total_m = [], [], None, None, 0.0
+        route, prev, prev_node, total_m = [], None, None, 0.0
         estimated = 0
         for s in stops:
             if not s["pt"] or s["alt"]:
@@ -279,8 +213,6 @@ def build():
             route.append({"id": s["id"], "n": s["n"], "lat": round(s["pt"][0], 6),
                           "lon": round(s["pt"][1], 6),
                           "leg": int(round(leg_m)), "cum": int(round(total_m))})
-            if line:
-                legs.append(_encode(line))
             prev, prev_node = s["pt"], node or prev_node
 
         counted = [s for s in stops if not s["alt"]]
@@ -300,8 +232,6 @@ def build():
             "stops": {s["id"]: {"n": s["n"], "w": s["w"], "e": s["e"], "k": s["k"],
                                     "alt": s["alt"]} for s in stops},
             "route": route,
-            "legs": legs,
-            "map": _basemap_for(day["park"], route),
         }
 
     if missing:
