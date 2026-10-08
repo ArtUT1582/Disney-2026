@@ -1,5 +1,5 @@
 /* Offline itinerary: exact versioned URLs, per-page navigation keys and acknowledged readiness. */
-const CACHE = 'disney2026-v29';
+const CACHE = 'disney2026-v30';
 const PRECACHE = ['./', './index.html', './install-guide.html', './manifest.json'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => Promise.all(PRECACHE.map(url => cache.add(new Request(url, {cache:'reload'})).catch(() => false)))).then(() => self.skipWaiting()));
@@ -10,6 +10,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request, url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  // ponytail: media range requests (the trip song) go straight to the network; Cache API can't store 206s, so the song needs a connection.
+  if (request.headers.has('range')) return;
   const page = request.mode === 'navigate' || (request.headers.get('accept') || '').includes('text/html');
   event.respondWith(caches.open(CACHE).then(async cache => {
     const key = page ? new URL(url.pathname, self.location.origin).href : request;

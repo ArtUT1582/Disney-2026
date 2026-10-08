@@ -129,6 +129,16 @@
 }
 
 
+.tc-song{
+  margin:clamp(14px,2vw,20px) 0 0; display:inline-flex; align-items:center; gap:8px;
+  padding:9px 16px; border-radius:999px; cursor:pointer;
+  font:700 13px/1 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  color:#FFFBF2; background:rgba(0,0,0,.45); border:1px solid #39B36A;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.tc-song[aria-pressed="true"]{ background:#39B36A; color:#0B1A12; }
+.tc-song-ic{ font-size:11px; width:12px; text-align:center; }
+
 /* ---------- five-park index: its own section under the card ---------- */
 .parks{
   display:block;

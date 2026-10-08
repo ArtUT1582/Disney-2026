@@ -43,6 +43,7 @@ window.I18N_FR = {
 "The Garcia Family": "La famille Garcia",
 "Walt Disney World & Epic Universe · Orlando, Florida": "Walt Disney World & Epic Universe · Orlando, Floride",
 "October 11–17, 2026": "Du 11 au 17 octobre 2026",
+"Our trip song · Bad Times": "La chanson du voyage · Bad Times",
 "Jump to a park day": "Aller à une journée de parc",
 "Five days, five parks": "Cinq jours, cinq parcs",
 "TAP A DAY": "TOUCHEZ UN JOUR",

@@ -1490,8 +1490,18 @@ function charFallback(img){
     <span class="tc-rule" aria-hidden="true"></span>
     <p class="tc-dates">Walt Disney World &amp; Epic Universe · Orlando, Florida<br>
       October 11–17, 2026</p>
+    <button class="tc-song" id="tc-song" type="button" aria-pressed="false"><span class="tc-song-ic" aria-hidden="true">▶</span> Our trip song · Bad Times</button>
+    <audio id="tc-audio" src="assets/bad-times.mp3" preload="none" loop></audio>
   </div>
 </header>
+<script>
+(() => {
+  const btn = document.getElementById('tc-song'), audio = document.getElementById('tc-audio'), icon = btn.firstElementChild;
+  btn.addEventListener('click', () => audio.paused ? audio.play().catch(() => {}) : audio.pause());
+  audio.addEventListener('play', () => { btn.setAttribute('aria-pressed', 'true'); icon.textContent = '❚❚'; });
+  audio.addEventListener('pause', () => { btn.setAttribute('aria-pressed', 'false'); icon.textContent = '▶'; });
+})();
+</script>
 
 <!-- Five-park index: its own section under the title card. -->
 <nav class="parks" aria-label="Jump to a park day">
@@ -3160,7 +3170,7 @@ function loadCastPhotos(){
 </style>
 
 
-<link rel="stylesheet" href="hero.css?v=2e7207c37b">
+<link rel="stylesheet" href="hero.css?v=375c13c247">
 <link rel="stylesheet" href="trip-tools.css?v=bfcacf6c33">
 <link rel="stylesheet" href="day-metrics.css?v=d3ef8749fe">
 <style id="ride-video-css">
@@ -3224,7 +3234,7 @@ document.addEventListener('click', function (e) {
 <script src="now-next.js?v=b15abd2f28"></script>
 <script src="day-metrics-ui.js?v=aa2874883c"></script>
 <script src="offline-ready.js?v=f9baf3cb1c"></script>
-<script src="i18n-es.js?v=b74bcebb0c"></script>
-<script src="i18n-fr.js?v=ae8dc13b5d"></script>
+<script src="i18n-es.js?v=4e8d1cbd80"></script>
+<script src="i18n-fr.js?v=e8d3cb1bb0"></script>
 <script src="i18n.js?v=2b308c2351"></script>
 </body></html>
