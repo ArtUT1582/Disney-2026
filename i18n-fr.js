@@ -787,7 +787,7 @@ window.I18N_FR = {
 "Universal": "Universal",
 "Between New York and San Francisco": "Entre New York et San Francisco",
 "Celestial Park, near the entrance": "Celestial Park, près de l’entrée",
-"24-hour pharmacy: Walgreens, 12100 S Apopka Vineland Rd — about 10 minutes from both resorts.": "Pharmacie ouverte 24 h/24 : Walgreens, 12100 S Apopka Vineland Rd — à environ 10 minutes des deux resorts.",
+"Nearest pharmacy: Walgreens, 12100 S Apopka Vineland Rd — about 10 minutes from both resorts. The store is open 24 hours; the pharmacy counter closes at 7 PM.": "Pharmacie la plus proche : Walgreens, 12100 S Apopka Vineland Rd — à environ 10 minutes des deux resorts. Le magasin est ouvert 24 h/24 ; le comptoir de la pharmacie ferme à 7 PM.",
 "Send this to the family": "Envoyer ceci à la famille",
 "Point a camera at this": "Pointez l’appareil photo ici",
 "QR code linking to the itinerary": "Code QR menant à l’itinéraire",
