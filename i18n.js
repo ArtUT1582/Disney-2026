@@ -96,12 +96,13 @@
   });
   obs.observe(document.body, {childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS});
 
+  var NATIVE = {en: 'English', es: 'Español', fr: 'Français'};   // each in its own language: never translated
   var sw = document.createElement('div');
   sw.className = 'lang-sw';
   sw.setAttribute('role', 'group');
   sw.setAttribute('aria-label', 'Language / Idioma / Langue');
   sw.innerHTML = Object.keys(LANGS).map(function (c) {
-    return '<button type="button" data-lang="' + c + '" aria-pressed="' + (c === 'en') + '">' + c.toUpperCase() + '</button>';
+    return '<button type="button" data-lang="' + c + '" aria-pressed="' + (c === 'en') + '"><span>' + c.toUpperCase() + '</span><small>' + NATIVE[c] + '</small></button>';
   }).join('');
   sw.addEventListener('click', function (e) {
     var b = e.target.closest('button[data-lang]');
